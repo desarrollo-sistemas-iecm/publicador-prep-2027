@@ -5,7 +5,7 @@ export const environment = {
     // api_prep: 'https://aplicaciones.iecm.mx/pruebas_sicodid2024/services',
     version: 'v0.0.1',
     date_dist: "Thu May 09 2024 18:52:33 GMT-0600 (Central Standard Time)",
-    prep: false,
+    prep: true,
     detalle_sistema_prep: {
         siglas: 'PREP',
         titulo: 'Programa de Resultados <span class="txRosaIne">E</span>lectorales Preliminares 2024',
