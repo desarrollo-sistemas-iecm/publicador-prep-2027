@@ -25,6 +25,25 @@ Note: `angular.json`'s project is named `prepRouting` (default build output is `
 from the `package.json` name `publicador-prep-2027` — the `build:dev`/`build:prod` scripts override
 `--output-path` for that reason. Prefer those npm scripts over raw `ng build`.
 
+## Angular version
+
+Pinned to Angular's current LTS line, **v21.2.x** (not the newer v22, which is Active but not yet LTS) — keep
+`@angular/*`, `@angular/cli`, `@angular-devkit/build-angular`, and `@angular/compiler-cli` on matching `21.2.x`
+versions. This requires TypeScript `~5.9.3` and `zone.js ~0.16.0` (Angular 21 peer requirement:
+`typescript >=5.9 <6.1`). `tsconfig.json` uses `"moduleResolution": "bundler"` — required because
+`@angular/common/http` (and other Angular subpath exports) are no longer resolvable under the legacy `"node"`
+resolution strategy in current Angular package layouts.
+
+Since Angular 19, `@Component`/`@Pipe`/`@Directive` default to `standalone: true` when the property is omitted. This
+app is entirely NgModule-based (no standalone components), so **every** `@Component`/`@Pipe` decorator explicitly
+sets `standalone: false` — always include it on new components/pipes, or they'll fail to compile when declared in an
+`NgModule` (`NG6008`).
+
+Component specs that hit `HttpClient`/`Router`/`ActivatedRoute` through injected services need
+`HttpClientTestingModule`/`RouterTestingModule` (and typically `NO_ERRORS_SCHEMA` to avoid having to declare every
+child component/pipe used in the template) in their `TestBed.configureTestingModule` — see
+`sidebar.component.spec.ts` or `bienvenida.component.spec.ts` for the pattern.
+
 ## Environments
 
 `src/environments/environment.ts` (production) and `environment.development.ts` (dev, swapped in via
