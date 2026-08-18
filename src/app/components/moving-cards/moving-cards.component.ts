@@ -13,6 +13,7 @@ export interface CandidaturaCard {
 
 
 @Component({
+  standalone: false,
   selector: 'app-moving-cards',
   templateUrl: './moving-cards.component.html',
   styles: [

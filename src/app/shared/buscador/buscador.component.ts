@@ -6,6 +6,7 @@ import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
+  standalone: false,
   selector: 'app-buscador',
   templateUrl: './buscador.component.html',
   styleUrls: ['./buscador.component.css']

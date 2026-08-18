@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-compartir',
   templateUrl: './compartir.component.html',
   styleUrls: ['./compartir.component.css']

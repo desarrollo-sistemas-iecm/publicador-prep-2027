@@ -17,6 +17,7 @@ interface Row {
 
 
 @Component({
+  standalone: false,
   selector: 'app-detalle-votos-casilla',
   templateUrl: './detalle-votos-casilla.component.html',
   styles: [

@@ -9,6 +9,7 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 import { environment } from 'src/environments/environment.development';
 
 @Component({
+  standalone: false,
   selector: 'app-primer-nivel',
   templateUrl: './primer-nivel.component.html',
   styles: [

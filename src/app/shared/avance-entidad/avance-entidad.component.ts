@@ -3,6 +3,7 @@ import { ApiPrepService } from '../../services/api-prep.service';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-avance-entidad',
   templateUrl: './avance-entidad.component.html',
   styles: [

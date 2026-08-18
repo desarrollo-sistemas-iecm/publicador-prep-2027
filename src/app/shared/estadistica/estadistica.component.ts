@@ -14,6 +14,7 @@ SolidGauge(Highcharts);
 
 
 @Component({
+  standalone: false,
   selector: 'app-estadistica',
   templateUrl: './estadistica.component.html',
   styleUrls: [`./estadistica.component.css`]

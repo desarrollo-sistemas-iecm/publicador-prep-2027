@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
 
 @Component({
+  standalone: false,
   selector: 'app-resumen-votacion',
   templateUrl: './resumen-votacion.component.html',
   styleUrls: ['./resumen-votacion.component.css']

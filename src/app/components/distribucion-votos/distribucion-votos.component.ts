@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-distribucion-votos',
   templateUrl: './distribucion-votos.component.html',
   styles: [

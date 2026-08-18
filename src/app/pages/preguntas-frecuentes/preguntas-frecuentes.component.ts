@@ -5,6 +5,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 
 
 @Component({
+  standalone: false,
   selector: 'app-preguntas-frecuentes',
   templateUrl: './preguntas-frecuentes.component.html',
   styleUrls: ['./preguntas-frecuentes.component.css']

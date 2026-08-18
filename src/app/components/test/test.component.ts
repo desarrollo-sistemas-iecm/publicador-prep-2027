@@ -9,6 +9,7 @@ import { LabelTransformerViewFoService } from 'src/app/services/label-transforme
 import { environment } from 'src/environments/environment.development';
 
 @Component({
+  standalone: false,
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']

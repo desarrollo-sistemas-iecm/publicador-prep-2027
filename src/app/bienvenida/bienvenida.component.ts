@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-bienvenida',
   templateUrl: './bienvenida.component.html',
   styleUrls: ['./bienvenida.component.css']

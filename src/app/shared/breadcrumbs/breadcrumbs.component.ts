@@ -7,6 +7,7 @@ import { LabelTransformerViewFoService } from 'src/app/services/label-transforme
 import { NavigationService } from '../../services/navigation-breadcrumbs.service';
 
 @Component({
+  standalone: false,
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.css']

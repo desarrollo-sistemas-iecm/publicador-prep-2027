@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
 
 @Component({
+  standalone: false,
   selector: 'app-estadistica-casilla',
   templateUrl: './estadistica-casilla.component.html',
   styles: [

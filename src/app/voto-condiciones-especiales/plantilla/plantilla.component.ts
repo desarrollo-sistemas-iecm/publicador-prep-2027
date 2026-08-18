@@ -3,6 +3,7 @@ import { BreadcrumbsConfig } from 'src/app/interfaces/breadcrumbs';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-plantilla',
   templateUrl: './plantilla.component.html',
   styles: [

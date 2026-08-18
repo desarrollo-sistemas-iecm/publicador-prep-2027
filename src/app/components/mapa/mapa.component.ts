@@ -15,6 +15,7 @@ HC_map(Highcharts);
 
 
 @Component({
+  standalone: false,
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
   styles: [
