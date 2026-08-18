@@ -1,0 +1,60 @@
+/* .card {
+	 box-shadow: 0px 3px 6px #000029;
+} */
+ .casilla-resumen .acta-digitalizada p {
+	 color: #4e4e4e;
+	 font-size: 0.8em;
+}
+ .casilla-resumen .acta-digitalizada .boton-rosa {
+	 background: #d5137f;
+	 color: #fff;
+	 box-shadow: 0px 3px 6px #000029;
+	 border-radius: 8px;
+	 font-size: 0.8em;
+}
+ .casilla-resumen .acta-digitalizada .boton-rosa i {
+	 margin: 0 0.125em;
+	 font-size: 1.2em;
+}
+ .casilla-resumen .acta-digitalizada .grupo {
+	 color: #6f65a3;
+}
+ .casilla-resumen .acta-digitalizada .grupo i {
+	 margin: 0 0.125em;
+}
+ .casilla-resumen .acta-digitalizada .grupo p {
+	 margin-left: 0.125em;
+	 color: #6f65a3;
+}
+ .casilla-resumen .estadistica-casilla .grafica {
+	 z-index: 0;
+	 background: #f4f4f4;
+	 height: 80%;
+}
+ .casilla-resumen .estadistica-casilla .grafica .porcentaje {
+	 font-size: 1.75em;
+}
+ .casilla-resumen .estadistica-casilla .grafica .textos {
+	 padding-top: 2px;
+	 z-index: 1;
+	 color: #fff;
+	 position: relative;
+}
+ .casilla-resumen .estadistica-casilla .grafica .textos .casilla {
+	 font-size: 14px;
+}
+ .casilla-resumen .estadistica-casilla .grafica .textos .porcentaje {
+	 font-size: 16px;
+}
+ .casilla-resumen .estadistica-casilla .lista-nominal {
+	 font-size: 0.7em;
+}
+ .casilla-resumen .estadistica-casilla .total-nominal {
+	 font-size: 1.75em;
+}
+ .border-right {
+	 border-right: 1px solid #000;
+}
+ .border-rightB {
+	 border-right: 2px solid #000;
+}

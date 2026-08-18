@@ -1,0 +1,158 @@
+body {
+	 font-family: 'Roboto-Regular', sans-serif;
+	 margin: 0;
+	 padding: 0;
+	 background: #f4f4f4;
+}
+ .bgPrototipo {
+	 background: url('/assets/img/marca-de-agua.png');
+	 background-repeat: repeat;
+	 width: 100%;
+	 height: 100%;
+}
+ .container-fluid {
+	 /* background: url('../images/MarcaDeAgua.png'); */
+	 background: url('/assets/img/marca-de-agua.png');
+
+	 background-repeat: repeat;
+}
+ h1 {
+	 margin: 0;
+}
+ a {
+	 text-decoration: none;
+	 color: inherit;
+}
+ a:hover {
+	 color: unset;
+	 text-decoration: none;
+}
+ .underline {
+	 text-decoration: underline;
+}
+ .w-5 {
+	 width: 5% !important;
+}
+ .w-70 {
+	 width: 70%;
+}
+ .w-80 {
+	 width: 80%;
+}
+ .w-90 {
+	 width: 90%;
+}
+ .w-95 {
+	 width: 95% !important;
+}
+ .w-100 {
+	 width: 100%;
+}
+ .w-40 {
+	 width: 40%;
+}
+ .w-50 {
+	 width: 50%;
+}
+ .w-auto {
+	 width: auto;
+}
+ .h-100 {
+	 height: 100%;
+}
+ .h-10v {
+	 height: 10vh;
+}
+ .h-12v {
+	 height: 12vh;
+}
+ .h-15v {
+	 height: 15vh;
+}
+ .h-20v {
+	 height: 20vh;
+}
+ .h-25v {
+	 height: 25vh;
+}
+ .h-50v {
+	 height: 50vh;
+}
+ .h-100v {
+	 height: 100vh;
+}
+ .h-auto {
+	 height: auto;
+}
+ .positionA {
+	 position: absolute !important;
+}
+ .positionR {
+	 position: relative !important;
+}
+ p {
+	 margin: 0;
+}
+/* MODAL */
+ .modal-backdrop {
+	 z-index: 9999 !important;
+}
+ .modal {
+	 z-index: 10000;
+}
+ .modal-paritcipacion .modal-dialog {
+	 max-width: 1120px;
+	 margin: 1.75rem auto;
+}
+ .modal-paritcipacion .modal-dialog .modal-content {
+	 padding-left: 30px;
+	 padding-right: 30px;
+}
+ .modal-casilla .modal-dialog {
+	 max-width: 720px;
+	 max-height: 535px;
+	 margin: 1.75rem auto;
+}
+ .modal-casilla .modal-dialog .modal-content {
+	 padding-left: 30px;
+	 padding-right: 30px;
+}
+ .modal-casilla .modal-dialog .img-credencial {
+	 width: 100%;
+}
+ .img-partido {
+	 height: 20px;
+	 margin: 2px;
+}
+ .cursor-hand {
+	 cursor: pointer;
+}
+ progress {
+	 -webkit-appearance: none;
+	 appearance: none;
+}
+ @media (max-width: 576px) {
+	 .h-12v {
+		 height: 20vh;
+	}
+}
+ @media (min-width: 577px) and (max-width: 768px) {
+	 .h-12v {
+		 height: 15vh;
+	}
+}
+ .no-border {
+	 border: none !important;
+}
+ .scrollH {
+	 flex-wrap: nowrap;
+	 overflow-x: scroll;
+}
+ .boton-scroll {
+	 flex: 0 0 4.1%;
+	 max-width: 4.1%;
+}
+ .max-500 {
+	 max-height: 500px;
+	 overflow-y: scroll;
+}

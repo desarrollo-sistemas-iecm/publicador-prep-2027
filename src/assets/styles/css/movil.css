@@ -1,0 +1,219 @@
+/*AGREGAMOS LOS AJUSTES OARA BUENA VISTA EN DISPOTIVO MOVIL*/
+@media (min-width: 768px) {
+  /* .p-l{
+    padding-left: 58px;
+  } */
+  /* body{
+    background-color: aqua !important;
+  } */
+}
+
+@media (max-width: 600px) {
+  .p-l {
+    padding-left: 50px !important;
+  }
+
+  .p-l-2 {
+    padding-left: 64px;
+  }
+
+  .texto-definicion {
+    padding-right: 0px;
+  }
+
+  .texto-definicion2 {
+    font-size: 12px;
+  }
+
+  /* body{
+    background-color: aqua !important;
+  } */
+  .cuatro-columnas {
+    /* background-color: aqua !important; */
+    /* display: flex;
+    justify-content: space-between; */
+    /* margin-left: -54px; */
+    /* font-size: calc(1em + 1vw); */
+  }
+
+  .cuatro-columnas .col-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: none;
+    /* font-size: calc(1em + 1vw); */
+  }
+
+  .cuatro-columnas img {
+    display: none;
+  }
+
+  /*barra lateral*/
+  .barra-latera{
+    display: none;
+  }
+}
+
+/* @media (min-width: 768px) {
+  .hidebar-phone .tick {
+    display: none;
+  }
+} */
+@media (max-width: 767px) {
+  .hidebar .sticky {
+    /* display: none; */
+    background-color: aqua;
+  }
+
+  .hidebar-phone {
+    background-color: red;
+    display: inline;
+  }
+
+  .hidebar-phone .size-avance .card {
+    height: 70px !important;
+    width: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /*sticky*/
+  .sticky .size-avance .center-vertical {
+    /* background-color: aqua; */
+    font-size: 10px;
+  }
+
+  .sticky strong {
+    font-size: 10px;
+  }
+
+  /*sticky*/
+  .encabezado {
+    height: auto;
+  }
+
+  .titulo-seccion {
+    font-size: 16px;
+  }
+
+  .selector {
+    /* display: grid;
+    grid-template-rows: minmax(100px, auto); */
+    /* grid-template-columns: 50% 50%; */
+    /* display: block;
+    width: calc(100% - 80px); */
+    /*funciona*/
+    min-width: 25px;
+    /*padding-right: 1em; */
+    /*funciona*/
+    display: contents;
+  }
+
+  .visualizar .selector p {
+    font-size: 8px;
+  }
+
+  .visualizar {
+    /* background-color: aqua; */
+    font-size: 8px;
+  }
+
+  .visualizar .activo.izq {
+    border-radius: 8px 8px 0px 0px;
+    ;
+  }
+
+  .visualizar .activo.der {
+    border-radius: 0px 0px 8px 8px;
+  }
+}
+
+@media (max-width: 528px) {
+  .titulo-seccion {
+    font-size: 10px;
+  }
+
+  .selector {
+    min-width: 15px;
+  }
+
+  .visualizar .selector p {
+    font-size: 7px;
+  }
+
+  .visualizar {
+    /* background-color: aqua; */
+    font-size: 7px;
+  }
+
+  .visualizar .activo.izq {
+    border-radius: 8px 8px 0px 0px;
+    ;
+  }
+
+  .visualizar .activo.der {
+    border-radius: 0px 0px 8px 8px;
+  }
+}
+
+/* @media (min-width: 768px) {
+  .dos-columnas{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 2rem;
+  }
+} */
+@media (max-width: 816px){
+
+  /*18-05-2020 AGREGADO PARA QUE EN DISPOSITIVOS MÓVILES SE VEA BIEN EL APARTADO DE "IMAGEN PROCEDENTE" */
+
+  .acta-digitalizada .pl-0{
+    display: contents;
+  }
+
+  .acta-digitalizada .col-2{
+    max-width: 46%;
+  }
+
+  .my-2 .pr-5{
+    padding-right: 1rem !important;
+  }
+}
+
+/*para modales de cards*/
+@media (max-width: 480px){
+  .modalComparativa .modal-body #total_votos,#porcentaje_votos{
+    font-size: 4vw !important;
+  }
+  .modalComparativa .modal-body #total_votos_ci,#porcentaje_votos_ci{
+    font-size: 4vw !important;
+  }
+
+  .elemento .row .col-4:nth-child(2){
+    margin-left: 2px;
+  }
+
+  #btn_add_ci{
+    width: auto;
+  }
+
+}
+@media (max-width: 991px){
+  .modalComparativa .modal-body #total_votos,#porcentaje_votos{
+    font-size: 3vw;
+  }
+  .modalComparativa .modal-body #total_votos_ci,#porcentaje_votos_ci{
+    font-size: 3vw;
+  }
+
+  .candidatos p{
+    font-size: x-small;
+  }
+
+}
+
+.modal-title.font-medium.px16{
+  color: #1d1f21de;
+  font-weight: 600;
+}

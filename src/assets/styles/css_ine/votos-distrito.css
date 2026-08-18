@@ -1,0 +1,11 @@
+.pe {
+    // border: 1px solid grey;
+    width: 22px;
+    height: 22px;
+}
+
+.separador-grueso {
+    height: 30px;
+    width: 3px;
+    background: black;
+}

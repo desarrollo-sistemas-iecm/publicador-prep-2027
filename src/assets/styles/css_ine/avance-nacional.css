@@ -1,0 +1,104 @@
+.compartir {
+	 border-radius: 8px;
+}
+ .avance-nacional {
+	 padding: 12px;
+}
+ .avance-nacional .no-border {
+	 border: none;
+}
+ .cards-avance {
+	 background: #f9f9f9;
+	 box-shadow: 0px 3px 3px #0000000f;
+	 border: 1px solid #dadce0;
+	 min-height: 85px;
+}
+ .titulo {
+	 font-size: 14px;
+	 color: #582d73;
+}
+ .capturadas {
+	 font-size: 14px;
+	 text-align: right;
+}
+ .borde-barra {
+	 border: 1px solid #ccc;
+}
+ .barra-avance {
+	 background-color: #582d73;
+	 height: 10px;
+	 /* width: 97%; */
+}
+ .borde-tiempo {
+	 border-left: 1px solid;
+	 padding-left: 5px;
+}
+ .participacion {
+	 font-size: 14px;
+}
+ .borde-barra {
+	 border: 1px solid #ccc;
+}
+ .barra-avance {
+	 background-color: #582d73;
+	 height: 10px;
+}
+ .fecha {
+	 font-size: 15px;
+	 font-family: 'Roboto-Medium', sans-serif;
+}
+ .tiempo-centro {
+	 font-size: 10px;
+	 color: #582d73;
+}
+ .utc {
+	 font-size: 11px;
+	 color: #582d73;
+	 font-family: 'Roboto-Medium', sans-serif;
+}
+ .morado-claro {
+	 color: #582d73;
+}
+ .actualizar {
+	background: var(--terciario) 0% 0% no-repeat padding-box;
+	background: #582D73 0% 0% no-repeat padding-box;
+	box-shadow: 0px 3px 6px #00000029;
+	border-radius: 31px;
+	opacity: 1;
+}
+ .actualizar:hover {
+	 background: #f2c2e0;
+	 color: #222629;
+}
+ .fixed-header {
+	 position: fixed;
+	 z-index: 999;
+	 height: 50px;
+}
+ #frugalmap {
+	 height: 300px;
+	 width: 100%;
+	 top: 50px;
+	 position: relative;
+	 background: #2ab4c0;
+}
+ .mat-elevation-z5 {
+	 position: relative;
+}
+ .sticky {
+	 /* position: fixed; */
+	 top: 250px;
+}
+ @media (max-width: 576px) {
+	 .titulo {
+		 font-size: 0.75em;
+	}
+	 .participacion {
+		 font-size: 1em;
+	}
+}
+ @media (min-width: 577px) and (max-width: 768px) {
+	 .h-12v {
+		 height: 15vh;
+	}
+}

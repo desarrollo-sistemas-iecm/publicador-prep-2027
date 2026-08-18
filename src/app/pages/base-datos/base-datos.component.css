@@ -1,0 +1,266 @@
+.base-datos {
+    font-size: 16px;
+    font-family: "Roboto-Regular", sans-serif;
+    color: #34344E !important;
+  }
+  
+  .menu .titulo {
+    color: #FFF;
+    font-weight: 600;
+  }
+  
+  .contenedor-video {
+    background: #962464;
+  }
+  
+  .contenedor-video .cuadro-video {
+    background: #fff;
+    height: 50vh;
+    color: #962464;
+    font-size: 3.5em;
+  }
+  
+  .text-center.titulo {
+    font-size: 45px;
+    font-family: "Roboto-Bold", sans-serif;
+  }
+  
+  .p-l {
+    padding-left: 150px;
+  }
+  
+  .col-12 .subtitulo {
+    font-size: 35px;
+    font-family: "Roboto-Medium", sans-serif;
+  }
+  
+  .padding-b-50 {
+    padding-bottom: 50px;
+  }
+  
+  .bgAzul .titulo {
+    color: #fff !important;
+  }
+  
+  .bgRosa .titulo {
+    color: #fff !important;
+  }
+  
+  .definicion {
+    background-image: url('/assets/img/template_bd/fondo-definicion.svg');
+    background-repeat: no-repeat;
+    background-size: 85%;
+    background-position: bottom;
+    margin-bottom: 50px;
+    height: 560px;
+  }
+  
+  @media (max-width: 480px){
+    .definicion{
+      height: 618px;
+    }
+  }
+  
+  .align-s {
+    align-items: flex-start;
+  }
+  
+  .numero-descarga {
+    font-size: 30px;
+  }
+  
+  .padding-r-10 {
+    padding-right: 10px;
+  }
+  
+  .justify-s {
+    justify-content: flex-start;
+  }
+  
+  .p-l-2 {
+    padding-left: 100px;
+  }
+  
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .font-bold {
+    font-weight: 600;
+  }
+  
+  .fila {
+    padding-left: 20px;
+  }
+  
+  .img-fila2 {
+    width: 70%;
+  }
+  
+  .col-4 li {
+    list-style: disc;
+    font-size: 16px;
+  }
+  
+  img {
+    vertical-align: middle;
+    border-style: none;
+  }
+  
+  .img-descargar {
+    width: 100%;
+  }
+  
+  .img-abrir {
+    width: 100%;
+  }
+  
+  .img-descomprimir {
+    width: 100%;
+  }
+  
+  .img-autenticidad-2 {
+    width: 50%;
+  }
+  
+  .img-autenticidad-3 {
+    width: 50%;
+  }
+  
+  .img-flecha-blanca-sm {
+    width: 50%;
+  }
+  
+  .img-autenticidad-4 {
+    width: 50%;
+  }
+  
+  .img-autenticidad-5 {
+    width: 50%;
+  }
+  
+  /******** CONTAINER *************/
+  @media (min-width: 1200px) {
+    .container-xl, .container-lg, .container-md, .container-sm, .container {
+      max-width: 1140px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container-lg, .container-md, .container-sm, .container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container-md, .container-sm, .container {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 576px) {
+    .container-sm, .container {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  
+  /* .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  } */
+  @media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1140px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container, .container-lg, .container-md, .container-sm {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container, .container-md, .container-sm {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 576px) {
+    .container, .container-sm {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  
+  /******** CONTAINER *************/
+  /*móvil*/
+  @media (max-width: 768px){
+    .container-fluid .py-5 .p-l-2{
+      padding-left: 20px;
+      font-size: 2.6vw;
+    }
+  
+    .cls_abrir .padding-b-60{
+      font-size: 3vw !important;
+    }
+  
+    .img-fila2 {
+      width: 115%;
+    }
+    .img-fila4, .img-fila6, .img-fila7 {
+      width: 190%;
+    }
+  }
+  

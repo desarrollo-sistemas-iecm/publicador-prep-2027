@@ -1,0 +1,18 @@
+.buscador input, .buscador button {
+	 border: none;
+	 font-size: 0.9em;
+	 padding: 0.25em;
+	 height: 32px;
+}
+ .buscador input[type=button] {
+	 font-family: 'Roboto-Regular', sans-serif;
+}
+ .btn-rosa-buscador {
+	 background: #C791A8;
+	 color: #000;
+	 font-family: "Roboto-Bold", sans-serif;
+}
+ .select-entidad {
+	 height: 32px;
+}
+ 

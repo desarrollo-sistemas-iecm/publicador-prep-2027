@@ -1,0 +1,15 @@
+.cuerpo {
+	/* TODO: OJO aquí */
+	 /* padding-top: 174px; */
+	 padding-top: 137px;
+}
+ .altoAvance {
+	 height: 24vh;
+	 min-height: 190px;
+}
+ @media (min-width: 1900px) {
+	 .altoAvance {
+		 height: 20vh;
+	}
+}
+ 

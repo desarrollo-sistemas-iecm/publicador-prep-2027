@@ -1,0 +1,311 @@
+<div>
+    <div>
+        <h4 class="mgn-l20 subtitulo-seccion pleca-izquierda"><strong>Estadística Entidad</strong></h4>
+        <div *ngIf="prep" class="card p-3 bg-circunscripcion crd-rspnsv">
+            <div>
+                <div class="row dis-flex space-a">
+                    <div class="col-11 col-md-6 col-xl-6 pt-3">
+                        <div class="titulo-actas dis-flex justify-s"><a
+                                href="https://ayuda.ine.mx/2023/elecc-tamps/prep/clasificacion-acta-prep.pdf"
+                                target="_blank" class="titulo pb-3 d-none d-lg-block d-xl-block"
+                                style="text-decoration: underline;"><strong>Actas
+                                    <span></span></strong></a><a
+                                href="https://ayuda.ine.mx/2023/elecc-tamps/prep/clasificacion-acta-prep.pdf"
+                                target="_blank" class="titulo pb-3 d-lg-none d-xl-none"
+                                style="text-decoration: underline;"><strong>Actas <span>del
+                                        Distrito</span>
+                                    </strong></a></div>
+                    </div>
+                    <div class="col-11 col-md-6 col-xl-6 pt-3 d-none d-lg-block d-xl-block">
+                        <div class="titulo-actas dis-flex justify-s">
+                            <p class="titulo pb-3"><strong>Actas
+                                    Contabilizadas por ubicación de Casilla:</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-11 col-sm-11 col-md-6 col-xl-6 pt-3 border2-r">
+                        <div class="row dis-flex space-a justify-content-center">
+                            <div class="col-4 col-lg-2 col-xl-2 dis-flex flex-col">
+                                <div class="grafica">
+                                    <div class="progreso bgGrafica1" ng-reflect-ng-style="[object Object]"
+                                        style="height: {{esperadas_por}}%"
+                                        >
+                                    </div>
+                                </div>
+                                <p class="px16 pt-1"><strong> {{esperadas | number}} </strong>
+                                </p>
+                                <p class="px14"><strong> {{esperadas_por}}% </strong>
+                                </p>
+                                <p class="px12"><strong> Esperadas </strong>
+                                </p>
+                            </div>
+                            <div class="col-4 col-lg-2 col-xl-2 dis-flex flex-col">
+                                <div class="grafica">
+                                    <div class="progreso bgGrafica3" ng-reflect-ng-style="[object Object]"
+                                        style="height: {{computadas_por}}%">
+                                    </div>
+                                </div>
+                                <p class="px16 pt-1"><strong> {{computadas | number}} </strong>
+                                </p>
+                                <p class="px14"><strong> {{computadas_por}}% </strong>
+                                </p>
+                                <p class="px12"><strong> Computadas
+                                    </strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="d-block d-sm-none">
+                    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <p class="titulo pb-3 d-lg-none d-xl-none padding-l-15"><strong>Actas Contabilizadas por
+                                ubicación de Casilla:</strong></p>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6 dis-flex justify-s"><img src="assets/img/estadisticas/ciudad.png"
+                                        alt="Urbanas" class="img-fluid w-80 grafico izquierdo"></div>
+                                <div class="col-6 dis-flex justify-e"><img src="assets/img/estadisticas/nourbanos.png"
+                                        alt="Urbanas" class="img-fluid w-80 grafico derecho"></div>
+                            </div>
+                            <div class="row justify-content-center txBlanco text-center">
+                                <div class="col-6 pr-0 separador">
+                                    <div class="rectangulo izquierdo dis-flex flex-col py-2">
+                                        <p class="numero"> {{urbanas | number}} </p>
+                                        <p class="titulo" style="color: #FFFFFF; font-weight: bold;"> Urbanas </p>
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-0">
+                                    <div class="rectangulo derecho dis-flex flex-col py-2">
+                                        <p class="numero"> {{no_urbanas | number}} </p>
+                                        <p class="titulo" style="color: #FFFFFF; font-weight: bold;"> No Urbanas
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card p-3 bg-circunscripcion crd-rspnsv rsp-mt35">
+            <div>
+                <div class="row dis-flex">
+                    <hr class="d-block d-sm-none">
+                    <div class="col-11 col-sm-6 col-xl-6 pt-3 rsp-pt0">
+                        <div class="titulo-actas dis-flex justify-s">
+                            <p class="titulo pb-3"><strong>Lista
+                                    Nominal</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-11 col-sm-6 col-xl-6 pt-3">
+                        <div class="titulo-actas dis-flex justify-s">
+                            <p class="titulo pb-3 mrgn-l15 d-none d-lg-block d-xl-block"><strong>Votos</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-6 pddng-0 mrgn-t25 border2-r">
+                        <div>
+                            <div>
+                                <div id="contenedorGauge" style="width: 100%; height: 400px;"></div>
+
+                                <!-- <div id="contenedorGauge"></div> -->
+                                <hr class="d-block d-sm-none mt-0" style="width: 75%;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-lg-6 col-xl-6 pddng-0">
+                        <p class="titulo pb-3 mrgn-l15 padding-l-15 d-lg-none d-xl-none">
+                            <strong>Votos</strong>
+                        </p>
+                        <div class="d-none d-lg-block d-xl-block">
+                            <div class="row justify-content-center">
+                                <div class="col-6 brdrt-l-activo">
+                                    <div class="d-flex flex-row">
+                                        <div class="p-2">
+                                            <div class="A-circle">A</div>
+                                        </div>
+                                        <div class="p-2">
+                                            <p class="font-medium"> Votos en Casillas Básicas,
+                                                Contiguas, Extraordinarias y Mesas de Escrutinio </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 num-votos txt-end pt-2 brdrt-r-activo">
+                                    <strong>
+                                        <!-- 51,352 -->
+                                        {{votos_casillas_normales | number}}
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-6 bg-inf brdrb-l-activo">
+                                    <div class="d-flex flex-row">
+                                        <div class="p-2">
+                                            <div class="B-circle-activo">B</div>
+                                        </div>
+                                        <div class="p-2">
+                                            <p> Votos en Casillas Especiales </p>
+                                        </div>
+                                        <div class="p-2">
+                                            <p class="signo-votos"><strong>+</strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-inf num-votos txt-end pt-2 brdrb-r-activo">
+                                    <strong>
+                                        <!-- 1,844 -->
+                                        {{ votos_casillas_especiales | number}}
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center mt-1">
+                                <div class="col-6 bg-total bordert-3">
+                                    <div class="d-flex flex-row justify-content-between">
+                                        <div class="p-2">
+                                            <p class="pt-2 txt-activo"> Total de Votos </p>
+                                        </div>
+                                        <div class="p-2">
+                                            <p class="signo-votos"><strong>=</strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-total num-votos txt-end bordert-3">
+                                    <strong>
+                                        <!-- 53,196 -->
+                                        {{total_votos | number}}
+
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-lg-none d-xl-none">
+                            <div class="col-12 dis-flex text-align">
+                                <div class="col-12">
+                                    <div class="row border-dgris-top dis-flex text-align p-0">
+                                        <div class="col-1 dis-flex text-align p-0">
+                                            <div class="A-circle">A</div>
+                                        </div>
+                                        <div class="col-5 px14 text-left"> Votos en Casillas Básicas,
+                                            Contiguas, Extraordinarias y Mesas de Escrutinio</div>
+                                        <div class="col-5 num-votos p-0 text-right font-bold dis-flex justify-e">
+                                            <!-- 51,352 -->
+                                            {{votos_casillas_normales | number}}
+                                        </div>
+                                    </div>
+                                    <div class="row border-dgris-bottom dis-flex text-align bg-bvce">
+                                        <div class="col-1 dis-flex text-align p-0">
+                                            <div class="B-circle">B</div>
+                                        </div>
+                                        <div class="col-5 px14 text-left pr-0">Votos en Casillas
+                                            Especiales </div>
+                                        <div class="col-5 font-bold">
+                                            <div class="row dis-flex">
+                                                <div class="col-1 text-left p-0 px36">+</div>
+                                                <div class="col-11 text-right p-0 justify-e num-votos"
+                                                    style="padding-left: 20px;">
+                                                    <!-- 1,844 -->
+                                                    {{ votos_casillas_especiales | number}}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row renglon-total-respv bordert-3 dis-flex bg-bvce mt-1 padding-l-50">
+                                        <div class="col-3 text-left dis-flex text-align pr-0 pl-0">
+                                            Total de Votos </div>
+                                        <div class="col-1 signo-votos text-left pl-0"><strong>=</strong></div>
+                                        <div class="col-7 num-votos text-right justify-e font-bold dis-flex p-0">
+                                            <!-- 53,196 -->
+                                            {{total_votos | number}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card p-3 bgFormula crd-rspnsv mt-3 bg-formula">
+            <div>
+                <div>
+                    <p class="titulo pb-3 txt-00FF"><strong>Fórmula |
+                            Porcentaje de Participación ciudadana</strong></p>
+                    <p class="texto"> Se calcula considerando: Total de votos de las Actas
+                        Computadas, multiplicado por 100, dividido entre la Lista Nominal de las Casillas con
+                        Actas Computadas. </p>
+                    <div class="d-flex justify-content-center padding-t-40">
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <div class="d-flex flex-row">
+                                    <div class="p-2 border-dashed">
+                                        <div class="d-flex flex-row">
+                                            <div class="p-2">
+                                                <p class="txt-lista font-medium">Total de Votos</p>
+                                            </div>
+                                            
+                                            <div class="p-2 d-flex flex-row">
+                                                <div class="A-circle mr-1">A</div>
+                                                <p class="mr-1">+</p>
+                                                <div class="B-circle-activo">B</div>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div style="margin-top: -10px;">
+                                            <p class="padding-l-20 d-none d-lg-block d-xl-block d-md-block">
+                                                <b>Considerando</b> la votación en<br><b>Casillas Especiales</b>
+                                            </p>
+                                            <p class="padding-l-20 d-md-none d-lg-none d-xl-none"><b>Considerando</b> la
+                                                votación en <b>Casillas Especiales</b></p>
+                                        </div>
+                                        
+                                        <p class="num-votos font-bold tx-nd txt-00FF" style="margin-top: -10px;">
+                                            <strong>
+                                                <!-- 53,196 -->
+                                                {{total_votos | number}}
+
+                                            </strong></p>
+                                                
+                                    </div>
+                                    <div class="p-2 align-self-end">
+                                        <p class="num-votos font-bold txGris">X 100</p>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-2 border3-t txtAzulM">
+                                    <p class="num-votos font-black txt-numlista">{{lista_nominal_oficial | number}}</p>
+                                    <p class="font-medium txt-lista">(Lista Nominal de las Casillas
+                                        <br>con Actas Computadas)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-2 align-self-center d-none d-md-block">
+                                <p class="txt-signo padding-t-60 signo-resultado">=</p>
+                            </div>
+                            <div class="p-2 align-self-center d-none d-md-block">
+                                <p class="num-votos font-medium padding-t-30 txt-00FF">
+                                    Participación ciudadana</p>
+                                <!-- <p class="num-pc font-black ttl-votos"> {{((total_votos)*100/lista_nominal_oficial) | number}}%</p><br> -->
+                                <p class="num-pc font-black ttl-votos"> {{((total_votos)*100/lista_nominal_oficial)*.01 | percent:'1.4-4'}}</p><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row d-md-none text-center justify-content-center">
+                        <div class="p-2 align-self-center">
+                            <p class="txt-signo signo-resultado">=</p>
+                        </div>
+                        <div class="p-2 align-self-center">
+                            <p class="num-pc font-black ttl-votos">{{((total_votos)*100/lista_nominal_oficial)*.01 | percent:'1.4-4'}}% </p>
+                        </div>
+                    </div>
+                    <p class="num-votos font-medium text-center d-md-none txt-00FF">
+                        Participación ciudadana</p>
+                    <p class="texto-info padding-t-60 d-none"> Por su naturaleza, las <b>casillas especiales no cuentan
+                            con lista nominal</b>, por tanto,
+                        para el cálculo de la participación ciudadana, la cantidad de votos asentada en las Actas
+                        PREP de casilla especial, <b>se deberá considerar hasta el último
+                            corte de información que se publique, al cierre del PREP</b> (numeral 29, fr. IX del Anexo
+                        13 del Reglamento de Elecciones). </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

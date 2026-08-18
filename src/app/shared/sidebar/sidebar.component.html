@@ -1,0 +1,139 @@
+<div class="bgPrototipo">
+  <div class="container-fluid barra-lateral txBlanco px14">
+    <ng-container *ngIf="mostrarBuscador; else noMostrarOpcionesMenu">      
+      <div class="row pl-2">
+        <div class="col-12">
+          <div class="pt-2">
+            <h3 class="px16" style="color: #FFF;"><strong>Consulta de votación</strong></h3>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+              <p>Selecciona el reporte que deseas consultar:</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="!seccionSelected">
+      <!-- {{ tipo_consulta }} -->
+        <div class="col-12 col-xl-14 mb-1 px-1">
+          <a
+          routerLink="/{{tipo_consulta}}/{{routeBtnVotosPorDinamic}}/{{comboStateService.primerCombo}}/{{comboStateService.segundoCombo}}/{{comboStateService.tercerCombo}}"
+            routerLinkActive="BTN-Eleccion-active"
+            class="btn btn-block px14 px-1 py-3 border-tipo-eleccion BTN-Eleccion cursorPointer" type="button"
+            (click)="breadcrumbsConfig.votos_por = routeBtnVotosPorDinamic; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);">
+            <strong>
+              {{lblBtnVotosPorDinamic}}
+            </strong>
+          </a>
+        </div>
+        <div class="col-12 col-xl-14 mb-1 px-1">
+          <a
+          routerLink="/{{tipo_consulta}}/votos-por-partido-politico-y-candidatura-independiente/{{comboStateService.primerCombo}}/{{comboStateService.segundoCombo}}/{{comboStateService.tercerCombo}}"
+            routerLinkActive="BTN-Eleccion-active"
+            class="btn btn-ajuste border-tipo-eleccion btn-block px14 px-1 cursorPointer BTN-Eleccion" type="button" (click)="breadcrumbsConfig.votos_por = 'votos-por-partido-politico-y-candidatura-independiente'; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);"
+            >
+            <strong>
+  
+              Votos por Partido Político y Candidatura sin Partido
+            </strong>
+          </a>
+        </div>
+        <div *ngIf="firstSelected" class="col-12 col-xl-14 mb-1 px-1">
+          <a
+          routerLink="/{{tipo_consulta}}/detalle-por-casilla/{{comboStateService.primerCombo}}/{{comboStateService.segundoCombo}}/{{comboStateService.tercerCombo}}"
+            routerLinkActive="BTN-Eleccion-active"
+            class="btn btn-ajuste border-tipo-eleccion btn-block px14 px-1 cursorPointer BTN-Eleccion" type="button" (click)="breadcrumbsConfig.votos_por = 'detalle-por-casilla'; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);"
+            >
+            <strong>
+              Detalle por Casilla
+            </strong>
+          </a>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col">
+          <!-- <p>
+            comboStateService.primerCombo: {{ comboStateService.primerCombo }}
+          </p>
+          <p>
+            comboStateService.segundoCombo: {{ comboStateService.segundoCombo }}
+          </p>
+          <p>
+            comboStateService.tercerCombo: {{ comboStateService.tercerCombo }}
+          </p> -->
+          <p class="px16">Detalle por:</p>
+          <div class="row grupo-combos pl-2">
+            <div class="col-4 col-xl-12 combo mb-2">
+              <label for="arg1" class="form-label">{{lbl_first_select}}:</label>
+              <div class="input-group df-sw">
+                  <select #arg1 id="arg1" class="form-control" aria-label="Default select example" aria-placeholder="Seleccione"
+                    (change)="distOAlcaldia( arg1.value );" [(ngModel)]="firstSelected">
+                    <option *ngFor="let item of optSelect" [value]="item.value">{{ item.label }}</option>
+                  </select>
+                  <!-- Longitud de optSelect: {{ optSelect.length }} -->
+                  <!-- Valor seleccionado: {{ firstSelected }} -->
+              </div>
+            </div>
+            <div *ngIf="optSecciones.length > 1" class="col-4 col-xl-12 combo mb-2">
+              <label for="seccion" class="form-label">Sección:</label>
+              <div class="input-group df-sw">
+                <select #seccion id="seccion" class="form-select form-control" aria-label="Default select example" (change)="cargarCasillasXSeccion(seccion.value);" aria-placeholder="Seleccione" [(ngModel)]="seccionSelected">
+                  <option *ngFor="let item of optSecciones" [value]="item.value">{{ item.label }}</option>
+                </select>
+                <!-- Longitud de optSecciones: {{ optSecciones.length }} -->
+              </div>
+  
+            </div>
+            <div *ngIf="optCasillas.length > 1" class="col-4 col-xl-12 combo mb-2"><label for="distrito" class="px14"> Casilla
+              </label>
+              <div class="input-group df-sw">
+                <select #casillas id="casillas" class="form-select form-control cursorPointer" (change)="seleccionCasilla(casillas.value)" [(ngModel)]="casillaSelected">
+                  <!-- <option value="">- Seleccione -</option> -->
+                  <option *ngFor="let item of optCasillas" [value]="item.value">{{ item.label }}</option>
+  
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noMostrarOpcionesMenu>
+      <div class="padding-t-20">
+        <div class="px20 text-center padding-b-30">
+          <div class="padding-b-10">[sin opciones a mostrar]</div>
+          <div>
+            <button type="button" class="btn btn-blanco" (click)="previousPage();">
+              Regresar <i class="fa fa-long-arrow-left"></i>
+            </button>
+          </div>
+        </div>
+        <!-- TODO: Aqui poner el objeto iterable para determinar la navegación del menú dinamico dependiendo de la página visitada -->
+        <div class="d-none">
+          <div class="padding-b-20">
+            <h4 class="pleca-blanca" style="color: #FFF;"><strong>Menú</strong></h4>
+          </div>
+          <div class="menu padding-b-20">
+            <div class="titulo"> Definicion </div>
+            <div class="liga"><a href="#" class="a-base-utilidad"> Base de datos y utilidad</a></div>
+          </div>
+          <div class="menu padding-b-20">
+            <div class="titulo"> Carpeta de archivos </div>
+            <div class="liga"><a href="#" class="a-contenido">Contenido</a></div>
+            <div class="liga"><a href="#" class="a-descargas">Descarga</a></div>
+            <div class="liga"><a href="#" class="a-descomprimir">Descomprimir</a></div>
+            <div class="liga"><a href="#" class="a-abrir">Abrir</a></div>
+          </div>
+          <div class="menu">
+            <div class="titulo"> Consulta </div>
+            <div class="liga"><a href="#" class="a-formato">Formato de celdas</a></div>
+            <div class="liga"><a href="#" class="a-interprectacion">Interpretación de base de datos</a></div>
+            <div class="liga"><a href="#" class="a-auntenticidad">Autenticidad</a></div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- <pre style="color: #FFF;">{{breadcrumbsConfig | json}}</pre> -->
+  </div>
+  <!-- SE MUESTRA CUANDO COLPASA -->
+</div>

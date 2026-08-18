@@ -1,0 +1,118 @@
+<app-spinner></app-spinner>
+
+<app-compartir></app-compartir>
+
+<!-- HEADER -->
+<app-encabezado></app-encabezado><!--Aqui este-->
+<!-- HEADER -->
+
+<div class="cuerpo container-fluid">
+    <div class="row">
+        <div class="col-12 my-3 d-xl-none">
+
+            <div class="card dis-flex flex-col space-a avance-nacional h-100">
+                <div class="container-fluid bgPrototipo">
+                    <div class="row">
+                        <div class="dis-flex space-b col-9 pl-0">
+                            <h3 class="txRosaIne px20"><strong>Avance Entidad</strong></h3>
+                        </div>
+                        <div class="col-3 dis-flex justify-e">
+                            <div class="actualizar dis-flex flex-col bgRosaIne txBlanco px-4 py-1 px14 cursorPointer"
+                                onclick='location.reload();'><i aria-hidden="true" class="fa fa-repeat"></i>
+                                Actualizarr </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid px-0 py-2">
+                    <app-avance-entidad-movil></app-avance-entidad-movil>
+                </div>
+            </div>
+
+        </div>
+        <div class="sidebar px-0 bgMorado col-md-12 col-xl-2">
+            <app-sidebar
+                (primerCombo)="onSelectionChangePrimerCombo($event)"
+                (seccionCombo)="onSelectionChangeSegundoCombo($event)"
+                (emitirConfiguracionBreadcrumbs)="onConfiguracionBreadcrumbs($event)"
+                (casillaCombo)="onSelectionChangeTercerCombo($event)">
+            </app-sidebar>
+
+        </div>
+        <div class="bgGrisTenue contenido-principal px-0 my-3 my-xl-0 col-md-12 col-xl-10">
+            <div class="container-fluid py-xl-3">
+                <div class="row">
+                    <!-- AVANCE (estadistica01) -->
+                    <div class="col-xl-8 d-none d-xl-block altoAvance">
+                        <app-avance-entidad></app-avance-entidad>
+                    </div>
+
+                    <!-- FORM TO SEARCH -->
+                    <div class="col-xl-4 d-none d-xl-block altoAvance pl-0">
+                        <app-buscador></app-buscador>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Aqui comienza el contenido dinámico -->
+                        <div class="card p-3">
+                            <div class="row">
+                                <app-breadcrumbs
+                                    [configuracionBreadcrumbs]="configuracionBreadcrumbs"></app-breadcrumbs>
+                            </div>
+                            <div class="row py-4">
+                                <div class="col-12">
+                                    <h4 class="subtitulo-seccion pleca-izquierda"><strong>Votos en Actas
+                                            Computadas</strong></h4>
+                                </div>
+                            </div>
+                            <!-- Comienza la tabla que llena las alcaldías e incluye el mapa -->
+                            <app-contenedor-resultados-dinamico></app-contenedor-resultados-dinamico>
+                            <!-- Termina la tabla que llena las alcaldías e incluye el mapa -->
+                            <div class="container-fluid complemento-vista-mapa" style="display: block;">
+                                <div class="row pb-4">
+                                    <div class="col-10">
+                                        <p class="font-medium px14"> Por presentación, los decimales de los porcentajes muestran sólo cuatro dígitos. No obstante, al considerar todos los decimales, suman 100%. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- vista cards -->
+                            <!-- Button trigger modal -->
+                            <!-- vista cards -->
+
+                            <div class="container-fluid resumen-votacion">
+                                <app-resumen-votacion></app-resumen-votacion>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <router-outlet></router-outlet> -->
+
+            <div class="container-fluid estadisticaNacional py-3">
+                <!-- estadistica casilla -->
+                <app-detalle-votos-casilla></app-detalle-votos-casilla>
+            </div>
+            
+            <div class="container-fluid estadisticaNacional py-3">
+            <app-estadistica-casilla></app-estadistica-casilla>
+            </div>
+
+            <div class="container-fluid" *ngIf="prep">
+                <app-observaciones-en-acta></app-observaciones-en-acta>
+            </div>
+
+            <div class="container-fluid bgGris py-1 d-none">
+                <app-leyenda-resultados-informativos></app-leyenda-resultados-informativos>
+            </div>
+
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <app-footer-aviso-privacidad></app-footer-aviso-privacidad>
+    <!-- app-footer -->
+
+</div>

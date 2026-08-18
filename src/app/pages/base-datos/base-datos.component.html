@@ -1,0 +1,630 @@
+<app-compartir></app-compartir>
+
+<!-- HEADER -->
+<app-encabezado></app-encabezado><!--Aqui este-->
+<!-- HEADER -->
+<div class="cuerpo container-fluid">
+  <div class="row">
+    <!-- ADD -->
+    <div class="col-12 my-3 d-xl-none">
+
+      <div class="card dis-flex flex-col space-a avance-nacional h-100">
+        <div class="container-fluid bgPrototipo">
+          <div class="row">
+            <div class="dis-flex space-b col-9 pl-0">
+              <h3 class="txRosaIne px20"><strong>Avance Entidad</strong></h3>
+            </div>
+            <div class="col-3 dis-flex justify-e">
+              <div class="actualizar dis-flex flex-col bgRosaIne txBlanco px-4 py-1 px14 cursorPointer"
+                onclick="location.reload();"><i aria-hidden="true" class="fa fa-repeat"></i> Actualizar </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid px-0 py-2">
+          <div class="row px-1">
+            <div class="col-4 px-1">
+              <div class="card cards-avance h-12v p-1" style="min-height: 85px">
+                <div class="titulo">
+                  <p><strong> Actas computadas </strong></p>
+                </div>
+                <div class="contenido capturadas">
+                  <p><strong> 13,096 </strong> de 13,175 </p>
+                  <p> (99.4004%) </p>
+                  <div class="borde-barra w-100">
+                    <div class="barra-avance" style="width: 99.4004%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 px-1">
+              <div class="card cards-avance h-12v p-1">
+                <div class="titulo">
+                  <p class="prueba">
+                    <strong>
+                      <i data-toggle="modal" data-target="#modalParticipacion"
+                        class="fa fa-question-circle cursor-hand"></i> Participación ciudadana
+                    </strong>
+                  </p>
+                </div>
+                <div class="contenido dis-flex flex-col pt-3">
+                  <p class="participacion"><strong> 52.0485% </strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 px-1">
+              <div class="card cards-avance h-12v p-1">
+                <div class="titulo">
+                  <p><strong> Último corte </strong></p>
+                </div>
+                <div class="contenido dis-flex flex-col align-e pt-3">
+                  <div class="dis-flex w-100">
+                    <p class="fecha mr-1"> 07 de Junio de 2021 </p>
+                    <div class="dis-flex flex-col borde-tiempo">
+                      <p class="tiempo-centro"> Tiempo del Centro </p>
+                      <p class="utc">20:00 h UTC-6 </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ADD -->
+    <div class="sidebar px-0 bgMorado col-md-12 col-xl-2" ng-reflect-ng-class="col-md-12 col-xl-2">
+      <div class="bgPrototipo">
+        <div placement="right" show-delay="200" class="colapsador dis-flex d-none d-xl-block abierto">
+          <i aria-hidden="true" class="fa fa-chevron-left" data-toggle="tooltip" data-placement="right" title=""
+            data-original-title="Ocultar Menú"></i>
+          <i aria-hidden="true" class="fa fa-chevron-right" data-toggle="tooltip" data-placement="right" title=""
+            style="display: none;" data-original-title="Mostrar Menú"></i>
+        </div>
+        <div class="container-fluid barra-lateral txBlanco px14">
+          <div class="padding-t-20">
+            <div class="px20 text-center padding-b-30">
+              <div class="padding-b-10">Descargar</div>
+              <div><button type="button" class="btn btn-blanco" onclick="get_bd();">Base de datos <i
+                    class="fa fa-download"></i></button></div>
+            </div>
+            <div class="padding-b-20">
+              <h4 class="pleca-blanca" style="color: #FFF;"><strong>Menú</strong></h4>
+            </div>
+            <div class="menu padding-b-20">
+              <div class="titulo"> Definicion </div>
+              <div class="liga"><a href="#" class="a-base-utilidad"> Base de datos y utilidad</a></div>
+            </div>
+            <div class="menu padding-b-20">
+              <div class="titulo"> Carpeta de archivos </div>
+              <div class="liga"><a href="#" class="a-contenido">Contenido</a></div>
+              <div class="liga"><a href="#" class="a-descargas">Descarga</a></div>
+              <div class="liga"><a href="#" class="a-descomprimir">Descomprimir</a></div>
+              <div class="liga"><a href="#" class="a-abrir">Abrir</a></div>
+            </div>
+            <div class="menu">
+              <div class="titulo"> Consulta </div>
+              <div class="liga"><a href="#" class="a-formato">Formato de celdas</a></div>
+              <div class="liga"><a href="#" class="a-interprectacion">Interpretación de base de datos</a></div>
+              <div class="liga"><a href="#" class="a-auntenticidad">Autenticidad</a></div>
+            </div>
+          </div>
+        </div>
+        <!-- SE MUESTRA CUANDO COLPASA -->
+        <div class="colapsado h-100 dis-flex flex-col justify-s txBlanco cursorPointer" style="display: none;">
+          <i aria-hidden="true" class="fa fa-filter pt-5 mt-5"></i>
+          <p class="px14">Consulta</p>
+        </div>
+        <!-- SE MUESTRA CUANDO COLPASA -->
+      </div>
+    </div>
+    <div class="bgGrisTenue contenido-principal px-0 my-3 my-xl-0 col-md-12 col-xl-10">
+      <div class="container-fluid py-xl-3">
+        <div class="row">
+          <div class="col-xl-8 d-none d-xl-block altoAvance">
+
+            <div class="card dis-flex flex-col space-a avance-nacional h-100">
+              <div class="container-fluid bgPrototipo">
+                <div class="row">
+                  <div class="dis-flex space-b col-9 pl-0">
+                    <h3 class="txRosaIne px20"><strong>Avance Entidad</strong></h3>
+                  </div>
+                  <div class="col-3 dis-flex justify-e">
+                    <div class="actualizar dis-flex flex-col bgRosaIne txBlanco px-4 py-1 px14 cursorPointer"
+                      onclick="location.reload();"><i aria-hidden="true" class="fa fa-repeat"></i> Actualizar </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid px-0 py-2">
+                <div class="row px-1">
+                  <div class="col-4 px-1">
+                    <div class="card cards-avance h-12v p-1" style="min-height: 85px">
+                      <div class="titulo">
+                        <p><strong> Actas computadas </strong></p>
+                      </div>
+                      <div class="contenido capturadas">
+                        <p><strong> 13,096 </strong> de 13,175 </p>
+                        <p> (99.4004%) </p>
+                        <div class="borde-barra w-100">
+                          <div class="barra-avance" style="width: 99.4004%;"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4 px-1">
+                    <div class="card cards-avance h-12v p-1">
+                      <div class="titulo">
+                        <p class="prueba">
+                          <strong>
+                            <i data-toggle="modal" data-target="#modalParticipacion"
+                              class="fa fa-question-circle cursor-hand"></i> Participación ciudadana
+                          </strong>
+                        </p>
+                      </div>
+                      <div class="contenido dis-flex flex-col pt-3">
+                        <p class="participacion"><strong> 52.0485% </strong></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4 px-1">
+                    <div class="card cards-avance h-12v p-1">
+                      <div class="titulo">
+                        <p><strong> Último corte </strong></p>
+                      </div>
+                      <div class="contenido dis-flex flex-col align-e pt-3">
+                        <div class="dis-flex w-100">
+                          <p class="fecha mr-1"> 07 de Junio de 2021 </p>
+                          <div class="dis-flex flex-col borde-tiempo">
+                            <p class="tiempo-centro"> Tiempo del Centro </p>
+                            <p class="utc">20:00 h UTC-6 </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- FORM TO SEARCH -->
+
+          <div class="col-xl-4 d-none d-xl-block altoAvance pl-0">
+            <div class="buscador card bgMorado txBlanco dis-flex space-a align-s pl-2 pr-2 h-100">
+              <div class="container-fluid bgPrototipo">
+                <div class="row">
+                  <div class="col-12 px-0">
+                    <p class="px16"> Conoce los resultados de tu sección </p>
+                    <p class="px10 pl-1" data-toggle="modal" data-target="#modalCasilla">
+                      <i aria-hidden="true" data-toggle="tooltip" title=""
+                        class="fa fa-question-circle px14 cursor-hand"
+                        data-original-title="Verificar tipo de credencial"></i>
+                      Para conocer los resultados de tu casilla, ingresa los siguientes datos.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid">
+                <form id="buscador_seccion" class="ng-untouched ng-pristine ng-invalid">
+                  <div class="row px-1">
+                    <div class="col-md-5 px-1">
+                      <div class="form-group m-0">
+                        <label for="seccion" class="m-0 px14">Sección</label>
+                        <div class="input-group df-sw">
+                          <div class="dropdown w-100 bgBlanco">
+                            <input type="number" min="0" id="misec"
+                              class="form-control ng-untouched ng-pristine ng-invalid">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-7 px-1">
+                      <div class="form-group">
+                        <label for="primerApellido" class="m-0 px14"></label>
+                        <div class="input-group df-sw">
+                          <div class="dropdown w-100 bgBlanco">
+                            <!-- <input type="text" id="apellido" name="apellido" class="form-control ng-untouched ng-pristine ng-invalid"> -->
+                            <button type="submit"
+                              class="btn form-control px14 px-1 btn-rosa-buscador ng-untouched ng-pristine ng-invalid">
+                              Consulta </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-5 px-1">
+                      <div class="form-group">
+                        <label for="submit" class="m-0 px14">&nbsp;</label>
+                        <div class="input-group df-sw">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="base-datos">
+        <div class="container-fluid contenedor-video txBlanco" style="display: none;">
+          <div class="row">
+            <div class="col-12 px-3 py-5 dis-flex">
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div class="col-8 cuadro-video dis-flex"><i class="fa fa-play-circle"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="baseutilidad" class="container-fluid py-5 definicion">
+          <div class="row">
+            <div class="col-12">
+              <div class="text-center titulo padding-b-25"> Definición </div>
+              <div class="subtitulo padding-b-50 p-l"> - Base de Datos y utilidad - </div>
+            </div>
+            <div class="offset-2 col-7 p-l">
+              <div> La <span class="font-bold">base de datos</span> se refiere al conjunto de información perteneciente
+                al <span class="font-bold">Programa de Resultados
+                  Electorales Preliminares</span>, ordenada de forma sistemática para su descarga y análisis.​ Es
+                actualizada conforme al último corte. Permite realizar distintas operaciones ya que incluye datos
+                numéricos, alfanuméricos y
+                cronológicos.​ </div>
+            </div>
+          </div>
+        </div>
+        <div class="contenido container-fluid bgAzul txBlanco py-5 carpeta">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="text-center titulo pading-b-10" id="carpetaArchivos"> Carpeta de archivos </div>
+            </div>
+            <div class="col-12 p-l">
+              <div class="subtitulo"> - Contenido - </div>
+              <div class="padding-b-40"> Se trata de un archivo comprimido con extensión <span
+                  class="font-bold">.zip</span>, contiene: </div>
+              <div class="padding-b-40">
+                <p class="font-bold">• Diputaciones.csv</p>
+                <p> ​Contiene los resultados de la votación por Acta a nivel Federal. </p>
+                <p> ​Muestra el número de votos recibidos por cada<br> uno de los Partidos Políticos, Coaliciones,<br>
+                  Candidaturas Independientes, Candidaturas no<br> registradas y votos nulos.​ </p>
+              </div>
+              <div class="padding-b-40">
+                <p class="font-bold"> • Diputaciones_candidatura_2021.csv </p>
+                <p> ​Describe las variables del archivo que contiene el<br> listado de candidaturas por Partidos
+                  Políticos e<br> Independientes que participan en la elección<br> federal.​ </p>
+              </div>
+              <div class="padding-b-40">
+                <p class="font-bold"> • LEEME.txt </p>
+                <p> ​Incluye la descripción y codificación de cada uno<br> de los campos que contiene la Base de datos.
+                  ​ </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid py-5">
+          <div class="row">
+            <div class="col-12 p-l">
+              <div class="subtitulo padding-b-40" id="descargar"> - Descargar - </div>
+            </div>
+            <div class="col-12 p-l-2">
+              <div class="row">
+                <div class="col-2">
+                  <div class="item dis-flex align-s">
+                    <div class="numero-descarga dis-flex justify-s padding-r-10 font-bold"> 1 </div>
+                    <div class="contenido dis-flex flex-col align-s"><span class="font-bold">Descarga</span> Da clic en
+                      el botón<br> Base de datos​. </div>
+                  </div>
+                </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-violeta.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-2">
+                  <div class="item dis-flex align-s">
+                    <div class="numero-descarga dis-flex justify-s padding-r-10 font-bold"> 2 </div>
+                    <div class="contenido dis-flex flex-col align-s"><span class="font-bold">Localiza</span> El archivo
+                      en la<br> carpeta de Descargas. </div>
+                  </div>
+                </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-violeta.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-2">
+                  <div class="item dis-flex align-s">
+                    <div class="numero-descarga dis-flex justify-s padding-r-10 font-bold"> 3 </div>
+                    <div class="contenido dis-flex flex-col align-s"><span class="font-bold">Utiliza los comandos para
+                        localizar</span> Windows: CTRL + J<br> Mac: Alt + L </div>
+                  </div>
+                </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-violeta.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-2">
+                  <div class="item dis-flex align-s">
+                    <div class="numero-descarga dis-flex justify-s padding-r-10 font-bold"> 4 </div>
+                    <div class="contenido dis-flex flex-col align-s"><span class="font-bold">Selecciona</span> Da clic
+                      sobre el archivo para seleccionarlo. </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-l-2"><img src="/assets/img/template_bd/descargar.gif" alt="descargar" class="img-descargar">
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid bgAzul txBlanco py-5">
+          <div class="row">
+            <div class="col-12 p-l">
+              <div class="subtitulo padding-b-40" id="descomprimir"> - Descomprimir - </div>
+            </div>
+            <div class="col-12 padding-b-40 p-l-2">
+              <div class="row">
+                <div class="col-2"><span class="numero-desomprimir">1</span>. Sobre el archivo seleccionado, da clic
+                  derecho con el mouse e indica el tipo de extracción a realizar.​ </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-lila.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-2"> Se abrirá una ventana mostrando el proceso de extracción. ​ </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-lila.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-2"><span class="numero-desomprimir">2</span>. Vuelve a dar clic derecho sobre el archivo
+                  zip que se extrajo y selecciona Extraer aquí​. </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-lila.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-2"> Se extraerá la carpeta contenida. ​​ </div>
+              </div>
+            </div>
+            <div class="p-l-2"><img src="/assets/img/template_bd/descomprimir.gif" alt="descomprimir"
+                class="img-descomprimir"></div>
+            <div class="col-12 text-center"> Software para descomprimir archivos zip:<br> ​Winrar o 7-Zip (Windows) /
+              Zipeg, Expander o RAR (Mac)<br> Winzip, no funciona​ </div>
+          </div>
+        </div>
+        <div class="container-fluid py-5 cls_abrir">
+          <div class="row">
+            <div class="col-12 p-l">
+              <div class="subtitulo padding-b-40" id="abrir"> - Abrir - </div>
+            </div>
+            <div class="col-12 padding-b-60 p-l-2">
+              <div class="row">
+                <div class="col-3"><span class="font-bold">Da doble clic</span> sobre el archivo que quieras abrir.
+                </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-violeta.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-3"><span class="font-bold">Información de archivos “csv”</span><br> ​Se puede ver en
+                  programas de hoja de cálculo como: Excel, Access, Calc Open
+                  Office, Smartsheet, entre otros.​​ </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-violeta.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-3"><span class="font-bold"> Archivo LEEME.TXT</span><br> ​Abre con el bloc de notas en
+                  Windows o Notas en Mac.​ </div>
+              </div>
+            </div>
+            <div class="p-l-2">
+              <div class="row">
+                <div class="col-12"><img src="/assets/img/template_bd/abrir.gif" alt="abrir" class="img-abrir"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid bgRosa txBlanco py-5 consulta">
+          <div class="row">
+            <div class="col-12">
+              <div class="text-center titulo pading-b-10" id="formatoCeldas"> Consulta </div>
+            </div>
+            <div class="col-12 p-l">
+              <div class="subtitulo padding-b-20"> - Formato de celdas - </div>
+              <div class="padding-b-40"> Para una lectura correcta de las fechas y horas de <br> corte, cambia el
+                formato de celdas de las siguientes <br> columnas a dd/mm/aaaa
+                hh:mm </div>
+              <div>
+                <p> 1. Selecciona las columnas​ </p>
+                <p> 2. Da clic derecho en el mouse​ </p>
+                <p> 3. Selecciona “Formato de celdas”​ </p>
+                <p> 4. Elige el formato<br> “dd/mm/aaaa hh:mm” y <span class="font-bold">Acepta​</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid py-5">
+          <div class="row">
+            <div class="col-12 p-l">
+              <div class="subtitulo padding-b-40 txRosa" id="interprectacion"> - Interpretación de Base de Datos -
+              </div>
+              <div class="padding-b-40"> A continuación te presentamos cuáles son los elementos que conforman el archivo
+                de la base de datos. ​ </div>
+              <div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="txRosa fila-titulo font-bold">Fila 1</div>
+                    <div class="fila font-bold">Tipo de elección</div>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-7">
+                        <div class="txRosa fila-titulo font-bold"> Fila 2 </div>
+                        <div class="fila"><span class="font-bold">Fecha y hora del corte de información</span> con el
+                          formato <span class="font-bold">DD/MM/AAAA HH:MM.</span><br> Se especifica la hora en formato
+                          de 24 h, así como el huso horario del Centro de México. <div
+                            class="padding-t-20 padding-b-20 px11"> Si deseas realizar una revisión
+                            detalla de las variables de la base de datos descarga el Manual Interpretación de la Base de
+                            Datos PREP, junio 2021. </div>
+                        </div>
+                      </div>
+                      <div class="col-5"><img src="/assets/img/template_bd/fila2.svg" alt="fila2" class="img-fila2">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="txRosa fila-titulo font-bold">Fila 3</div>
+                    <div class="fila"><strong>Variables del resumen de la base de datos:​</strong></div>
+                  </div>
+                  <div class="col-12">
+                    <div class="txRosa fila-titulo font-bold">Fila 4</div>
+                    <div class="fila"><strong>Resultado de las variables del resumen de la base de datos</strong></div>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-7"><img src="/assets/img/template_bd/fila4.svg" alt="fila4" class="img-fila4">
+                      </div>
+                      <div class="col-1"><img src="/assets/img/template_bd/flecha-violeta.svg" alt="flecha"
+                          class="img-descargar"></div>
+                      <div class="col-4">
+                        <ul>
+                          <li>Actas Esperadas​</li>
+                          <li>Actas Registradas</li>
+                          <li>​Actas Fuera de catálogo​</li>
+                          <li>Actas computadas y porcentaje​</li>
+                          <li>Actas Contabilizadas y porcentaje​</li>
+                          <li>Porcentaje de Actas con inconsistencias​</li>
+                          <li>Actas no Contabilizadas​</li>
+                          <li>Lista Nominal de Actas Contabilizadas</li>
+                          <li>​Total de votos con Casillas Especiales</li>
+                          <li>​Total de votos sin Casillas Especiales​</li>
+                          <li>Porcentaje de Participación Ciudadana</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="txRosa fila-titulo font-bold">Fila 6</div>
+                    <div class="fila"><strong> Indica las variables de los resultados de votación, las cuales se pueden
+                        agrupar en​: </strong></div>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-7"><img src="/assets/img/template_bd/fila6.svg" alt="fila6" class="img-fila6">
+                      </div>
+                      <div class="col-1"><img src="/assets/img/template_bd/flecha-violeta.svg" alt="flecha"
+                          class="img-descargar"></div>
+                      <div class="col-4">
+                        <ul>
+                          <li>Identificación de las Actas​</li>
+                          <li>Totales derivados de la votación</li>
+                          <li>​Resultados de la votación</li>
+                          <li>​Estatus, traslado y seguridad de las Actas</li>
+                          <li>​Procesamiento de las Actas </li>
+                          <li>​Proceso de digitalización</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="txRosa fila-titulo font-bold">Fila 7</div>
+                    <div class="fila"><strong>A partir de esta fila se indican los datos correspondientes a cada
+                        Acta.</strong></div>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-7"><img src="/assets/img/template_bd/fila7.svg" alt="fila7" class="img-fila7">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid bgRosa txBlanco py-5">
+          <div class="row">
+            <div class="col-12 p-l">
+              <div class="subtitulo padding-b-20" id="autenticidad"> - Autenticidad - </div>
+              <div class="padding-b-80"> Para validar la autenticidad de la imagen del Acta de tu casilla, puedes
+                utilizar un software lector de código único de imagen de la siguiente forma.​​ </div>
+            </div>
+            <div class="col-12 p-l-2 padding-b-20">
+              <div class="row">
+                <div class="col-3">
+                  <p class="font-bold"> Código HASH ​ </p>
+                  <p> • Es una serie de caracteres únicos asociados al archivo de la imagen digitalizada del Acta de
+                    Escrutinio y Cómputo (AEC). ​ </p>
+                </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-blanca.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-3">
+                  <p class="font-bold"> Verifica​​ </p>
+                  <p> • Si fue manipulada la imagen del AEC con algún editor de imágenes. </p>
+                  <p> ​• Intento de alteración del archivo. </p>
+                  <p> •​ Legitimidad de las imágenes y de la información.​ </p>
+                </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-blanca.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-3">
+                  <p class="font-bold"> Valida </p>
+                  <p> • Descarga cualquier lector de Código SHA* (HASH 256) utilizado por el PREP para validar que el
+                    archivo no fue alterado. </p>
+                </div>
+              </div>
+            </div>
+            <div class="offset-3 col-6 padding-b-20"><img src="/assets/img/template_bd/autenticidad-1.gif"
+                alt="autenticidad-1" class="img-descargar"></div>
+            <div class="col-12 p-l-2 padding-b-40">
+              <div class="row">
+                <div class="col-3">
+                  <p class="font-bold"> Ubica​ </p>
+                  <p> • En el PREP, el Acta de la casilla que quieres verificar y descárgala en tu computadora.​ </p>
+                </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-blanca.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-3">
+                  <p class="font-bold"> Genera el Código HASH​​​ </p>
+                  <p> • Abre el lector de Código HASH 256 y sube el archivo de la imagen del Acta. </p>
+                  <p> ​• ​Sigue la secuencia: File-Select File.​Selecciona la opción SHA256. ​ </p>
+                  <p> •​ Elige el archivo y presiona abrir.​ </p>
+                </div>
+                <div class="col-1"><img src="/assets/img/template_bd/flecha-blanca.svg" alt="flecha"
+                    class="img-descargar"></div>
+                <div class="col-3">
+                  <p class="font-bold"> Copia y pega​ </p>
+                  <p> • El código contenido en el archivo de resultados de la Base de Datos del PREP, en la columna
+                    SHA.​ </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 padding-b-40">
+              <div class="row">
+                <div class="col-6 text-center"><img src="/assets/img/template_bd/autenticidad-2.svg"
+                    alt="autenticidad-2" class="img-autenticidad-2"></div>
+                <div class="col-6 text-center"><img src="/assets/img/template_bd/autenticidad-3.svg"
+                    alt="autenticidad-3" class="img-autenticidad-3"></div>
+              </div>
+            </div>
+            <div class="col-12 padding-b-40">
+              <div class="row">
+                <div class="offset-2 col-3">
+                  <p class="font-bold"> Compara </p>
+                  <p> • El Código de la imagen del Acta con el que te dio el lector de Código HASH 256 y comprueba su
+                    autenticidad. </p>
+                  <p> ​Todos los caracteres deben coincidir, sin importar mayúsculas o minúsculas​​ </p>
+                </div>
+                <div class="col-2 text-center"><img src="/assets/img/template_bd/flecha-blanca.svg" alt="flecha"
+                    class="img-flecha-blanca-sm"></div>
+                <div class="col-3">
+                  <p class="font-bold"> Identifica alteración </p>
+                  <p> • A través del Código HASH podrás identificar fácilmente si la imagen del Acta fue manipulada con
+                    algún software de edición de imágenes.​ </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 padding-b-150">
+              <div class="row">
+                <div class="col-6 text-center"><img src="/assets/img/template_bd/autenticidad-4.svg"
+                    alt="autenticidad-4" class="img-autenticidad-4"></div>
+                <div class="col-6 text-center"><img src="/assets/img/template_bd/autenticidad-5.svg"
+                    alt="autenticidad-5" class="img-autenticidad-5"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div _ngcontent-vlx-c87="" class="container-fluid bgGris py-1">
+        <div _ngcontent-vlx-c87="" class="row justify-content-center">
+          <div _ngcontent-vlx-c87="" class="col-md-10 px12 text-center">
+            <p _ngcontent-vlx-c87="" class="m-0"> Los resultados presentados tienen un carácter informativo y no son
+              definitivos, por tanto, no tienen efectos jurídicos. </p>
+            <p _ngcontent-vlx-c87="" class="m-0"> Con base en la Ley Federal del Derecho de Autor queda prohibida
+              cualquier modificación al diseño de este sitio. </p>
+            <p _ngcontent-vlx-c87="" class="m-0"> La modificación y/o destrucción de la información y/o contenido total
+              o parcial de este sitio, es delito federal de acuerdo al Código Penal Federal. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer-aviso-privacidad></app-footer-aviso-privacidad>

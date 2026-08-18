@@ -1,0 +1,112 @@
+<header class="total-encabezado sombra w-100">
+
+    <div *ngIf="prep" class="container-fluid bgMorado txBlanco d-none d-xl-block">
+        <div class="row">
+            <div class="col-md-9 offset-md-3">
+                <ul class="dis-flex justify-e m-0 p-1">
+                    <li *ngIf="prep" class="pl-3 pr-3 cursorPointer a-modal-ayuda" [routerLink]="[ '/', 'informacion-prep']">
+                        <i aria-hidden="true" class="fa fa-database"></i> Base de Datos
+
+                    </li>
+                    <li *ngIf="prep" class="pl-3 pr-3 cursorPointer borde-izq-solido"
+                        [routerLink]="[ '/', 'informacion-prep', 'preguntas-frecuentes']"
+                        tabindex="0" ng-reflect-router-link="/preguntas-frecuentes">
+                        <i aria-hidden="true" class="fa fa-question-circle"></i>
+                        Preguntas frecuentes
+                    </li>
+                    <li *ngIf="prep" class="pl-3 pr-3 borde-izq-solido cursorPointer a-modal-ayuda">
+                        <i aria-hidden="true" class="fa fa-info-circle"></i> Centro de Ayuda
+                    </li>
+                    <li [ngClass]="{'borde-izq-solido': prep}" class="pl-3 pr-3 tamanio-fuente dis-flex cursorPointer">
+                        <span class="minimo">A</span>
+                        <input type="range" id="range_font" class="input-rango">
+                        <span class="maximo">
+                            <strong>A</strong>
+                        </span>
+                    </li>
+                    <li class="pl-3 pr-3 modo-dark borde-izq-solido dis-flex">
+                        <span class="claro">Claro</span>
+                        <label for="modo_dia_y_noche" class="switch margin-r-40 margin-b-0">
+                            <input type="checkbox" id="modo_dia_y_noche" value="Modo día o noche"
+                                aria-label="Modo día o noche">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="obscuro">Oscuro</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bgGrisTenue encabezado py-2 bgPrototipo">
+        <div class="row">
+            <div class="col-3 col-md-2 dis-flex d-none d-md-flex">
+                <img src="assets/img/iecm.png" alt="Logo IECM" class="max-logo img-fluid">
+            </div>
+            <div class="col-3 col-md-2 pl-2 pr-0 d-block d-md-none">
+                <div class="dis-flex w-100 h-100"><img src="assets/img/iecm.png" alt="Logo IECM" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-7 col-md-8 dis-flex flex-col">
+                <h1 class="tx_mode_dark" [innerHTML]="titulo"></h1>
+                <p class="subtitulo d-none d-md-block" [innerHTML]="subtitulo"></p>
+            </div>
+            <div class="col-2 col-md-2 dis-flex d-none d-md-flex">
+                <img [src]="srcImg" [alt]="titulo" class="max-logo img-fluid">
+            </div>
+            <div class="col-2 d-flex d-md-none align-items-center justify-content-end">
+                <!-- Botón del menú de hamburguesa para móviles -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <i class="fa fa-align-justify" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sidebar dispositivo móvil -->
+    <div class="collapse" id="sidebarMenu">
+        <div class="bgMorado border-right" id="sidebar-wrapper">
+            <div class="list-group">
+                <a routerLinkActive="BTN-Eleccion" [routerLink]="[ '/jefatura-de-gobierno' ]" class="list-group-item list-group-item-action bg-light">Jefatura de Gobierno</a>
+                <a routerLinkActive="BTN-Eleccion" [routerLink]="[ '/diputaciones' ]" class="list-group-item list-group-item-action bg-light">Diputaciones</a>
+                <a routerLinkActive="BTN-Eleccion" [routerLink]="[ '/alcaldias' ]" class="list-group-item list-group-item-action bg-light">Alcaldías</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid menu d-none d-md-block bgPrototipo">
+        <!-- <div class="container-fluid menu d-none d-xl-block"> -->
+        <div class="row">
+            <a [routerLink]="[ '/jefatura-de-gobierno' ]"
+                class="w-5 dis-flex flex-col cursorPointer boton-home txtMorado">
+                <i class="fa fa-home px24"></i>
+                <strong>
+                    <p class="px14">Inicio</p>
+                </strong>
+            </a>
+            <div class="w-95">
+                <div class="container-fluid">
+                    <div class="row">
+                        <a routerLinkActive="BTN-Eleccion"
+                            class="col-md-2 dis-flex py-3 cursorPointer border-tipo-eleccion bgRosaIne"
+                            [routerLink]="[ '/jefatura-de-gobierno' ]">
+                            <strong>
+                                Jefatura de Gobierno
+                            </strong>
+                        </a>
+                        <a routerLinkActive="BTN-Eleccion"
+                            class="col-md-3 dis-flex py-3 cursorPointer border-tipo-eleccion bgRosaIne" [routerLink]="[ '/diputaciones' ]">
+                            <strong>Diputaciones</strong>
+                        </a>
+                        <a routerLinkActive="BTN-Eleccion"
+                            class="col-md-3 dis-flex py-3 cursorPointer border-tipo-eleccion bgRosaIne" [routerLink]="[ '/alcaldias' ]">
+                            <strong>Alcaldías</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</header>

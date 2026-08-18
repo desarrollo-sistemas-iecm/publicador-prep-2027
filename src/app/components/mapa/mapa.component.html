@@ -1,0 +1,52 @@
+<div class="contenedor-mapa" id="vista-mapa">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="tabla container-fluid">
+                <div class="row titulos">
+                </div>
+                <div class="row fila col-12 px-0 mx-0">                   
+                    <div class="col-8" [ngClass]="{'row-ganador': item.ganador}" *ngFor="let item of arrDemarcacionesObtenidas">
+                        <div class="row">
+                            <div class="col-8 dis-flex justify-s pl-0">
+                                <div class="color-partido mx-1" style="background: silver;"> &nbsp; </div>
+                                <!-- <p class="pre">
+                                    {{ item.siglas }}
+                                </p> -->
+                                <p class="pe" style="background-image: url('./assets/img/unknow/{{item.siglas | remplazaGuionesMediosABajos}}.png'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
+                                </p>
+                            </div>
+                            <div class="col-4 distrito-numero dis-flex justify-e">
+                                <p><strong>{{(item.total_demarcaciones) ? item.total_demarcaciones : 0}}</strong></p>
+                            </div>
+                        </div>
+                    </div>            
+                </div>
+                <div class="row col-12 py-4">
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-6 dis-flex justify-s pl-0">
+                                <p><strong>Total</strong></p>
+                            </div>
+                            <div class="col-6 distrito-numero dis-flex justify-e no-border">
+                                <p><strong>{{total_suma_filas}}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-md-block">
+            <div><span class="px18 txRosaIne"> Mapa de {{lblTypeMap}} </span>
+                <p class="px15 padding-b-10">
+                    El mapa resalta en las {{lblTypeMap}} el Partido Político, Coalición o Candidatura sin partido que lleva ventaja hasta el momento.
+                </p>
+            </div>
+            <div class="h-100">
+                <div style="overflow: hidden;">
+                    <div id="map-container" style="width: 100%; height: 400px;"></div>
+                    <!-- Aqui -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

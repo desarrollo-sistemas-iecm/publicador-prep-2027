@@ -1,0 +1,105 @@
+.table {
+	 width: 100%;
+	 max-width: 100%;
+	 margin-bottom: 1rem;
+	 background-color: transparent;
+}
+ .fondoGrafica {
+	 background: #fff;
+	 padding: 1.5px;
+}
+ .td-relative {
+	 position: relative;
+	 padding: 0 !important;
+}
+ .table-borderedHeader {
+	 border-collapse: collapse;
+	 border: 0px inset #665668;
+}
+ .sinBorde {
+	 border-style: hidden !important;
+}
+ .my-chart-label {
+	 position: absolute;
+	 -webkit-transform: rotate(-90deg);
+	 transform: rotate(-90deg);
+	 top: 50%;
+}
+ .linea-chart {
+	 border-top: 2px solid #f2e4f4;
+	 margin-top: 0;
+	 margin-bottom: 0;
+	 position: absolute;
+	 width: 100%;
+	 z-index: 1;
+}
+ .line-char-first {
+	 text-align: right;
+	 margin-bottom: -1rem;
+	 right: 5%;
+}
+ .linea-chart-nl {
+	 line-height: 0;
+	 margin-top: 0;
+	 margin-bottom: 0;
+	 position: absolute;
+	 width: 100%;
+	 font-size: 12px;
+	 color: #bababa;
+}
+ .line-chart-100 {
+	 bottom: 100%;
+}
+ .line-chart-80 {
+	 bottom: 80%;
+}
+ .line-chart-60 {
+	 bottom: 60%;
+}
+ .line-chart-40 {
+	 bottom: 40%;
+}
+ .line-chart-20 {
+	 bottom: 20%;
+}
+ .line-chart-0 {
+	 bottom: 0%;
+}
+ .my-chart {
+	 height: 300px;
+	 width: 80px;
+}
+ .progress-bar-vertical {
+	 width: 50px;
+	 height: 50px;
+	 min-height: 300px;
+	 display: -webkit-box;
+	 display: -ms-flexbox;
+	 display: flex;
+	 -webkit-box-align: end;
+	 -ms-flex-align: end;
+	 align-items: flex-end;
+	 margin: auto;
+	 background-color: transparent;
+	 border-radius: 0;
+}
+ .progress-bar-vertical .progress-bar {
+	 width: 100%;
+	 height: 150;
+	 -webkit-transition: height 0.6s ease;
+	 transition: height 0.6s ease;
+	 z-index: 3;
+}
+ tbody td {
+	 border-top: thin solid #dee2e6;
+	 border-bottom: thin solid #dee2e6;
+	 border-right: thin solid #dee2e6;
+	 border-left: thin solid #dee2e6;
+}
+ tbody td:first-child {
+	 border-left: none;
+}
+ tbody td:last-child {
+	 border-right: none;
+}
+ 

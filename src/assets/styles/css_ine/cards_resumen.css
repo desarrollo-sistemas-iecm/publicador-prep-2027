@@ -1,0 +1,44 @@
+.card-resumen {
+    margin-bottom: 0.5em;
+}
+
+.card-footer {
+    border-radius: 0px 0px 8px 8px;
+}
+
+/* .resumen-votacion {
+   .titulo {
+       font-size: 1.25em;
+   }
+   .subtitulo {
+       font-size: 1em;
+       line-height: 1;
+       font-family: 'Roboto Medium', sans-serif;
+       margin-bottom: 1em;
+   }
+   .apartado {
+       flex: 1;
+       margin: 0 10px;
+   }
+   .separador {
+       font-size: 2.5em;
+   }
+
+   .total {
+       font-size: 2em;
+   }
+
+   @media (max-width: 1199.98px) {
+       .total {
+           font-size: 3em;
+       }
+    }
+} */
+
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .col-md-3 {
+        flex: 0 0 24.5%;
+        max-width: 24.5%;
+    }
+ }

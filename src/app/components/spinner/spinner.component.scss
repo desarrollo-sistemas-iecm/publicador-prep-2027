@@ -1,0 +1,84 @@
+/* .spinner-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.32);
+  z-index: 2000;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #8C65AA;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, 50%);
+  border-radius: 50%;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+} */
+
+.spinner-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.50);
+  z-index: 10000;
+  // z-index: 2000;
+}
+
+/* Eliminar estilos del spinner */
+.loader {
+  display: none; // Ocultar el spinner actual
+}
+
+/* Añadir estilos para el GIF */
+/* .casilla {
+  width: 80px; // Tamaño de la casilla
+  height: 100px; // Tamaño de la casilla
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+} */
+
+.boleta {
+  width: 80px; // Tamaño de la boleta
+  height: 80px; // Tamaño de la boleta
+  background: url('../../../assets/img/loading-gif.gif') no-repeat center;
+  background-size: cover;
+  animation: depositar-boleta 1s infinite;
+}

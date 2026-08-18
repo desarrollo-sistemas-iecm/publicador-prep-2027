@@ -1,0 +1,84 @@
+
+.back_inicio {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url('../../assets/img/adobe-navegable/Grupo-44092.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.back_inicio article {
+    background-color: #fff;
+    position: absolute;
+    border-radius: 1rem;
+    box-shadow: 0 0 5rem #0000004d;
+    display: block;
+    width: calc(80% - 4rem); /* Resta el padding horizontal */
+    height: calc(80% - 4rem); /* Resta el padding vertical */
+    inset: 0;
+    margin: auto;
+    background-image: url('../../assets/img/adobe-navegable/Enmascarar-grupo-5.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 2rem;
+    overflow: auto; /* Agregamos overflow auto para que el contenido pueda desplazarse si es necesario */
+}
+
+.back_inicio article .content_logos {
+    display: flex;
+    align-content: flex-end;
+    height: 8rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.back_inicio article h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.back_inicio article h1 span {
+    display: block;
+}
+
+.back_inicio article p {
+    margin-bottom: 1rem;
+}
+
+.back_inicio article .content_logos .icono {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.back_inicio article h1 span .rosa {
+    display: inline-block;
+    color: #d5137f;
+}
+
+.back_inicio article .content_logos .icono.logo-iecm {
+    height: auto;
+    background-image: url('../../assets/img/iecm.png');
+    width: 16rem;
+    top: -3rem;
+    padding-right: 2rem;
+    margin-right: 2rem;
+    border-right: solid 0.2rem #707070;
+}
+
+
+.back_inicio article .content_logos .icono.logo-prep {
+    width: 12rem;
+    display: block;
+    height: auto;
+    background-image: url('../../assets/img/adobe-navegable/Grupo-39717@2x.png');
+}
+    

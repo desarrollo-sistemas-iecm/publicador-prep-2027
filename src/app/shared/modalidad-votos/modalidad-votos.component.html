@@ -1,0 +1,107 @@
+<div class="row otras-votaciones">
+
+    <div class="col-md-4" *ngIf="mostrarCardVotoExtranjero">
+        <div class="card p-3 mt-3 mapa-puntos">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center"><i class="fa fa-globe"></i>
+                    <h4 class="subtitulo-seccion py-3 text-center">Voto en el Extranjero</h4>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6 col-xl-4 dis-flex">
+                    <a
+                        class="btn btn-sm btn-rosaFuerte texto cursorPointer my-3 px-4 py-1"
+                        tabindex="0" [routerLink]="[ '../', 'voto-en-condiciones-excepcionales', 'voto-en-el-extranjero']">
+                        Ver Resultados
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8" _nghost-dbe-c81="">
+        <div class="container-fluid">
+            <div class="row d-md-flex d-none">
+                <div class="col-md-6">
+                    <div class="card p-3 mt-3 card-votos mapa-puntos card-anticipados">
+                        <div class="row justify-content-center">
+                            <div class="col-12 text-center">
+                                <i class="fa fa-envelope icon-style-anti"></i>
+                                <h4 class="subtitulo-seccion py-3 text-center mb-0">Voto
+                                    Anticipado</h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-6 col-xl-4 dis-flex">
+                                <a
+                                    class="btn btn-sm btn-rosaFuerte texto cursorPointer my-3 px-4 py-1"
+                                    tabindex="0"
+                                    [routerLink]="[ '../', 'voto-en-condiciones-excepcionales', 'voto-anticipado']"> Ver
+                                    Resultados </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-3 mt-3 card-votos mapa-puntos card-preventivos">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-xl-10 text-center"><img height="60"
+                                    src="./assets/img/adobe-navegable/ico-casi.png">
+                                <h4 class="subtitulo-seccion py-3 text-center mb-0">Voto en
+                                    Prisión
+                                    Preventiva</h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-6 col-xl-4 dis-flex"><a
+                                    class="btn btn-sm btn-rosaFuerte texto cursorPointer my-3 px-4 py-1"
+                                    tabindex="0"
+                                    [routerLink]="[ '../', 'voto-en-condiciones-excepcionales', 'voto-en-prision-preventiva']"> Ver
+                                    Resultados </a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex d-md-none">
+                <div class="col-12">
+                    <div class="card p-3 mt-3 card-votos mapa-puntos card-anticipados">
+                        <div class="row justify-content-center">
+                            <div class="col-12 text-center"><i
+                                    class="fas fa-envelope icon-style"></i>
+                                <h4 class="subtitulo-seccion py-3 text-center mb-0">Voto
+                                    Anticipado</h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-6 col-xl-4 dis-flex"><button
+                                    class="btn btn-sm btn-rosaFuerte texto cursorPointer my-3 px-4 py-1"
+                                    tabindex="0"
+                                    ng-reflect-router-link="/jefatura-de-gobierno/votos-anticipados"> Ver
+                                    Resultados </button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card p-3 mt-3 card-votos mapa-puntos card-preventivos">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-xl-8 text-center">
+                                <img height="60"
+                                    src="./assets/img/adobe-navegable/ico-casi.png">
+    
+                                <h4 class="subtitulo-seccion py-3 text-center mb-0">Voto en
+                                    Prisión
+                                    Preventiva</h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-6 col-xl-4 dis-flex"><button
+                                    class="btn btn-sm btn-rosaFuerte texto cursorPointer my-3 px-4 py-1"
+                                    tabindex="0"
+                                    ng-reflect-router-link="/jefatura-de-gobierno/votos-preventivos"> Ver
+                                    Resultados </button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

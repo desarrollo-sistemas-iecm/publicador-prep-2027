@@ -1,0 +1,97 @@
+.bgRosaIne {
+	 /* background: #c791a8;
+	 color: ; */
+	/* border-radius: 12px; */
+	opacity:  0.2 !important;
+	color: #121212;
+/* opacity: 1; */
+}
+.BTN-Eleccion{
+	color: var(--negro);
+  /* text-align: center; */
+  /* // font: normal normal bold 24px/28px Roboto; */
+  /* letter-spacing: 0px; */
+  /* color: #000000; */
+  /* opacity: 1 !important; */
+  background: #C791A8 0% 0% no-repeat padding-box;
+          box-shadow: 0px 3px 6px #00000029;
+          border-radius: 12px;
+          opacity: 0.27; color: #FFF;
+		  color: #121212;
+  }
+
+  .BTN-Eleccion-active{
+	background: #C791A8 0% 0% no-repeat padding-box;
+	opacity: 1 !important;
+ }
+
+  .border-tipo-eleccion{
+	border-radius: 12px;
+  }
+ .bgMorado {
+	 background: #582d73;
+}
+ .bgGrisTenue {
+	 background: #f9f9f9;
+}
+ .bgGrisTabla {
+	 background: #ddd;
+}
+ .bgGris {
+	 background: #f4f4f4;
+}
+ .bgBlanco {
+	 background: #fff;
+}
+ .bgAzul {
+	 background: #48487c;
+}
+ .bgRosa {
+	 background: #962464;
+}
+ .bgGrafica1 {
+	 background: #C791A8;
+}
+ .bgGrafica2 {
+	 background: #B283B9;
+}
+ .bgGrafica3 {
+	 background: #582D73;
+}
+ .txBlanco {
+	 color: #fff;
+}
+ .txRosaIne {
+	 /* color: #c791a8; */
+	 color: #582D73;
+}
+ .txRosa2 {
+	 color: #C791A8;
+}
+ .txGris {
+	 color: #707070;
+}
+ .txAqua {
+	 color: #4199a0;
+}
+ .txMorado {
+	 color: #7a4493;
+}
+ .txRosa {
+	 color: #962464;
+}
+ .txGris2 {
+	 color: #4b3943;
+}
+ .linkAzul {
+	 color: #5b5bde;
+	 text-decoration: underline;
+	 font-family: 'Roboto-Regular', sans-serif;
+}
+ .preguntas-frecuentes .bgAzul {
+	 background: #48487c !important;
+}
+ .pie-pagina.bgMorado {
+	 background: #34344e !important;
+}
+ 

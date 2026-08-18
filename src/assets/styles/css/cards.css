@@ -1,0 +1,379 @@
+/*Estilos DANIEL REA; Aqui comienza estilo para el seleccionar de los cards*/
+.div_seleccionar, .div_seleccionar_ci{
+  background-color: #582d73;
+  color: #FFF;
+  font-weight: 200;
+}
+
+.cursorPointer:hover{
+  cursor: pointer;
+}
+
+.seleccionado{
+  background: #7474DC;
+}
+
+.justify-e {
+  justify-content: flex-end !important;
+}
+
+.justify-s {
+  justify-content: flex-start !important
+}
+
+.mr-2{
+  margin-right: 0.5rem
+}
+
+.dis-flex {
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+}
+
+.boton-detalle{
+border-radius: 8px;
+}
+
+.btn-rosaFuerte {
+  background: #D1308A 0% 0% no-repeat padding-box;
+  border-radius: 8px;
+  color: #fff;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-sm{
+padding: 0.25rem 0.5rem;
+}
+
+.btn{
+transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.txBlanco {
+  color: #fff;
+}
+.bgMorado {
+  background: #582d73;
+}
+
+.txtMorado {
+  color: #582d73;
+}
+
+.bgGris {
+  background: #f4f4f4;
+}
+
+.bgGrisTenue {
+  background: #f9f9f9;
+}
+
+.pt-3{
+padding-top: 1rem !important;
+}
+
+.img_circular{
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.img_circular img{
+  background: #FFFFFF;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.boton-detalle:disabled {
+  background: #fff;
+  color: #000000;
+  border-color: #000000;
+  cursor: default;
+  opacity: 0.39;
+}
+
+/* .card{
+width: 11rem;
+margin-bottom: 10px !important;
+margin-left: 10px;
+} */
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #FFF;
+}
+
+.modalComparativa .cerrar {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  border-color: transparent;
+}
+
+.modalComparativa .cerrar img {
+  width: 32px;
+  height: 32px;
+}
+
+.modalComparativa .totales {
+  color: #582d73;
+}
+
+.modalComparativa .elementoStage {
+  border-bottom: 1px solid #707070;
+}
+
+.dato-modal{
+  font-weight: 200;
+}
+
+.px16 {
+  font-size: 16px;
+}
+.px18 {
+  font-size: 18px;
+}
+.px22 {
+  font-size: 22px;
+}
+
+.px43 {
+  font-size: 43px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.space-b {
+  justify-content: space-between;
+}
+
+.modalComparativa .nombres {
+  line-height: 0.5;
+  line-height: 8px;
+}
+
+.align-s {
+  align-items: flex-start;
+}
+.flex-col {
+  flex-direction: column;
+}
+
+.modalComparativa .elementoStage .partido {
+  width: 28px;
+  height: 28px;
+}
+
+.modalComparativa .elementoStage .anadir {
+  color: #582D73;
+  font-size: 28px;
+}
+
+/**/
+
+.padding-b-15 {
+    padding-bottom: 15px;
+}
+
+.font-medium {
+    font-family: "Roboto-Medium", sans-serif;
+}
+
+.border-rightB {
+    border-right: 2px solid #858585;
+}
+
+.visualizar .selector .dis-flex:first-child {
+    border-right: 1px solid #E1DFDF;
+}
+
+.padding-r-0 {
+  padding-right: 0px;
+}
+
+.padding-l-0 {
+    padding-left: 0px;
+}
+
+.color-gris {
+    color: #858585 !important;
+}
+
+.resalta{
+  color: #212529;
+}
+
+/*VISUALIZA COMO*/
+@media (min-width: 992px){
+  .d-lg-block {
+    display: block !important;
+    }
+  }
+
+  .visualizar .selector {
+    background: #E1DFDF;
+    background: #F7F6F6;
+    color: #BBBBC0;
+    border-radius: 8px !important;
+    border: 1px solid #E1DFDF;
+}
+
+.visualizar .activo.der {
+    border-radius: 0 8px 8px 0;
+}
+
+.visualizar .activo.izq {
+    border-radius: 8px 0 0 8px;
+}
+
+.visualizar .activo {
+    background: #fff;
+    background: #582D73;
+    color: #fff;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+/*VISUALIZA COMO*/
+
+/*COMPARTIR*/
+.boton-compartir {
+    position: fixed;
+    background: #fff;
+    border-radius: 34px 34px 0px 0px;
+    bottom: 0;
+    right: 1em;
+    z-index: 9;
+    box-shadow: 0px 3px 6px #00000029;
+    padding: 0.75em 0.5em 0.25em;
+}
+
+.boton-compartir .fondo {
+    background: transpa⁄rent;
+    border-radius: 50px;
+    transition: 0.2s;
+}
+
+.boton-compartir .redes {
+    transition: 0.2s;
+    height: 0;
+}
+
+
+.boton-compartir .boton .whatsapp {
+    background: #25D366;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.boton-compartir .boton.whatsapp {
+    background: #25D366;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.boton-compartir .boton {
+    width: 1.75em;
+    height: 1.75em;
+    font-size: 0.9em;
+    border-radius: 100%;
+    margin: 0.25em;
+    cursor: pointer;
+    position: absolute;
+    right: 0.8em;
+    right: 1.4em;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.boton-compartir .boton.facebook {
+    background: #0866ff;
+    color: #fff;
+}
+
+.boton-compartir .boton.twitter {
+    background: #ffffff;
+    color: #fff;
+}
+
+.boton-compartir .principal {
+    /* background: #23233E; */
+    background: #582D73;
+    color: #fff;
+    border: 3px solid #582D73;
+    width: 2.25em;
+    height: 2.25em;
+    font-size: 1.25em;
+    border-radius: 100%;
+    z-index: 9;
+}
+
+.boton-compartir p {
+    font-size: 0.8em;
+    z-index: 9;
+    background: #fff;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+boton-compartir:hover .principal {
+  color: #000;
+  background: #fff;
+}
+
+.boton-compartir:hover .fondo {
+  background: #DDD;
+}
+
+.boton-compartir:hover .boton {
+  opacity: 1;
+}
+
+.boton-compartir:hover .boton.whatsapp {
+  bottom: 4.75em;
+}
+
+.boton-compartir:hover .boton.facebook {
+  bottom: 6.75em;
+}
+
+.boton-compartir:hover .boton.twitter {
+  bottom: 8.75em;
+}
+
+.boton-compartir:hover .redes {
+  height: 5.75em;
+}
+
+.boton-compartir:hover .principal {
+   color: #000;
+   background: #fff;
+
+}
+
+/*COMPARTIR*/
+
+/*link-actas*/
+#a-modal{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/*PORCENTAJES*/
+.w3-container{
+  padding: 0px;
+}
+/*PORCENTAJES*/

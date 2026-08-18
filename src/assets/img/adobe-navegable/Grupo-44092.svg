@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2195" height="1279" viewBox="0 0 2195 1279">
+  <defs>
+    <filter id="Rectángulo_20595" x="1006" y="-6" width="1198" height="646" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectángulo_20579" x="-9" y="193" width="2049" height="1098" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Rectángulo_20595)">
+        <rect id="Rectángulo_20595-2" data-name="Rectángulo 20595" width="1180" height="628" transform="translate(0 -0.26)" fill="#b283b9"/>
+      </g>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Rectángulo_20579)">
+        <rect id="Rectángulo_20579-2" data-name="Rectángulo 20579" width="2031" height="1080" rx="8" transform="translate(0 0)" fill="#b283b9"/>
+      </g>
+    </clipPath>
+  </defs>
+  <g id="Grupo_44092" data-name="Grupo 44092" transform="translate(165 47)">
+    <g id="Enmascarar_grupo_7" data-name="Enmascarar grupo 7" transform="translate(2030 580.74) rotate(180)" opacity="0.08" clip-path="url(#clip-path)">
+      <rect id="Rectángulo_20580" data-name="Rectángulo 20580" width="148.839" height="148.839" transform="translate(382.01 343.763) rotate(135)" fill="#b283b9" opacity="0.219"/>
+      <rect id="Rectángulo_20581" data-name="Rectángulo 20581" width="367.93" height="367.93" transform="translate(276.766 513.64) rotate(135)" fill="#b283b9" opacity="0.885"/>
+      <rect id="Rectángulo_20582" data-name="Rectángulo 20582" width="33.794" height="33.794" transform="translate(113.126 200.677) rotate(135)" fill="#b283b9" opacity="0.7"/>
+      <rect id="Rectángulo_20583" data-name="Rectángulo 20583" width="75.351" height="75.351" transform="translate(195.792 290.482) rotate(135)" fill="#b283b9" opacity="0.6"/>
+      <rect id="Rectángulo_20584" data-name="Rectángulo 20584" width="53.516" height="53.516" transform="translate(352.448 186.731) rotate(135)" fill="#b283b9" opacity="0.7"/>
+      <rect id="Rectángulo_20585" data-name="Rectángulo 20585" width="43.626" height="43.626" transform="translate(472.544 123.531) rotate(135)" fill="#b283b9" opacity="0.8"/>
+      <rect id="Rectángulo_20586" data-name="Rectángulo 20586" width="53.516" height="53.516" transform="translate(428.131 519.145) rotate(135)" fill="#b283b9" opacity="0.8"/>
+      <rect id="Rectángulo_20587" data-name="Rectángulo 20587" width="18.903" height="18.903" transform="translate(248.712 92.682) rotate(135)" fill="#b283b9"/>
+      <rect id="Rectángulo_20588" data-name="Rectángulo 20588" width="18.903" height="18.903" transform="translate(370.963 141.013) rotate(135)" fill="#b283b9" opacity="0.4"/>
+      <rect id="Rectángulo_20589" data-name="Rectángulo 20589" width="18.903" height="18.903" transform="translate(529.615 233.368) rotate(135)" fill="#b283b9"/>
+      <rect id="Rectángulo_20590" data-name="Rectángulo 20590" width="18.903" height="18.903" transform="translate(657.361 513.64) rotate(135)" fill="#b283b9"/>
+      <rect id="Rectángulo_20591" data-name="Rectángulo 20591" width="18.903" height="18.903" transform="translate(1049.527 595.37) rotate(135)" fill="#b283b9" opacity="0.4"/>
+      <rect id="Rectángulo_20592" data-name="Rectángulo 20592" width="18.903" height="18.903" transform="translate(775.491 622.103) rotate(135)" fill="#b283b9" opacity="0.4"/>
+      <rect id="Rectángulo_20593" data-name="Rectángulo 20593" width="45.132" height="45.132" transform="translate(267.258 224.573) rotate(135)" fill="#b283b9" opacity="0.8"/>
+      <rect id="Rectángulo_20594" data-name="Rectángulo 20594" width="80.846" height="80.846" transform="translate(226.131 162.835) rotate(135)" fill="#b283b9" opacity="0.5"/>
+    </g>
+    <g id="Enmascarar_grupo_6" data-name="Enmascarar grupo 6" transform="translate(-165 152)" opacity="0.08" clip-path="url(#clip-path-2)">
+      <rect id="Rectángulo_20564" data-name="Rectángulo 20564" width="256.072" height="256.072" transform="translate(657.232 591.43) rotate(135)" fill="#b283b9" opacity="0.219"/>
+      <rect id="Rectángulo_20565" data-name="Rectángulo 20565" width="633.008" height="633.008" transform="translate(476.164 883.696) rotate(135)" fill="#b283b9" opacity="0.885"/>
+      <rect id="Rectángulo_20566" data-name="Rectángulo 20566" width="58.142" height="58.142" transform="translate(194.628 345.256) rotate(135)" fill="#b283b9" opacity="0.7"/>
+      <rect id="Rectángulo_20567" data-name="Rectángulo 20567" width="129.638" height="129.638" transform="translate(336.852 499.762) rotate(135)" fill="#b283b9" opacity="0.6"/>
+      <rect id="Rectángulo_20568" data-name="Rectángulo 20568" width="92.072" height="92.072" transform="translate(606.372 321.264) rotate(135)" fill="#b283b9" opacity="0.7"/>
+      <rect id="Rectángulo_20569" data-name="Rectángulo 20569" width="75.057" height="75.057" transform="translate(812.991 212.529) rotate(135)" fill="#b283b9" opacity="0.8"/>
+      <rect id="Rectángulo_20570" data-name="Rectángulo 20570" width="92.072" height="92.072" transform="translate(736.581 893.167) rotate(135)" fill="#b283b9" opacity="0.8"/>
+      <rect id="Rectángulo_20571" data-name="Rectángulo 20571" width="32.522" height="32.522" transform="translate(427.898 159.456) rotate(135)" fill="#b283b9"/>
+      <rect id="Rectángulo_20572" data-name="Rectángulo 20572" width="32.522" height="32.522" transform="translate(638.226 242.606) rotate(135)" fill="#b283b9" opacity="0.4"/>
+      <rect id="Rectángulo_20573" data-name="Rectángulo 20573" width="32.522" height="32.522" transform="translate(911.18 401.5) rotate(135)" fill="#b283b9"/>
+      <rect id="Rectángulo_20574" data-name="Rectángulo 20574" width="32.522" height="32.522" transform="translate(1130.962 883.696) rotate(135)" fill="#b283b9"/>
+      <rect id="Rectángulo_20575" data-name="Rectángulo 20575" width="32.522" height="32.522" transform="translate(1805.666 1024.309) rotate(135)" fill="#b283b9" opacity="0.4"/>
+      <rect id="Rectángulo_20576" data-name="Rectángulo 20576" width="32.522" height="32.522" transform="translate(1334.2 1070.301) rotate(135)" fill="#b283b9" opacity="0.4"/>
+      <rect id="Rectángulo_20577" data-name="Rectángulo 20577" width="77.647" height="77.647" transform="translate(459.807 386.368) rotate(135)" fill="#b283b9" opacity="0.8"/>
+      <rect id="Rectángulo_20578" data-name="Rectángulo 20578" width="139.091" height="139.091" transform="translate(389.049 280.151) rotate(135)" fill="#b283b9" opacity="0.5"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,149 @@
+<div class="row padding-b-10 mrgn-t15 d-none d-lg-block d-xl-block">
+    <div class="col-12 px-0">
+        <div class="table-responsive">
+            <!-- <pre>{{votos | json}}</pre> -->
+            <table id="t-g-vpp" class="table table-borderedHeader">
+                <thead class="table-borderedHeader">
+                    <tr>
+                        <td class="noBorde"></td>
+                        <td class="noBorde fondoGrafica td-relative"></td>
+                        <td class="noBorde fondoGrafica td-relative"></td>
+                        <td class="noBorde fondoGrafica td-relative"></td>
+                    </tr>
+                    <tr>
+                        <td class="td-relative table-borderedHeader sinBorde">
+                            <div class="linea-chart-nl line-chart-100 line-char-first">526,363
+                            </div>
+                            <div class="linea-chart-nl line-chart-80 line-char-first">421,090
+                            </div>
+                            <div class="linea-chart-nl line-chart-60 line-char-first">315,818
+                            </div>
+                            <div class="linea-chart-nl line-chart-40 line-char-first">210,545
+                            </div>
+                            <div class="linea-chart-nl line-chart-20 line-char-first">105,273
+                            </div>
+                            <div class="linea-chart-nl line-chart-0 line-char-first">0</div>
+                            <div class="my-chart">
+                                <div style="height: 0px;"></div>
+                            </div>
+                        </td>
+                        <td class="fondoGrafica td-relative" *ngFor="let graph of votos">
+                            <div class="linea-chart line-chart-100"></div>
+                            <div class="linea-chart line-chart-80"></div>
+                            <div class="linea-chart line-chart-60"></div>
+                            <div class="linea-chart line-chart-40"></div>
+                            <div class="linea-chart line-chart-20"></div>
+                            <div class="linea-chart-nl line-chart-0"></div>
+                            <div class="progress-bar-vertical">
+                                <div aria-valuemax="100" aria-valuemin="0" placement="top" role="progressbar"
+                                    hide-delay="50" class="progress-bar progres-chart" ng-reflect-placement="top"
+                                    ng-reflect-hide-delay="50" ng-reflect-tooltip-value="<p>PVEM</p><p>Total de votos: "
+                                    ng-reflect-ng-style="[object Object]"
+                                    [style]="'height: '+graph.porcentaje+'%; background-color: rgb(210, 18, 126);'">{{graph.total_votos | number}}</div>
+                            </div>
+                        </td>
+                       <!--  <td class="fondoGrafica td-relative">
+                            <div class="linea-chart line-chart-100"></div>
+                            <div class="linea-chart line-chart-80"></div>
+                            <div class="linea-chart line-chart-60"></div>
+                            <div class="linea-chart line-chart-40"></div>
+                            <div class="linea-chart line-chart-20"></div>
+                            <div class="linea-chart-nl line-chart-0"></div>
+                            <div class="progress-bar-vertical">
+                                <div aria-valuemax="100" aria-valuemin="0" placement="top" role="progressbar"
+                                    hide-delay="50" class="progress-bar progres-chart" ng-reflect-placement="top"
+                                    ng-reflect-hide-delay="50" ng-reflect-tooltip-value="<p>PAN-PRI-PRD</p><p>Total de "
+                                    ng-reflect-ng-style="[object Object]"
+                                    style="height: 24.7849%; background-color: rgb(102, 159, 241);"></div>
+                            </div>
+                        </td>
+                        <td class="fondoGrafica td-relative filaGanador superior-ganador">
+                            <div class="linea-chart line-chart-100"></div>
+                            <div class="linea-chart line-chart-80"></div>
+                            <div class="linea-chart line-chart-60"></div>
+                            <div class="linea-chart line-chart-40"></div>
+                            <div class="linea-chart line-chart-20"></div>
+                            <div class="linea-chart-nl line-chart-0"></div>
+                            <div class="progress-bar-vertical" title="Ganador">
+                                <div aria-valuemax="100" aria-valuemin="0" placement="top" role="progressbar"
+                                    hide-delay="50" class="progress-bar progres-chart" ng-reflect-placement="top"
+                                    ng-reflect-hide-delay="50" ng-reflect-tooltip-value="<p>PT-MORENA</p><p>Total de vo"
+                                    ng-reflect-ng-style="[object Object]"
+                                    style="height: 80%; background-color: rgb(242, 143, 143);">
+                                    80%</div>
+                            </div>
+                        </td> -->
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="thtitulos"></td>
+                        <td *ngFor="let item of votos" class="text-center" [ngClass]="{'filaGanador': item.ganador}" >
+                            <div><img class="imagen-candidato" src="assets/img/unknow/avatar-persona.png" *ngIf="item.siglas != 'no_registrados' && item.siglas != 'votos_nulos'"></div>
+                            <div>
+                                <p class="px12">{{item.descripcion}}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="thtitulos">
+                            <span class="px16 font-bold"> Votos </span>
+                            <br>
+                            <span class="px14 font-bold"> Total </span>
+                        </td>
+                        <td class="text-center" *ngFor="let vt of votos" [ngClass]="{'filaGanador': vt.ganador}">
+                            <div *ngIf="vt.siglas != 'no_registrados' && vt.siglas != 'votos_nulos'">
+                                <!-- {{vt.siglas}} -->
+                                <img class="img-partido img-sttngs"
+                                    src="./assets/img/unknow/{{vt.siglas | remplazaGuionesMediosABajos}}.png">
+                            </div>
+                            <div>
+                                <span class="14px font-bold">
+                                    {{ vt.total_votos | number }}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="border3-t-rosaINE">
+                        <td class="bg-gris-3">
+                            <span class="px12">
+                                Porcentaje
+                            </span>
+                        </td>
+                        <td *ngFor="let por of votos" class="text-center bg-rosa2" [ngClass]="{'filaGanador': por.ganador}">
+                            <span class="px12 fw-700">
+                                {{ por.porcentaje }}%
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="border3-t-rosaINE">
+                        <td class="bg-gris-3"><span class="px12 fw-700"><strong>En Casillas</strong></span></td>
+                        <td *ngFor="let cas of votos_casillas" class="text-center bg-rosa2" [ngClass]="{'filaGanador': cas.ganador}">
+                            <span class="px12 fw-700">
+                                {{ cas.total_votos || 0 | number }}
+                                <p>{{cas.siglas}}</p>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="border3-t-rosaINE">
+                        <td class="bg-gris-3">
+                            <span class="px12">
+                                <strong>
+                                    En el Extranjero
+                                </strong>
+                            </span>
+                        </td>
+                        <td *ngFor="let ext of votos_extranjero" class="text-center bg-rosa2" [ngClass]="{'filaGanador': ext.ganador}">
+                            <span class="px12">
+                                {{ ext.total_votos || 0 | number }}
+                                <p>{{ext.siglas}}</p>
+
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

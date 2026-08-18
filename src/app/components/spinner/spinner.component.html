@@ -1,0 +1,20 @@
+<!-- <div *ngIf="loadingService.loading$ | async" class="grid">
+
+    <div class="col-12 spinner-container">
+
+        <span class="loader"></span>
+
+    </div>
+
+</div> -->
+
+
+<div *ngIf="loadingService.loading$ | async" class="grid">
+    <div class="col-12 spinner-container">
+        <!-- Reemplazar el spinner actual con el GIF -->
+        <div class="casilla">
+            <div class="ranura"></div>
+            <div class="boleta"></div>
+        </div>
+    </div>
+</div>

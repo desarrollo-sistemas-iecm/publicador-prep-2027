@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-12 col-lg-8 col-xl-11 bgGris py-2 pxx">
+        <p class="titulo"><strong>Resumen de la votación</strong></p>
+        <div class="container-fluid">
+            <div class="row dis-flex">
+                <div class="apartado dis-flex flex-col">
+                    <div class="dis-flex w-100">
+                        <p class="subtitulo"> Votos acumulados &nbsp; </p>
+                        <span data-toggle="tooltip"
+                            title="Es la sumatoria de los votos obtenidos por Partido Político, Coalición o Candidatura sin partido."
+                            placement="top" show-delay="200" ng-reflect-tooltip-value="Es la sumatoria de los votos o"
+                            ng-reflect-placement="top" ng-reflect-show-delay="200">
+                            <i aria-hidden="true" class="fa fa-info-circle"></i>
+                        </span>
+
+                    </div>
+                    <div class="row dis-flex w-100 space-b">
+                        <p class="col-12 cantidad"><strong> {{votos_acumulados | number}} </strong></p>
+                        <p class="col-12 porcentaje">{{porcentaje_votos_acumulados}}% </p>
+                    </div>
+                </div>
+                <p class="separador"><strong>+</strong></p>
+                <div class="apartado dis-flex flex-col pt-1">
+                    <div class="dis-flex w-100">
+                        <p class="subtitulo pb-1"> Candidaturas no registradas </p>
+                    </div>
+                    <div class="row dis-flex w-100 space-b">
+                        <p class="col-12 cantidad"><strong> {{votos_candidaturas_no_registradas | number}} </strong></p>
+                        <p class="col-12 porcentaje">{{porcentaje_votos_candidaturas_no_registradas}}% </p>
+                    </div>
+                </div>
+                <p class="separador"><strong>+</strong></p>
+                <div class="apartado dis-flex flex-col pt-1">
+                    <div class="dis-flex w-100">
+                        <p class="subtitulo pb-1"> Nulos </p>
+                    </div>
+                    <div class="row dis-flex w-100 space-b">
+                        <p class="col-12 cantidad"><strong> {{votos_nulo | number}} </strong></p>
+                        <p class="col-12 porcentaje"> {{porcentaje_votos_nulo }}% </p>
+                    </div>
+                </div>
+                <p class="d-none d-lg-block separador pr-3"><strong>=</strong></p>
+                <div class="d-none d-lg-block apartado dis-flex flex-col">
+                    <div class="dis-flex w-100 justify-e">
+                        <p class="px20"><strong>Total de votos</strong></p>
+                    </div>
+                    <div class="dis-flex w-100 space-b justify-e">
+                        <p class="total"><strong class="txRosaIne">{{total_votos | number}} </strong>
+                        </p>
+                    </div>
+                    <div class="dis-flex w-100 space-b justify-e">
+                        <p><strong class="txRosaIne"> {{porcentaje_total_votos}}% </strong></p>
+                        <!-- <p>
+                            {{porcentaje_votos_acumulados}}
+                        </p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid d-lg-none">
+                <div class="row">
+                    <div class="col-12 dis-flex flex-col mt-3">
+                        <div class="dis-flex w-100 justify-e">
+                            <p class="px20 mb-0"><strong>Total de votos</strong></p>
+                        </div>
+                        <div class="dis-flex w-100 justify-e">
+                            <p class="total"><strong> = <span
+                                        class="txRosaIne">3,960,067</span></strong></p>
+                        </div>
+                        <div class="dis-flex w-100 justify-e">
+                            <p><strong><span class="txRosaIne">100.0000%</span></strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'ine-publicacion';
+  src:  url('fonts/ine-publicacion.eot?d33j0j');
+  src:  url('fonts/ine-publicacion.eot?d33j0j#iefix') format('embedded-opentype'),
+    url('fonts/ine-publicacion.ttf?d33j0j') format('truetype'),
+    url('fonts/ine-publicacion.woff?d33j0j') format('woff'),
+    url('fonts/ine-publicacion.svg?d33j0j#ine-publicacion') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i.ine {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ine-publicacion' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ine-base-datos:before {
+  content: "\e900";
+}
+.ine-actualizar:before {
+  content: "\e901";
+}
+.ine-home:before {
+  content: "\e902";
+}
+.ine-mapa:before {
+  content: "\e903";
+}
+.ine-tarjetas:before {
+  content: "\e913";
+}

@@ -1,0 +1,89 @@
+.combo label {
+	 margin: 0;
+}
+ .dropdown button {
+	 overflow-x: hidden;
+}
+ .dropdown-menu {
+	 margin: 0;
+	 padding: 0;
+	 font-size: 14px;
+	 max-height: 150px;
+	 overflow-y: auto;
+	 border: none;
+	 box-shadow: 0 2px 4px #d9d9d9;
+}
+ .colapsador {
+	 width: 40px;
+	 height: 40px;
+	 border-radius: 100%;
+	 background: #fff;
+	 box-shadow: 0px 3px 6px #000029;
+	 z-index: 1;
+	 cursor: pointer;
+	 position: absolute;
+	 left: calc(100% - 20px);
+}
+ .colapsador i {
+	 color: #000;
+}
+ .abierto {
+	 left: calc(100% - 20px);
+	 top: 60px;
+}
+ .cerrado {
+	 left: 3%;
+	 top: 27%;
+	 top: 13em;
+}
+ .titulo-menu {
+	 border-left: 10px solid #fff;
+}
+ .titulo-menu h3 {
+	 font-size: 1.75em;
+}
+ .lista-menu li {
+	 list-style: none;
+	 margin: 0.75em 0;
+}
+ .pleca-blanca {
+	 padding-left: 0.5em;
+	 border-left: 9px solid #fff;
+}
+ .menu {
+	 font-size: 16px;
+}
+ .menu .titulo {
+	 font-family: 'Roboto-Bold', sans-serif;
+}
+ .menu .liga {
+	 font-family: 'Roboto-Regular', sans-serif;
+	 padding-left: 10px;
+}
+ .oculto {
+	 transform: scale(0);
+}
+ .activeSelect {
+	 opacity: 30%;
+	 background: #23233e;
+	 color: #fff;
+}
+ .dropdown-item:hover, .dropdown-item:focus {
+	 background: #23233e 30;
+}
+ @media (min-width: 1200px) {
+	 .colapsador {
+		 display: flex !important;
+	}
+}
+ @media (min-width: 2150px) {
+	 .btn-ajuste {
+		 padding-top: 1.125em;
+		 padding-bottom: 1.125em;
+	}
+	 .btn-ajuste:hover {
+		 padding-left: 0;
+		 padding-right: 0;
+	}
+}
+ 

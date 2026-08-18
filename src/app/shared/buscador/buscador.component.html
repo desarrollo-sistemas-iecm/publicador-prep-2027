@@ -1,0 +1,52 @@
+<div class="buscador card bgMorado txBlanco dis-flex space-a align-s pl-2 pr-2 h-100">
+    <div class="container-fluid bgPrototipo">
+        <div class="row">
+            <div class="col-12 px-0">
+                <p class="px16"> Conoce los resultados de tu sección </p>
+                <p class="px10 pl-1" data-toggle="modal" data-target="#modalCasilla">
+                    <i aria-hidden="true" data-toggle="tooltip"
+                        title="Verificar tipo de credencial"
+                        class="fa fa-question-circle px14 cursor-hand"></i>
+                    Para conocer los resultados de tu casilla, ingresa los siguientes datos.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <form (submit)="buscadorPorSeccion();" id="buscador_seccion" [formGroup]="formBuscadoSeccion" class="ng-untouched ng-pristine ng-invalid">
+            <div class="row px-1">
+                <div class="col-md-5 px-1">
+                    <div class="form-group m-0">
+                        <label for="seccion" class="m-0 px14">Sección</label>
+                        <div class="input-group df-sw">
+                            <div class="dropdown w-100 bgBlanco">
+                                <input formControlName="seccion" type="number" min="0" id="misec"
+                                    class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 px-1">
+                    <div class="form-group">
+                        <label for="primerApellido" class="m-0 px14"></label>
+                        <div class="input-group df-sw">
+                            <div class="dropdown w-100 bgBlanco">
+                                <!-- <input type="text" id="apellido" name="apellido" class="form-control ng-untouched ng-pristine ng-invalid"> -->
+                                <button [disabled]="!formBuscadoSeccion.valid" type="submit"
+                                    class="btn form-control px14 px-1 btn-rosa-buscador ng-untouched ng-pristine ng-invalid">
+                                    Consulta </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 px-1">
+                    <div class="form-group">
+                        <label for="submit" class="m-0 px14">&nbsp;</label>
+                        <div class="input-group df-sw">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

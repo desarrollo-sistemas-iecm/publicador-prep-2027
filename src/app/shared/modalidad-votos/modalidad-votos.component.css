@@ -1,0 +1,60 @@
+.mapa-puntos {
+    background-size: 550px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-image: url(../../../assets/img/adobe-navegable/mapa_puntos.png)
+}
+
+.mapa-puntos {
+    height: 242px !important
+}
+
+i.fa-globe {
+    font-size: 48px
+}
+
+.votos-container {
+    background-color: var(--bg-resumen)
+}
+
+.btn-rosaFuerte {
+    background-color: #582d73 !important
+}
+
+.card-votos {
+    border-radius: 15px;
+    min-height: 240px;
+    max-height: 400px;
+    height: auto !important;
+    transition: font-size .3s ease-in-out
+}
+
+.icon-style {
+    font-size: 6em
+}
+
+.card-anticipados {
+    background-image: url(../../../assets/img/adobe-navegable/fondo_anticipados.png)
+}
+
+.card-preventivos {
+    background-image: url(../../../assets/img/adobe-navegable/fondo_preventivos.png);
+    background-position: center
+}
+
+.icon-style-anti {
+    font-size: 55px
+}
+
+h4.subtitulo-seccion {
+    font-weight: 400 !important
+}
+
+.mapa-puntos i.fa-globe {
+    font-size: 4em !important;
+    margin-bottom: 8px
+}
+
+.otras-votaciones {
+    color: #582d73
+}

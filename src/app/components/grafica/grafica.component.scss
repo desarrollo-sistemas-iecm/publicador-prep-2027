@@ -1,0 +1,196 @@
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    color: #212529;
+    margin: 0 -2px
+}
+
+.table td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 0 solid #dee2e6
+}
+
+.td-relative {
+    position: relative;
+    padding: 0 !important
+}
+
+.table-borderedHeader {
+    border-collapse: collapse;
+    border: 0 inset #665668
+}
+
+.noBorde,
+.sinBorde {
+    border-style: hidden !important;
+    border: none !important
+}
+
+.linea-chart,
+.linea-chart-nl {
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
+    width: 100%
+}
+
+.linea-chart {
+    border-top: 1px dashed #dee2e6
+}
+
+.linea-chart-nl {
+    line-height: 0;
+    font-size: 12px;
+    color: #bababa
+}
+
+.line-chart-100 {
+    bottom: 100%
+}
+
+.line-chart-80 {
+    bottom: 80%
+}
+
+.line-chart-60 {
+    bottom: 60%
+}
+
+.line-chart-40 {
+    bottom: 40%
+}
+
+.line-chart-20 {
+    bottom: 20%
+}
+
+.line-chart-0 {
+    bottom: 0
+}
+
+.my-chart {
+    height: 300px;
+    width: 80px
+}
+
+.progress-bar-vertical {
+    width: 50px;
+    height: 50px;
+    min-height: 300px;
+    display: flex;
+    align-items: flex-end;
+    margin: auto;
+    background-color: transparent;
+    border-radius: 0
+}
+
+.progress-bar-vertical .progress-bar {
+    width: 100%;
+    height: 150;
+    transition: height .6s ease;
+    z-index: 3
+}
+
+tbody td {
+    border-top: thin solid #dee2e6;
+    border-bottom: thin solid #dee2e6;
+    border-right: none;
+    border-left: none
+}
+
+tbody td:first-child,
+thead td:first-child {
+    border-left: none
+}
+
+tbody td:last-child,
+thead td:last-child {
+    border-right: none
+}
+
+@media (max-width:992px) {
+
+    table td,
+    tbody td {
+        border-top: none !important;
+        border-bottom: none;
+        border-right: none;
+        border-left: none
+    }
+}
+
+.imagen-candidato {
+    width: 4em;
+    margin: .25em 0;
+    border-radius: 100%
+}
+
+.filaGanador {
+    border-left: 3px solid #b283b9 !important;
+    border-right: 3px solid #b283b9 !important
+}
+
+.filaGanador p,
+.filaGanador span {
+    font-weight: bolder
+}
+
+.superior-ganador {
+    border-top: 3px solid #b283b9 !important
+}
+
+.inferior-ganador {
+    border-bottom: 3px solid #b283b9 !important
+}
+
+.bg-eextra,
+.fnt-rsltds-ne {
+    padding-top: 5px;
+    padding-bottom: 5px
+}
+
+.bg-eextra p,
+.fnt-rsltds-ne,
+.fnt-rsltds-ne span {
+    font-size: 14px
+}
+
+.fnt-rsltds-ne span strong {
+    font-size: 16px
+}
+
+.bg-eextra {
+    background-color: #dadaed
+}
+
+.bg-crd-rsp {
+    background-color: #f5f5f5;
+    margin-bottom: 15px
+}
+
+.bx-shdw {
+    box-shadow: 0 4px 6px #000 29;
+    border: 1px solid #eee;
+    z-index: 5;
+    position: relative
+}
+
+.px8 {
+    font-size: 8px
+}
+
+strong {
+    font-family: Roboto-Bold, sans-serif
+}
+
+.font-bold {
+    font-weight: 700
+}
+
+.img-sttngs {
+    max-height: 26px;
+    max-width: 100%;
+}

@@ -1,0 +1,87 @@
+
+    <div class="card dis-flex flex-col space-a avance-nacional h-100">
+        <div class="container-fluid bgPrototipo">
+            <div class="row">
+                <div class="dis-flex space-b col-9 pl-0">
+                    <h3 class="txRosaIne px20"><strong>Avance Entidad</strong></h3>
+                </div>
+                <div class="col-3 dis-flex justify-e">
+                    <div class="BTN-Eleccion actualizar dis-flex flex-col px-4 py-1 px14 cursorPointer"
+                        onclick='location.reload();'><i aria-hidden="true" class="fa fa-repeat"></i>
+                        Actualizar </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid px-0 py-2">
+            <div class="row px-1">
+                <div class="col-4 px-1">
+                    <div class="card cards-avance h-12v p-1" style="min-height: 85px">
+                        <div class="titulo">
+                            <p><strong> Actas computadas </strong></p>
+                        </div>
+                        <div class="contenido capturadas">
+                            <p><strong> {{actasCapturadas | number}} </strong> de {{actasPorCapturar | number}} </p>
+                            <p> ({{ porcentajeActasCapturadas }}%) </p>
+                            <div class="borde-barra w-100">
+                                <div class="barra-avance" style="width: {{ porcentajeActasCapturadas }}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 px-1">
+                    <div class="card cards-avance h-12v p-1">
+                        <div class="titulo">
+                            <p class="prueba">
+                                <strong>
+                                    <i data-toggle="modal" data-target="#modalParticipacion"
+                                        class="fa fa-question-circle cursor-hand"></i>
+                                    Participación ciudadana
+                                </strong>
+                            </p>
+                        </div>
+                        <div class="contenido dis-flex flex-col pt-3">
+                            <p class="participacion"><strong> {{porcentajeParticipacionCiudadana}}% </strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 px-1">
+                    <div class="card cards-avance h-12v p-1">
+                        <div class="titulo">
+                            <p><strong> Último corte </strong></p>
+                        </div>
+                        <div class="contenido dis-flex flex-col align-e pt-3">
+                            <div class="dis-flex w-100">
+                                <p class="fecha mr-1"> {{ultimoCorte}} </p>
+                                <!-- <p class="fecha mr-1"> {{ultimoCorte | date:'short'}} </p> -->
+                                <div class="dis-flex flex-col borde-tiempo">
+                                    <p class="tiempo-centro"> Tiempo del Centro </p>
+                                    <p class="utc">{{corteHora}} h UTC-6 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modalParticipacion" tabindex="-1" role="dialog" aria-labelledby="ModalParticipacion" aria-hidden="true" class="modal fade modal-paritcipacion">
+        <div role="document" class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div id="exampleModalLabel" style="color: #1d1f21de; font-weight: 600;" class="modal-title font-medium px16"> Conoce cómo calcular el porcentaje de Participación ciudadana </div><button type="button" data-dismiss="modal" aria-label="Close" class="close"><i
+                  class="fa fa-times-circle"></i></button>
+            </div>
+            <div class="modal-body px16 font-regular">
+              <p class="padding-b-15"> La Participación ciudadana es el porcentaje de ciudadanos que votaron, con base en la Lista Nominal de las Actas Computadas. </p>
+              <p class="padding-b-15"> Por ejemplo, si en una casilla votan 500 electores y el número de personas inscritas en la Lista Nominal para esa casilla es de 750 ciudadanos, entonces: </p>
+              <p class="padding-b-15"> Multiplicamos 500 por 100 y el resultado lo dividimos entre 750. </p>
+              <p class="padding-b-15"> La votación emitida en las Casillas Especiales se tomará en cuenta para el cálculo de la Participación ciudadana, hasta el último corte de información que se publique en el PREP. </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>

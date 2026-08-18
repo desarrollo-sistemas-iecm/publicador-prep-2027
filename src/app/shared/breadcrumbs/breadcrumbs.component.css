@@ -1,0 +1,5 @@
+a:not([href]):not([tabindex]) {
+    color: #5b5bde !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}

@@ -1,0 +1,671 @@
+.titulo-seccion {
+	 font-size: 20px;
+}
+ .subtitulo-seccion {
+	 font-size: 1.5em;
+	 color: #333;
+}
+ .subtitulo2-seccion {
+	 font-size: 1.25em !important;
+	 color: #333;
+}
+ .titulo-distritos {
+	 border-right: 1px solid #C791A8;
+}
+ .titulo-porcentaje {
+	 font-size: 0.8em !important;
+}
+ .texto {
+	 font-size: 14px;
+}
+ .pleca-izquierda {
+	 padding-left: 0.5em;
+	 /* border-left: 9px solid #c791a8; */
+	 border-left: 9px solid #582D73;
+}
+ .pleca-aqua {
+	 padding-left: 0.5em;
+	 border-left: 9px solid #4199a0;
+}
+ .pleca-morada {
+	 padding-left: 0.5em;
+	 border-left: 9px solid #7a4493;
+}
+ .subtitulo-seccion.pleca-izquierda {
+	 font-size: 20px;
+}
+ .card-resumen {
+	 border-radius: 8px;
+	 border-bottom: none;
+}
+ .card-resumen.cardGanador {
+	 box-shadow: 0px 3px 10px #000 96 !important;
+	 border: 3px solid #d1308a !important;
+}
+ .card-resumen .encabezado {
+	 border: 1px solid #f4f4f4;
+	 border: 1px solid #23233e;
+	 border-bottom: none;
+	 border-radius: 4px 4px 0 0;
+}
+ .card-resumen .cuerpo {
+	 border-left: 1px solid #23233e;
+	 border-right: 1px solid #23233e;
+}
+ .card-resumen .pe {
+	 width: 2.25em;
+	 height: 2.25em;
+	 font-size: 0.75em;
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 margin: 0.25em;
+	 padding: 5% 0;
+}
+ .card-resumen .pe.pePequeno {
+	 font-size: 0.5em;
+	 margin: 2.5%;
+	 flex: 0 0 40%;
+	 height: 20px;
+	 width: 20px;
+	 padding: 10% 0;
+}
+ .card-resumen .separador {
+	 position: absolute;
+	 width: 5px;
+	 height: 2.5em;
+	 background: #333;
+}
+ .card-resumen p {
+	 font-size: 0.7em;
+}
+ .card-resumen .distrito {
+	 font-size: 1.25em;
+}
+ .card-resumen .pie {
+	 border-radius: 0 0 4px 4px;
+	 position: relative;
+	 top: 0;
+}
+ .card-resumen .pie.seleccionado {
+	 background: #7474dc !important;
+}
+ .tarjeta .pie.seleccionado {
+	 background: #7474dc !important;
+}
+ .scrollH .card-resumen {
+ 	    /* border-radius: 8px; */
+    border: 1px solid #23233e;
+    margin-bottom: 0.75em;
+    /* background: #FFFFFF; */
+    border: 1px solid #BFBDBD;
+    border-radius: 4px;
+    /* margin-bottom: 0.75em;*/
+ }
+ .scrollH .card-resumen .cuerpo, .scrollH .card-resumen .encabezado {
+	 border: none;
+}
+ .scrollH .card-resumen .cuerpo {
+	 border-radius: 0 0 8px 8px;
+}
+ .card-gris .card-resumen {
+	 border-radius: 8px;
+	 border: 1px solid #bfbdbd;
+}
+ .card-gris .card-resumen .bgGrisTenue {
+	 background: #f4f4f4;
+}
+ .card-gris .card-resumen .cuerpo, .card-gris .card-resumen .encabezado {
+	 border: none;
+}
+ .card-gris .card-resumen .cuerpo {
+	 border-radius: 0 0 8px 8px;
+}
+ .card-gris .cardGanador {
+	 box-shadow: 0px 3px 4px #000 42;
+}
+ .contenedor-mapa .tabla .pe {
+	 width: 2.25em;
+	 height: 2.25em;
+	 font-size: 0.75em;
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 margin: 0 0.25em;
+}
+ .contenedor-mapa .tabla .distrito-numero {
+	 font-size: 1.5em;
+	 /* border-right: 1px solid #C791A8; */
+}
+ .contenedor-mapa .tabla .votos-numero {
+	 font-size: 1.2em;
+}
+ .contenedor-mapa .tabla .votos-porcentaje {
+	 font-size: 0.75em;
+}
+ .contenedor-mapa .tabla .votos-porcentaje p {
+	 width: 100%;
+	 text-align: center;
+}
+ .contenedor-mapa .tabla .mini-grafica {
+	 width: 100%;
+	 width: 65px;
+	 height: 14px;
+	 border: 1px solid #d9d9d9;
+	 position: relative;
+}
+ .contenedor-mapa .tabla .mini-grafica .avance {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 height: 100%;
+	 width: 50%;
+}
+ .contenedor-mapa .tabla .fila {
+	 border: 0 !important;
+	 cursor: default;
+	 transition: 0.3s;
+}
+ .contenedor-mapa .tabla .fila:nth-child(odd) {
+	 background: #f9f9f9;
+}
+ .contenedor-mapa .tabla .fila:nth-child(even) {
+	 margin-top: 0;
+	 margin-bottom: 0;
+}
+ .contenedor-mapa .tabla .fila:nth-child(even) .distrito-numero {
+	 padding-top: 0.25em;
+	 padding-bottom: 0.25em;
+}
+ .contenedor-mapa .tabla .filaGanador {
+	 border-radius: 8px;
+	 box-shadow: 0px 0px 6px #d5137f;
+	 border: 3px solid #d5137f !important;
+}
+ .contenedor-mapa .tabla .filaGanador .distrito-numero {
+	 padding-top: 0 !important;
+	 padding-bottom: 0 !important;
+}
+ .contenedor-mapa .tabla .filaGanador .distrito-numero, .contenedor-mapa .tabla .filaGanador .votos-numero, .contenedor-mapa .tabla .filaGanador .votos-porcentaje {
+	 color: #d5137f;
+}
+ .contenedor-mapa .tabla .color-partido {
+	 position: relative;
+	 width: 10px;
+	 height: 70%;
+}
+ @media (max-width: 576px) {
+	 .contenedor-mapa .tabla .pe {
+		 width: 2.25em;
+		 height: 2.25em;
+		 font-size: 0.6em;
+		 display: flex;
+		 justify-content: center;
+		 align-items: center;
+		 margin: 0 0.125em;
+	}
+	 .contenedor-mapa .tabla .distrito-numero {
+		 font-size: 1.1em !important;
+	}
+	 .contenedor-mapa .tabla .votos-numero {
+		 font-size: 0.8em !important;
+	}
+	 .contenedor-mapa .tabla .votos-porcentaje {
+		 font-size: 0.7em !important;
+	}
+	 .contenedor-mapa .tabla .fila {
+		 border: 3px solid transparent;
+		 cursor: default;
+		 transition: 0.3s;
+	}
+	 .contenedor-mapa .tabla .fila:nth-child(odd) {
+		 background: #f9f9f9;
+	}
+	 .contenedor-mapa .tabla .fila:nth-child(even) {
+		 margin-top: 0.5em;
+		 margin-bottom: 0.5em;
+	}
+	 .contenedor-mapa .tabla .color-partido {
+		 position: relative;
+		 width: 10px;
+		 height: 70%;
+	}
+}
+ .contenedor-mapa .subtitulo-8-seccion {
+	 font-size: 1em;
+}
+ .card h4 {
+	 font-family: 'Roboto-Medium', sans-serif;
+	 font-size: 1.25em;
+}
+ .btn.btn-outline-secondary.btn-sm.texto {
+	 border-radius: 8px;
+	 transition: 0.2s;
+}
+ .btn.btn-outline-secondary.btn-sm.texto:hover {
+	 background: #582D73;
+}
+ .resumen-votacion {
+	 color: #582d73;
+}
+ .resumen-votacion .titulo {
+	 font-size: 1em;
+}
+ .resumen-votacion .subtitulo {
+	 font-size: 14px;
+	 line-height: 1;
+	 font-family: 'Roboto-Medium', sans-serif;
+}
+ .resumen-votacion .apartado {
+	 flex: 1;
+	 text-align: center;
+}
+ .resumen-votacion .separador {
+	 font-size: 2.5em;
+}
+ .resumen-votacion .total {
+	 font-size: 2em;
+}
+ .resumen-votacion .pxx {
+	 padding-left: 10px;
+	 padding-right: 10px;
+}
+ @media (max-width: 1199.98px) {
+	 .resumen-votacion .total {
+		 font-size: 3em;
+	}
+}
+ .distribucion-votos .titulo {
+	 font-size: 1.2em;
+}
+ .distribucion-votos .tabla {
+	 font-size: 0.8em;
+}
+ .distribucion-votos .tabla .titulos {
+	 color: #23233e;
+}
+ .distribucion-votos .tabla .datos:nth-child(odd) {
+	 background: #f1f1f1;
+}
+ .distribucion-votos .tabla .borde-derecha {
+	 border-right: 1px solid #ddd;
+}
+ .distribucion-votos .tabla .borde-abajo {
+	 border-bottom: 1px solid #ddd;
+}
+ .distribucion-votos .tabla img {
+	 width: 3em;
+}
+ .distribucion-votos .tabla .distritos .pe {
+	 font-size: 0.85em;
+	 background: #fff;
+	 width: 2em;
+	 height: 2em;
+	 margin: 0.25em;
+}
+ .distribucion-votos .tabla .texto {
+	 font-size: 0.75em;
+}
+ .distribucion-votos .tabla .igual {
+	 background: #000;
+	 border-radius: 100%;
+	 padding: 0.25em;
+	 width: 1.25em;
+	 height: 1.25em;
+}
+ .distribucion-votos .tabla .igual i {
+	 color: #fff;
+}
+ .distribucion-votos .tabla .total {
+	 font-size: 1.75em;
+}
+ @media (max-width: 576px) {
+	 .distribucion-votos .tabla {
+		 font-size: 0.7em;
+	}
+	 .distribucion-votos .tabla .conteo, .distribucion-votos .tabla .distritos {
+		 flex-wrap: wrap;
+		 justify-content: center;
+	}
+	 .distribucion-votos .tabla .total {
+		 font-size: 1.25em;
+	}
+}
+ .sombra {
+	 box-shadow: 0px 3px 6px #00000029;
+}
+ .visualizar strong {
+	 font-size: 1em;
+}
+ .visualizar .selector {
+	 background: #e1dfdf;
+	 background: #f7f6f6;
+	 color: #bbbbc0;
+	 border-radius: 8px;
+	 border: 1px solid #e1dfdf;
+}
+ .visualizar .activo {
+	 background: #fff;
+	 background: #582D73;
+	 color: #fff;
+	 box-shadow: 0px 3px 6px #000 29;
+}
+ .visualizar .activo.der {
+	 border-radius: 0 8px 8px 0;
+}
+ .visualizar .activo.izq {
+	 border-radius: 8px 0 0 8px;
+}
+ .visualizar .selector .dis-flex:first-child {
+	 border-right: 1px solid #e1dfdf;
+}
+ .visualizar .selector p {
+	 font-size: 0.75em;
+}
+ .visualizar .img-visualiza {
+	 width: 28px;
+	 height: 28px;
+}
+ .visualizar i {
+	 font-size: 1.5em;
+}
+ .casilla-resumen .acta-digitalizada p, .tabla-seccion .acta-digitalizada p {
+	 color: #4e4e4e;
+	 font-size: 0.8em;
+}
+ .casilla-resumen .acta-digitalizada .boton-rosa, .tabla-seccion .acta-digitalizada .boton-rosa {
+	 background: #d5137f;
+	 color: #fff;
+	 box-shadow: 0px 3px 6px #000 29;
+	 border-radius: 8px;
+	 font-size: 0.8em;
+}
+ .casilla-resumen .acta-digitalizada .boton-rosa i, .tabla-seccion .acta-digitalizada .boton-rosa i {
+	 margin: 0 0.125em;
+	 font-size: 1.2em;
+}
+ .casilla-resumen .acta-digitalizada .boton-rosa:disabled, .tabla-seccion .acta-digitalizada .boton-rosa:disabled {
+	 background: #fff !important;
+	 color: #777 !important;
+	 border-color: #777 !important;
+	 cursor: default;
+	 box-shadow: none !important;
+}
+ .casilla-resumen .acta-digitalizada .grupo, .tabla-seccion .acta-digitalizada .grupo {
+	 color: #6f65a3;
+}
+ .casilla-resumen .acta-digitalizada .grupo i, .tabla-seccion .acta-digitalizada .grupo i {
+	 margin: 0 0.125em;
+}
+ .casilla-resumen .acta-digitalizada .grupo p, .tabla-seccion .acta-digitalizada .grupo p {
+	 margin-left: 0.125em;
+	 color: #6f65a3;
+}
+ .casilla-resumen .acta-digitalizada .grupo:first-child p, .tabla-seccion .acta-digitalizada .grupo:first-child p, .casilla-resumen .acta-digitalizada .gris, .tabla-seccion .acta-digitalizada .gris {
+	 color: #4e4e4e !important;
+}
+ .casilla-resumen .estadistica-casilla .grafica, .tabla-seccion .estadistica-casilla .grafica {
+	 z-index: 0;
+	 background: #f4f4f4;
+}
+ .casilla-resumen .estadistica-casilla .grafica .porcentaje, .tabla-seccion .estadistica-casilla .grafica .porcentaje {
+	 font-size: 1.75em;
+}
+ .casilla-resumen .estadistica-casilla .grafica .textos, .tabla-seccion .estadistica-casilla .grafica .textos {
+	 z-index: 1;
+	 color: #fff;
+	 position: relative;
+}
+ .casilla-resumen .estadistica-casilla .grafica .textos .casilla, .tabla-seccion .estadistica-casilla .grafica .textos .casilla {
+	 font-size: 0.9em;
+}
+ .casilla-resumen .estadistica-casilla .grafica .textos .porcentaje, .tabla-seccion .estadistica-casilla .grafica .textos .porcentaje {
+	 font-size: 1.75em;
+}
+ .casilla-resumen .estadistica-casilla .lista-nominal, .tabla-seccion .estadistica-casilla .lista-nominal {
+	 font-size: 0.7em;
+}
+ .casilla-resumen .estadistica-casilla .total-nominal, .tabla-seccion .estadistica-casilla .total-nominal {
+	 font-size: 1.75em;
+}
+ .acta-digitalizada i {
+	 font-size: 20px;
+}
+ .tabla-scroll .grafica {
+	 z-index: 0;
+	 background: #f4f4f4;
+}
+ .tabla-scroll .grafica .porcentaje {
+	 font-size: 1.75em;
+}
+ .tabla-scroll .grafica:before {
+	 content: '';
+	 position: absolute;
+	 left: 0;
+	 bottom: 0;
+	 height: 100%;
+	 width: 80%;
+	 background: #582d73;
+}
+ .tabla-scroll .grafica .textos {
+	 z-index: 1;
+	 color: #fff;
+	 position: relative;
+}
+ .tabla-scroll .grafica .textos .casilla {
+	 font-size: 0.9em;
+}
+ .tabla-scroll .grafica .textos .porcentaje {
+	 font-size: 1.75em;
+}
+ .tabla-scroll .lista-nominal {
+	 font-size: 0.7em;
+}
+ .tabla-scroll .total-nominal {
+	 font-size: 1.75em;
+}
+ .tabla-seccion {
+	 text-align: center;
+}
+ .tabla-seccion .contenido {
+	 font-size: 0.8em;
+	 overflow-x: scroll;
+	 padding-bottom: 2.5em;
+}
+ .tabla-seccion .contenido td {
+	 border: none;
+}
+ .tabla-seccion .contenido td i {
+	 color: #6f65a3;
+}
+ .tabla-seccion .contenido .titulos {
+	 flex-wrap: nowrap;
+}
+ .tabla-seccion .contenido .titulos > * {
+	 background: #ddd;
+}
+ .tabla-seccion .contenido .titulos .pe {
+	 background: #fff;
+	 width: 1.85em;
+	 height: 1.85em;
+	 margin: 0 0.125em;
+	 font-size: 0.8em;
+}
+ .tabla-seccion .contenido .titulos.no-background > * {
+	 background: initial;
+}
+ .tabla-seccion .contenido .subtitulos {
+	 background: #ddd;
+}
+ .tabla-seccion .contenido .borde-abajo {
+	 border-bottom: 1px solid #000;
+}
+ .tabla-seccion .contenido .filas {
+	 flex-wrap: nowrap;
+}
+ .tabla-seccion .contenido .filas > * {
+	 padding-top: 0.75em;
+	 padding-bottom: 0.75em;
+}
+ .tabla-seccion .contenido .filas i {
+	 color: #6f65a3;
+	 margin: 0 0.125em;
+	 font-size: 1.1em;
+}
+ .tabla-seccion .contenido .filas .txGris i {
+	 color: #707070;
+}
+ .tabla-seccion .contenido .filas:nth-child(odd) > * {
+	 background: #f2efef;
+}
+ @media (max-width: 576px) {
+	 .tabla-seccion .contenido {
+		 font-size: 0.7em !important;
+	}
+}
+ .estadisticaNacional .titulo {
+	 font-family: 'Roboto-Bold', sans-serif;
+	 font-size: 14px;
+}
+ .estadisticaNacional .texto {
+	 color: #4b3943;
+	 font-family: 'Roboto-Medium', sans-serif;
+}
+ .observacionesActa .justify-content-center .subtitulo-seccion {
+	 font-size: 14px;
+}
+ .observacionesActa .justify-content-center p {
+	 font-size: 12px;
+}
+ .preguntas-frecuentes {
+	 color: #582d73;
+}
+ .preguntas-frecuentes h2 {
+	 font-size: 2.5em;
+	 font-size: 22px;
+	 font-weight: bold;
+}
+ .preguntas-frecuentes .pregunta {
+	 margin: 2em 3em;
+}
+ .preguntas-frecuentes .pregunta h3 {
+	 font-size: 1.5em;
+	 font-size: 18px;
+	 font-family: 'Roboto Medium', sans-serif;
+}
+ .preguntas-frecuentes .pregunta p {
+	 letter-spacing: 0.4px;
+}
+ .preguntas-frecuentes .bgWhite h2 {
+	 font-family: 'Roboto Medium', sans-serif;
+}
+ .preguntas-frecuentes .bgWhite .pregunta h3 {
+	 color: #582d73;
+}
+ .preguntas-frecuentes .bgWhite p {
+	 color: #000;
+}
+ .preguntas-frecuentes p {
+	 font-size: 14px;
+}
+/* .base-datos {
+	 color: #582d73;
+	 h2 {
+		 font-size: 3em;
+		 font-weight: bold;
+		 text-align: center;
+		 font-family: 'Roboto Bold', sans-serif;
+	}
+	 h3 {
+		 font-size: 2.5em;
+		 margin-bottom: 1.5em;
+	}
+	 p {
+		 font-size: 1.2em;
+	}
+	 .contenido {
+		 .item p {
+			 margin: 1.5em 0;
+		}
+	}
+	 .descarga {
+		 .item {
+			 p {
+				 line-height: 1;
+			}
+			 .numero {
+				 font-size: 2.5em;
+				 margin-right: 0.5em;
+			}
+			 .titulo {
+				 text-decoration: underline;
+				 margin-bottom: 0.65em;
+			}
+		}
+	}
+	 .descomprimir {
+		 .item {
+			 margin-bottom: 1.5em;
+		}
+	}
+}
+ */
+ .tabla-listanominal .table {
+	 border: 1px solid rgba(0, 0, 0, 0.125);
+}
+ .tabla-listanominal .table th, .tabla-listanominal .table td {
+	 padding-top: 0.5rem;
+	 padding-bottom: 0.5rem;
+}
+ .tabla-listanominal .filas:nth-child(even) {
+	 background: #f9f9f9;
+	 background: #f2efef;
+}
+ .tabla-listanominal .borde-abajo {
+	 border-bottom: 1px solid #000;
+}
+ .tabla-listanominal .no {
+	 background: #f9f9f9;
+	 border-top-style: hidden;
+	 border-bottom-style: hidden;
+	 border-left: 1px solid rgba(0, 0, 0, 0.125);
+	 border-right: 1px solid rgba(0, 0, 0, 0.125);
+}
+ .modalComparativa .elemento .partido {
+	 width: 28px;
+	 height: 28px;
+}
+ .modalComparativa .elemento .titulo {
+	 font-size: 15px;
+}
+ .modalComparativa .elementoStage {
+	 border-bottom: 1px solid #707070;
+}
+ .modalComparativa .elementoStage .partido {
+	 width: 28px;
+	 height: 28px;
+}
+ .modalComparativa .elementoStage .anadir {
+	 color: #c791a8;
+	 font-size: 28px;
+}
+ .modalComparativa .totales {
+	 color: #582d73;
+}
+ .modalComparativa .cerrar {
+	 position: absolute;
+	 top: -16px;
+	 right: -16px;
+	 width: 28px;
+	 height: 28px;
+	 border-radius: 100%;
+	 border-color: transparent;
+}
+ .modalComparativa .cerrar img {
+	 width: 32px;
+	 height: 32px;
+}
+ .modalComparativa .nombres {
+	 line-height: 0.5;
+	 line-height: 8px;
+}
