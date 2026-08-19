@@ -94,6 +94,14 @@
             <div class="container-fluid py-3">
                 <app-distribucion-votos></app-distribucion-votos>
             </div>
+
+            <div class="container-fluid py-2" *ngIf="tipoEleccion === 'diputaciones'">
+                <a [routerLink]="['/diputaciones', 'votos-por-representacion-proporcional']"
+                    class="BTN-Eleccion dis-flex flex-col px-4 py-2 px14 cursorPointer" style="width: fit-content;">
+                    <i aria-hidden="true" class="fa fa-percent"></i>
+                    Ver Actas de Representación Proporcional (RP)
+                </a>
+            </div>
             <!-- <router-outlet></router-outlet> -->
             
             <div class="container-fluid">
