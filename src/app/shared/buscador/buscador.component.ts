@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ResponseBusquedaSeccion } from 'src/app/interfaces/buscadorXSeccion.interface';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { TipoCredencialService } from 'src/app/services/tipo-credencial.service';
+import { ResourceState } from 'src/app/interfaces/resource-state.interface';
+import { TipoCredencial } from 'src/app/interfaces/tipo-credencial.interface';
 
 @Component({
   standalone: false,
@@ -17,7 +21,15 @@ export class BuscadorComponent {
     seccion: ['', [ Validators.required, Validators.minLength(1) ]]
   })
 
-  constructor( private fb: FormBuilder, private apiPrepService: ApiPrepService, private spinnerService: SpinnerService, private router: Router ){}
+  public tipoCredencial$: Observable<ResourceState<TipoCredencial>> = this.tipoCredencialService.obtenerTipoCredencial();
+
+  constructor(
+    private fb: FormBuilder,
+    private apiPrepService: ApiPrepService,
+    private spinnerService: SpinnerService,
+    private router: Router,
+    private tipoCredencialService: TipoCredencialService
+  ){}
 
   buscadorPorSeccion(){
     

@@ -50,3 +50,27 @@
         </form>
     </div>
 </div>
+
+<div id="modalCasilla" tabindex="-1" role="dialog" aria-labelledby="modalCasillaLabel" aria-hidden="true" class="modal fade">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content" *ngIf="tipoCredencial$ | async as estado">
+            <div class="modal-header">
+                <div id="modalCasillaLabel" style="color: #1d1f21de; font-weight: 600;" class="modal-title font-regular px16">
+                    {{ estado.data?.titulo || 'Identifica tu credencial para votar' }}
+                </div>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><i class="fa fa-times-circle"></i></button>
+            </div>
+            <div class="modal-body px16 font-regular">
+                <p *ngIf="estado.status === 'loading'">Cargando...</p>
+                <div class="row" *ngIf="estado.status === 'success'">
+                    <div class="col-6" *ngFor="let imagen of estado.data?.imagenes">
+                        <img [src]="imagen.src" [alt]="imagen.alt" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
