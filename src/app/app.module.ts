@@ -21,6 +21,7 @@ import { PrimerNivelComponent } from './components/primer-nivel/primer-nivel.com
 import { EstadisticaCasillaComponent } from './components/estadistica-casilla/estadistica-casilla.component';
 import { ListadoParticipacionCiudadanaLNComponent } from './components/listado-participacion-ciudadana-ln/listado-participacion-ciudadana-ln.component';
 import { VotacionPorCasillaComponent } from './components/votacion-por-casilla/votacion-por-casilla.component';
+import { RepresentacionProporcionalComponent } from './components/representacion-proporcional/representacion-proporcional.component';
 import { PipesModule } from './pipes/pipes.module';
 // import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -42,7 +43,8 @@ import { PipesModule } from './pipes/pipes.module';
     PrimerNivelComponent,
     EstadisticaCasillaComponent,
     ListadoParticipacionCiudadanaLNComponent,
-    VotacionPorCasillaComponent
+    VotacionPorCasillaComponent,
+    RepresentacionProporcionalComponent
   ],
   imports: [
     BrowserModule,

@@ -54,6 +54,10 @@ export class LabelTransformerViewFoService {
         votos_por: 'voto-anticipado',
         label: 'Voto de Personas en Postración (Voto Anticipado)'
       },
+      {
+        votos_por: 'votos-por-representacion-proporcional',
+        label: 'Representación Proporcional'
+      },
     ];
 
     return relacionLabel.find((ele) => ele.votos_por === votos_por)?.label || '';

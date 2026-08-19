@@ -1,0 +1,57 @@
+<div class="col-12 px-0 mt-4">
+    <h4 class="subtitulo-seccion pleca-izquierda px-3"><strong>{{ titulo }}</strong></h4>
+
+    <p class="px16" *ngIf="estado.status === 'loading'">Cargando actas...</p>
+    <p class="px16" *ngIf="estado.status === 'empty'">No hay actas disponibles.</p>
+    <p class="px16" *ngIf="estado.status === 'error'">Ocurrió un error al cargar las actas.</p>
+
+    <div class="table-responsive tabla-seccion" *ngIf="estado.status === 'success' && estado.data as distribucion">
+        <table class="table boots table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th>Acta digitalizada</th>
+                    <th>Sección</th>
+                    <th>Casilla</th>
+                    <th *ngFor="let partido of distribucion.partidos">{{ partido }}</th>
+                    <th>No reg.</th>
+                    <th>Nulos</th>
+                    <th>Total</th>
+                    <th>Observación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let acta of distribucion.actas">
+                    <td>
+                        <button *ngIf="acta.disponible" class="btn btn-sm btn-rosa" type="button" data-toggle="modal" data-target="#modalActaNoDisponible">Ver</button>
+                        <span *ngIf="!acta.disponible" class="text-muted">Acta en proceso</span>
+                    </td>
+                    <td>{{ acta.seccion }}</td>
+                    <td>{{ acta.casilla }}</td>
+                    <td *ngFor="let partido of distribucion.partidos">{{ acta.votosPorPartido[partido] }}</td>
+                    <td>{{ acta.noRegistrados }}</td>
+                    <td>{{ acta.nulos }}</td>
+                    <td>{{ acta.total }}</td>
+                    <td>{{ acta.observacion }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="px12 text-muted">Datos de ejemplo (migrados de static-site) mientras se conecta el servicio real. Ver docs/migration/06-contratos-servicios-propuestos.md.</p>
+    </div>
+</div>
+
+<div id="modalActaNoDisponible" tabindex="-1" role="dialog" aria-labelledby="modalActaNoDisponibleLabel" aria-hidden="true" class="modal fade">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="modalActaNoDisponibleLabel" style="color: #1d1f21de; font-weight: 600;" class="modal-title font-medium px16">Visor de acta digitalizada</div>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><i class="fa fa-times-circle"></i></button>
+            </div>
+            <div class="modal-body px16 font-regular">
+                <p class="text-center">Demostración: el visor de actas digitalizadas requiere el backend real y no está disponible en esta versión.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

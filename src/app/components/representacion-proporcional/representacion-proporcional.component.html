@@ -1,0 +1,44 @@
+<app-spinner></app-spinner>
+
+<app-compartir></app-compartir>
+
+<!-- HEADER -->
+<app-encabezado></app-encabezado>
+<!-- HEADER -->
+
+<div class="cuerpo container-fluid">
+    <div class="row">
+        <div class="sidebar px-0 bgMorado col-md-12 col-xl-2">
+            <app-sidebar [mostrarBuscador]="false"></app-sidebar>
+        </div>
+        <div class="bgGrisTenue contenido-principal px-0 my-3 my-xl-0 col-md-12 col-xl-10">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card p-3">
+                            <div class="row">
+                                <app-breadcrumbs [configuracionBreadcrumbs]="configuracionBreadcrumbs"></app-breadcrumbs>
+                            </div>
+
+                            <div class="row py-4">
+                                <div class="col-12">
+                                    <h4 class="subtitulo-seccion pleca-izquierda"><strong>Votos en Actas Contabilizadas</strong></h4>
+                                </div>
+                            </div>
+
+                            <div class="container-fluid resumen-votacion">
+                                <app-resumen-votacion></app-resumen-votacion>
+                            </div>
+
+                            <div class="row" *ngIf="actasRp$ | async as estado">
+                                <app-tabla-actas titulo="Actas de Representación Proporcional (RP)" [estado]="estado"></app-tabla-actas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <app-footer-aviso-privacidad></app-footer-aviso-privacidad>
+</div>

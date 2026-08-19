@@ -15,6 +15,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ResumenVotacionComponent } from './resumen-votacion/resumen-votacion.component';
 import { ContenedorResultadosDinamicoComponent } from './contenedor-resultados-dinamico/contenedor-resultados-dinamico.component';
 import { LeyendaResultadosInformativosComponent } from './leyenda-resultados-informativos/leyenda-resultados-informativos.component';
+import { TablaActasComponent } from './tabla-actas/tabla-actas.component';
 
 
 
@@ -32,7 +33,8 @@ import { LeyendaResultadosInformativosComponent } from './leyenda-resultados-inf
     BreadcrumbsComponent,
     ResumenVotacionComponent,
     ContenedorResultadosDinamicoComponent,
-    LeyendaResultadosInformativosComponent
+    LeyendaResultadosInformativosComponent,
+    TablaActasComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { LeyendaResultadosInformativosComponent } from './leyenda-resultados-inf
     BreadcrumbsComponent,
     ResumenVotacionComponent,
     ContenedorResultadosDinamicoComponent,
-    LeyendaResultadosInformativosComponent
+    LeyendaResultadosInformativosComponent,
+    TablaActasComponent
   ]
 })
 export class SharedModule { }

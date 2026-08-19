@@ -8,6 +8,7 @@ import { SegundoNivelComponent } from 'src/app/components/segundo-nivel/segundo-
 import { TercerNivelComponent } from 'src/app/components/tercer-nivel/tercer-nivel.component';
 import { TestComponent } from 'src/app/components/test/test.component';
 import { VotacionPorCasillaComponent } from 'src/app/components/votacion-por-casilla/votacion-por-casilla.component';
+import { RepresentacionProporcionalComponent } from 'src/app/components/representacion-proporcional/representacion-proporcional.component';
 
 const routes: Routes = [
   { path: 'votos-por-distritos', component: TestComponent, children: [ { path: '', component: MapaComponent } ] },
@@ -21,6 +22,9 @@ const routes: Routes = [
   { path: 'detalle-por-casilla', component: TestComponent, children: [ { path: '', component: GraficaComponent } ] },
   { path: 'casillas/:id_distrito_alcaldia/:seccion', component: SegundoNivelComponent, children: [ { path: '', component: MovingCardsComponent } ] },
   { path: 'casilla/:id_distrito_alcaldia/:seccion/:casilla', component: TercerNivelComponent, children: [ { path: '', component: MovingCardsComponent } ] },
+
+  { path: 'votos-por-representacion-proporcional/:id_distrito_alcaldia', component: RepresentacionProporcionalComponent },
+  { path: 'votos-por-representacion-proporcional', component: RepresentacionProporcionalComponent },
 
   {
     path: 'voto-en-condiciones-excepcionales',
