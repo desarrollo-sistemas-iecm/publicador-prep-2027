@@ -119,6 +119,10 @@
                             <div class="container-fluid resumen-votacion">
                                 <app-resumen-votacion></app-resumen-votacion>
                             </div>
+
+                            <div class="row" *ngIf="mostrarTablaActas && (actas$ | async) as estado">
+                                <app-tabla-actas [titulo]="tituloTablaActas" [estado]="estado"></app-tabla-actas>
+                            </div>
                         </div>
                         <!-- <app-modadlidad-votos></app-modadlidad-votos> -->
                     </div>

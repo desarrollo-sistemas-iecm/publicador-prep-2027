@@ -12,6 +12,7 @@ const routes: Routes = [
   {
     path: 'voto-en-el-extranjero',
     component: PlantillaComponent,
+    data: { mostrarTablaActas: true, tituloTablaActas: 'Actas de Voto de las y los Mexicanos Residentes en el Extranjero' },
     children: [ { path: '', component: MovingCardsComponent } ]
   },
   {
