@@ -15,13 +15,13 @@
             {{ labelTransformerService.transformaLabelVistaPor(configuracionBreadcrumbs.votos_por) || '' }}
         </span>
     </h3>
-    <h4 *ngIf="configuracionBreadcrumbs?.alcaldia !== 0 || configuracionBreadcrumbs?.distrito !== 0">
-        <a class="linkAzul" id="pagina_principal" routerLink="/jefatura-de-gobierno" *ngIf="configuracionBreadcrumbs?.alcaldia !== 0 || configuracionBreadcrumbs?.distrito !== 0">
+    <h4 *ngIf="configuracionBreadcrumbs.alcaldia !== 0 || configuracionBreadcrumbs.distrito !== 0">
+        <a class="linkAzul" id="pagina_principal" routerLink="/jefatura-de-gobierno" *ngIf="configuracionBreadcrumbs.alcaldia !== 0 || configuracionBreadcrumbs.distrito !== 0">
             Ciudad de México
         </a>
 
-        <ng-container *ngIf="configuracionBreadcrumbs?.tipo_eleccion === 'alcaldias'; else porDistrito">
-            <ng-container *ngIf="configuracionBreadcrumbs?.alcaldia !== 0 && configuracionBreadcrumbs?.seccion; else alcaldiaSinEnlace">
+        <ng-container *ngIf="configuracionBreadcrumbs.tipo_eleccion === 'alcaldias'; else porDistrito">
+            <ng-container *ngIf="configuracionBreadcrumbs.alcaldia !== 0 && configuracionBreadcrumbs.seccion; else alcaldiaSinEnlace">
                 <a routerLink="/{{configuracionBreadcrumbs.tipo_eleccion}}/{{configuracionBreadcrumbs.votos_por}}/{{configuracionBreadcrumbs.alcaldia}}" class="linkAzul">
                     / Alcaldía {{ configuracionBreadcrumbs.nombre_alcaldia | titlecase }}
                 </a>
@@ -32,7 +32,7 @@
         </ng-container>
 
         <ng-template #porDistrito>
-            <ng-container *ngIf="configuracionBreadcrumbs?.distrito !== 0 && configuracionBreadcrumbs?.seccion; else distritoSinEnlace">
+            <ng-container *ngIf="configuracionBreadcrumbs.distrito !== 0 && configuracionBreadcrumbs.seccion; else distritoSinEnlace">
                 <a routerLink="/{{configuracionBreadcrumbs.tipo_eleccion}}/{{configuracionBreadcrumbs.votosPorNivel1 || configuracionBreadcrumbs.votos_por}}/{{configuracionBreadcrumbs.distrito}}" class="linkAzul">
                     / Distrito {{ configuracionBreadcrumbs.distrito }}
                 </a>
@@ -42,8 +42,8 @@
             </ng-template>
         </ng-template>
 
-        <ng-container *ngIf="configuracionBreadcrumbs?.seccion">
-            <ng-container *ngIf="(configuracionBreadcrumbs.distrito !== 0 || configuracionBreadcrumbs?.alcaldia !== 0) && configuracionBreadcrumbs?.seccion !== 0 && configuracionBreadcrumbs?.casilla; else seccionSinEnlace">
+        <ng-container *ngIf="configuracionBreadcrumbs.seccion">
+            <ng-container *ngIf="(configuracionBreadcrumbs.distrito !== 0 || configuracionBreadcrumbs.alcaldia !== 0) && configuracionBreadcrumbs.seccion !== 0 && configuracionBreadcrumbs.casilla; else seccionSinEnlace">
                 <a (click)="back(1);" class=" linkAzul">
                     / Sección {{ configuracionBreadcrumbs.seccion }}
                 </a>
