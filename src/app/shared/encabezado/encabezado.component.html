@@ -14,7 +14,7 @@
                         <i aria-hidden="true" class="fa fa-question-circle"></i>
                         Preguntas frecuentes
                     </li>
-                    <li *ngIf="prep" class="pl-3 pr-3 borde-izq-solido cursorPointer a-modal-ayuda">
+                    <li *ngIf="prep" class="pl-3 pr-3 borde-izq-solido cursorPointer a-modal-ayuda" data-toggle="modal" data-target="#modalCentroAyuda">
                         <i aria-hidden="true" class="fa fa-info-circle"></i> Centro de Ayuda
                     </li>
                     <li [ngClass]="{'borde-izq-solido': prep}" class="pl-3 pr-3 tamanio-fuente dis-flex cursorPointer">
@@ -62,7 +62,46 @@
             </div>
         </div>
     </div>
-    
+
+    <div id="modalCentroAyuda" tabindex="-1" role="dialog" aria-labelledby="modalCentroAyudaLabel" aria-hidden="true" class="modal fade">
+        <div role="document" class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="modalCentroAyudaLabel" style="color: #1d1f21de; font-weight: 600;" class="modal-title font-medium px16">Centro de Ayuda</div>
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><i class="fa fa-times-circle"></i></button>
+                </div>
+                <div class="modal-body px16 font-regular" *ngIf="centroAyuda$ | async as estado">
+                    <p *ngIf="estado.status === 'loading'">Cargando...</p>
+                    <p *ngIf="estado.status === 'empty'">No hay información disponible.</p>
+                    <p *ngIf="estado.status === 'error'">Ocurrió un error al cargar el Centro de Ayuda.</p>
+                    <div *ngIf="estado.status === 'success'">
+                        <div *ngFor="let item of estado.data" class="pb-3">
+                            <h6><strong>{{ item.pregunta }}</strong></h6>
+                            <p *ngFor="let parrafo of item.respuesta">{{ parrafo }}</p>
+                            <div *ngIf="item.tabla" class="table-responsive">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th *ngFor="let encabezado of item.tabla.encabezados">{{ encabezado }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let fila of item.tabla.filas">
+                                            <td *ngFor="let celda of fila">{{ celda }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Sidebar dispositivo móvil -->
     <div class="collapse" id="sidebarMenu">
         <div class="bgMorado border-right" id="sidebar-wrapper">
