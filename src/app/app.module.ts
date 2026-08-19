@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './components/test/test.component';
 import { SharedModule } from './shared/shared.module';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
+import { PaginaNoEncontradaComponent } from './pages/pagina-no-encontrada/pagina-no-encontrada.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { GraficaComponent } from './components/grafica/grafica.component';
@@ -28,6 +29,7 @@ import { PipesModule } from './pipes/pipes.module';
     AppComponent,
     TestComponent,
     BienvenidaComponent,
+    PaginaNoEncontradaComponent,
     SpinnerComponent,
     GraficaComponent,
     DetalleVotosCasillaComponent,

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
+import { PaginaNoEncontradaComponent } from './pages/pagina-no-encontrada/pagina-no-encontrada.component';
 import { EsSicodidGuard } from './guards/es-sicodid.guard';
 
 const routes: Routes = [
@@ -37,8 +38,12 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'pagina-no-encontrada',
+    component: PaginaNoEncontradaComponent
+  },
+  {
     path: '**',
-    redirectTo: 'inicio'
+    redirectTo: 'pagina-no-encontrada'
   }
 ];
 
