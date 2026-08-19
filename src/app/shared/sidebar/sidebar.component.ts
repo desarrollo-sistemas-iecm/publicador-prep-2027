@@ -74,6 +74,7 @@ export class SidebarComponent implements OnInit {
   obtenerTipoDeVista(): void {
     const segments = this.router.url.split('/');
     this.breadcrumbsConfig.votos_por = segments[2];
+    this.breadcrumbsConfig.votosPorNivel1 = segments[2];
     this.breadcrumbsConfig.tipo_eleccion = segments[1];
     this.tipo_consulta = segments[1] as 'jefatura-de-gobierno' | 'diputaciones' | 'alcaldias';
     this.emitirConfiguracionBreadcrumbs.emit(this.breadcrumbsConfig);

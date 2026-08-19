@@ -39,28 +39,8 @@ export class BreadcrumbsComponent {
 
   ) { }
 
-  // Método para manejar los datos de configuración de los breadcrumbs emitidos desde SidebarComponent
-  onConfiguracionBreadcrumbs(configuracion: any): void {
-    // Aquí tomar las acciones necesarias para actualizar y mostrar los breadcrumbs
-    // console.log('Configuración de breadcrumbs recibida:', configuracion);
-    // Por ejemplo, puedes almacenar la configuración en una propiedad de la clase para usarla en el template
-    this.actualizarBreadcrumbs(configuracion);
-  }
-
-  // Método para actualizar y mostrar los breadcrumbs en función de la configuración recibida
-  actualizarBreadcrumbs(configuracion: any): void {
-    // Aquí implementar la lógica para actualizar y mostrar los breadcrumbs en función de la configuración recibida
-    // Por ejemplo, manipular un arreglo de objetos que represente cada elemento del breadcrumb y renderizarlo en el template
-    // this.breadcrumbs = tuLogicaParaGenerarBreadcrumbs(configuracion);
-  }
-
   back(n = 0){
-    console.log('Aqui!', n);
     this.navigationService.goBack(n);
   }
-
-
-  // configuracionBreadcrumbs: any;
-  // private subscription: Subscription;
 
 }

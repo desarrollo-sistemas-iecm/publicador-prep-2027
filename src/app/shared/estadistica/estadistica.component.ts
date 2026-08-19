@@ -21,7 +21,7 @@ SolidGauge(Highcharts);
 })
 export class EstadisticaComponent implements OnInit {
 
-  public prep: boolean = environment.prep = false;
+  public prep: boolean = environment.prep;
 
   public tipo_consulta: string = '';
 

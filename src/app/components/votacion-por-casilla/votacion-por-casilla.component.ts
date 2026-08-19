@@ -6,6 +6,7 @@ import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { ComboStateService } from 'src/app/services/combo-state.service';
 import { LabelTransformerViewFoService } from 'src/app/services/label-transformer-view-fo.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { BreadcrumbsService } from 'src/app/services/breadcrumbs.service';
 import { environment } from 'src/environments/environment.development';
 
 @Component({
@@ -17,7 +18,7 @@ import { environment } from 'src/environments/environment.development';
 })
 export class VotacionPorCasillaComponent {
 
-  public prep: boolean = environment.prep = false;
+  public prep: boolean = environment.prep;
   
   configuracionBreadcrumbs: BreadcrumbsConfig = {
     tipo_eleccion: '',
@@ -39,7 +40,8 @@ export class VotacionPorCasillaComponent {
   constructor(private router: Router, private route: ActivatedRoute, private comboStateService: ComboStateService, private apiPrepService: ApiPrepService,
     private spinnerService: SpinnerService,
     private titleService: Title,
-    public labelTransformerService: LabelTransformerViewFoService
+    public labelTransformerService: LabelTransformerViewFoService,
+    private breadcrumbsService: BreadcrumbsService
 
   ) { }
   ngOnInit(): void {
@@ -144,28 +146,7 @@ export class VotacionPorCasillaComponent {
 
   onConfiguracionBreadcrumbs(configuracion: BreadcrumbsConfig): void {
     this.configuracionBreadcrumbs = configuracion;
-  
-    const { tipo_eleccion, votos_por } = this.configuracionBreadcrumbs;
-    let proyecto = '';
-    if(environment.prep){
-
-      proyecto = environment.detalle_sistema_prep.siglas;
-    } else{
-      proyecto = environment.detalle_sistema_sicodid.siglas;
-    }
-    const originalTitle = `${proyecto} IECM 2024 `;
-    let vistaPor = '';
-  
-    // Transforma el label de votos_por a mayúsculas si existe
-    if (votos_por) {
-      vistaPor = this.labelTransformerService.transformaLabelVistaPor(votos_por).toUpperCase();
-    }
-  
-    // Genera el título dinámico utilizando plantillas de cadena de texto
-    const titulo = `${originalTitle} - ${tipo_eleccion.toUpperCase()} - ${vistaPor}`;
-  
-    // Establece el título dinámicamente
-    this.titleService.setTitle(titulo);
+    this.titleService.setTitle(this.breadcrumbsService.construirTitulo(configuracion));
   }
 
   establecerInformacionEleccion(){

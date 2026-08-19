@@ -33,10 +33,7 @@
 
         <ng-template #porDistrito>
             <ng-container *ngIf="configuracionBreadcrumbs?.distrito !== 0 && configuracionBreadcrumbs?.seccion; else distritoSinEnlace">
-                <!-- <a routerLink="/{{configuracionBreadcrumbs.tipo_eleccion}}/{{configuracionBreadcrumbs.votos_por}}/{{configuracionBreadcrumbs.distrito}}" class="linkAzul">
-                    / Distrito {{ configuracionBreadcrumbs.distrito }}
-                </a> -->
-                <a class=" linkAzul" (click)="back(configuracionBreadcrumbs.votos_por === 'casillas' ? 1 : 2);">
+                <a routerLink="/{{configuracionBreadcrumbs.tipo_eleccion}}/{{configuracionBreadcrumbs.votosPorNivel1 || configuracionBreadcrumbs.votos_por}}/{{configuracionBreadcrumbs.distrito}}" class="linkAzul">
                     / Distrito {{ configuracionBreadcrumbs.distrito }}
                 </a>
             </ng-container>
