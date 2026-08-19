@@ -85,7 +85,7 @@
           <div class="padding-t-20">
             <div class="px20 text-center padding-b-30">
               <div class="padding-b-10">Descargar</div>
-              <div><button type="button" class="btn btn-blanco" onclick="get_bd();">Base de datos <i
+              <div><button type="button" class="btn btn-blanco" (click)="descargarBaseDatos()">Base de datos <i
                     class="fa fa-download"></i></button></div>
             </div>
             <div class="padding-b-20">
@@ -143,10 +143,10 @@
                         <p><strong> Actas computadas </strong></p>
                       </div>
                       <div class="contenido capturadas">
-                        <p><strong> 13,096 </strong> de 13,175 </p>
-                        <p> (99.4004%) </p>
+                        <p><strong> {{ avance.actasCapturadas | number }} </strong> de {{ avance.actasPorCapturar | number }} </p>
+                        <p> ({{ avance.porcentajeActasCapturadas }}%) </p>
                         <div class="borde-barra w-100">
-                          <div class="barra-avance" style="width: 99.4004%;"></div>
+                          <div class="barra-avance" [style.width.%]="avance.porcentajeActasCapturadas"></div>
                         </div>
                       </div>
                     </div>
@@ -162,7 +162,7 @@
                         </p>
                       </div>
                       <div class="contenido dis-flex flex-col pt-3">
-                        <p class="participacion"><strong> 52.0485% </strong></p>
+                        <p class="participacion"><strong> {{ avance.porcentajeParticipacionCiudadana }}% </strong></p>
                       </div>
                     </div>
                   </div>
@@ -173,10 +173,10 @@
                       </div>
                       <div class="contenido dis-flex flex-col align-e pt-3">
                         <div class="dis-flex w-100">
-                          <p class="fecha mr-1"> 07 de Junio de 2021 </p>
+                          <p class="fecha mr-1"> {{ avance.ultimoCorte }} </p>
                           <div class="dis-flex flex-col borde-tiempo">
                             <p class="tiempo-centro"> Tiempo del Centro </p>
-                            <p class="utc">20:00 h UTC-6 </p>
+                            <p class="utc">{{ avance.corteHora }} h UTC-6 </p>
                           </div>
                         </div>
                       </div>
