@@ -12,13 +12,18 @@
    mucho más alto) -- con esa altura heredada, position: sticky queda roto en Chrome (el
    elemento ya "llena" su bloque contenedor, así que no tiene recorrido para engancharse
    al hacer scroll). Con flex-start, el sidebar mide solo lo que ocupa su propio
-   contenido y sí puede desplazarse/pegarse dentro de la fila. */
+   contenido y sí puede desplazarse/pegarse dentro de la fila -- por eso la altura de
+   pantalla completa (igual que el PREP del INE, verificado en vivo: su panel es
+   position: fixed con una altura fija de viewport y scroll propio) se fija explícita
+   con height/overflow-y en vez de dejarla en manos del stretch. */
 @media (min-width: 1200px) {
 	.sidebar {
 		position: -webkit-sticky;
 		position: sticky;
 		top: 172px;
 		align-self: flex-start;
+		height: calc(100vh - 172px);
+		overflow-y: auto;
 	}
 }
 
