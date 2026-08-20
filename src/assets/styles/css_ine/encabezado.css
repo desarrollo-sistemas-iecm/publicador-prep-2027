@@ -5,11 +5,15 @@
 	 z-index: 9999;
 }
  .total-encabezado .max-logo {
-	 /* max-height: 47px; */
+	 max-height: 55px;
+	 width: auto;
 }
  .encabezado {
 	 background: #f9f9f9;
-	 height: 80px;
+	 min-height: 80px;
+}
+ .encabezado .row {
+	 align-items: center;
 }
  .encabezado img {
 	 /* width: 68%; */
