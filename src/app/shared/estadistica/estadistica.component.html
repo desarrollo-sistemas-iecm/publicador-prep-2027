@@ -14,7 +14,7 @@
                                 target="_blank" class="titulo pb-3 d-lg-none d-xl-none"
                                 style="text-decoration: underline;"><strong>Actas <span>del
                                         Distrito</span>
-                                    </strong></a></div>
+                                </strong></a></div>
                     </div>
                     <div class="col-11 col-md-6 col-xl-6 pt-3 d-none d-lg-block d-xl-block">
                         <div class="titulo-actas dis-flex justify-s">
@@ -27,8 +27,7 @@
                             <div class="col-4 col-lg-2 col-xl-2 dis-flex flex-col">
                                 <div class="grafica">
                                     <div class="progreso bgGrafica1" ng-reflect-ng-style="[object Object]"
-                                        style="height: {{esperadas_por}}%"
-                                        >
+                                        style="height: {{esperadas_por}}%">
                                     </div>
                                 </div>
                                 <p class="px16 pt-1"><strong> {{esperadas | number}} </strong>
@@ -48,7 +47,7 @@
                                 </p>
                                 <p class="px14"><strong> {{computadas_por}}% </strong>
                                 </p>
-                                <p class="px12"><strong> Computadas
+                                <p class="px12"><strong> Contabilizadas
                                     </strong></p>
                             </div>
                         </div>
@@ -109,7 +108,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-12 col-lg-6 col-xl-6 pddng-0">
                         <p class="titulo pb-3 mrgn-l15 padding-l-15 d-lg-none d-xl-none">
                             <strong>Votos</strong>
@@ -220,7 +219,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -230,8 +229,8 @@
                     <p class="titulo pb-3 txt-00FF"><strong>Fórmula |
                             Porcentaje de Participación ciudadana</strong></p>
                     <p class="texto"> Se calcula considerando: Total de votos de las Actas
-                        Computadas, multiplicado por 100, dividido entre la Lista Nominal de las Casillas con
-                        Actas Computadas. </p>
+                        Contabilizadas, multiplicado por 100, dividido entre la Lista Nominal de las Casillas con
+                        Actas Contabilizadas. </p>
                     <div class="d-flex justify-content-center padding-t-40">
                         <div class="d-flex flex-row">
                             <div class="p-2">
@@ -241,15 +240,15 @@
                                             <div class="p-2">
                                                 <p class="txt-lista font-medium">Total de Votos</p>
                                             </div>
-                                            
+
                                             <div class="p-2 d-flex flex-row">
                                                 <div class="A-circle mr-1">A</div>
                                                 <p class="mr-1">+</p>
                                                 <div class="B-circle-activo">B</div>
                                             </div>
-                                            
+
                                         </div>
-                                        
+
                                         <div style="margin-top: -10px;">
                                             <p class="padding-l-20 d-none d-lg-block d-xl-block d-md-block">
                                                 <b>Considerando</b> la votación en<br><b>Casillas Especiales</b>
@@ -257,14 +256,15 @@
                                             <p class="padding-l-20 d-md-none d-lg-none d-xl-none"><b>Considerando</b> la
                                                 votación en <b>Casillas Especiales</b></p>
                                         </div>
-                                        
+
                                         <p class="num-votos font-bold tx-nd txt-00FF" style="margin-top: -10px;">
                                             <strong>
                                                 <!-- 53,196 -->
                                                 {{total_votos | number}}
 
-                                            </strong></p>
-                                                
+                                            </strong>
+                                        </p>
+
                                     </div>
                                     <div class="p-2 align-self-end">
                                         <p class="num-votos font-bold txGris">X 100</p>
@@ -273,7 +273,7 @@
                                 <div class="text-center mt-2 border3-t txtAzulM">
                                     <p class="num-votos font-black txt-numlista">{{lista_nominal_oficial | number}}</p>
                                     <p class="font-medium txt-lista">(Lista Nominal de las Casillas
-                                        <br>con Actas Computadas)
+                                        <br>con Actas Contabilizadas)
                                     </p>
                                 </div>
                             </div>
@@ -284,7 +284,8 @@
                                 <p class="num-votos font-medium padding-t-30 txt-00FF">
                                     Participación ciudadana</p>
                                 <!-- <p class="num-pc font-black ttl-votos"> {{((total_votos)*100/lista_nominal_oficial) | number}}%</p><br> -->
-                                <p class="num-pc font-black ttl-votos"> {{((total_votos)*100/lista_nominal_oficial)*.01 | percent:'1.4-4'}}</p><br>
+                                <p class="num-pc font-black ttl-votos"> {{((total_votos)*100/lista_nominal_oficial)*.01
+                                    | percent:'1.4-4'}}</p><br>
                             </div>
                         </div>
                     </div>
@@ -293,7 +294,8 @@
                             <p class="txt-signo signo-resultado">=</p>
                         </div>
                         <div class="p-2 align-self-center">
-                            <p class="num-pc font-black ttl-votos">{{((total_votos)*100/lista_nominal_oficial)*.01 | percent:'1.4-4'}}% </p>
+                            <p class="num-pc font-black ttl-votos">{{((total_votos)*100/lista_nominal_oficial)*.01 |
+                                percent:'1.4-4'}}% </p>
                         </div>
                     </div>
                     <p class="num-votos font-medium text-center d-md-none txt-00FF">

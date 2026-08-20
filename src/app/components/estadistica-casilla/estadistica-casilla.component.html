@@ -14,31 +14,31 @@
                             href="https://ayuda.ine.mx/2023/elecc-tamps/prep/participacion-ciudadana-prep.pdf"
                             class="subtitulo underline"><strong class="cursorPointer">Participación ciudadana con
                                 base en la Lista Nominal de las
-                                Actas Computadas</strong></a></div>
+                                Actas Contabilizadas</strong></a></div>
                 </div>
             </div>
             <!-- <pre>{{ rows | json }}</pre> -->
             <!-- <div class=""> -->
-                <table class="table table-striped contenido table-bordered mrgn-l15">
+            <table class="table table-striped contenido table-bordered mrgn-l15">
                 <!-- <table class="table table-striped table-borderless"> -->
-                    <thead class="titulos">
-                        <tr>
+                <thead class="titulos">
+                    <tr>
 
-                            <th>Casilla</th>
-                            <th>Total de Votos</th>
-                            <th>Lista Nominal</th>
-                            <th>Participación Ciudadana</th>
-                        </tr>
-                    </thead>
-                    <tbody >
-                        <tr *ngFor="let row of rows">
-                            <td>{{row.tipo_casilla}} {{ row.caracter_cas }}</td>
-                            <td>{{row.votacion_total | number}}</td>
-                            <td>{{row.lista_nominal | number}}</td>
-                            <td>{{row.participacion}}%</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <th>Casilla</th>
+                        <th>Total de Votos</th>
+                        <th>Lista Nominal</th>
+                        <th>Participación Ciudadana</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of rows">
+                        <td>{{row.tipo_casilla}} {{ row.caracter_cas }}</td>
+                        <td>{{row.votacion_total | number}}</td>
+                        <td>{{row.lista_nominal | number}}</td>
+                        <td>{{row.participacion}}%</td>
+                    </tr>
+                </tbody>
+            </table>
             <!-- </div> -->
             <div class="container-fluid py-4">
                 <div class="row">

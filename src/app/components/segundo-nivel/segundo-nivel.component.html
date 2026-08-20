@@ -30,8 +30,7 @@
 
         </div>
         <div class="sidebar px-0 bgMorado col-md-12 col-xl-2">
-            <app-sidebar
-                (primerCombo)="onSelectionChangePrimerCombo($event)"
+            <app-sidebar (primerCombo)="onSelectionChangePrimerCombo($event)"
                 (seccionCombo)="onSelectionChangeSegundoCombo($event)"
                 (emitirConfiguracionBreadcrumbs)="onConfiguracionBreadcrumbs($event)"
                 (casillaCombo)="onSelectionChangeTercerCombo($event)">
@@ -66,7 +65,7 @@
                             <div class="row py-4">
                                 <div class="col-12">
                                     <h4 class="subtitulo-seccion pleca-izquierda"><strong>Votos en Actas
-                                            Computadas</strong></h4>
+                                            Contabilizadas</strong></h4>
                                 </div>
                             </div>
                             <!-- Comienza la tabla que llena las alcaldías e incluye el mapa -->
@@ -75,7 +74,9 @@
                             <div class="container-fluid complemento-vista-mapa" style="display: block;">
                                 <div class="row pb-4">
                                     <div class="col-10">
-                                        <p class="font-medium px14"> Por presentación, los decimales de los porcentajes muestran sólo cuatro dígitos. No obstante, al considerar todos los decimales, suman 100%. </p>
+                                        <p class="font-medium px14"> Por presentación, los decimales de los porcentajes
+                                            muestran sólo cuatro dígitos. No obstante, al considerar todos los
+                                            decimales, suman 100%. </p>
                                     </div>
                                 </div>
                             </div>
@@ -96,9 +97,9 @@
                 <!-- estadistica casilla -->
                 <app-detalle-votos-casilla></app-detalle-votos-casilla>
             </div>
-            
+
             <div class="container-fluid estadisticaNacional py-3">
-            <app-estadistica-casilla></app-estadistica-casilla>
+                <app-estadistica-casilla></app-estadistica-casilla>
             </div>
 
             <div class="container-fluid" *ngIf="prep">
