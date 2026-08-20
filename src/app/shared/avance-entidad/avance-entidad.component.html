@@ -12,55 +12,7 @@
         </div>
     </div>
     <div class="container-fluid px-0 py-2">
-        <div class="row px-1">
-            <div class="col-4 px-1">
-                <div class="card cards-avance h-12v p-1" style="min-height: 85px">
-                    <div class="titulo">
-                        <p><strong> Actas computadas </strong></p>
-                    </div>
-                    <div class="contenido capturadas">
-                        <p><strong> {{actasCapturadas | number}} </strong> de {{actasPorCapturar | number}} </p>
-                        <p> ({{ porcentajeActasCapturadas }}%) </p>
-                        <div class="borde-barra w-100">
-                            <div class="barra-avance" style="width: {{ porcentajeActasCapturadas }}%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 px-1">
-                <div class="card cards-avance h-12v p-1">
-                    <div class="titulo">
-                        <p class="prueba">
-                            <strong>
-                                <i data-toggle="modal" data-target="#modalParticipacion"
-                                    class="fa fa-question-circle cursor-hand"></i>
-                                Participación ciudadana
-                            </strong>
-                        </p>
-                    </div>
-                    <div class="contenido dis-flex flex-col pt-3">
-                        <p class="participacion"><strong> {{porcentajeParticipacionCiudadana}}% </strong></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 px-1">
-                <div class="card cards-avance h-12v p-1">
-                    <div class="titulo">
-                        <p><strong> Último corte </strong></p>
-                    </div>
-                    <div class="contenido dis-flex flex-col align-e pt-3">
-                        <div class="dis-flex w-100">
-                            <p class="fecha mr-1"> {{ultimoCorte}} </p>
-                            <!-- <p class="fecha mr-1"> {{ultimoCorte | date:'short'}} </p> -->
-                            <div class="dis-flex flex-col borde-tiempo">
-                                <p class="tiempo-centro"> Tiempo del Centro </p>
-                                <p class="utc">{{corteHora}} h UTC-6 </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <app-avance-entidad-cards></app-avance-entidad-cards>
     </div>
 </div>
 

@@ -9,6 +9,7 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterAvisoPrivacidadComponent } from './footer-aviso-privacidad/footer-aviso-privacidad.component';
 import { AvanceEntidadMovilComponent } from './avance-entidad-movil/avance-entidad-movil.component';
+import { AvanceEntidadCardsComponent } from './avance-entidad-cards/avance-entidad-cards.component';
 import { EstadisticaComponent } from './estadistica/estadistica.component';
 import { ModalidadVotosComponent } from './modalidad-votos/modalidad-votos.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
@@ -28,6 +29,7 @@ import { TablaActasComponent } from './tabla-actas/tabla-actas.component';
     EncabezadoComponent,
     FooterAvisoPrivacidadComponent,
     AvanceEntidadMovilComponent,
+    AvanceEntidadCardsComponent,
     EstadisticaComponent,
     ModalidadVotosComponent,
     BreadcrumbsComponent,
@@ -46,6 +48,7 @@ import { TablaActasComponent } from './tabla-actas/tabla-actas.component';
     SidebarComponent,
     AvanceEntidadComponent,
     AvanceEntidadMovilComponent,
+    AvanceEntidadCardsComponent,
     CompartirComponent,
     BuscadorComponent,
     EncabezadoComponent,
