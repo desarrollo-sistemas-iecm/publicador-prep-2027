@@ -1,5 +1,9 @@
+:root {
+	--altura-encabezado: 172px;
+}
+
 .cuerpo {
-	padding-top: 172px;
+	padding-top: var(--altura-encabezado);
 }
 
 /* El encabezado es fixed (encabezado.css: .total-encabezado), así que el sidebar debe
@@ -20,9 +24,9 @@
 	.sidebar {
 		position: -webkit-sticky;
 		position: sticky;
-		top: 172px;
+		top: var(--altura-encabezado);
 		align-self: flex-start;
-		height: calc(100vh - 172px);
+		height: calc(100vh - var(--altura-encabezado));
 		overflow-y: auto;
 	}
 }

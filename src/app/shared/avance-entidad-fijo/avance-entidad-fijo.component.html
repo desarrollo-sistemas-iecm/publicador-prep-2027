@@ -1,0 +1,22 @@
+<div class="avance-entidad-fijo bgPrototipo" [class.avance-entidad-fijo--visible]="mostrar" aria-hidden="{{ !mostrar }}">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-2 d-none d-xl-block"></div>
+            <div class="col-12 col-xl-10">
+                <div class="row align-items-center">
+                    <div class="col-6 col-xl-3 dis-flex">
+                        <h3 class="txRosaIne px16 m-0"><strong>Avance Entidad</strong></h3>
+                    </div>
+                    <div class="col-12 col-xl-6 order-3 order-xl-2 py-2 py-xl-0">
+                        <app-avance-entidad-cards></app-avance-entidad-cards>
+                    </div>
+                    <div class="col-6 col-xl-3 order-2 order-xl-3 dis-flex justify-e">
+                        <div class="actualizar dis-flex flex-col bgRosaIne txBlanco px-4 py-1 px14 cursorPointer"
+                            onclick='location.reload();'><i aria-hidden="true" class="fa fa-repeat"></i>
+                            Actualizar </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
