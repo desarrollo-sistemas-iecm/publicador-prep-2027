@@ -28,17 +28,24 @@
                         <i aria-hidden="true" class="fa fa-info-circle"></i> Centro de Ayuda
                     </li>
                     <li [ngClass]="{'borde-izq-solido': prep}" class="pl-3 pr-3 tamanio-fuente dis-flex cursorPointer">
-                        <span class="minimo">A</span>
-                        <input type="range" id="range_font" class="input-rango">
-                        <span class="maximo">
+                        <span class="minimo" aria-hidden="true">A</span>
+                        <input type="range" id="range_font" class="input-rango"
+                            [attr.min]="escalaFuenteMinima" [attr.max]="escalaFuenteMaxima"
+                            [attr.step]="escalaFuentePaso" [value]="escalaFuente$ | async"
+                            (input)="onCambioEscalaFuente($event)"
+                            aria-label="Tamaño de letra"
+                            [attr.aria-valuetext]="(escalaFuente$ | async) + '%'">
+                        <span class="maximo" aria-hidden="true">
                             <strong>A</strong>
                         </span>
                     </li>
                     <li class="pl-3 pr-3 modo-dark borde-izq-solido dis-flex">
                         <span class="claro">Claro</span>
                         <label for="modo_dia_y_noche" class="switch margin-r-40 margin-b-0">
-                            <input type="checkbox" id="modo_dia_y_noche" value="Modo día o noche"
-                                aria-label="Modo día o noche">
+                            <input type="checkbox" id="modo_dia_y_noche"
+                                [checked]="modoOscuro$ | async"
+                                (change)="accesibilidadService.alternarModoOscuro()"
+                                aria-label="Alto contraste / modo oscuro">
                             <span class="slider round"></span>
                         </label>
                         <span class="obscuro">Oscuro</span>
@@ -50,10 +57,10 @@
     <div class="container-fluid bgGrisTenue encabezado py-2 bgPrototipo">
         <div class="row">
             <div class="col-3 col-md-2 dis-flex d-none d-md-flex">
-                <img src="assets/img/iecm.png" alt="Logo IECM" class="max-logo img-fluid">
+                <img [src]="(modoOscuro$ | async) ? 'assets/img/transparente.png' : 'assets/img/iecm.png'" alt="Logo IECM" class="max-logo img-fluid">
             </div>
             <div class="col-3 col-md-2 pl-2 pr-0 d-block d-md-none">
-                <div class="dis-flex w-100 h-100"><img src="assets/img/iecm.png" alt="Logo IECM" class="img-fluid">
+                <div class="dis-flex w-100 h-100"><img [src]="(modoOscuro$ | async) ? 'assets/img/transparente.png' : 'assets/img/iecm.png'" alt="Logo IECM" class="img-fluid">
                 </div>
             </div>
             <div class="col-7 col-md-8 dis-flex flex-col">
@@ -115,6 +122,31 @@
     <!-- Sidebar dispositivo móvil -->
     <div class="collapse" id="sidebarMenu">
         <div class="bgMorado border-right" id="sidebar-wrapper">
+            <ul class="dis-flex justify-s m-0 p-2 accesibilidad-movil">
+                <li class="pl-2 pr-3 tamanio-fuente dis-flex cursorPointer">
+                    <span class="minimo" aria-hidden="true">A</span>
+                    <input type="range" id="range_font_movil" class="input-rango"
+                        [attr.min]="escalaFuenteMinima" [attr.max]="escalaFuenteMaxima"
+                        [attr.step]="escalaFuentePaso" [value]="escalaFuente$ | async"
+                        (input)="onCambioEscalaFuente($event)"
+                        aria-label="Tamaño de letra"
+                        [attr.aria-valuetext]="(escalaFuente$ | async) + '%'">
+                    <span class="maximo" aria-hidden="true">
+                        <strong>A</strong>
+                    </span>
+                </li>
+                <li class="pl-3 pr-3 modo-dark dis-flex">
+                    <span class="claro">Claro</span>
+                    <label for="modo_dia_y_noche_movil" class="switch margin-r-40 margin-b-0">
+                        <input type="checkbox" id="modo_dia_y_noche_movil"
+                            [checked]="modoOscuro$ | async"
+                            (change)="accesibilidadService.alternarModoOscuro()"
+                            aria-label="Alto contraste / modo oscuro">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="obscuro">Oscuro</span>
+                </li>
+            </ul>
             <div class="list-group">
                 <a routerLinkActive="BTN-Eleccion" [routerLink]="[ '/jefatura-de-gobierno' ]" class="list-group-item list-group-item-action bg-light">Jefatura de Gobierno</a>
                 <a routerLinkActive="BTN-Eleccion" [routerLink]="[ '/diputaciones' ]" class="list-group-item list-group-item-action bg-light">Diputaciones</a>

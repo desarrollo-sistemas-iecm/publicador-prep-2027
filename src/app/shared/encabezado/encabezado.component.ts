@@ -4,6 +4,12 @@ import { CentroAyudaService } from 'src/app/services/centro-ayuda.service';
 import { ResourceState } from 'src/app/interfaces/resource-state.interface';
 import { PreguntaAyuda } from 'src/app/interfaces/centro-ayuda.interface';
 import { Observable } from 'rxjs';
+import {
+  AccesibilidadService,
+  ESCALA_FUENTE_MAXIMA,
+  ESCALA_FUENTE_MINIMA,
+  ESCALA_FUENTE_PASO
+} from 'src/app/services/accesibilidad.service';
 
 @Component({
   standalone: false,
@@ -18,7 +24,21 @@ export class EncabezadoComponent implements OnInit {
   public srcImg: string = '';
   public centroAyuda$: Observable<ResourceState<PreguntaAyuda[]>> = this.centroAyudaService.obtenerPreguntas();
 
-  constructor(private centroAyudaService: CentroAyudaService) { }
+  public readonly escalaFuenteMinima = ESCALA_FUENTE_MINIMA;
+  public readonly escalaFuenteMaxima = ESCALA_FUENTE_MAXIMA;
+  public readonly escalaFuentePaso = ESCALA_FUENTE_PASO;
+  public readonly escalaFuente$ = this.accesibilidadService.escalaFuente$;
+  public readonly modoOscuro$ = this.accesibilidadService.modoOscuro$;
+
+  constructor(
+    private centroAyudaService: CentroAyudaService,
+    public accesibilidadService: AccesibilidadService
+  ) { }
+
+  public onCambioEscalaFuente(evento: Event): void {
+    const valor = Number((evento.target as HTMLInputElement).value);
+    this.accesibilidadService.establecerEscalaFuente(valor);
+  }
 
   ngOnInit(): void {
     if(this.prep){
