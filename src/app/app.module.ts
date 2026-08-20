@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -59,6 +59,10 @@ import { PipesModule } from './pipes/pipes.module';
     MovingCardsComponent
   ],
   providers: [
+    // BootstrapOptions.ngZone (segundo argumento de bootstrapModule) quedó deprecado e
+    // ignorado; sin este provider explícito, Angular arranca con NoopNgZone (zoneless) y
+    // las respuestas HTTP asíncronas nunca disparan detección de cambios automática.
+    provideZoneChangeDetection(),
     { provide: HTTP_INTERCEPTORS, useClass: MockApiInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
