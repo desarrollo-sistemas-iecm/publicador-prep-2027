@@ -64,6 +64,18 @@
  .borde-izq-solido {
 	 border-left: 1px solid #fff;
 }
+ .enlace-portal-iecm {
+	 text-decoration: none;
+}
+ .enlace-portal-iecm:hover {
+	 color: #fff;
+	 text-decoration: underline;
+}
+ .logo-iecm-blanco {
+	 max-height: 14px;
+	 width: auto;
+	 margin-right: 8px;
+}
  input:checked + .slider:before {
 	 content: "\f186";
    font-family: FontAwesome;
