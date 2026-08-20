@@ -98,6 +98,13 @@ html[data-tema='oscuro'] .buscador.card {
   border-color: var(--prep-acento-borde) !important;
 }
 
+/* Columna "Consulta de votación": en el PREP del INE, en oscuro, se distingue del fondo
+   de la página con el mismo acento rosa usado en .buscador.card ("Mi Sección"), ya que
+   .bgMorado (arriba) la neutraliza a un gris casi indistinguible del fondo del body. */
+html[data-tema='oscuro'] .sidebar.bgMorado {
+  border: 1px solid var(--prep-acento-borde);
+}
+
 html[data-tema='oscuro'] table,
 html[data-tema='oscuro'] th,
 html[data-tema='oscuro'] td,
