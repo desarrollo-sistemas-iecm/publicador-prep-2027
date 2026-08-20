@@ -9,7 +9,7 @@ export const environment = {
     prep: true,
     detalle_sistema_prep: {
         siglas: 'PREP',
-        titulo: 'Programa de Resultados <span class="txRosaIne">E</span>lectorales Preliminares 2024',
+        titulo: 'Programa de Resultados <span class="txRosaIne">E</span>lectorales Preliminares 2027',
         subtitulo: 'Elecciones Estatales de la <span class="txRosaIne">Ciudad de México</span>',
         src: './assets/img/adobe-navegable/Grupo-39717.png'
     },
