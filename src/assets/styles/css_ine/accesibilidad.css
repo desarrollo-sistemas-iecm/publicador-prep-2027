@@ -13,7 +13,6 @@
 
   --prep-bg: #ffffff;
   --prep-bg-secundario: #f9f9f9;
-  --prep-bg-terciario: #f4f4f4;
   --prep-superficie: #ffffff;
   --prep-texto: #212529;
   --prep-texto-secundario: #4b3943;
@@ -22,20 +21,30 @@
   --prep-morado-claro: #C791A8;
   --prep-enlace: #5b5bde;
   --prep-foco: #2c2c2c;
+  --prep-acento-borde: transparent;
 }
 
+/*
+  Paleta oscura calcada del PREP del INE (verificada en vivo, prep2024.ine.mx, con el
+  selector "Oscuro" activo): en su modo oscuro NO se usa el morado de marca como relleno
+  de superficies -- el morado queda reservado para modo claro. Todo el "chrome" (barra
+  superior, panel lateral, tarjetas) pasa a una escala de grises neutros con 3 niveles
+  de profundidad (bg < bg-secundario < superficie), y el único acento de color es el rosa
+  ya existente en la paleta (colores.css: --morado-claro / .bgGrafica1 = #C791A8), usado
+  solo en bordes, texto de énfasis y estados activos -- nunca como relleno grande.
+*/
 html[data-tema='oscuro'] {
-  --prep-bg: #121212;
-  --prep-bg-secundario: #1e1e1e;
-  --prep-bg-terciario: #262626;
-  --prep-superficie: #1a1a1a;
+  --prep-bg: #141416;
+  --prep-bg-secundario: #1c1c1f;
+  --prep-superficie: #242428;
   --prep-texto: #f5f5f5;
-  --prep-texto-secundario: #d9d9d9;
-  --prep-borde: #5c5c5c;
-  --prep-morado: #cfa6dd;
+  --prep-texto-secundario: #c7c7cc;
+  --prep-borde: #3a3a3f;
+  --prep-morado: #d9a8c7;
   --prep-morado-claro: #e7c6d8;
-  --prep-enlace: #b9b9ff;
+  --prep-enlace: #d9a8c7;
   --prep-foco: #ffd400;
+  --prep-acento-borde: #6e4a5c;
 }
 
 /* Tamaño de letra: escala proporcional de toda la interfaz (equivalente a un zoom
@@ -78,8 +87,15 @@ html[data-tema='oscuro'] .total-encabezado {
   color: var(--prep-texto) !important;
 }
 
+/* .bgMorado es la clase morada de marca (barra superior, columna de "Consulta de
+   votación", tarjeta "Mi Sección", pie de página) -- en oscuro se neutraliza a gris,
+   igual que en el PREP del INE; el texto ya es blanco vía .txBlanco en el propio markup. */
 html[data-tema='oscuro'] .bgMorado {
-  background-color: #2c1c39 !important;
+  background-color: var(--prep-bg-secundario) !important;
+}
+
+html[data-tema='oscuro'] .buscador.card {
+  border-color: var(--prep-acento-borde) !important;
 }
 
 html[data-tema='oscuro'] table,
@@ -125,12 +141,39 @@ html[data-tema='oscuro'] .base-datos {
   color: var(--prep-texto) !important;
 }
 
-html[data-tema='oscuro'] input,
-html[data-tema='oscuro'] select,
-html[data-tema='oscuro'] .form-control,
-html[data-tema='oscuro'] textarea {
-  background-color: var(--prep-bg-secundario) !important;
+/* estadistica.component.css (widget de "Detalle por Casilla", reutilizado en las tres
+   secciones de elección) fija fondos claros propios que no pasan por colores.css. */
+html[data-tema='oscuro'] .grafica,
+html[data-tema='oscuro'] .bg-inf,
+html[data-tema='oscuro'] .bg-total {
+  background-color: var(--prep-superficie) !important;
+}
+
+html[data-tema='oscuro'] .total-numero {
   color: var(--prep-texto) !important;
+}
+
+/* moleculas.css fija ".preguntas-frecuentes .bgWhite p{color:#000}" asumiendo el fondo
+   claro del body por defecto; .bgWhite en sí no define background, así que en oscuro
+   hereda el fondo oscuro del body y el texto forzado a negro queda invisible. */
+html[data-tema='oscuro'] .preguntas-frecuentes .bgWhite p {
+  color: var(--prep-texto) !important;
+}
+
+html[data-tema='oscuro'] .preguntas-frecuentes .bgWhite .pregunta h3 {
+  color: var(--prep-morado) !important;
+}
+
+/* Los campos de formulario (inputs, selects, combos) se mantienen claros incluso en
+   oscuro -- así se ven también en el PREP del INE -- para conservar la afordancia de
+   "campo editable"; se excluyen los <button class="form-control ..."> (ej. el botón
+   rosa "Consulta" del buscador) para no taparles su propio color de acento. */
+html[data-tema='oscuro'] input:not(.btn),
+html[data-tema='oscuro'] select,
+html[data-tema='oscuro'] textarea,
+html[data-tema='oscuro'] .form-control:not(.btn) {
+  background-color: #f2f0f2 !important;
+  color: #212529 !important;
   border-color: var(--prep-borde) !important;
 }
 
