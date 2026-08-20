@@ -11,7 +11,7 @@ export const environment = {
         siglas: 'PREP',
         titulo: 'Programa de Resultados <span class="txRosaIne">E</span>lectorales Preliminares 2024',
         subtitulo: 'Elecciones Estatales de la <span class="txRosaIne">Ciudad de México</span>',
-        src: './assets/img/adobe-navegable/Grupo-39717@2x.png'
+        src: './assets/img/adobe-navegable/Grupo-39717.png'
     },
     detalle_sistema_sicodid: {
         siglas: 'SICODID',
