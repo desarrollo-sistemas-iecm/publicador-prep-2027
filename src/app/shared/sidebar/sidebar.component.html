@@ -17,7 +17,7 @@
       <!-- {{ tipo_consulta }} -->
         <div class="col-12 col-xl-14 mb-1 px-1">
           <a
-          routerLink="/{{tipo_consulta}}/{{routeBtnVotosPorDinamic}}/{{comboStateService.primerCombo}}/{{comboStateService.segundoCombo}}/{{comboStateService.tercerCombo}}"
+          [routerLink]="firstSelected ? ['/', tipo_consulta, routeBtnVotosPorDinamic, firstSelected] : ['/', tipo_consulta, routeBtnVotosPorDinamic]"
             routerLinkActive="BTN-Eleccion-active"
             class="btn btn-block px14 px-1 py-3 border-tipo-eleccion BTN-Eleccion cursorPointer" type="button"
             (click)="breadcrumbsConfig.votos_por = routeBtnVotosPorDinamic; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);">
@@ -28,7 +28,7 @@
         </div>
         <div class="col-12 col-xl-14 mb-1 px-1">
           <a
-          routerLink="/{{tipo_consulta}}/votos-por-partido-politico-y-candidatura-independiente/{{comboStateService.primerCombo}}/{{comboStateService.segundoCombo}}/{{comboStateService.tercerCombo}}"
+          [routerLink]="firstSelected ? ['/', tipo_consulta, 'votos-por-partido-politico-y-candidatura-independiente', firstSelected] : ['/', tipo_consulta, 'votos-por-partido-politico-y-candidatura-independiente']"
             routerLinkActive="BTN-Eleccion-active"
             class="btn btn-ajuste border-tipo-eleccion btn-block px14 px-1 cursorPointer BTN-Eleccion" type="button" (click)="breadcrumbsConfig.votos_por = 'votos-por-partido-politico-y-candidatura-independiente'; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);"
             >
@@ -40,7 +40,7 @@
         </div>
         <div *ngIf="firstSelected" class="col-12 col-xl-14 mb-1 px-1">
           <a
-          routerLink="/{{tipo_consulta}}/detalle-por-casilla/{{comboStateService.primerCombo}}/{{comboStateService.segundoCombo}}/{{comboStateService.tercerCombo}}"
+          [routerLink]="['/', tipo_consulta, 'detalle-por-casilla', firstSelected]"
             routerLinkActive="BTN-Eleccion-active"
             class="btn btn-ajuste border-tipo-eleccion btn-block px14 px-1 cursorPointer BTN-Eleccion" type="button" (click)="breadcrumbsConfig.votos_por = 'detalle-por-casilla'; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);"
             >
