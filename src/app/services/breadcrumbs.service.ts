@@ -38,7 +38,7 @@ export class BreadcrumbsService {
   }
 
   construirTitulo(configuracion: BreadcrumbsConfig): string {
-    const { tipo_eleccion, votos_por } = configuracion;
+    const { tipo_eleccion, votos_por, alcaldia, nombre_alcaldia, distrito, seccion, casilla } = configuracion;
     const proyecto = environment.prep
       ? environment.detalle_sistema_prep.siglas
       : environment.detalle_sistema_sicodid.siglas;
@@ -48,6 +48,33 @@ export class BreadcrumbsService {
       ? this.labelTransformerService.transformaLabelVistaPor(votos_por).toUpperCase()
       : '';
 
-    return `${originalTitle} - ${(tipo_eleccion || '').toUpperCase()} - ${vistaPor}`;
+    return `${originalTitle} - ${(tipo_eleccion || '').toUpperCase()} - ${vistaPor}${this.construirSufijoSeleccion(alcaldia, nombre_alcaldia, distrito, seccion, casilla)}`;
+  }
+
+  /**
+   * Agrega al título el nivel de segregación (alcaldía/distrito, sección, casilla)
+   * al que se navegó, para poder identificarlo en los reportes de Google Analytics
+   * (páginas más consultadas y hasta qué nivel de detalle se consultó).
+   */
+  private construirSufijoSeleccion(
+    alcaldia: BreadcrumbsConfig['alcaldia'],
+    nombre_alcaldia: BreadcrumbsConfig['nombre_alcaldia'],
+    distrito: BreadcrumbsConfig['distrito'],
+    seccion: BreadcrumbsConfig['seccion'],
+    casilla: BreadcrumbsConfig['casilla']
+  ): string {
+    const segmentos: string[] = [];
+    const idAlcaldiaODistrito = alcaldia || distrito;
+    if (idAlcaldiaODistrito) {
+      segmentos.push(nombre_alcaldia ? `${nombre_alcaldia}` : `#${idAlcaldiaODistrito}`);
+    }
+    if (seccion) {
+      segmentos.push(`Sección ${seccion}`);
+    }
+    if (casilla) {
+      segmentos.push(`Casilla ${casilla}`);
+    }
+
+    return segmentos.length ? ` - ${segmentos.join(' - ')}` : '';
   }
 }

@@ -118,14 +118,14 @@ export class SidebarComponent implements OnInit {
     // console.log('distOAlcaldia');
     
     if (this.tipo_consulta === 'alcaldias') {
-      // this.inicializarPrimerCombo();
       this.breadcrumbsConfig.alcaldia = idDistrito;
-      // const nombre_alcaldia = this.optSelect.find(el => el.value == idDistrito)?.label || '';
-      // this.breadcrumbsConfig.nombre_alcaldia = nombre_alcaldia;
     } else {
-      this.breadcrumbsConfig.nombre_alcaldia = '';
       this.breadcrumbsConfig.distrito = idDistrito;
     }
+    // optSelect ya está cargado cuando la selección viene del combo (interacción del
+    // usuario); en la carga inicial desde URL puede llegar vacío todavía -- en ese caso
+    // inicializarPrimerCombo() resuelve el nombre en su callback y vuelve a emitir.
+    this.breadcrumbsConfig.nombre_alcaldia = this.optSelect.find(el => el.value == idDistrito)?.label || '';
     this.emitirConfiguracionBreadcrumbs.emit(this.breadcrumbsConfig);
     this.apiPrepService.obtenerSeccionesPorDistrito(this.tipo_consulta, idDistrito)
       .subscribe((res: ResponseSeccionPorDistrito) => {
@@ -197,10 +197,8 @@ export class SidebarComponent implements OnInit {
       if(this.firstSelected){
         const nombre_alcaldia = this.optSelect.find(el => el.value == this.firstSelected)?.label || '';
         this.breadcrumbsConfig.nombre_alcaldia = nombre_alcaldia;
+        this.emitirConfiguracionBreadcrumbs.emit(this.breadcrumbsConfig);
       }
-    // this.emitirConfiguracionBreadcrumbs.emit(this.breadcrumbsConfig);
-
-      
     });
   }
 
