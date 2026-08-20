@@ -1,0 +1,153 @@
+/*
+  Variables y estructura de accesibilidad (tamaño de letra + alto contraste / modo oscuro).
+  Este archivo se carga al final en index.html para poder sobreescribir con prioridad
+  los estilos legados de css_ine/*.css sin recurrir a especificidad excesiva.
+
+  Estado aplicado por AccesibilidadService sobre <html>:
+    data-escala-fuente="100|110|120|130|140|150"  -> ajusta --prep-zoom
+    data-tema="claro|oscuro"                       -> alterna la paleta de --prep-*
+*/
+
+:root {
+  --prep-zoom: 1;
+
+  --prep-bg: #ffffff;
+  --prep-bg-secundario: #f9f9f9;
+  --prep-bg-terciario: #f4f4f4;
+  --prep-superficie: #ffffff;
+  --prep-texto: #212529;
+  --prep-texto-secundario: #4b3943;
+  --prep-borde: #dadce0;
+  --prep-morado: #582d73;
+  --prep-morado-claro: #C791A8;
+  --prep-enlace: #5b5bde;
+  --prep-foco: #2c2c2c;
+}
+
+html[data-tema='oscuro'] {
+  --prep-bg: #121212;
+  --prep-bg-secundario: #1e1e1e;
+  --prep-bg-terciario: #262626;
+  --prep-superficie: #1a1a1a;
+  --prep-texto: #f5f5f5;
+  --prep-texto-secundario: #d9d9d9;
+  --prep-borde: #5c5c5c;
+  --prep-morado: #cfa6dd;
+  --prep-morado-claro: #e7c6d8;
+  --prep-enlace: #b9b9ff;
+  --prep-foco: #ffd400;
+}
+
+/* Tamaño de letra: escala proporcional de toda la interfaz (equivalente a un zoom
+   nativo del navegador), ya que gran parte del CSS legado usa px fijos en vez de rem. */
+html {
+  zoom: var(--prep-zoom);
+}
+
+/* Alto contraste / modo oscuro: se apoya en las clases utilitarias de colores.css,
+   que ya son usadas de forma consistente en toda la aplicación. */
+html[data-tema='oscuro'] body {
+  background-color: var(--prep-bg);
+  color: var(--prep-texto);
+}
+
+/* style.css trae una plantilla legada (ftco) que fija "color: #000" directo en h1-h5;
+   al ser una declaración directa sobre el propio elemento, gana siempre sobre el color
+   heredado del contenedor, así que hay que sobreescribirla explícitamente aquí. */
+html[data-tema='oscuro'] h1,
+html[data-tema='oscuro'] h2,
+html[data-tema='oscuro'] h3,
+html[data-tema='oscuro'] h4,
+html[data-tema='oscuro'] h5,
+html[data-tema='oscuro'] h6 {
+  color: var(--prep-texto) !important;
+}
+
+html[data-tema='oscuro'] .bgBlanco,
+html[data-tema='oscuro'] .bgGrisTenue,
+html[data-tema='oscuro'] .bgGrisTabla,
+html[data-tema='oscuro'] .bgGris,
+html[data-tema='oscuro'] .bgPrototipo,
+html[data-tema='oscuro'] .cards-avance,
+html[data-tema='oscuro'] .card,
+html[data-tema='oscuro'] .modal-content,
+html[data-tema='oscuro'] .list-group-item,
+html[data-tema='oscuro'] .dropdown-menu,
+html[data-tema='oscuro'] .total-encabezado {
+  background-color: var(--prep-superficie) !important;
+  color: var(--prep-texto) !important;
+}
+
+html[data-tema='oscuro'] .bgMorado {
+  background-color: #2c1c39 !important;
+}
+
+html[data-tema='oscuro'] table,
+html[data-tema='oscuro'] th,
+html[data-tema='oscuro'] td,
+html[data-tema='oscuro'] .table {
+  background-color: var(--prep-bg-secundario) !important;
+  color: var(--prep-texto) !important;
+  border-color: var(--prep-borde) !important;
+}
+
+html[data-tema='oscuro'] .borde-barra,
+html[data-tema='oscuro'] .borde-izq-solido,
+html[data-tema='oscuro'] hr,
+html[data-tema='oscuro'] .border,
+html[data-tema='oscuro'] .border-right,
+html[data-tema='oscuro'] .border-tipo-eleccion {
+  border-color: var(--prep-borde) !important;
+}
+
+html[data-tema='oscuro'] .txGris,
+html[data-tema='oscuro'] .txGris2 {
+  color: var(--prep-texto-secundario) !important;
+}
+
+html[data-tema='oscuro'] .txRosaIne,
+html[data-tema='oscuro'] .txMorado,
+html[data-tema='oscuro'] .morado-claro,
+html[data-tema='oscuro'] .titulo,
+html[data-tema='oscuro'] .tiempo-centro,
+html[data-tema='oscuro'] .utc {
+  color: var(--prep-morado) !important;
+}
+
+html[data-tema='oscuro'] a,
+html[data-tema='oscuro'] .linkAzul {
+  color: var(--prep-enlace);
+}
+
+/* Contenedores de página que fijan su propio color de texto oscuro con !important
+   (heredado por sus hijos sin clase de color propia, ej. .subtitulo/.titulo). */
+html[data-tema='oscuro'] .base-datos {
+  color: var(--prep-texto) !important;
+}
+
+html[data-tema='oscuro'] input,
+html[data-tema='oscuro'] select,
+html[data-tema='oscuro'] .form-control,
+html[data-tema='oscuro'] textarea {
+  background-color: var(--prep-bg-secundario) !important;
+  color: var(--prep-texto) !important;
+  border-color: var(--prep-borde) !important;
+}
+
+/* Foco visible reforzado, requisito WCAG 2.4.7 (Focus Visible), en ambos temas. */
+html[data-tema='oscuro'] a:focus-visible,
+html[data-tema='oscuro'] button:focus-visible,
+html[data-tema='oscuro'] input:focus-visible,
+html[data-tema='oscuro'] select:focus-visible,
+html[data-tema='oscuro'] [tabindex]:focus-visible {
+  outline: 2px solid var(--prep-foco);
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  html {
+    /* Evita que el zoom máximo (150%) provoque desbordes horizontales en pantallas
+       angostas: se limita proporcionalmente el tope de escala en móvil. */
+    zoom: min(var(--prep-zoom), 1.3);
+  }
+}
