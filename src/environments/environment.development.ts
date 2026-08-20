@@ -3,6 +3,7 @@ export const environment = {
     api_prep: 'http://localhost/2024/sicodid/guia',
     // ! Producción
     // api_prep: 'https://aplicaciones.iecm.mx/pruebas_sicodid2024/services',
+    useMockApi: true,
     version: 'v0.0.1',
     date_dist: "Thu May 09 2024 18:52:33 GMT-0600 (Central Standard Time)",
     prep: true,

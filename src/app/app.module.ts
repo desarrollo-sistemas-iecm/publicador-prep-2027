@@ -7,7 +7,8 @@ import { TestComponent } from './components/test/test.component';
 import { SharedModule } from './shared/shared.module';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { PaginaNoEncontradaComponent } from './pages/pagina-no-encontrada/pagina-no-encontrada.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MockApiInterceptor } from './interceptors/mock-api.interceptor';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { GraficaComponent } from './components/grafica/grafica.component';
 import { DetalleVotosCasillaComponent } from './components/detalle-votos-casilla/detalle-votos-casilla.component';
@@ -57,7 +58,9 @@ import { PipesModule } from './pipes/pipes.module';
   exports: [
     MovingCardsComponent
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MockApiInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
