@@ -2,6 +2,26 @@
 	padding-top: 172px;
 }
 
+/* El encabezado es fixed (encabezado.css: .total-encabezado), así que el sidebar debe
+   fijarse justo debajo (mismo offset que el padding-top de .cuerpo) para que no se
+   desplace con el scroll del contenido principal, igual que en el PREP del INE. Solo
+   aplica desde xl (breakpoint de col-xl-2): en móvil/tablet el sidebar es una fila
+   apilada de ancho completo (col-md-12), no una columna lateral.
+   align-self: flex-start es indispensable: .row es un flex container y por defecto
+   (align-items: stretch) el sidebar se estira a la altura de su hermano (el contenido,
+   mucho más alto) -- con esa altura heredada, position: sticky queda roto en Chrome (el
+   elemento ya "llena" su bloque contenedor, así que no tiene recorrido para engancharse
+   al hacer scroll). Con flex-start, el sidebar mide solo lo que ocupa su propio
+   contenido y sí puede desplazarse/pegarse dentro de la fila. */
+@media (min-width: 1200px) {
+	.sidebar {
+		position: -webkit-sticky;
+		position: sticky;
+		top: 172px;
+		align-self: flex-start;
+	}
+}
+
 .altoAvance {
 	height: 24vh;
 	min-height: 190px;
