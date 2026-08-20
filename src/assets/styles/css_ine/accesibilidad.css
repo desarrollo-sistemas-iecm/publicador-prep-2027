@@ -135,6 +135,33 @@ html[data-tema='oscuro'] .linkAzul {
   color: var(--prep-enlace);
 }
 
+/*
+  Botones/pestañas de tipo de elección (.BTN-Eleccion, colores.css): texto negro cuando
+  están activos (fondo rosa sólido) y blanco cuando no, igual que el PREP del INE. La
+  clase se usa con semántica invertida según el contexto:
+    - Pestañas superiores (.menu): "bgRosaIne" = inactiva, routerLinkActive agrega
+      "BTN-Eleccion" = activa.
+    - Sidebar "Consulta de votación": "BTN-Eleccion" es la clase BASE (siempre
+      presente) y routerLinkActive agrega "BTN-Eleccion-active" para la activa.
+  Van después de la regla general de "a" para ganarle por especificidad (no son
+  enlaces de texto normales).
+*/
+html[data-tema='oscuro'] .bgRosaIne {
+  color: var(--prep-texto) !important;
+}
+
+html[data-tema='oscuro'] .BTN-Eleccion {
+  color: #121212 !important;
+}
+
+html[data-tema='oscuro'] .sidebar .BTN-Eleccion {
+  color: var(--prep-texto) !important;
+}
+
+html[data-tema='oscuro'] .sidebar .BTN-Eleccion-active {
+  color: #121212 !important;
+}
+
 /* Contenedores de página que fijan su propio color de texto oscuro con !important
    (heredado por sus hijos sin clase de color propia, ej. .subtitulo/.titulo). */
 html[data-tema='oscuro'] .base-datos {
@@ -164,17 +191,51 @@ html[data-tema='oscuro'] .preguntas-frecuentes .bgWhite .pregunta h3 {
   color: var(--prep-morado) !important;
 }
 
-/* Los campos de formulario (inputs, selects, combos) se mantienen claros incluso en
-   oscuro -- así se ven también en el PREP del INE -- para conservar la afordancia de
-   "campo editable"; se excluyen los <button class="form-control ..."> (ej. el botón
-   rosa "Consulta" del buscador) para no taparles su propio color de acento. */
+/* Campos de formulario (inputs, selects, combos): oscuros igual que en el PREP del INE
+   (verificado en vivo, prep2024.ine.mx); se excluyen los <button class="form-control
+   ..."> (ej. el botón rosa "Consulta" del buscador) para no taparles su propio color. */
 html[data-tema='oscuro'] input:not(.btn),
 html[data-tema='oscuro'] select,
 html[data-tema='oscuro'] textarea,
 html[data-tema='oscuro'] .form-control:not(.btn) {
-  background-color: #f2f0f2 !important;
-  color: #212529 !important;
+  background-color: var(--prep-bg-secundario) !important;
+  color: var(--prep-texto) !important;
   border-color: var(--prep-borde) !important;
+}
+
+/* El botón "Consulta"/"Consultar" del buscador por sección (.btn-rosa-buscador) queda
+   deshabilitado hasta que el formulario es válido; Bootstrap aplica
+   ".form-control:disabled{background:#e9ecef}", que le gana por especificidad a su
+   fondo rosa propio (buscador.css) y lo deja gris/blanco. El PREP del INE conserva el
+   rosa también en estado deshabilitado, así que se restaura aquí. */
+html[data-tema='oscuro'] .btn-rosa-buscador:disabled {
+  background-color: #C791A8 !important;
+  color: #000 !important;
+  opacity: 1 !important;
+}
+
+/* Mapas de distritos/alcaldías (Highcharts): tanto el rect de fondo como el relleno por
+   defecto de cada demarcación (.highcharts-point, #f7f7f7 de fábrica) son claros; se
+   igualan al fondo de la página -- el trazo claro existente (#e6e6e6) se conserva como
+   borde entre demarcaciones, igual que en el PREP del INE. Escopado a #map-container
+   para no afectar otras gráficas de Highcharts (ej. el gauge de estadística). */
+html[data-tema='oscuro'] #map-container .highcharts-background,
+html[data-tema='oscuro'] #map-container .highcharts-point {
+  fill: var(--prep-bg) !important;
+}
+
+/* boton-compartir.css fija fondo blanco propio (círculo "Compartir" y su etiqueta),
+   independiente de las clases utilitarias de colores.css; se iguala al fondo de la
+   página en oscuro. */
+html[data-tema='oscuro'] .boton-compartir,
+html[data-tema='oscuro'] .boton-compartir p {
+  background: var(--prep-bg) !important;
+}
+
+/* El ícono/enlace "Inicio" (boton-home) hereda el color rosa de la regla general "a"
+   de más arriba; en el PREP del INE se mantiene en blanco, no rosa. */
+html[data-tema='oscuro'] .boton-home {
+  color: var(--prep-texto) !important;
 }
 
 /* Foco visible reforzado, requisito WCAG 2.4.7 (Focus Visible), en ambos temas. */
