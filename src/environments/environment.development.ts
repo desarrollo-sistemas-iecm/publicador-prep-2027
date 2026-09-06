@@ -30,8 +30,8 @@ export const environment = {
     },
     detalle_sistema_sicodid: {
         siglas: 'SICODID',
-        titulo: 'Sistema de Cómputos <span class="txRosaIne">D</span>istritales y de Demarcación 2024',
-        subtitulo: '<b>Proceso Electoral Local Ordinario</b> 2024',
+        titulo: 'Sistema de Cómputos <span class="txRosaIne">D</span>istritales y de Demarcación 2027',
+        subtitulo: '<b>Proceso Electoral Local Ordinario</b> 2027',
         src: './assets/img/sicodid.jpg'
     }
     // api_prep: 'http://145.0.40.76/prep2024' // Desarrollo

@@ -43,7 +43,7 @@ export class BreadcrumbsService {
       ? environment.detalle_sistema_prep.siglas
       : environment.detalle_sistema_sicodid.siglas;
 
-    const originalTitle = `${proyecto} IECM 2024 `;
+    const originalTitle = `${proyecto} IECM 2027 `;
     const vistaPor = votos_por
       ? this.labelTransformerService.transformaLabelVistaPor(votos_por).toUpperCase()
       : '';

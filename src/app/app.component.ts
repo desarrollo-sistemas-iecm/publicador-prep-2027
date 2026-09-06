@@ -9,9 +9,9 @@ import { AccesibilidadService } from 'src/app/services/accesibilidad.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Jornada 2024';
+  title = 'Jornada 2027';
 
-  constructor(private router: Router, private accesibilidadService: AccesibilidadService) {}
+  constructor(private router: Router, private accesibilidadService: AccesibilidadService) { }
 
   ngOnInit(): void {
     this.accesibilidadService.inicializar();
