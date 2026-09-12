@@ -10,15 +10,17 @@ export const environment = {
     // dispara — este es el único archivo que el bundle usa hoy, tanto en
     // build de desarrollo como de producción. Arreglar esos imports es un
     // cambio más grande, fuera de alcance de esta tarea.
-    api_prep: '/api',
-    // useMockApi se mantiene en true a propósito: services-prep-2027 hoy solo
-    // implementa /cortes, /health y /version — ninguno de los endpoints que
-    // esta UI consume (/avance, /grafica, /combos/*, /estadistica, /mapas,
-    // /distribucion, /resumenvotacion) existe todavía en ese backend.
-    // Apagar el mock dejaría la UI en blanco (404 contra rutas que no
-    // existen). Cuando esos endpoints se implementen en services-prep-2027,
-    // cambiar esto a false.
-    useMockApi: true,
+    // `/api/v1` (no `/api`) porque `services-prep-2027` fija `API_PREFIX=api/v1`
+    // como prefijo global (ver src/bootstrap.config.ts::configureApp) — todas
+    // las rutas nuevas (/avance, /combos/*, etc.) cuelgan de ese prefijo.
+    api_prep: '/api/v1',
+    // services-prep-2027 ya implementa /avance, /grafica, /combos/*,
+    // /estadistica, /mapas, /distribucion, /pruebadistribucion,
+    // /resumenvotacion y /api_seccion.php (módulo `resultados-explotacion`).
+    // Pendiente documentado como TODO en ese módulo: la agrupación de
+    // coalición hardcodeada de Diputación MR y el filtro `id_participante >
+    // 11` de la grilla RP no están confirmados contra el proceso vigente.
+    useMockApi: false,
     version: 'v0.0.1',
     date_dist: "Thu May 09 2024 18:52:33 GMT-0600 (Central Standard Time)",
     prep: true,
