@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
+import { CandidatoGrafica } from 'src/app/interfaces/grafica.interface';
 
 @Component({
   standalone: false,
@@ -14,11 +15,11 @@ export class GraficaComponent implements OnInit {
 
   public tipo_consulta: string = '';
 
-  // public 
+  // public
 
-public votos: any[] = [];
-public votos_casillas: any[] = [];
-public votos_extranjero: any[] = [];
+public votos: CandidatoGrafica[] = [];
+public votos_casillas: CandidatoGrafica[] = [];
+public votos_extranjero: CandidatoGrafica[] = [];
 /*   public votos = {
     candidatos: [
       {
@@ -83,26 +84,16 @@ public votos_extranjero: any[] = [];
       if(segments[2] == 'votos-por-partido-politico-y-candidatura-independiente'){
 
         this.apiPrepService.obtenerDatosDistribucion(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true, true)
-        .subscribe( (res: any) => {
-          
-          console.log(res);
-          // Esta es la propiedad que guarda la respuesta
-          // this.votos = res.data.agrupado;
-          this.votos_casillas = res.data.agrupado;
-          this.votos_extranjero = res.data.dataExtranjero;
-          
+        .subscribe( (res) => {
+          this.votos_casillas = res.agrupado;
+          this.votos_extranjero = res.dataExtranjero;
         } )
 
       } else{
 
         this.apiPrepService.obtenerGraficaJG(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true)
-        .subscribe( (res: any) => {
-          
-          console.log(res);
-          // Esta es la propiedad que guarda la respuesta
-          this.votos = res.data.agrupado;
-    
-          
+        .subscribe( (res) => {
+          this.votos = res.agrupado;
         } )
         
       }

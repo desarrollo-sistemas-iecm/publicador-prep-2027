@@ -9,6 +9,7 @@ import { ResResumenVotacion } from '../interfaces/resumen-votaction.interface';
 import { Estadistica } from '../interfaces/estadistica.interface';
 import { ResponseDataMapas } from '../interfaces/mapas-demarcaciones.interface';
 import { DetalleCasillaResponse } from '../interfaces/detalle-casilla.interface';
+import { ResGrafica, ResPruebaDistribucion } from '../interfaces/grafica.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class ApiPrepService {
 
     
       const api = environment.api_prep;
-      return this.http.post<ResAvance>(`${api}/avance`, { type, item: 10  });
+      return this.http.post<ResAvance>(`${api}/avance`, { type });
     
   }
   
@@ -53,7 +54,7 @@ export class ApiPrepService {
     // console.log({type});
     const api = environment.api_prep;
     // const api = `http://localhost/2024/sicodid/guia`;
-    return this.http.post<any>(`${api}/grafica`, { type, dist_o_alcaldia, seccion, casilla, mostrar_no_reg_y_nulos });
+    return this.http.post<ResGrafica>(`${api}/grafica`, { type, dist_o_alcaldia, seccion, casilla, mostrar_no_reg_y_nulos });
 
   }
 
@@ -145,7 +146,7 @@ export class ApiPrepService {
     // console.log({type});
     const api = environment.api_prep;
     // const api = `http://localhost/2024/sicodid/guia`;
-    return this.http.post<any>(`${api}/pruebadistribucion`, { type, dist_o_alcaldia, seccion, casilla, mostrar_no_reg_y_nulos, es_distribucion });
+    return this.http.post<ResPruebaDistribucion>(`${api}/pruebadistribucion`, { type, dist_o_alcaldia, seccion, casilla, mostrar_no_reg_y_nulos, es_distribucion });
 
   }
 }
