@@ -8,6 +8,14 @@ import { ApiPrepService } from '../../services/api-prep.service';
 
 HC_map(Highcharts);
 
+const NAVEGACION_SIN_ZOOM: Highcharts.MapNavigationOptions = {
+  enabled: false,
+  enableButtons: false,
+  enableMouseWheelZoom: false,
+  enableDoubleClickZoom: false,
+  enableTouchZoom: false
+};
+
 // "@highcharts/map-collection": "^2.1.0",
 // "highcharts-angular": "^3.1.2",
 
@@ -98,7 +106,8 @@ export class MapaComponent implements OnInit {
   renderMapDist(): void {
     Highcharts.mapChart('map-container', {
       chart: {
-        map: this.mapData
+        map: this.mapData,
+        panning: { enabled: false }
       },
       credits: {
         enabled: false
@@ -109,15 +118,7 @@ export class MapaComponent implements OnInit {
       legend: {
         enabled: false
       },
-      mapNavigation: {
-        enabled: false,
-        enableButtons: true,
-        enableMouseWheelZoom: true,
-        buttonOptions: {
-          align: 'right',
-          verticalAlign: 'top'
-        }
-      },
+      mapNavigation: NAVEGACION_SIN_ZOOM,
       plotOptions: {
         series: {
           states: {
@@ -176,7 +177,8 @@ export class MapaComponent implements OnInit {
   renderMapAlc(): void {
     Highcharts.mapChart('map-container', {
       chart: {
-        map: this.mapData
+        map: this.mapData,
+        panning: { enabled: false }
       },
       credits: {
         enabled: false
@@ -187,15 +189,7 @@ export class MapaComponent implements OnInit {
       legend: {
         enabled: false
       },
-      mapNavigation: {
-        enabled: false,
-        enableButtons: true,
-        enableMouseWheelZoom: true,
-        buttonOptions: {
-          align: 'right',
-          verticalAlign: 'top'
-        }
-      },
+      mapNavigation: NAVEGACION_SIN_ZOOM,
       plotOptions: {
         series: {
           states: {

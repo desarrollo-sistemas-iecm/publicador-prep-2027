@@ -223,12 +223,12 @@ html[data-tema='oscuro'] .btn-rosa-buscador:disabled {
 
 /* Mapas de distritos/alcaldías (Highcharts): tanto el rect de fondo como el relleno por
    defecto de cada demarcación (.highcharts-point, #f7f7f7 de fábrica) son claros; se
-   igualan al fondo de la página -- el trazo claro existente (#e6e6e6) se conserva como
-   borde entre demarcaciones, igual que en el PREP del INE. Escopado a #map-container
-   para no afectar otras gráficas de Highcharts (ej. el gauge de estadística). */
+   igualan a la superficie de la tarjeta (.card) que los contiene -- el trazo claro
+   existente (#e6e6e6) se conserva como borde entre demarcaciones, igual que en el PREP
+   del INE. Escopado a #map-container para no afectar otras gráficas de Highcharts. */
 html[data-tema='oscuro'] #map-container .highcharts-background,
 html[data-tema='oscuro'] #map-container .highcharts-point {
-  fill: var(--prep-bg) !important;
+  fill: var(--prep-superficie) !important;
 }
 
 /* boton-compartir.css fija fondo blanco propio (círculo "Compartir" y su etiqueta),
