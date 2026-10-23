@@ -140,9 +140,9 @@ export function mockEstadistica() {
     succes: true,
     msg: 'ok',
     data: {
-      actas: { esperadas: 4319, computadas: 4319, esperadas_por: '100.0000', computadas_por: '100.0000' },
+      actas: { esperadas: 4319, capturadas: 4319, computadas: 4319, esperadas_por: '100.0000', capturadas_por: '100.0000', computadas_por: '100.0000' },
       cantidades_urbanas: { urbanas: 3900, no_urbanas: 419 },
-      lista_nominal: { lista_nominal_oficial: 1700000, actas_contabilizadas: 4319 },
+      lista_nominal: { lista_nominal_oficial: 1700000, actas_contabilizadas: 1667703 },
       votos: {
         votos_casillas_normales: 840000,
         votos_casillas_especiales: 10000,
