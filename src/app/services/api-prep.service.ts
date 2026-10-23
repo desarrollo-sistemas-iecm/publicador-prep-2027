@@ -10,6 +10,7 @@ import { Estadistica } from '../interfaces/estadistica.interface';
 import { ResponseDataMapas } from '../interfaces/mapas-demarcaciones.interface';
 import { DetalleCasillaResponse } from '../interfaces/detalle-casilla.interface';
 import { ResGrafica, ResPruebaDistribucion } from '../interfaces/grafica.interface';
+import { ResActasModalidad } from '../interfaces/distribucion-rp.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -148,6 +149,17 @@ export class ApiPrepService {
     // const api = `http://localhost/2024/sicodid/guia`;
     return this.http.post<ResPruebaDistribucion>(`${api}/pruebadistribucion`, { type, dist_o_alcaldia, seccion, casilla, mostrar_no_reg_y_nulos, es_distribucion });
 
+  }
+
+  obtenerActasRp(seleccion?: number) {
+    const api = environment.api_prep;
+    return this.http.post<ResActasModalidad>(`${api}/actas/rp`, seleccion ? { seleccion } : {});
+  }
+
+  obtenerActasVotoExtranjero(tipo_consulta: string | 'jefatura-de-gobierno' | 'diputaciones' | 'alcaldias' = 'jefatura-de-gobierno') {
+    const type = typeQuery(tipo_consulta);
+    const api = environment.api_prep;
+    return this.http.post<ResActasModalidad>(`${api}/actas/extranjero`, { type });
   }
 
   descargarBaseDatos(): Observable<HttpResponse<Blob>> {

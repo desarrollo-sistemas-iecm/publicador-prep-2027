@@ -34,9 +34,6 @@ export class PlantillaComponent implements OnInit {
   ngOnInit(): void {
     this.mostrarTablaActas = !!this.route.snapshot.data['mostrarTablaActas'];
     this.tituloTablaActas = this.route.snapshot.data['tituloTablaActas'] || '';
-    if (this.mostrarTablaActas) {
-      this.actas$ = this.votoExtranjeroService.obtenerActas();
-    }
 
     const segments = this.router.url.split('/');
 
@@ -50,6 +47,10 @@ export class PlantillaComponent implements OnInit {
       this.configuracionBreadcrumbs.tipo_eleccion = tipoVisualizacion;
     } else {
       console.error('Tipo de visualización no válido o URL incorrecta');
+    }
+
+    if (this.mostrarTablaActas && this.tipoEleccion) {
+      this.actas$ = this.votoExtranjeroService.obtenerActas(this.tipoEleccion);
     }
   }
 

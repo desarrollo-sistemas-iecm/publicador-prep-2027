@@ -240,3 +240,22 @@ export function mockDistribucion(seleccion: number, seccion: number) {
   };
   return { success: true, msg: 'ok', itemRecords: { value_fields, columns, data, participacion, resumen } };
 }
+
+export function mockActasModalidad(prefijo: 'S' | 'M', distrito: number) {
+  const columns = CANDIDATURAS.map((c, i) => ({
+    dataIndex: c.campo_votos, title: c.siglas, key: 100 + i, resizable: 'resizable', width: 110, minWidth: 80, maxWidth: 160
+  }));
+  const data = [1, 2].map((num, i) => ({
+    id_distrito: distrito,
+    id_delegacion: distrito ? 2 : 0,
+    id_seccion: distrito ? 340 + i : 0,
+    tipo_casilla: `${prefijo}0${num}`,
+    ...Object.fromEntries(CANDIDATURAS.map((c, j) => [c.campo_votos, 40 - j * 6 + i * 3])),
+    votos_cand_no_reg: 1,
+    votos_nulos: 3,
+    votacion_total: 154 + i * 15,
+    nombre_img: i === 0 ? `${prefijo}0${num}.jpg` : null,
+    observaciones: i === 0 ? '--' : 'SIN ACTA'
+  }));
+  return { success: true, msg: 'La información se obtuvo correctamente.', itemRecords: { value_fields: [], columns, data, participacion: [], resumen: {} } };
+}

@@ -27,33 +27,26 @@ vía `async` pipe, no el mock directamente.
 - **Componente consumidor**: `BuscadorComponent` (modal `#modalCasilla`, tooltip "Verificar tipo de credencial").
 - **Relación con navegación/breadcrumbs**: ninguna.
 
-## `DistribucionRpService.obtenerActasRp(idDistrito?: string)`
+## `DistribucionRpService.obtenerActasRp(idDistrito?: string)` — conectado (2026-10-23)
 
-- **Método futuro sugerido**: `POST {api_prep}/actas-rp` — nota: `ApiPrepService` ya tiene un método real sin
-  consumidor, `obtenerDatosDistribucion(tipo_consulta, dist_o_alcaldia, seccion, casilla,
-  mostrar_no_reg_y_nulos, es_distribucion)` → `POST /pruebadistribucion`, que **podría** ser el candidato real
-  para esto — se documenta como candidato, no se conecta, por la decisión explícita de esta migración de no
-  añadir llamadas reales nuevas.
-- **Parámetros**: `type` (fijo en 2, diputaciones — RP no aplica a alcaldías/gubernatura), `id_distrito` opcional.
-- **Modelo de respuesta**: `DistribucionRp` — `{ partidos: string[]; actas: ActaRp[] }`, `ActaRp = { seccion,
-  casilla, votosPorPartido: Record<string, number>, noRegistrados, nulos, total, observacion, disponible }`.
-- **Manejo de errores**: `ResourceState.status = 'error'`; estado `'empty'` si `actas.length === 0`.
+- **Endpoint real**: `POST {api_prep}/actas/rp` vía `ApiPrepService.obtenerActasRp(seleccion?)`. Equivale a
+  `actas_grid_data_rp.php` de 2024: casillas especiales (`tipo_casilla` `S*`), `type=3` fijo en el servidor.
+  Diseño: `services-prep-2027/docs/superpowers/specs/2026-10-23-actas-rp-voto-extranjero-design.md`.
+- **Parámetros**: `seleccion` (distrito) opcional; sin él trae las actas RP de toda la entidad.
+- **Respuesta**: misma forma que `POST distribucion` (`itemRecords.columns`/`data`). `mapearActasModalidad()`
+  (`services/actas-modalidad.mapper.ts`) la convierte a `DistribucionRp`: cada columna `votos_part_N` es un
+  partido (su `title` trae las siglas) y `disponible` es `nombre_img != null`.
+- **Manejo de errores**: `ResourceState` — `'loading'` → `'success'`/`'empty'`, y `'error'` si falla la petición.
 - **Componente consumidor**: `RepresentacionProporcionalComponent` → `TablaActasComponent`.
-- **Relación con navegación/breadcrumbs**: la ruta `votos-por-representacion-proporcional` alimenta
-  `configuracionBreadcrumbs.votos_por` (label "Representación Proporcional" agregado a
-  `LabelTransformerViewFoService`).
 
-## `VotoExtranjeroService.obtenerActas()`
+## `VotoExtranjeroService.obtenerActas(tipo_consulta)` — conectado (2026-10-23)
 
-- **Método futuro sugerido**: mismo patrón que RP, `POST {api_prep}/actas-voto-extranjero` o el mismo
-  `/pruebadistribucion` parametrizado por modalidad.
-- **Parámetros**: ninguno hoy (mock estático); en real, probablemente `type` fijo + modalidad.
-- **Modelo de respuesta**: mismo `DistribucionRp` que RP (en static-site ambas páginas comparten estructura y
-  datos de ejemplo idénticos).
-- **Manejo de errores**: igual patrón.
-- **Componente consumidor**: `PlantillaComponent` (ruta `voto-en-el-extranjero`) → `TablaActasComponent`.
-- **Relación con navegación/breadcrumbs**: el label "Voto en el Extranjero" ya existía en
-  `LabelTransformerViewFoService`, no requirió cambio.
+- **Endpoint real**: `POST {api_prep}/actas/extranjero` con `{ type }`, vía
+  `ApiPrepService.obtenerActasVotoExtranjero()`. Equivale a `actas_grid_data_voto_prision_ant.php` con
+  `tipo_acta=M`. Todas las elecciones reciben voto del extranjero.
+- **Respuesta / errores**: igual que RP (mismo mapeador).
+- **Componente consumidor**: `PlantillaComponent` (ruta `voto-en-el-extranjero`, con el tipo de elección de la
+  URL) → `TablaActasComponent`.
 
 ## `base-datos.mock.ts` (`AVANCE_BASE_DATOS_MOCK`)
 

@@ -1,27 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay, map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { DistribucionRp } from 'src/app/interfaces/distribucion-rp.interface';
 import { ResourceState } from 'src/app/interfaces/resource-state.interface';
-import { DISTRIBUCION_RP_MOCK } from 'src/app/mocks/distribucion-rp.mock';
+import { ApiPrepService } from './api-prep.service';
+import { aEstadoActas } from './actas-modalidad.mapper';
 
 /**
- * Proveedor mock de Actas de Representación Proporcional (migrado de
- * static-site/screenRP.html). Ver docs/migration/06-contratos-servicios-propuestos.md
- * para el endpoint real futuro propuesto.
+ * Actas de Representación Proporcional (casillas especiales) desde
+ * `POST actas/rp`; sin distrito, trae las de toda la entidad.
  */
 @Injectable({
   providedIn: 'root'
 })
 export class DistribucionRpService {
 
+  constructor(private apiPrepService: ApiPrepService) { }
+
   obtenerActasRp(idDistrito?: string): Observable<ResourceState<DistribucionRp>> {
-    return of(DISTRIBUCION_RP_MOCK).pipe(
-      map((data): ResourceState<DistribucionRp> =>
-        data.actas.length ? { status: 'success', data } : { status: 'empty' }
-      ),
-      delay(300),
-      startWith<ResourceState<DistribucionRp>>({ status: 'loading' })
-    );
+    const seleccion = Number(idDistrito) || undefined;
+    return aEstadoActas(this.apiPrepService.obtenerActasRp(seleccion));
   }
 }
