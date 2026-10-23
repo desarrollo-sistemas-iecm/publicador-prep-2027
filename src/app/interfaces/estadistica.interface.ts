@@ -13,8 +13,10 @@ export interface Data {
 
 export interface Actas {
     esperadas?:      number;
+    capturadas?:     number;
     computadas?:     number;
     esperadas_por?:  string;
+    capturadas_por?: string;
     computadas_por?: string;
 }
 
