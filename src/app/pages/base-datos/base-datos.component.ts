@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { AVANCE_BASE_DATOS_MOCK } from 'src/app/mocks/base-datos.mock';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 
@@ -15,7 +14,6 @@ const NOMBRE_ARCHIVO_POR_DEFECTO = 'PREP_CDMX.zip';
 })
 export class BaseDatosComponent implements OnInit {
 
-  public avance = AVANCE_BASE_DATOS_MOCK;
   public descargando = false;
 
   constructor(
