@@ -66,9 +66,15 @@ follow the **same route shape** against a shared set of presentational component
 changing one election type's routes/components, check whether the same change is needed in the other two — they are
 intentionally near-duplicates, not shared via a common module.
 
-Each election type module distinguishes itself mainly by `type` (see `typeQuery` below) and by which entry route it
-redirects to (`votos-por-candidatura` for gubernatura, `votos-por-distritos` for diputaciones,
-`votos-por-alcaldia` for alcaldias).
+Each election type module distinguishes itself mainly by `type` (see `typeQuery` below). All three share the same
+entry route, `votos-por-candidatura` (gubernatura renders the entity chart there, diputaciones/alcaldias the map),
+and `votos-por-candidatura/:id_distrito_alcaldia` always renders `PrimerNivelComponent`. This mirrors PREP2024, where
+the sidebar's first button is "Votos por Candidatura" for every election type.
+
+Changing the first combo (distrito/alcaldía) in the sidebar always navigates to
+`/<tipo>/votos-por-candidatura/<id>`, regardless of the current view (same as PREP2024). Every level component that
+hosts `<app-sidebar>` (`TestComponent`, `PrimerNivelComponent`, `SegundoNivelComponent`, `TercerNivelComponent`,
+`VotacionPorCasillaComponent`) implements this in its own `onSelectionChangePrimerCombo` — keep them in sync.
 
 All three also mount the `voto-condiciones-especiales` module at `voto-en-condiciones-excepcionales`, which handles
 special voting conditions (voto anticipado, voto en el extranjero, voto en prisión preventiva) via one shared

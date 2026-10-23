@@ -11,9 +11,9 @@ import { VotacionPorCasillaComponent } from 'src/app/components/votacion-por-cas
 
 const routes: Routes = [
   
-  { path: 'votos-por-alcaldia/:id_distrito_alcaldia', component: PrimerNivelComponent , children: [ { path: '', component: MovingCardsComponent } ]},
+  { path: 'votos-por-candidatura/:id_distrito_alcaldia', component: PrimerNivelComponent , children: [ { path: '', component: MovingCardsComponent } ]},
 
-  { path: 'votos-por-alcaldia', component: TestComponent, children: [ {path: '', component: MapaComponent} ] },
+  { path: 'votos-por-candidatura', component: TestComponent, children: [ {path: '', component: MapaComponent} ] },
 
   { path: 'votos-por-partido-politico-y-candidatura-independiente/:id_distrito_alcaldia', component: PrimerNivelComponent, children: [ { path: '', component: GraficaComponent } ] },
   { path: 'votos-por-partido-politico-y-candidatura-independiente', component: TestComponent, children: [ { path: '', component: GraficaComponent } ] },
@@ -29,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('../../voto-condiciones-especiales/voto-condiciones-especiales.module').then(m => m.VotoCondicionesEspecialesModule)
   },
 
-  { path: '', redirectTo: 'votos-por-alcaldia', pathMatch: 'full' }
+  { path: '', redirectTo: 'votos-por-candidatura', pathMatch: 'full' }
 ];
 
 @NgModule({

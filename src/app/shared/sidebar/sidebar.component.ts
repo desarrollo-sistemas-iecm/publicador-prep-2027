@@ -96,17 +96,13 @@ export class SidebarComponent implements OnInit {
   cargaDistritos( type: 'jefatura-de-gobierno' | 'diputaciones' ): void {
     this.lblBtnVotosPorDinamic = 'Votos por Candidatura';
     this.routeBtnVotosPorDinamic = 'votos-por-candidatura';
-    if(type === 'diputaciones'){
-      this.lblBtnVotosPorDinamic = 'Votos Por Distritos';
-      this.routeBtnVotosPorDinamic = 'votos-por-distritos';
-    }
     this.lbl_first_select = 'Distrito';
   }
 
   cargaAlcaldias(): void {
     this.lbl_first_select = 'Alcaldía';
-    this.lblBtnVotosPorDinamic = 'Votos Por Alcaldía';
-    this.routeBtnVotosPorDinamic = 'votos-por-alcaldia';
+    this.lblBtnVotosPorDinamic = 'Votos por Candidatura';
+    this.routeBtnVotosPorDinamic = 'votos-por-candidatura';
   }
 
   distOAlcaldia(idDistrito: any): void {

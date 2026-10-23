@@ -61,7 +61,7 @@ export class PrimerNivelComponent {
       const tipoVisualizacion = segments[1]; // Obtiene el tipo de visualización actual
 
       // Construye la nueva URL con el tipo de visualización y el valor seleccionado
-      const newUrl = `/${tipoVisualizacion}/${segments[2]}/${selectedValue}`;
+      const newUrl = `/${tipoVisualizacion}/votos-por-candidatura/${selectedValue}`;
 
       console.log(newUrl);
 
@@ -70,7 +70,7 @@ export class PrimerNivelComponent {
 
       this.tipoEleccion = tipoVisualizacion;
 
-      this.configuracionBreadcrumbs.votos_por = segments[2];
+      this.configuracionBreadcrumbs.votos_por = 'votos-por-candidatura';
 
       this.primerCombo = selectedValue; // Guarda el valor seleccionado del primer combo
     } else {

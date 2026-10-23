@@ -15,16 +15,8 @@ export class LabelTransformerViewFoService {
         label: 'Votos por Candidatura'
       },
       {
-        votos_por: 'votos-por-distritos',
-        label: 'Votos por Distritos'
-      },
-      {
         votos_por: 'votos-por-partido-politico-y-candidatura-independiente',
         label: 'Votos por Partido Político y Candidatura sin partido'
-      },
-      {
-        votos_por: 'votos-por-alcaldia',
-        label: 'Votos por Alcaldía'
       },
       {
         votos_por: 'detalle-por-casilla',
