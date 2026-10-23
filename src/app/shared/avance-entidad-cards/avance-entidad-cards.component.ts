@@ -43,7 +43,7 @@ export class AvanceEntidadCardsComponent implements OnInit {
         this.actasPorCapturar = res.avance.actas_capturadas_de;
         this.porcentajeParticipacionCiudadana = res.avance.participacion_porcen;
         this.porcentajeActasCapturadas = res.avance.actas_cap_porcen;
-        this.ultimoCorte = res.corte.corte_fecha.replaceAll('de', '');
+        this.ultimoCorte = res.corte.corte_fecha;
         this.corteHora = res.corte.corte_hora;
       } )
   }
