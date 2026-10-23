@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseSeccionPorDistrito } from '../interfaces/interfaces.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { ResponseBusquedaSeccion } from '../interfaces/buscadorXSeccion.interface';
 import { ResAvance } from '../interfaces/avance-entidad';
@@ -148,6 +148,11 @@ export class ApiPrepService {
     // const api = `http://localhost/2024/sicodid/guia`;
     return this.http.post<ResPruebaDistribucion>(`${api}/pruebadistribucion`, { type, dist_o_alcaldia, seccion, casilla, mostrar_no_reg_y_nulos, es_distribucion });
 
+  }
+
+  descargarBaseDatos(): Observable<HttpResponse<Blob>> {
+    const api = environment.api_prep;
+    return this.http.get(`${api}/exportacion-ine`, { observe: 'response', responseType: 'blob' });
   }
 }
 
