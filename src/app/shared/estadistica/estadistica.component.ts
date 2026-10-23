@@ -31,8 +31,10 @@ export class EstadisticaComponent implements OnInit {
   // public obj_votos: Votos = {};
 
   public esperadas: number = 0;
+  public capturadas: number = 0;
   public computadas: number = 0;
   public esperadas_por: string = '';
+  public capturadas_por: string = '';
   public computadas_por: string = '';
   public urbanas: number = 0;
   public no_urbanas: number = 0;
@@ -48,7 +50,6 @@ export class EstadisticaComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarInfoEstadistica();
-    this.renderizarGauge();
   }
 
   cargarInfoEstadistica(){
@@ -75,9 +76,11 @@ export class EstadisticaComponent implements OnInit {
         const { data } = res;
 
         const { actas, cantidades_urbanas, lista_nominal, votos } = data;
-        const { computadas, computadas_por, esperadas, esperadas_por } = actas;
+        const { capturadas, capturadas_por, computadas, computadas_por, esperadas, esperadas_por } = actas;
+        this.capturadas = capturadas || 0;
         this.computadas = computadas || 0;
         this.esperadas = esperadas || 0;
+        this.capturadas_por = capturadas_por || '';
         this.computadas_por = computadas_por || '';
         this.esperadas_por = esperadas_por || '';
 
@@ -93,13 +96,18 @@ export class EstadisticaComponent implements OnInit {
         this.votos_casillas_normales = votos_casillas_normales || 0;
         this.votos_casillas_especiales = votos_casillas_especiales || 0;
         this.total_votos = total_votos_query || 0;
-        
+
+        this.renderizarGauge();
       } )
 
 
   }
 
   renderizarGauge(): void {
+    const porcentajeListaNominal = this.lista_nominal_oficial
+      ? Number(((this.actas_contabilizadas * 100) / this.lista_nominal_oficial).toFixed(4))
+      : 0;
+
     Highcharts.chart({
       chart: {
         type: 'solidgauge',
@@ -114,7 +122,7 @@ export class EstadisticaComponent implements OnInit {
         enabled: false
       },
       title: {
-        text: 'Lista nominal de las casillas<br>con Actas Contabilizadas<br><b style="font-size:20px;color:#000">'+this.actas_contabilizadas+'</b>',
+        text: 'Lista nominal de las casillas<br>con Actas Contabilizadas<br><b style="font-size:20px;color:#000">'+this.actas_contabilizadas.toLocaleString('es-MX')+'</b>',
         align: 'right',
         style: {
           fontSize: '12px'
@@ -188,7 +196,7 @@ export class EstadisticaComponent implements OnInit {
               value: this.lista_nominal_oficial,
               dataLabels: {
                 enabled: true,
-                format: '<div style="text-align:center;"><span style="color:#000000; font-weight: bold">{series.name}</span><br><span style="font-size:22px; color: Black}; font-weight: bold">{point.value}</span></div>'
+                format: '<div style="text-align:center;"><span style="color:#000000; font-weight: bold">{series.name}</span><br><span style="font-size:22px; color: Black; font-weight: bold">' + this.lista_nominal_oficial.toLocaleString('es-MX') + '</span></div>'
               }
             }
           ],
@@ -202,7 +210,7 @@ export class EstadisticaComponent implements OnInit {
             radius: '85%',
             innerRadius: '95%', //75%
     
-            y: 98.1002
+            y: porcentajeListaNominal
           }],
           dataLabels: {
             enabled: true,
