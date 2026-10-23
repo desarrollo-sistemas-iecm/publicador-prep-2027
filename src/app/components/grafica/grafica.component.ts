@@ -1,7 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { CandidatoGrafica } from 'src/app/interfaces/grafica.interface';
+
+const COLORES_GRAFICA: Record<string, string> = {
+  'MC': '#FFA500',
+  'PAN-PRI-PRD': '#4479E1',
+  'PVEM-PT-MORENA': '#800040',
+  'no_registrados': '#C0C0C0',
+  'votos_nulos': '#808080'
+};
+const COLOR_GRAFICA_POR_DEFECTO = '#B283B9';
+const MARCAS_EJE_PORCENTAJE = [100, 80, 60, 40, 20, 0];
 
 @Component({
   standalone: false,
@@ -20,6 +31,8 @@ export class GraficaComponent implements OnInit {
 public votos: CandidatoGrafica[] = [];
 public votos_casillas: CandidatoGrafica[] = [];
 public votos_extranjero: CandidatoGrafica[] = [];
+public escalaMaxima = 0;
+public readonly marcasEje = MARCAS_EJE_PORCENTAJE;
 /*   public votos = {
     candidatos: [
       {
@@ -58,9 +71,6 @@ public votos_extranjero: CandidatoGrafica[] = [];
     const currentUrl = this.router.url; // Obtiene la URL actual
     const segments = currentUrl.split('/'); // Divide la URL en segmentos
 
-    console.log(segments);
-    
-
     // Verifica si la URL tiene al menos dos segmentos y el segundo es un tipo de visualización válido
     if (segments.length >= 2 && ['jefatura-de-gobierno', 'diputaciones', 'alcaldias'].includes(segments[1])) {
       const tipoVisualizacion = segments[1]; // Obtiene el tipo de visualización actual
@@ -81,22 +91,17 @@ public votos_extranjero: CandidatoGrafica[] = [];
         casilla = segments[5];
       }
 
-      if(segments[2] == 'votos-por-partido-politico-y-candidatura-independiente'){
+      const esDistribucion = segments[2] === 'votos-por-partido-politico-y-candidatura-independiente';
 
-        this.apiPrepService.obtenerDatosDistribucion(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true, true)
-        .subscribe( (res) => {
-          this.votos_casillas = res.agrupado;
-          this.votos_extranjero = res.dataExtranjero;
-        } )
-
-      } else{
-
-        this.apiPrepService.obtenerGraficaJG(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true)
-        .subscribe( (res) => {
-          this.votos = res.agrupado;
-        } )
-        
-      }
+      forkJoin({
+        grafica: this.apiPrepService.obtenerGraficaJG(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true),
+        distribucion: this.apiPrepService.obtenerDatosDistribucion(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true, esDistribucion)
+      }).subscribe(({ grafica, distribucion }) => {
+        this.votos = grafica.agrupado;
+        this.votos_casillas = distribucion.agrupado;
+        this.votos_extranjero = distribucion.dataExtranjero;
+        this.escalaMaxima = calcularEscalaMaxima(Math.max(0, ...grafica.agrupado.map(({ total_votos }) => total_votos)));
+      });
      
 
 
@@ -111,5 +116,25 @@ public votos_extranjero: CandidatoGrafica[] = [];
     return siglas.replaceAll('-', '_');
   }
 
+  alturaBarra(totalVotos: number): number {
+    return this.escalaMaxima ? (totalVotos * 100) / this.escalaMaxima : 0;
+  }
+
+  colorBarra(siglas: string): string {
+    return COLORES_GRAFICA[siglas] ?? COLOR_GRAFICA_POR_DEFECTO;
+  }
+
+  valorMarcaEje(porcentaje: number): number {
+    return Math.round((this.escalaMaxima * porcentaje) / 100);
+  }
+
 
 }
+
+export const calcularEscalaMaxima = (maximo: number): number => {
+  if (maximo <= 0) {
+    return 0;
+  }
+  const magnitud = 10 ** Math.floor(Math.log10(maximo));
+  return Math.ceil(maximo / magnitud) * magnitud;
+};

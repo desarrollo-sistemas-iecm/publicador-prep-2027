@@ -12,22 +12,12 @@
                     </tr>
                     <tr>
                         <td class="td-relative table-borderedHeader sinBorde">
-                            <div class="linea-chart-nl line-chart-100 line-char-first">526,363
-                            </div>
-                            <div class="linea-chart-nl line-chart-80 line-char-first">421,090
-                            </div>
-                            <div class="linea-chart-nl line-chart-60 line-char-first">315,818
-                            </div>
-                            <div class="linea-chart-nl line-chart-40 line-char-first">210,545
-                            </div>
-                            <div class="linea-chart-nl line-chart-20 line-char-first">105,273
-                            </div>
-                            <div class="linea-chart-nl line-chart-0 line-char-first">0</div>
+                            <div *ngFor="let marca of marcasEje" class="linea-chart-nl line-char-first line-chart-{{marca}}">{{ valorMarcaEje(marca) | number }}</div>
                             <div class="my-chart">
                                 <div style="height: 0px;"></div>
                             </div>
                         </td>
-                        <td class="fondoGrafica td-relative" *ngFor="let graph of votos">
+                        <td class="fondoGrafica td-relative" *ngFor="let graph of votos" [ngClass]="{'filaGanador superior-ganador': graph.ganador}">
                             <div class="linea-chart line-chart-100"></div>
                             <div class="linea-chart line-chart-80"></div>
                             <div class="linea-chart line-chart-60"></div>
@@ -35,11 +25,11 @@
                             <div class="linea-chart line-chart-20"></div>
                             <div class="linea-chart-nl line-chart-0"></div>
                             <div class="progress-bar-vertical">
-                                <div aria-valuemax="100" aria-valuemin="0" placement="top" role="progressbar"
-                                    hide-delay="50" class="progress-bar progres-chart" ng-reflect-placement="top"
-                                    ng-reflect-hide-delay="50" ng-reflect-tooltip-value="<p>PVEM</p><p>Total de votos: "
-                                    ng-reflect-ng-style="[object Object]"
-                                    [style]="'height: '+graph.porcentaje+'%; background-color: rgb(210, 18, 126);'">{{graph.total_votos | number}}</div>
+                                <div aria-valuemin="0" aria-valuemax="100" role="progressbar" class="progress-bar progres-chart"
+                                    [attr.aria-valuenow]="alturaBarra(graph.total_votos)"
+                                    [title]="graph.descripcion + ': ' + (graph.total_votos | number) + ' votos'"
+                                    [style.height.%]="alturaBarra(graph.total_votos)"
+                                    [style.background-color]="colorBarra(graph.siglas)"></div>
                             </div>
                         </td>
                        <!--  <td class="fondoGrafica td-relative">
@@ -118,11 +108,10 @@
                         </td>
                     </tr>
                     <tr class="border3-t-rosaINE">
-                        <td class="bg-gris-3"><span class="px12 fw-700"><strong>En Casillas</strong></span></td>
-                        <td *ngFor="let cas of votos_casillas" class="text-center bg-rosa2" [ngClass]="{'filaGanador': cas.ganador}">
+                        <td class="bg-gris-3"><span class="px12 fw-700"><strong>En Territorio Estatal</strong></span></td>
+                        <td *ngFor="let cas of votos_casillas; let indice = index" class="text-center bg-rosa2" [ngClass]="{'filaGanador': votos[indice]?.ganador}">
                             <span class="px12 fw-700">
                                 {{ cas.total_votos || 0 | number }}
-                                <p>{{cas.siglas}}</p>
                             </span>
                         </td>
                     </tr>
@@ -134,11 +123,9 @@
                                 </strong>
                             </span>
                         </td>
-                        <td *ngFor="let ext of votos_extranjero" class="text-center bg-rosa2" [ngClass]="{'filaGanador': ext.ganador}">
+                        <td *ngFor="let ext of votos_extranjero; let indice = index" class="text-center bg-rosa2" [ngClass]="{'filaGanador inferior-ganador': votos[indice]?.ganador}">
                             <span class="px12">
                                 {{ ext.total_votos || 0 | number }}
-                                <p>{{ext.siglas}}</p>
-
                             </span>
                         </td>
                     </tr>
