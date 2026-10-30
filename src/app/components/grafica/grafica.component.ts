@@ -5,6 +5,12 @@ import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { CandidatoGrafica } from 'src/app/interfaces/grafica.interface';
 
 const COLORES_GRAFICA: Record<string, string> = {
+  'PAN': '#005CA9',
+  'PRI': '#E30613',
+  'PRD': '#FFCC00',
+  'PVEM': '#50B747',
+  'PT': '#D52B1E',
+  'MORENA': '#B5261E',
   'MC': '#FFA500',
   'PAN-PRI-PRD': '#4479E1',
   'PVEM-PT-MORENA': '#800040',
@@ -13,6 +19,7 @@ const COLORES_GRAFICA: Record<string, string> = {
 };
 const COLOR_GRAFICA_POR_DEFECTO = '#B283B9';
 const MARCAS_EJE_PORCENTAJE = [100, 80, 60, 40, 20, 0];
+const LOGO_CANDIDATURA_SIN_PARTIDO = 'CI.png';
 
 @Component({
   standalone: false,
@@ -28,46 +35,47 @@ export class GraficaComponent implements OnInit {
 
   // public
 
-public votos: CandidatoGrafica[] = [];
-public votos_casillas: CandidatoGrafica[] = [];
-public votos_extranjero: CandidatoGrafica[] = [];
-public escalaMaxima = 0;
-public readonly marcasEje = MARCAS_EJE_PORCENTAJE;
-/*   public votos = {
-    candidatos: [
-      {
-        "nombre": "Manuel Muñoz Cano",
-        "partido": "Partido X",
-        "votos": 23256,
-        "porcentaje": 3.9390,
-        "en_casillas": 23227,
-        "en_extranjero": 29
-      },
-      {
-        "nombre": "Imelda Margarita Sanmiguel Sánchez",
-        "partido": "Partido Y",
-        "votos": 130459,
-        "porcentaje": 22.0968,
-        "en_casillas": 130203,
-        "en_extranjero": 256
-      },
-      {
-        "nombre": "José Ramón Gómez Leal",
-        "partido": "Partido Z",
-        "votos": 421091,
-        "porcentaje": 71.3234,
-        "en_casillas": 420659,
-        "en_extranjero": 432
-      }
-    ]
-  };   */
+  public votos: CandidatoGrafica[] = [];
+  public votos_casillas: CandidatoGrafica[] = [];
+  public votos_extranjero: CandidatoGrafica[] = [];
+  public escalaMaxima = 0;
+  public esDistribucion = false;
+  public readonly marcasEje = MARCAS_EJE_PORCENTAJE;
+  /*   public votos = {
+      candidatos: [
+        {
+          "nombre": "Manuel Muñoz Cano",
+          "partido": "Partido X",
+          "votos": 23256,
+          "porcentaje": 3.9390,
+          "en_casillas": 23227,
+          "en_extranjero": 29
+        },
+        {
+          "nombre": "Imelda Margarita Sanmiguel Sánchez",
+          "partido": "Partido Y",
+          "votos": 130459,
+          "porcentaje": 22.0968,
+          "en_casillas": 130203,
+          "en_extranjero": 256
+        },
+        {
+          "nombre": "José Ramón Gómez Leal",
+          "partido": "Partido Z",
+          "votos": 421091,
+          "porcentaje": 71.3234,
+          "en_casillas": 420659,
+          "en_extranjero": 432
+        }
+      ]
+    };   */
 
-  constructor( private apiPrepService: ApiPrepService, public router: Router ){}
+  constructor(private apiPrepService: ApiPrepService, public router: Router) { }
   ngOnInit(): void {
     this.cargarInformacionGrafica();
   }
 
-  cargarInformacionGrafica(){
+  cargarInformacionGrafica() {
     const currentUrl = this.router.url; // Obtiene la URL actual
     const segments = currentUrl.split('/'); // Divide la URL en segmentos
 
@@ -80,29 +88,29 @@ public readonly marcasEje = MARCAS_EJE_PORCENTAJE;
       let seccion = null;
       let casilla = null;
 
-      if(segments[3]){
+      if (segments[3]) {
         dist_o_alcaldia = Number(segments[3]);
       }
-      if(segments[4]){ 
+      if (segments[4]) {
         seccion = Number(segments[4]);
       }
 
-      if(segments[5]){
+      if (segments[5]) {
         casilla = segments[5];
       }
 
-      const esDistribucion = segments[2] === 'votos-por-partido-politico-y-candidatura-independiente';
+      this.esDistribucion = segments[2] === 'votos-por-partido-politico-y-candidatura-independiente';
 
       forkJoin({
-        grafica: this.apiPrepService.obtenerGraficaJG(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true),
-        distribucion: this.apiPrepService.obtenerDatosDistribucion(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true, esDistribucion)
+        grafica: this.apiPrepService.obtenerGraficaJG(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true, this.esDistribucion),
+        distribucion: this.apiPrepService.obtenerDatosDistribucion(this.tipo_consulta, dist_o_alcaldia, seccion, casilla, true, this.esDistribucion)
       }).subscribe(({ grafica, distribucion }) => {
         this.votos = grafica.agrupado;
         this.votos_casillas = distribucion.agrupado;
         this.votos_extranjero = distribucion.dataExtranjero;
         this.escalaMaxima = calcularEscalaMaxima(Math.max(0, ...grafica.agrupado.map(({ total_votos }) => total_votos)));
       });
-     
+
 
 
     } else {
@@ -112,12 +120,19 @@ public readonly marcasEje = MARCAS_EJE_PORCENTAJE;
 
   }
 
-  transformaSiglasAGuinBajo( siglas: string = '' ){
+  transformaSiglasAGuinBajo(siglas: string = '') {
     return siglas.replaceAll('-', '_');
   }
 
   alturaBarra(totalVotos: number): number {
     return this.escalaMaxima ? (totalVotos * 100) / this.escalaMaxima : 0;
+  }
+
+  usarLogoCandidaturaSinPartido({ target }: Event): void {
+    const imagen = target as HTMLImageElement;
+    if (!imagen.src.endsWith(LOGO_CANDIDATURA_SIN_PARTIDO)) {
+      imagen.src = `./assets/img/unknow/${LOGO_CANDIDATURA_SIN_PARTIDO}`;
+    }
   }
 
   colorBarra(siglas: string): string {

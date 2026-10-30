@@ -48,14 +48,14 @@ export class ApiPrepService {
     
   }
   
-  obtenerGraficaJG(tipo_consulta: string | 'jefatura-de-gobierno' | 'diputaciones' | 'alcaldias' = 'jefatura-de-gobierno', dist_o_alcaldia: number | null = 0, seccion: number | null = 0, casilla: string | null = null, mostrar_no_reg_y_nulos: boolean = false) {
+  obtenerGraficaJG(tipo_consulta: string | 'jefatura-de-gobierno' | 'diputaciones' | 'alcaldias' = 'jefatura-de-gobierno', dist_o_alcaldia: number | null = 0, seccion: number | null = 0, casilla: string | null = null, mostrar_no_reg_y_nulos: boolean = false, es_distribucion = false) {
     // TODO: 1 o 2 Cargan distitos y 3 carga alcaldías
     const type = typeQuery(tipo_consulta);
 
     // console.log({type});
     const api = environment.api_prep;
     // const api = `http://localhost/2024/sicodid/guia`;
-    return this.http.post<ResGrafica>(`${api}/grafica`, { type, dist_o_alcaldia, seccion, casilla, mostrar_no_reg_y_nulos });
+    return this.http.post<ResGrafica>(`${api}/grafica`, { type, dist_o_alcaldia, seccion, casilla, mostrar_no_reg_y_nulos, es_distribucion });
 
   }
 

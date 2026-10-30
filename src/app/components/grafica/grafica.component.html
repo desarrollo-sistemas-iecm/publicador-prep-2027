@@ -12,12 +12,15 @@
                     </tr>
                     <tr>
                         <td class="td-relative table-borderedHeader sinBorde">
-                            <div *ngFor="let marca of marcasEje" class="linea-chart-nl line-char-first line-chart-{{marca}}">{{ valorMarcaEje(marca) | number }}</div>
+                            <div *ngFor="let marca of marcasEje"
+                                class="linea-chart-nl line-char-first line-chart-{{marca}}">{{ valorMarcaEje(marca) |
+                                number }}</div>
                             <div class="my-chart">
                                 <div style="height: 0px;"></div>
                             </div>
                         </td>
-                        <td class="fondoGrafica td-relative" *ngFor="let graph of votos" [ngClass]="{'filaGanador superior-ganador': graph.ganador}">
+                        <td class="fondoGrafica td-relative" *ngFor="let graph of votos"
+                            [ngClass]="{'filaGanador superior-ganador': graph.ganador}">
                             <div class="linea-chart line-chart-100"></div>
                             <div class="linea-chart line-chart-80"></div>
                             <div class="linea-chart line-chart-60"></div>
@@ -25,14 +28,15 @@
                             <div class="linea-chart line-chart-20"></div>
                             <div class="linea-chart-nl line-chart-0"></div>
                             <div class="progress-bar-vertical">
-                                <div aria-valuemin="0" aria-valuemax="100" role="progressbar" class="progress-bar progres-chart"
+                                <div aria-valuemin="0" aria-valuemax="100" role="progressbar"
+                                    class="progress-bar progres-chart"
                                     [attr.aria-valuenow]="alturaBarra(graph.total_votos)"
                                     [title]="graph.descripcion + ': ' + (graph.total_votos | number) + ' votos'"
                                     [style.height.%]="alturaBarra(graph.total_votos)"
                                     [style.background-color]="colorBarra(graph.siglas)"></div>
                             </div>
                         </td>
-                       <!--  <td class="fondoGrafica td-relative">
+                        <!--  <td class="fondoGrafica td-relative">
                             <div class="linea-chart line-chart-100"></div>
                             <div class="linea-chart line-chart-80"></div>
                             <div class="linea-chart line-chart-60"></div>
@@ -69,8 +73,16 @@
                 <tbody>
                     <tr>
                         <td class="thtitulos"></td>
-                        <td *ngFor="let item of votos" class="text-center" [ngClass]="{'filaGanador': item.ganador}" >
-                            <div><img class="imagen-candidato" src="assets/img/unknow/avatar-persona.png" *ngIf="item.siglas != 'no_registrados' && item.siglas != 'votos_nulos'"></div>
+                        <td *ngFor="let item of votos" class="text-center" [ngClass]="{'filaGanador': item.ganador}">
+                            <ng-container *ngIf="item.siglas !== 'no_registrados' && item.siglas !== 'votos_nulos'">
+                                <div *ngIf="!esDistribucion"><img class="imagen-candidato"
+                                        src="assets/img/unknow/avatar-persona.png"></div>
+                                <div *ngIf="esDistribucion">
+                                    <img class="img-partido img-sttngs"
+                                        src="./assets/img/unknow/{{item.siglas | remplazaGuionesMediosABajos}}.png"
+                                        (error)="usarLogoCandidaturaSinPartido($event)">
+                                </div>
+                            </ng-container>
                             <div>
                                 <p class="px12">{{item.descripcion}}</p>
                             </div>
@@ -83,7 +95,7 @@
                             <span class="px14 font-bold"> Total </span>
                         </td>
                         <td class="text-center" *ngFor="let vt of votos" [ngClass]="{'filaGanador': vt.ganador}">
-                            <div *ngIf="vt.siglas != 'no_registrados' && vt.siglas != 'votos_nulos'">
+                            <div *ngIf="!esDistribucion && vt.siglas != 'no_registrados' && vt.siglas != 'votos_nulos'">
                                 <!-- {{vt.siglas}} -->
                                 <img class="img-partido img-sttngs"
                                     src="./assets/img/unknow/{{vt.siglas | remplazaGuionesMediosABajos}}.png">
@@ -101,15 +113,18 @@
                                 Porcentaje
                             </span>
                         </td>
-                        <td *ngFor="let por of votos" class="text-center bg-rosa2" [ngClass]="{'filaGanador': por.ganador}">
+                        <td *ngFor="let por of votos" class="text-center bg-rosa2"
+                            [ngClass]="{'filaGanador': por.ganador}">
                             <span class="px12 fw-700">
                                 {{ por.porcentaje }}%
                             </span>
                         </td>
                     </tr>
                     <tr class="border3-t-rosaINE">
-                        <td class="bg-gris-3"><span class="px12 fw-700"><strong>En Territorio Estatal</strong></span></td>
-                        <td *ngFor="let cas of votos_casillas; let indice = index" class="text-center bg-rosa2" [ngClass]="{'filaGanador': votos[indice]?.ganador}">
+                        <td class="bg-gris-3"><span class="px12 fw-700"><strong>En Territorio Estatal</strong></span>
+                        </td>
+                        <td *ngFor="let cas of votos_casillas; let indice = index" class="text-center bg-rosa2"
+                            [ngClass]="{'filaGanador': votos[indice]?.ganador}">
                             <span class="px12 fw-700">
                                 {{ cas.total_votos || 0 | number }}
                             </span>
@@ -123,7 +138,8 @@
                                 </strong>
                             </span>
                         </td>
-                        <td *ngFor="let ext of votos_extranjero; let indice = index" class="text-center bg-rosa2" [ngClass]="{'filaGanador inferior-ganador': votos[indice]?.ganador}">
+                        <td *ngFor="let ext of votos_extranjero; let indice = index" class="text-center bg-rosa2"
+                            [ngClass]="{'filaGanador inferior-ganador': votos[indice]?.ganador}">
                             <span class="px12">
                                 {{ ext.total_votos || 0 | number }}
                             </span>
