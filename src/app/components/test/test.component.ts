@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { rutaAlCambiarDistOAlcaldia } from 'src/app/services/navegacion-combos';
 import { BreadcrumbsConfig } from 'src/app/interfaces/breadcrumbs';
 import { ComboStateService } from 'src/app/services/combo-state.service';
 import { ApiPrepService } from '../../services/api-prep.service';
@@ -61,7 +62,7 @@ export class TestComponent implements OnInit {
       const tipoVisualizacion = segments[1]; // Obtiene el tipo de visualización actual
 
       // Construye la nueva URL con el tipo de visualización y el valor seleccionado
-      const newUrl = `/${tipoVisualizacion}/votos-por-candidatura/${selectedValue}`;
+      const newUrl = rutaAlCambiarDistOAlcaldia(currentUrl, selectedValue);
 
       console.log(newUrl);
 
@@ -70,7 +71,7 @@ export class TestComponent implements OnInit {
 
       this.tipoEleccion = tipoVisualizacion;
 
-      this.configuracionBreadcrumbs.votos_por = 'votos-por-candidatura';
+      this.configuracionBreadcrumbs.votos_por = newUrl.split('/')[2];
 
       this.primerCombo = selectedValue; // Guarda el valor seleccionado del primer combo
     } else {
