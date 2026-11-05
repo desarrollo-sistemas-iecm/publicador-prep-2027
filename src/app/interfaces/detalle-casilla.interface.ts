@@ -43,6 +43,9 @@ export interface Datum {
     representantes_votaron: number;
     total_votaron:          number;
     lista_nominal:          number;
+    contabilizar?:          string;
+    nombre_img?:            string | null;
+    observaciones?:         string | null;
 }
 
 export enum TipoCasilla {

@@ -35,6 +35,7 @@ export class PrimerNivelComponent {
   tercerCombo: any;
   // configuracionBreadcrumbs: any;
   tipoEleccion: any;
+  modoDistribucion: 'candidatura' | 'partido' = 'candidatura';
 
 
   constructor(private router: Router, private route: ActivatedRoute, private comboStateService: ComboStateService, private apiPrepService: ApiPrepService,
@@ -45,6 +46,8 @@ export class PrimerNivelComponent {
 
   ) { }
   ngOnInit(): void {
+    const [, , votosPor] = this.router.url.split('/');
+    this.modoDistribucion = votosPor === 'votos-por-partido-politico-y-candidatura-independiente' ? 'partido' : 'candidatura';
 
     this.establecerInformacionEleccion();
   }

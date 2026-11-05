@@ -34,7 +34,8 @@ export class TestComponent implements OnInit {
   tipoEleccion: any;
 
   labelSubtituloSeccion: string = '';
-  
+  esVistaMapa: boolean = false;
+
   
   constructor(private router: Router, private route: ActivatedRoute, private comboStateService: ComboStateService, private apiPrepService: ApiPrepService,
     private spinnerService: SpinnerService,
@@ -155,6 +156,12 @@ export class TestComponent implements OnInit {
 const tipoVisualizacion = segments[1]; // Obtiene el tipo de visualización actual
 
       this.tipoEleccion = tipoVisualizacion;
+      this.esVistaMapa = tipoVisualizacion !== 'jefatura-de-gobierno' && segments[2] === 'votos-por-candidatura';
+
+      if (segments[2] === 'votos-por-partido-politico-y-candidatura-independiente') {
+        this.labelSubtituloSeccion = 'Votos en Actas Contabilizadas';
+        return;
+      }
 
       switch (this.tipoEleccion) {
         case 'jefatura-de-gobierno':

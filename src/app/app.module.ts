@@ -23,6 +23,8 @@ import { EstadisticaCasillaComponent } from './components/estadistica-casilla/es
 import { ListadoParticipacionCiudadanaLNComponent } from './components/listado-participacion-ciudadana-ln/listado-participacion-ciudadana-ln.component';
 import { VotacionPorCasillaComponent } from './components/votacion-por-casilla/votacion-por-casilla.component';
 import { RepresentacionProporcionalComponent } from './components/representacion-proporcional/representacion-proporcional.component';
+import { VotosActasContabilizadasComponent } from './components/votos-actas-contabilizadas/votos-actas-contabilizadas.component';
+import { InformacionActaComponent } from './components/informacion-acta/informacion-acta.component';
 import { PipesModule } from './pipes/pipes.module';
 // import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -45,7 +47,9 @@ import { PipesModule } from './pipes/pipes.module';
     EstadisticaCasillaComponent,
     ListadoParticipacionCiudadanaLNComponent,
     VotacionPorCasillaComponent,
-    RepresentacionProporcionalComponent
+    RepresentacionProporcionalComponent,
+    VotosActasContabilizadasComponent,
+    InformacionActaComponent
   ],
   imports: [
     BrowserModule,

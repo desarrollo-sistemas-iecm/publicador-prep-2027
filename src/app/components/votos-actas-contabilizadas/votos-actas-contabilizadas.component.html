@@ -1,0 +1,33 @@
+<div class="container-fluid py-3">
+    <h4 class="subtitulo-seccion pleca-izquierda"><strong>Votos en Actas Contabilizadas</strong></h4>
+    <p class="px14">
+        En la tabla se muestran los Votos que cada Partido Político, Coalición o Candidatura sin Partido ha obtenido
+        hasta el momento.
+    </p>
+    <div class="table-responsive tabla-seccion">
+        <table class="table table-striped contenido table-bordered">
+            <thead class="titulos">
+                <tr>
+                    <th></th>
+                    <th *ngFor="let candidatura of candidaturas" class="text-center">
+                        <strong *ngIf="esTexto(candidatura.siglas); else logo">{{ candidatura.descripcion }}</strong>
+                        <ng-template #logo>
+                            <img class="logo-partido" [alt]="candidatura.descripcion" [title]="candidatura.descripcion"
+                                src="./assets/img/unknow/{{ candidatura.siglas | remplazaGuionesMediosABajos }}.png">
+                        </ng-template>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Total de votos</strong></td>
+                    <td *ngFor="let candidatura of candidaturas" class="text-center">{{ candidatura.total_votos | number }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Porcentaje</strong></td>
+                    <td *ngFor="let candidatura of candidaturas" class="text-center">{{ candidatura.porcentaje | number: '1.4-4' }}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

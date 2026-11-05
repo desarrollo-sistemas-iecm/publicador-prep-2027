@@ -1,367 +1,114 @@
 <div class="distribucion-votos pt-3 pddng-0">
-    <div>
-        <div>
-            <div class="card p-2 bg-circunscripcion crd-rspnsv">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <strong style="color: red;"><i>MAQUETA</i></strong>
-                            <p class="titulo plc-izq">
-                                <strong>
-                                    <!-- Distribución de votos por Candidatura a nivel Distrito -->
-                                    Distribución de votos por Partidos Políticos y Candidaturas Independientes a nivel Distrito
-                                </strong></p>
+    <div class="card p-2 bg-circunscripcion crd-rspnsv">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <strong style="color: red;"><i>MAQUETA</i></strong>
+                    <p class="titulo plc-izq">
+                        <strong *ngIf="modo === 'candidatura'">Distribución de votos por Candidatura a nivel Distrito</strong>
+                        <strong *ngIf="modo === 'partido'">Distribución de votos por Partido Político y Candidatura sin Partido a nivel Distrito</strong>
+                    </p>
+                    <p class="px14" *ngIf="modo === 'candidatura'">
+                        La tabla muestra el desglose de votos que cada Candidatura presenta en el Distrito, indicando los votos
+                        recibidos de manera individual y, en su caso, los votos recibidos vía Coalición.
+                    </p>
+                    <p class="px14" *ngIf="modo === 'partido'">
+                        La tabla muestra el desglose de votos que cada Partido Político o Candidatura sin Partido presenta en el
+                        Distrito, indicando los votos recibidos de manera individual y, en su caso, los votos recibidos vía Coalición.
+                    </p>
+                </div>
+            </div>
+
+            <ng-container *ngIf="modo === 'candidatura'">
+                <div class="d-lg-none d-xl-none mrgn-t15 dvotos-odd-even">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr *ngFor="let candidatura of candidaturas">
+                                <td>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-3"><img class="imagen-candidato" src="assets/img/unknow/avatar-persona.png" alt=""></div>
+                                                <div class="col-9 candidato"><p>{{ candidatura.nombre }}</p></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12" *ngFor="let aporte of candidatura.aportes">
+                                            <div class="container sttngs-imgvts">
+                                                <div class="row">
+                                                    <div class="col-6"><img class="logo-aporte" [src]="logo(aporte.siglas)" [alt]="aporte.siglas"></div>
+                                                    <div class="col-1 text-right p-0"><i class="fa fa-plus-circle"></i></div>
+                                                    <div class="col-5 text-right">{{ aporte.votos | number }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="container sttngs-ttlvts">
+                                                <div class="row">
+                                                    <div class="col-9 txt-dvotos"><p>Total de votos por candidatura</p></div>
+                                                    <div class="col-3 text-right txt-dvotos">{{ candidatura.total | number }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tabla pt-3 d-none d-lg-block d-xl-block">
+                    <div class="titulos row borde-abajo">
+                        <div class="col-4 col-lg-3 borde-derecha"><p><strong>Candidaturas</strong></p></div>
+                        <div class="col-5 col-lg-7 borde-derecha text-center"><p><strong>Distribución de votos por Candidatura</strong></p></div>
+                        <div class="col-3 col-lg-2 text-center"><p><strong>Total de votos por Candidatura</strong></p></div>
+                    </div>
+                    <div class="row datos" *ngFor="let candidatura of candidaturas">
+                        <div class="col-4 col-lg-3 borde-derecha py-3">
+                            <p class="candidato"><strong>{{ candidatura.nombre }}</strong></p>
+                            <img class="imagen-candidato" src="assets/img/unknow/avatar-persona.png" alt="">
+                        </div>
+                        <div class="col-5 col-lg-7 borde-derecha text-right padding-t-15">
+                            <span *ngFor="let aporte of candidatura.aportes; let ultimo = last">
+                                <img class="logo-aporte" [src]="logo(aporte.siglas)" [alt]="aporte.siglas">
+                                <strong> &nbsp;{{ aporte.votos | number }} </strong>
+                                <i *ngIf="!ultimo" class="fa fa-plus mx-2"></i>
+                            </span>
+                        </div>
+                        <div class="col-3 col-lg-2 dis-flex flex-col text-center">
+                            <div class="conteo dis-flex justify-s w-100">
+                                <div class="igual dis-flex mx-sm-3"><i aria-hidden="true" class="far fa-equals"></i></div>
+                                <p class="total"><strong>{{ candidatura.total | number }}</strong></p>
+                            </div>
+                            <p class="texto">Total de votos por Candidatura</p>
                         </div>
                     </div>
-                    <div class="d-lg-none d-xl-none mrgn-t15 dvotos-odd-even">
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-3"><img class="imagen-candidato"
-                                                                src="assets/img/unknow/avatar-persona.png"></div>
-                                                        <div class="col-9 candidato">
-                                                            <p>Manuel Muñoz Cano</p>
-                                                            <p>José Ricardo Espinoza Velázquez</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 1,530
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-ttlvts">
-                                                    <div class="row">
-                                                        <div class="col-9 txt-dvotos">
-                                                            <p> Total de votos por candidatura</p>
-                                                        </div>
-                                                        <div class="col-3 text-right txt-dvotos">
-                                                            1,530 </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-3"><img class="imagen-candidato"
-                                                                src="assets/img/unknow/avatar-persona.png"></div>
-                                                        <div class="col-9 candidato">
-                                                            <p>Imelda Margarita Sanmiguel Sánchez
-                                                            </p>
-                                                            <p>Georgina Barrios González</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 12,076
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 2,293
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 378 </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"><img
-                                                                style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"><img
-                                                                style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 252 </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"><img
-                                                                style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 144 </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"><img
-                                                                style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 63 </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"><img
-                                                                style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 20 </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-ttlvts">
-                                                    <div class="row">
-                                                        <div class="col-9 txt-dvotos">
-                                                            <p> Total de votos por candidatura</p>
-                                                        </div>
-                                                        <div class="col-3 text-right txt-dvotos">
-                                                            15,226 </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-3"><img class="imagen-candidato"
-                                                                src="assets/img/unknow/avatar-persona.png"></div>
-                                                        <div class="col-9 candidato">
-                                                            <p>José Ramón Gómez Leal</p>
-                                                            <p>Indira Paola López Carreto</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 1,213
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 40,854
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-imgvts">
-                                                    <div class="row">
-                                                        <div class="col-6"><img style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"><img
-                                                                style="width: 30px; margin-left: 2px;"
-                                                                src="./assets/img/unknow/coal1.png"></div>
-                                                        <div class="col-1 text-right p-0"><i
-                                                                class="fa fa-plus-circle"></i>
-                                                        </div>
-                                                        <div class="col-5 text-right"> 1,139
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="container sttngs-ttlvts">
-                                                    <div class="row">
-                                                        <div class="col-9 txt-dvotos">
-                                                            <p> Total de votos por candidatura</p>
-                                                        </div>
-                                                        <div class="col-3 text-right txt-dvotos">
-                                                            43,206 </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                </div>
+            </ng-container>
+
+            <div *ngIf="modo === 'partido'" class="tabla pt-3">
+                <div class="titulos row borde-abajo">
+                    <div class="col-3 borde-derecha"><p><strong>Partidos Políticos y Candidaturas sin Partido</strong></p></div>
+                    <div class="col-3 borde-derecha text-center"><p><strong>Votos recibidos de manera individual</strong></p></div>
+                    <div class="col-4 borde-derecha text-center"><p><strong>Votos obtenidos por Combinaciones de Coalición</strong></p></div>
+                    <div class="col-2 text-center"><p><strong>Total de votos</strong></p></div>
+                </div>
+                <div class="row datos" *ngFor="let partido of partidos">
+                    <div class="col-3 borde-derecha py-3 text-center">
+                        <img class="imagen-candidato" [src]="logo(partido.siglas)" [alt]="partido.siglas">
                     </div>
-                    <div class="tabla pt-3 d-none d-lg-block d-xl-block">
-                        <div class="titulos row borde-abajo">
-                            <div class="col-4 col-lg-3 borde-derecha">
-                                <p><strong> Candidaturas </strong></p>
-                            </div>
-                            <div class="col-5 col-lg-7 borde-derecha text-center">
-                                <p><strong> Distribución de votos por
-                                        Candidatura </strong></p>
-                            </div>
-                            <div class="col-3 col-lg-2 text-center">
-                                <p><strong> Total de votos por Candidatura
-                                    </strong></p>
-                            </div>
-                        </div>
-                        <div class="row datos">
-                            <div class="col-4 col-lg-3 borde-derecha py-3">
-                                <p class="candidato"><strong>
-                                        <p>Manuel Muñoz Cano</p>
-                                        <p>José Ricardo Espinoza Velázquez</p>
-                                    </strong></p><img class="imagen-candidato" src="assets/img/unknow/avatar-persona.png">
-                            </div>
-                            <div class="col-5 col-lg-7 borde-derecha text-right padding-t-15">
-                                <span><img style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;1,530 </strong>
-                                </span>
-
-                            </div>
-                            <div class="col-3 col-lg-2 dis-flex flex-col text-center">
-                                <div class="conteo dis-flex justify-s w-100">
-                                    <div class="igual dis-flex mx-sm-3"><i aria-hidden="true" class="far fa-equals"></i>
-                                    </div>
-                                    <p class="total"><strong> 1,530
-                                        </strong></p>
-                                </div>
-                                <p class="texto"> Total de votos por Candidatura </p>
-                            </div>
-                        </div>
-                        <div class="row datos">
-                            <div class="col-4 col-lg-3 borde-derecha py-3">
-                                <p class="candidato"><strong>
-                                        <p>Imelda Margarita Sanmiguel Sánchez</p>
-                                        <p>Georgina Barrios González</p>
-                                    </strong></p><img class="imagen-candidato" src="assets/img/unknow/avatar-persona.png">
-                            </div>
-                            <div class="col-5 col-lg-7 borde-derecha text-right padding-t-15">
-                                <span><img style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;12,076 </strong> &nbsp;<i class="fa fa-plus-circle"></i>&nbsp;
-                                </span><span><img style="width: 30px;"
-                                        src="./assets/img/unknow/coal1.png"><strong> &nbsp;2,293 </strong>
-                                    &nbsp;<i class="fa fa-plus-circle"></i>&nbsp;
-                                </span><span><img style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;378 </strong> &nbsp;<i class="fa fa-plus-circle"></i>&nbsp;
-                                </span><span><img style="width: 30px;" src="./assets/img/unknow/coal1.png"><img
-                                        style="width: 30px;" src="./assets/img/unknow/coal1.png"><img
-                                        style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;252 </strong> &nbsp;<i class="fa fa-plus-circle"></i>&nbsp;
-                                </span><span><img style="width: 30px;" src="./assets/img/unknow/coal1.png"><img
-                                        style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;144 </strong> &nbsp;<i class="fa fa-plus-circle"></i>&nbsp;
-                                </span><span><img style="width: 30px;" src="./assets/img/unknow/coal1.png"><img
-                                        style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;63 </strong> &nbsp;<i class="fa fa-plus-circle"></i>&nbsp;
-                                </span><span><img style="width: 30px;" src="./assets/img/unknow/coal1.png"><img
-                                        style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;20 </strong>
-                                </span>
-
-                            </div>
-                            <div class="col-3 col-lg-2 dis-flex flex-col text-center">
-                                <div class="conteo dis-flex justify-s w-100">
-                                    <div class="igual dis-flex mx-sm-3"><i aria-hidden="true" class="far fa-equals"></i>
-                                    </div>
-                                    <p class="total"><strong> 15,226
-                                        </strong></p>
-                                </div>
-                                <p class="texto"> Total de votos por Candidatura </p>
-                            </div>
-                        </div>
-                        <div class="row datos">
-                            <div class="col-4 col-lg-3 borde-derecha py-3">
-                                <p class="candidato"><strong>
-                                        <p>José Ramón Gómez Leal</p>
-                                        <p>Indira Paola López Carreto</p>
-                                    </strong></p><img class="imagen-candidato" src="assets/img/unknow/avatar-persona.png">
-                            </div>
-                            <div class="col-5 col-lg-7 borde-derecha text-right padding-t-15">
-                                <span><img style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;1,213 </strong> &nbsp;<i class="fa fa-plus-circle"></i>&nbsp;
-                                </span><span><img style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;40,854 </strong> &nbsp;<i class="fa fa-plus-circle"></i>&nbsp;
-                                </span><span><img style="width: 30px;" src="./assets/img/unknow/coal1.png"><img
-                                        style="width: 30px;" src="./assets/img/unknow/coal1.png">
-                                    <strong> &nbsp;1,139 </strong>
-                                </span>
-
-                            </div>
-                            <div class="col-3 col-lg-2 dis-flex flex-col text-center">
-                                <div class="conteo dis-flex justify-s w-100">
-                                    <div class="igual dis-flex mx-sm-3"><i aria-hidden="true" class="far fa-equals"></i>
-                                    </div>
-                                    <p class="total"><strong> 43,206
-                                        </strong></p>
-                                </div>
-                                <p class="texto"> Total de votos por Candidatura </p>
-                            </div>
+                    <div class="col-3 borde-derecha text-center padding-t-15">
+                        <strong>{{ partido.individual | number }}</strong> <i class="fa fa-plus mx-2"></i>
+                    </div>
+                    <div class="col-4 borde-derecha text-center padding-t-15">
+                        <strong *ngIf="!partido.coalicion.length">Sin Coalición</strong>
+                        <p *ngFor="let aporte of partido.coalicion" class="mb-1">
+                            <img class="logo-aporte" [src]="logo(aporte.siglas)" [alt]="aporte.siglas">
+                            &nbsp;{{ aporte.votos | number }}
+                        </p>
+                    </div>
+                    <div class="col-2 dis-flex flex-col text-center">
+                        <div class="conteo dis-flex justify-s w-100">
+                            <div class="igual dis-flex mx-sm-3"><i aria-hidden="true" class="far fa-equals"></i></div>
+                            <p class="total"><strong>{{ partido.total | number }}</strong></p>
                         </div>
                     </div>
                 </div>
