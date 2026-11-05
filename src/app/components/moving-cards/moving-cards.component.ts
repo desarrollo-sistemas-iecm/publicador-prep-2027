@@ -1,29 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApiPrepService } from '../../services/api-prep.service';
 import { Router } from '@angular/router';
 import { CandidatoGrafica } from 'src/app/interfaces/grafica.interface';
 
+const ANCHO_DESPLAZAMIENTO = 404;
 
 @Component({
   standalone: false,
   selector: 'app-moving-cards',
   templateUrl: './moving-cards.component.html',
-  styles: [
-    `
-    .card-resumen .encabezado{
-      background: #ffffff;
-    }
-    `
-  ]
+  styleUrls: ['./moving-cards.component.css']
 })
 export class MovingCardsComponent implements OnInit {
 
+  @ViewChild('carrusel') carrusel?: ElementRef<HTMLElement>;
+
   public cards: CandidatoGrafica[] = [];
+  // En "Votos por Candidatura" la tarjeta muestra foto y nombre de la candidatura; en las demás vistas solo los logos.
+  public mostrarCandidatura: boolean = false;
 
   constructor( private apiPrepService: ApiPrepService, private router: Router ) { }
 
   ngOnInit(): void {
+    this.mostrarCandidatura = this.router.url.split('/')[2] === 'votos-por-candidatura';
     this.cargarInfoCards();
+  }
+
+  // "PAN-PRI-PRD" se pinta con el logo de cada partido, como las coaliciones del PREP.
+  partidos(siglas: string): string[] {
+    return siglas.split('-');
+  }
+
+  desplazar(direccion: 1 | -1): void {
+    this.carrusel?.nativeElement.scrollBy({ left: direccion * ANCHO_DESPLAZAMIENTO });
   }
 
   cargarInfoCards(){
