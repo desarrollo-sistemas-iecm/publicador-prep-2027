@@ -67,7 +67,7 @@
               <label for="arg1" class="form-label">{{lbl_first_select}}:</label>
               <div class="input-group df-sw">
                   <select #arg1 id="arg1" class="form-control" aria-label="Default select example" aria-placeholder="Seleccione"
-                    (change)="distOAlcaldia( arg1.value );" [(ngModel)]="firstSelected">
+                    (change)="cambiarDistOAlcaldia(arg1.value)" [(ngModel)]="firstSelected">
                     <option *ngFor="let item of optSelect" [value]="item.value">{{ item.label }}</option>
                   </select>
                   <!-- Longitud de optSelect: {{ optSelect.length }} -->
@@ -77,7 +77,7 @@
             <div *ngIf="optSecciones.length > 1" class="col-4 col-xl-12 combo mb-2">
               <label for="seccion" class="form-label">Sección:</label>
               <div class="input-group df-sw">
-                <select #seccion id="seccion" class="form-select form-control" aria-label="Default select example" (change)="cargarCasillasXSeccion(seccion.value);" aria-placeholder="Seleccione" [(ngModel)]="seccionSelected">
+                <select #seccion id="seccion" class="form-select form-control" aria-label="Default select example" (change)="cambiarSeccion(seccion.value)" aria-placeholder="Seleccione" [(ngModel)]="seccionSelected">
                   <option *ngFor="let item of optSecciones" [value]="item.value">{{ item.label }}</option>
                 </select>
                 <!-- Longitud de optSecciones: {{ optSecciones.length }} -->
@@ -87,7 +87,7 @@
             <div *ngIf="optCasillas.length > 1" class="col-4 col-xl-12 combo mb-2"><label for="distrito" class="px14"> Casilla
               </label>
               <div class="input-group df-sw">
-                <select #casillas id="casillas" class="form-select form-control cursorPointer" (change)="seleccionCasilla(casillas.value)" [(ngModel)]="casillaSelected">
+                <select #casillas id="casillas" class="form-select form-control cursorPointer" (change)="cambiarCasilla(casillas.value)" [(ngModel)]="casillaSelected">
                   <!-- <option value="">- Seleccione -</option> -->
                   <option *ngFor="let item of optCasillas" [value]="item.value">{{ item.label }}</option>
   

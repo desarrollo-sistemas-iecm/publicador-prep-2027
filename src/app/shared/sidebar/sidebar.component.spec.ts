@@ -25,4 +25,30 @@ describe('SidebarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should not emit combo changes when the selection is restored from the URL', () => {
+    const emitidos: unknown[] = [];
+    component.primerCombo.subscribe((valor) => emitidos.push(valor));
+    component.seccionCombo.subscribe((valor) => emitidos.push(valor));
+    component.casillaCombo.subscribe((valor) => emitidos.push(valor));
+
+    component.distOAlcaldia('18');
+    component.cargarCasillasXSeccion('3188');
+    component.seleccionCasilla('B01');
+
+    expect(emitidos).toEqual([]);
+  });
+
+  it('should emit each combo change when the user selects a value', () => {
+    const emitidos: unknown[] = [];
+    component.primerCombo.subscribe((valor) => emitidos.push(['distrito', valor]));
+    component.seccionCombo.subscribe((valor) => emitidos.push(['seccion', valor]));
+    component.casillaCombo.subscribe((valor) => emitidos.push(['casilla', valor]));
+
+    component.cambiarDistOAlcaldia('18');
+    component.cambiarSeccion('3188');
+    component.cambiarCasilla('B01');
+
+    expect(emitidos).toEqual([['distrito', '18'], ['seccion', '3188'], ['casilla', 'B01']]);
+  });
 });

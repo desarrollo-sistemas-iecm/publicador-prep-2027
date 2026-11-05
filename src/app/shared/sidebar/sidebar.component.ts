@@ -105,9 +105,25 @@ export class SidebarComponent implements OnInit {
     this.routeBtnVotosPorDinamic = 'votos-por-candidatura';
   }
 
+  // Los cambios hechos por el usuario emiten para que la vista navegue; la carga
+  // inicial desde la URL no, porque redirigiría cualquier vista a votos-por-candidatura.
+  cambiarDistOAlcaldia(idDistrito: string): void {
+    this.distOAlcaldia(idDistrito);
+    this.primerCombo.emit(idDistrito);
+  }
+
+  cambiarSeccion(seccion: string): void {
+    this.cargarCasillasXSeccion(seccion);
+    this.seccionCombo.emit(seccion);
+  }
+
+  cambiarCasilla(casilla: string): void {
+    this.seleccionCasilla(casilla);
+    this.casillaCombo.emit(casilla);
+  }
+
   distOAlcaldia(idDistrito: any): void {
     this.breadcrumbsConfig.tipo_eleccion = this.tipo_consulta;
-    this.primerCombo.emit(idDistrito);
     this.firstSelected = idDistrito;
     this.breadcrumbsConfig.alcaldia = 0;
     this.breadcrumbsConfig.distrito = 0;
@@ -141,7 +157,6 @@ export class SidebarComponent implements OnInit {
           this.optCasillas.push({ label: element.name, value: element.id });
         });
       });
-    this.seccionCombo.emit(seccion);
   }
 
   initializeCombo(): void {
@@ -201,7 +216,6 @@ export class SidebarComponent implements OnInit {
   seleccionCasilla(casilla: string): void {
     this.breadcrumbsConfig.casilla = casilla;
     this.comboStateService.updateSelectedCasillaValue(casilla);
-    this.casillaCombo.emit(casilla);
     this.emitirConfiguracionBreadcrumbs.emit(this.breadcrumbsConfig);
   }
 
