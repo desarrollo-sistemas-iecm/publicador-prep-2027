@@ -7,6 +7,7 @@ import { ApiPrepService } from '../../services/api-prep.service';
 import { Router } from '@angular/router';
 import { Actas, CantidadesUrbanas, ListaNominal, Votos } from 'src/app/interfaces/estadistica.interface';
 import { environment } from 'src/environments/environment.development';
+import { filtroGeograficoDesdeUrl } from 'src/app/services/filtro-geografico';
 
 // Inicialización de los módulos adicionales de Highcharts
 HighchartsMore(Highcharts);
@@ -46,6 +47,11 @@ export class EstadisticaComponent implements OnInit {
 
   @ViewChild('contenedorGauge') contenedorGauge!: ElementRef;
 
+  // Total de votos entre la lista nominal de las casillas con actas contabilizadas (no la oficial).
+  get participacionCiudadana(): number {
+    return this.actas_contabilizadas ? this.total_votos / this.actas_contabilizadas : 0;
+  }
+
   constructor( private apiPrepService: ApiPrepService, private router: Router ) { }
 
   ngOnInit(): void {
@@ -70,7 +76,7 @@ export class EstadisticaComponent implements OnInit {
       // console.error('Tipo de visualización no válido o URL incorrecta');
     }
 
-    this.apiPrepService.obtenerInformacionEstadistica(this.tipo_consulta  )
+    this.apiPrepService.obtenerInformacionEstadistica(this.tipo_consulta, filtroGeograficoDesdeUrl(currentUrl))
       .subscribe( (res) => {
         console.log(res);
         const { data } = res;

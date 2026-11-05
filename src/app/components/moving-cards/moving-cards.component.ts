@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiPrepService } from '../../services/api-prep.service';
 import { Router } from '@angular/router';
-
-export interface CandidaturaCard {
-  id_participante: number;
-  campo_votos:     string;
-  siglas:          string;
-  descripcion:     string;
-  total_votos:     number;
-  porcentaje:      string;
-}
+import { CandidatoGrafica } from 'src/app/interfaces/grafica.interface';
 
 
 @Component({
@@ -26,7 +18,7 @@ export interface CandidaturaCard {
 })
 export class MovingCardsComponent implements OnInit {
 
-  public cards: CandidaturaCard[] = [];
+  public cards: CandidatoGrafica[] = [];
 
   constructor( private apiPrepService: ApiPrepService, private router: Router ) { }
 
@@ -65,10 +57,9 @@ export class MovingCardsComponent implements OnInit {
       // this.tipo_consulta = tipoVisualizacion;
       // console.log(segments);
       this.apiPrepService.obtenerGraficaJG( tipoVisualizacion, dist_o_alcaldia, seccion, casilla, false)
-        .subscribe( (res: any) => {
-          console.log(res);
-          this.cards = res.data.agrupado;
-          
+        .subscribe(({ agrupado }) => {
+          // No registrados y nulos ya se muestran en el resumen de la votación.
+          this.cards = agrupado.filter(({ siglas }) => siglas !== 'no_registrados' && siglas !== 'votos_nulos');
         })
       
 

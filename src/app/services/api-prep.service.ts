@@ -13,6 +13,7 @@ import { ResGrafica, ResPruebaDistribucion } from '../interfaces/grafica.interfa
 import { ResActasModalidad } from '../interfaces/distribucion-rp.interface';
 import { ResDistribucionVotos } from '../interfaces/distribucion-votos.interface';
 import { mockDistribucionVotos } from '../mocks/distribucion-votos.mock';
+import { FiltroGeografico, SIN_FILTRO_GEOGRAFICO } from './filtro-geografico';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class ApiPrepService {
     
   }
   
-  obtenerResumenVotacion(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno'){
+  obtenerResumenVotacion(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno', filtro: FiltroGeografico = SIN_FILTRO_GEOGRAFICO){
     // TODO: 1 o 2 Cargan distitos y 3 carga alcaldías
     const type = typeQuery( tipo_consulta );
 
@@ -46,7 +47,7 @@ export class ApiPrepService {
 
       const api = environment.api_prep;
       // const api = `http://localhost/2024/sicodid/guia`;
-      return this.http.post<ResResumenVotacion>(`${api}/resumenvotacion`, { type  });
+      return this.http.post<ResResumenVotacion>(`${api}/resumenvotacion`, { type, ...filtro });
     
   }
   
@@ -108,12 +109,12 @@ export class ApiPrepService {
 
   }
   
-  obtenerInformacionEstadistica(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno'){
+  obtenerInformacionEstadistica(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno', filtro: FiltroGeografico = SIN_FILTRO_GEOGRAFICO){
 
     const type = typeQuery( tipo_consulta );
 
     const api = environment.api_prep;
-    return this.http.post<Estadistica>(`${api}/estadistica`, {type});
+    return this.http.post<Estadistica>(`${api}/estadistica`, { type, ...filtro });
     // Whithout codeigniter
     // return this.http.get<ResponseSeccionPorDistrito>(`${api}/api_items.php?type=${type}&seleccion=${primerCombo}&seccion=${seccion}`);
 

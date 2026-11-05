@@ -284,7 +284,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center mt-2 border3-t txtAzulM">
-                                    <p class="num-votos font-black txt-numlista">{{lista_nominal_oficial | number}}</p>
+                                    <p class="num-votos font-black txt-numlista">{{actas_contabilizadas | number}}</p>
                                     <p class="font-medium txt-lista">(Lista Nominal de las Casillas
                                         <br>con Actas Contabilizadas)
                                     </p>
@@ -297,8 +297,7 @@
                                 <p class="num-votos font-medium padding-t-30 txt-00FF">
                                     Participación ciudadana</p>
                                 <!-- <p class="num-pc font-black ttl-votos"> {{((total_votos)*100/lista_nominal_oficial) | number}}%</p><br> -->
-                                <p class="num-pc font-black ttl-votos"> {{((total_votos)*100/lista_nominal_oficial)*.01
-                                    | percent:'1.4-4'}}</p><br>
+                                <p class="num-pc font-black ttl-votos"> {{participacionCiudadana | percent:'1.4-4'}}</p><br>
                             </div>
                         </div>
                     </div>
@@ -307,8 +306,7 @@
                             <p class="txt-signo signo-resultado">=</p>
                         </div>
                         <div class="p-2 align-self-center">
-                            <p class="num-pc font-black ttl-votos">{{((total_votos)*100/lista_nominal_oficial)*.01 |
-                                percent:'1.4-4'}}% </p>
+                            <p class="num-pc font-black ttl-votos">{{participacionCiudadana | percent:'1.4-4'}}</p>
                         </div>
                     </div>
                     <p class="num-votos font-medium text-center d-md-none txt-00FF">
