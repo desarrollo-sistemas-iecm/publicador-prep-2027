@@ -98,7 +98,7 @@ every method takes a `tipo_consulta: 'jefatura-de-gobierno' | 'diputaciones' | '
 `typeQuery()` helper maps to a numeric `type` (1 / 2 / 4) sent to the backend — the backend disambiguates election
 type by this numeric code, not by URL path. All requests are POSTs to `${environment.api_prep}/<endpoint>`
 (`avance`, `resumenvotacion`, `grafica`, `combos/primero|segundo|tercero`, `estadistica`, `mapas`, `distribucion`,
-`pruebadistribucion`); response shapes are typed via interfaces in `src/app/interfaces/`. When adding a new
+`pruebadistribucion`, `distribucion-votos`); response shapes are typed via interfaces in `src/app/interfaces/`. When adding a new
 data-driven view, add a method here rather than calling `HttpClient` from a component.
 
 Selection state across the three-level drill-down combos (distrito/alcaldía → sección → casilla) is held in

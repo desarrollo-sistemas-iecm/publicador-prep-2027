@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ResponseSeccionPorDistrito } from '../interfaces/interfaces.interface';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -12,7 +12,6 @@ import { DetalleCasillaResponse } from '../interfaces/detalle-casilla.interface'
 import { ResGrafica, ResPruebaDistribucion } from '../interfaces/grafica.interface';
 import { ResActasModalidad } from '../interfaces/distribucion-rp.interface';
 import { ResDistribucionVotos } from '../interfaces/distribucion-votos.interface';
-import { mockDistribucionVotos } from '../mocks/distribucion-votos.mock';
 import { FiltroGeografico, SIN_FILTRO_GEOGRAFICO } from './filtro-geografico';
 
 @Injectable({
@@ -143,9 +142,10 @@ export class ApiPrepService {
   }
   // this.http.get('url')
 
-  // TODO: sustituir por el endpoint de services-prep-2027 cuando exista; por ahora es mock.
   obtenerDistribucionVotos(tipo_consulta: string, dist_o_alcaldia: number): Observable<ResDistribucionVotos> {
-    return of(mockDistribucionVotos());
+    const type = typeQuery(tipo_consulta);
+    const api = environment.api_prep;
+    return this.http.post<ResDistribucionVotos>(`${api}/distribucion-votos`, { type, dist_o_alcaldia });
   }
 
   obtenerDatosDistribucion(tipo_consulta: string | 'jefatura-de-gobierno' | 'diputaciones' | 'alcaldias' = 'jefatura-de-gobierno', dist_o_alcaldia: number | null = 0, seccion: number | null = 0, casilla: string | null = null, mostrar_no_reg_y_nulos: boolean = false, es_distribucion = false) {

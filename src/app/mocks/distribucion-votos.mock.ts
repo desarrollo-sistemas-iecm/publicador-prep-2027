@@ -2,8 +2,7 @@ import { AporteVotos, DistribucionCandidatura, DistribucionPartido, ResDistribuc
 
 /**
  * Datos de muestra para "Distribución de votos por Candidatura / por Partido Político" a
- * nivel distrito (vistas equivalentes del PREP Coahuila 2026). services-prep-2027 todavía
- * no expone un endpoint con los votos por combinación de coalición.
+ * nivel distrito, servidos por `MockApiInterceptor` en lugar de `/distribucion-votos`.
  */
 const CANDIDATURAS: DistribucionCandidatura[] = [
   {
