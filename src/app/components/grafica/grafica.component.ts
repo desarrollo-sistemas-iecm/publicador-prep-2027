@@ -3,21 +3,8 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { CandidatoGrafica } from 'src/app/interfaces/grafica.interface';
+import { colorPartido } from 'src/app/services/colores-partidos';
 
-const COLORES_GRAFICA: Record<string, string> = {
-  'PAN': '#005CA9',
-  'PRI': '#E30613',
-  'PRD': '#FFCC00',
-  'PVEM': '#50B747',
-  'PT': '#D52B1E',
-  'MORENA': '#B5261E',
-  'MC': '#FFA500',
-  'PAN-PRI-PRD': '#4479E1',
-  'PVEM-PT-MORENA': '#800040',
-  'no_registrados': '#C0C0C0',
-  'votos_nulos': '#808080'
-};
-const COLOR_GRAFICA_POR_DEFECTO = '#B283B9';
 const MARCAS_EJE_PORCENTAJE = [100, 80, 60, 40, 20, 0];
 const LOGO_CANDIDATURA_SIN_PARTIDO = 'CI.png';
 
@@ -136,7 +123,7 @@ export class GraficaComponent implements OnInit {
   }
 
   colorBarra(siglas: string): string {
-    return COLORES_GRAFICA[siglas] ?? COLOR_GRAFICA_POR_DEFECTO;
+    return colorPartido(siglas);
   }
 
   valorMarcaEje(porcentaje: number): number {

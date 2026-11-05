@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 
 import * as Highcharts from 'highcharts';
 import HC_map from 'highcharts/modules/map';
+import { forkJoin } from 'rxjs';
 import { ApiPrepService } from '../../services/api-prep.service';
+import { COLOR_SIN_GANADOR, colorPartido } from '../../services/colores-partidos';
+import { Participante, ResultVoto } from '../../interfaces/mapas-demarcaciones.interface';
 
 HC_map(Highcharts);
 
@@ -16,11 +19,10 @@ const NAVEGACION_SIN_ZOOM: Highcharts.MapNavigationOptions = {
   enableTouchZoom: false
 };
 
-// "@highcharts/map-collection": "^2.1.0",
-// "highcharts-angular": "^3.1.2",
-
-
-
+interface GeoJsonDemarcaciones {
+  type: string;
+  features: { type: string; properties: Record<string, string | number>; geometry: object }[];
+}
 
 @Component({
   standalone: false,
@@ -39,215 +41,82 @@ const NAVEGACION_SIN_ZOOM: Highcharts.MapNavigationOptions = {
 })
 export class MapaComponent implements OnInit {
 
-  resultVotos: any[] = [];
-  participantes: any[] = [];
   public total_suma_filas: number = 0;
-  public arrDemarcacionesObtenidas: any[] = []
-  
-  
-  public mapData: any; // Variable para almacenar los datos del mapa
-  public tipoEleccion: any;
-  public lblTypeMap: string = 'Alcaldías';
-  public routeGeoJson = `alcaldias.geo.json`;
+  public arrDemarcacionesObtenidas: Participante[] = [];
 
+  public tipoEleccion: string = '';
+  public lblTypeMap: string = 'Alcaldías';
+  public colorPartido = colorPartido;
 
   constructor(private http: HttpClient, private router: Router, private apiPrepService: ApiPrepService) { }
 
   ngOnInit(): void {
-
-    this.loadTypeMap();
-    this.obtenerDatosDelServicio();
-
-    
-    this.loadMapData();
-  }
-
-  obtenerDatosDelServicio() {
-    
-    this.apiPrepService.obtenerInformacionMapas( this.tipoEleccion )
-    .subscribe( res => {
-      console.log(res);
-      this.arrDemarcacionesObtenidas = res.data.participantes;
-      this.total_suma_filas = this.arrDemarcacionesObtenidas.reduce( (sum, value) => sum+(value.total_demarcaciones ? value.total_demarcaciones : 0), 0 );
-        
-      })
-
-  }
-
-  loadTypeMap(){
-    const currentUrl = this.router.url; // Obtiene la URL actual
-    const segments = currentUrl.split('/'); // Divide la URL en segmentos
-    const tipoVisualizacion = segments[1]; // Obtiene el tipo de visualización actual
-
-    this.tipoEleccion = tipoVisualizacion;
-    // Highcharts.mapChart('map-container', {});
-
-  }
-  
-  loadMapData(): void {
-    if(this.tipoEleccion === 'diputaciones'){
-      this.routeGeoJson = `distritos.geo.json`;
+    this.tipoEleccion = this.router.url.split('/')[1];
+    const esDiputaciones = this.tipoEleccion === 'diputaciones';
+    if (esDiputaciones) {
       this.lblTypeMap = 'Distritos';
     }
-    // Cambiar la ruta del archivo JSON según su ubicación en tu proyecto
-    this.http.get(`assets/json/${this.routeGeoJson}`).subscribe(data => {
-      // this.renderMapDist();
-      
-      this.mapData = data;
-      if(this.tipoEleccion === 'diputaciones'){
-        this.renderMapDist();
-      } else{
-        this.renderMapAlc();
-      }
+    const rutaGeoJson = esDiputaciones ? 'distritos.geo.json' : 'alcaldias.geo.json';
 
+    forkJoin({
+      mapas: this.apiPrepService.obtenerInformacionMapas(this.tipoEleccion),
+      geoJson: this.http.get<GeoJsonDemarcaciones>(`assets/json/${rutaGeoJson}`)
+    }).subscribe(({ mapas, geoJson }) => {
+      this.arrDemarcacionesObtenidas = mapas.data.participantes;
+      this.total_suma_filas = this.arrDemarcacionesObtenidas.reduce((suma, { total_demarcaciones }) => suma + (total_demarcaciones ?? 0), 0);
+      this.renderMapa(geoJson, mapas.data.result_votos, esDiputaciones ? 'ID' : 'municipio');
     });
   }
 
-  renderMapDist(): void {
+  private renderMapa(geoJson: GeoJsonDemarcaciones, resultVotos: ResultVoto[], propiedadId: string): void {
+    const ganadorPorDemarcacion = new Map(resultVotos.map(({ id_distrito, siglas_ganador }) => [id_distrito, siglas_ganador]));
+    const demarcaciones = geoJson.features.map((feature) => {
+      const siglasGanador = ganadorPorDemarcacion.get(Number(feature.properties[propiedadId]));
+      return {
+        [propiedadId]: feature.properties[propiedadId],
+        color: siglasGanador ? colorPartido(siglasGanador) : COLOR_SIN_GANADOR
+      };
+    });
+
     Highcharts.mapChart('map-container', {
       chart: {
-        map: this.mapData,
+        map: geoJson as Highcharts.GeoJSON,
         panning: { enabled: false }
       },
-      credits: {
-        enabled: false
-      },
-      exporting: {
-        enabled: false
-      },
-      legend: {
-        enabled: false
-      },
+      credits: { enabled: false },
+      exporting: { enabled: false },
+      legend: { enabled: false },
+      title: { text: '' },
+      tooltip: { enabled: false },
       mapNavigation: NAVEGACION_SIN_ZOOM,
       plotOptions: {
-        series: {
-          states: {
-            hover: {
-              color: '#21335c'
-            }
-          },
-          point: {
-            events: {
-              click: function(event) {
-                console.log(event); // Aquí puedes ver las propiedades del objeto point en la consola
-              }
-            }
-          }
-        },
         map: {
-          tooltip: {
-            headerFormat: '',
-            pointFormat: 'Distrito {point.properties.ID}',
-          },
           cursor: 'pointer',
+          borderColor: '#000000',
+          borderWidth: 1,
+          states: {
+            hover: { brightness: 0.1 },
+            inactive: { enabled: false }
+          }
         }
       },
       series: [
         {
           type: 'map',
-          data: this.mapData.features,
-          dataLabels: {
-            enabled: true,
-            format: 'Distrito {point.properties.ID}',
-            style: {
-              fontSize: '10px'
-            }
-          },
+          data: demarcaciones as Highcharts.SeriesMapDataOptions[],
+          joinBy: propiedadId,
+          dataLabels: { enabled: false },
           point: {
             events: {
-              click: (row) => {
-                console.log(row.point.properties);
-                const currentUrl = this.router.url; // Obtiene la URL actual
-
-                console.log(currentUrl);
-                
-                
-                this.router.navigate([currentUrl+'/'+row.point.properties.ID]);
-              }
-            }
-          },
-        }
-      ],
-      title: {
-        text: ''
-      }
-    });
-  }
-  
-  renderMapAlc(): void {
-    Highcharts.mapChart('map-container', {
-      chart: {
-        map: this.mapData,
-        panning: { enabled: false }
-      },
-      credits: {
-        enabled: false
-      },
-      exporting: {
-        enabled: false
-      },
-      legend: {
-        enabled: false
-      },
-      mapNavigation: NAVEGACION_SIN_ZOOM,
-      plotOptions: {
-        series: {
-          states: {
-            hover: {
-              color: '#21335c'
-            }
-          },
-          point: {
-            events: {
-              click: function(event) {
-                console.log(event); // Aquí puedes ver las propiedades del objeto point en la consola
+              click: (evento) => {
+                const { properties } = evento.point as Highcharts.Point & { properties: Record<string, string | number> };
+                this.router.navigate([`${this.router.url}/${properties[propiedadId]}`]);
               }
             }
           }
-        },
-        map: {
-          tooltip: {
-            headerFormat: '',
-            pointFormat: '{point.properties.nomgeo}',
-          },
-          cursor: 'pointer',
         }
-      },
-      series: [
-        {
-          type: 'map',
-          data: this.mapData.features,
-          dataLabels: {
-            enabled: true,
-            format: '{point.properties.nomgeo}',
-            style: {
-              fontSize: '10px'
-            }
-          },
-          point: {
-            events: {
-              click: (row) => {
-                console.log(row.point.properties);
-                const currentUrl = this.router.url; // Obtiene la URL actual
-
-                console.log(currentUrl);
-                
-                
-                this.router.navigate([currentUrl+'/'+row.point.properties.municipio]);
-              }
-            }
-          },
-        }
-      ],
-      title: {
-        text: ''
-      }
+      ]
     });
-  }
-
-  public getColor(siglas: string){
-    console.log(siglas);
-    
   }
 
 }
