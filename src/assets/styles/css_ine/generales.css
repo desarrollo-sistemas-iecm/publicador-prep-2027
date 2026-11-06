@@ -6,17 +6,17 @@ body {
 }
 
 .bgPrototipo {
-	/* background: url('/assets/img/marca-de-agua.png');
-	 background-repeat: repeat;
-	 width: 100%;
-	 height: 100%; */
+	background: url('/assets/img/marca-de-agua.png');
+	background-repeat: repeat;
+	width: 100%;
+	height: 100%;
 }
 
 .container-fluid {
 	/* background: url('../images/MarcaDeAgua.png'); */
-	/* background: url('/assets/img/marca-de-agua.png'); */
+	background: url('/assets/img/marca-de-agua.png');
 
-	/* background-repeat: repeat; */
+	background-repeat: repeat;
 }
 
 h1 {
