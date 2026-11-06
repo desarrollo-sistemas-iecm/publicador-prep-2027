@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="container-fluid py-3">
-                <app-distribucion-votos></app-distribucion-votos>
+                <app-distribucion-votos [modo]="modoDistribucion"></app-distribucion-votos>
             </div>
 
             <div class="container-fluid py-2" *ngIf="tipoEleccion === 'diputaciones'">

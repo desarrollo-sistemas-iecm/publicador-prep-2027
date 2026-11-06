@@ -1,0 +1,119 @@
+.tarjetas-votos {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.carrusel {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+}
+
+.columna-fija,
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+
+/* La columna de etiquetas se queda fija mientras las tarjetas se desplazan por debajo. */
+.columna-fija {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: 120px;
+  background: var(--prep-superficie);
+  color: var(--prep-texto);
+}
+
+.tarjeta {
+  width: 190px;
+  border: 2px solid var(--prep-borde);
+  border-radius: 6px;
+  background: var(--prep-superficie);
+  color: var(--prep-texto);
+  text-align: center;
+}
+
+.tarjeta.ganador {
+  border-color: var(--prep-morado-claro);
+}
+
+.cabecera-tarjeta {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px;
+}
+
+.cabecera-tarjeta.con-candidatura {
+  height: 190px;
+}
+
+.columna-fija .cabecera-tarjeta {
+  align-items: flex-start;
+}
+
+.titulo-votos {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.foto {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  margin-bottom: 12px;
+}
+
+.nombre {
+  font-size: 0.8rem;
+  margin: 0 0 8px;
+  min-height: 2.4em;
+}
+
+.logos {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.logos img {
+  height: 26px;
+  width: auto;
+}
+
+.fila {
+  margin: 0;
+  padding: 6px 8px;
+  border-top: 1px solid var(--prep-borde);
+}
+
+.fila-total {
+  font-size: 1.05rem;
+}
+
+.fila-porcentaje {
+  font-size: 0.85rem;
+}
+
+.columna-fija .fila {
+  text-align: left;
+}
+
+.boton-desplazar {
+  flex: 0 0 auto;
+  border: none;
+  background: transparent;
+  color: var(--prep-texto);
+  padding: 8px;
+  cursor: pointer;
+}

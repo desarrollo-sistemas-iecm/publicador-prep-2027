@@ -1,69 +1,32 @@
-<div class="container-fluid d-none d-lg-block d-xl-block">
-    <div class="row dis-flex pb-1">
-        <div class="boton-scroll dis-flex cursorPointer">
-            <i aria-hidden="true" class="fa fa-chevron-left"></i>
-        </div>
-        <div class="col-11">
-            <div class="row dis-flex justify-s scrollH">
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2 px-1" *ngFor="let item of cards">
-                    <!-- <pre>{{ item | json }}</pre> -->
-                    <div class="card-resumen">
-                        <div class="encabezado dis-flex w-100 py-2">
-                            <div class="dis-flex w-100">
-                                <b>{{item.siglas}}</b>
-                                <div class="row w-100 dis-flex">
-                                    <p class="pe p-1" ng-reflect-ng-style="[object Object]"
-                                        style="background-image: url('./assets/img/unknow/{{item.siglas | remplazaGuionesMediosABajos}}.png'); background-size: contain; background-repeat: no-repeat; background-position: center center; margin: 20px 2px;">
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cuerpo dis-flex bgGrisTenue p-2">
-                            <div class="w-50">
-                                <p>Votos</p>
-                                <p class="votos"><strong>{{item.total_votos | number}}</strong>
-                                </p>
-                            </div>
-                            <div class="w-50 dis-flex flex-col align-e pr-3 pr-xl-0">
-                                <p>Porcentaje</p>
-                                <p>{{item.porcentaje}}%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="col-6 col-sm-4 col-md-3 col-lg-2 px-1">
-                    <div class="card-resumen">
-                        <div class="encabezado dis-flex w-100 py-2">
-                            <div class="dis-flex w-100">
-                                <div class="row w-100 dis-flex">
-                                    <p class="pe p-1" ng-reflect-ng-style="[object Object]"
-                                        style="background-image: url(&quot;./assets/img/unknow/coal1.png&quot;); background-size: contain; background-repeat: no-repeat; background-position: center center; margin: 20px 2px;">
-                                    </p>
-                                    <p class="pe p-1" ng-reflect-ng-style="[object Object]"
-                                        style="background-image: url(&quot;./assets/img/unknow/coal1.png&quot;); background-size: contain; background-repeat: no-repeat; background-position: center center; margin: 20px 2px;">
-                                    </p>
-                                    <p class="pe p-1" ng-reflect-ng-style="[object Object]"
-                                        style="background-image: url(&quot;./assets/img/unknow/coal1.png&quot;); background-size: contain; background-repeat: no-repeat; background-position: center center; margin: 20px 2px;">
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cuerpo dis-flex bgGrisTenue p-2">
-                            <div class="w-50">
-                                <p>Votos</p>
-                                <p class="votos"><strong>264</strong></p>
-                            </div>
-                            <div class="w-50 dis-flex flex-col align-e pr-3 pr-xl-0">
-                                <p>Porcentaje</p>
-                                <p>0.4787%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+<div class="tarjetas-votos" *ngIf="cards.length">
+    <button type="button" class="boton-desplazar" (click)="desplazar(-1)" aria-label="Ver tarjetas anteriores">
+        <i aria-hidden="true" class="fa fa-chevron-left"></i>
+    </button>
+    <div class="carrusel" #carrusel>
+        <div class="columna-fija">
+            <div class="cabecera-tarjeta" [class.con-candidatura]="mostrarCandidatura">
+                <p class="titulo-votos">Votos</p>
             </div>
+            <p class="fila fila-total">Total</p>
+            <p class="fila fila-porcentaje">Porcentaje</p>
         </div>
-        <div class="boton-scroll dis-flex cursorPointer"><i aria-hidden="true" scrollH class="fa fa-chevron-right"></i>
+        <div class="tarjeta" *ngFor="let item of cards" [class.ganador]="item.ganador">
+            <div class="cabecera-tarjeta" [class.con-candidatura]="mostrarCandidatura">
+                <ng-container *ngIf="mostrarCandidatura">
+                    <img class="foto" src="assets/img/unknow/avatar-persona.png" alt="">
+                    <p class="nombre">{{ item.descripcion }}</p>
+                </ng-container>
+                <div class="logos">
+                    <img *ngFor="let partido of partidos(item.siglas)"
+                        src="./assets/img/unknow/{{ partido | remplazaGuionesMediosABajos }}.png"
+                        [alt]="partido" [title]="partido">
+                </div>
+            </div>
+            <p class="fila fila-total">{{ item.total_votos | number }}</p>
+            <p class="fila fila-porcentaje">{{ item.porcentaje | number: '1.4-4' }}%</p>
         </div>
     </div>
+    <button type="button" class="boton-desplazar" (click)="desplazar(1)" aria-label="Ver tarjetas siguientes">
+        <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </button>
 </div>

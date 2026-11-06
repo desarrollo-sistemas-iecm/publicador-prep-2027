@@ -19,9 +19,8 @@ export interface Participante {
 }
 
 export interface ResultVoto {
-    id_distrito:     number;
-    total_votos_cc1: number;
-    total_votos_cc5: number;
-    votos_part_6:    number;
-    total:           number;
+    [columnaVotos: string]: number | string | null;
+    id_distrito:    number;
+    total:          number;
+    siglas_ganador: string | null;
 }

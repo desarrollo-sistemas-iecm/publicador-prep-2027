@@ -169,7 +169,8 @@ export function mockMapas(type: number) {
     total_votos_cc1: 20000 + i * 137,
     total_votos_cc5: 15000 + i * 98,
     votos_part_6: 12000 + i * 54,
-    total: 47000 + i * 289
+    total: 47000 + i * 289,
+    siglas_ganador: CANDIDATURAS[0].siglas
   }));
   return { success: true, msg: 'ok', data: { participantes, result_votos } };
 }

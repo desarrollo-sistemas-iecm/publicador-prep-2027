@@ -9,6 +9,8 @@ import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { PaginaNoEncontradaComponent } from './pages/pagina-no-encontrada/pagina-no-encontrada.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MockApiInterceptor } from './interceptors/mock-api.interceptor';
+import { RouteReuseStrategy } from '@angular/router';
+import { RecargaPorParametrosStrategy } from './services/recarga-por-parametros.strategy';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { GraficaComponent } from './components/grafica/grafica.component';
 import { DetalleVotosCasillaComponent } from './components/detalle-votos-casilla/detalle-votos-casilla.component';
@@ -23,6 +25,8 @@ import { EstadisticaCasillaComponent } from './components/estadistica-casilla/es
 import { ListadoParticipacionCiudadanaLNComponent } from './components/listado-participacion-ciudadana-ln/listado-participacion-ciudadana-ln.component';
 import { VotacionPorCasillaComponent } from './components/votacion-por-casilla/votacion-por-casilla.component';
 import { RepresentacionProporcionalComponent } from './components/representacion-proporcional/representacion-proporcional.component';
+import { VotosActasContabilizadasComponent } from './components/votos-actas-contabilizadas/votos-actas-contabilizadas.component';
+import { InformacionActaComponent } from './components/informacion-acta/informacion-acta.component';
 import { PipesModule } from './pipes/pipes.module';
 // import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -45,7 +49,9 @@ import { PipesModule } from './pipes/pipes.module';
     EstadisticaCasillaComponent,
     ListadoParticipacionCiudadanaLNComponent,
     VotacionPorCasillaComponent,
-    RepresentacionProporcionalComponent
+    RepresentacionProporcionalComponent,
+    VotosActasContabilizadasComponent,
+    InformacionActaComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,8 @@ import { PipesModule } from './pipes/pipes.module';
     // ignorado; sin este provider explícito, Angular arranca con NoopNgZone (zoneless) y
     // las respuestas HTTP asíncronas nunca disparan detección de cambios automática.
     provideZoneChangeDetection(),
-    { provide: HTTP_INTERCEPTORS, useClass: MockApiInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: MockApiInterceptor, multi: true },
+    { provide: RouteReuseStrategy, useClass: RecargaPorParametrosStrategy }
   ],
   bootstrap: [AppComponent]
 })

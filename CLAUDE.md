@@ -71,10 +71,17 @@ entry route, `votos-por-candidatura` (gubernatura renders the entity chart there
 and `votos-por-candidatura/:id_distrito_alcaldia` always renders `PrimerNivelComponent`. This mirrors PREP2024, where
 the sidebar's first button is "Votos por Candidatura" for every election type.
 
-Changing the first combo (distrito/alcaldía) in the sidebar always navigates to
-`/<tipo>/votos-por-candidatura/<id>`, regardless of the current view (same as PREP2024). Every level component that
-hosts `<app-sidebar>` (`TestComponent`, `PrimerNivelComponent`, `SegundoNivelComponent`, `TercerNivelComponent`,
-`VotacionPorCasillaComponent`) implements this in its own `onSelectionChangePrimerCombo` — keep them in sync.
+Changing the first combo (distrito/alcaldía) in the sidebar keeps the current view (`votos-por-candidatura`,
+`votos-por-partido-politico-y-candidatura-independiente` or `detalle-por-casilla`) for the new id; from a sección or
+casilla it goes back to `/<tipo>/votos-por-candidatura/<id>` (same as PREP Coahuila 2026). The rule lives in
+`rutaAlCambiarDistOAlcaldia()` (`src/app/services/navegacion-combos.ts`), called from the `onSelectionChangePrimerCombo`
+of every level component that hosts `<app-sidebar>` (`TestComponent`, `PrimerNivelComponent`, `SegundoNivelComponent`,
+`TercerNivelComponent`, `VotacionPorCasillaComponent`). The sidebar only emits combo changes made by the user, not the
+selection restored from the URL on load.
+
+Views read distrito/sección/casilla from the URL once in `ngOnInit`, so `RecargaPorParametrosStrategy`
+(`RouteReuseStrategy` registered in `AppModule`) recreates a route's components whenever its params change instead of
+reusing them with stale data.
 
 All three also mount the `voto-condiciones-especiales` module at `voto-en-condiciones-excepcionales`, which handles
 special voting conditions (voto anticipado, voto en el extranjero, voto en prisión preventiva) via one shared
@@ -91,7 +98,7 @@ every method takes a `tipo_consulta: 'jefatura-de-gobierno' | 'diputaciones' | '
 `typeQuery()` helper maps to a numeric `type` (1 / 2 / 4) sent to the backend — the backend disambiguates election
 type by this numeric code, not by URL path. All requests are POSTs to `${environment.api_prep}/<endpoint>`
 (`avance`, `resumenvotacion`, `grafica`, `combos/primero|segundo|tercero`, `estadistica`, `mapas`, `distribucion`,
-`pruebadistribucion`); response shapes are typed via interfaces in `src/app/interfaces/`. When adding a new
+`pruebadistribucion`, `distribucion-votos`); response shapes are typed via interfaces in `src/app/interfaces/`. When adding a new
 data-driven view, add a method here rather than calling `HttpClient` from a component.
 
 Selection state across the three-level drill-down combos (distrito/alcaldía → sección → casilla) is held in

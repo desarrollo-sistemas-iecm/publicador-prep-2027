@@ -48,6 +48,10 @@ export class DetalleVotosCasillaComponent implements OnInit {
     this.cargarInfo();
   }
 
+  esColumnaVotos(dataIndex: string): boolean {
+    return dataIndex.startsWith('votos_part_') || dataIndex.startsWith('total_votos_cc');
+  }
+
   cargarInfo() {
     console.log('Cargar info!');
 

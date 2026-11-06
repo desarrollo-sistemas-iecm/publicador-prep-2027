@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
+import { filtroGeograficoDesdeUrl } from 'src/app/services/filtro-geografico';
 
 function quitarSimboloPorcentaje(valor: string): string {
   return valor.endsWith('%') ? valor.slice(0, -1) : valor;
@@ -52,7 +53,7 @@ export class ResumenVotacionComponent implements OnInit {
     if (segments.length >= 2 && ['jefatura-de-gobierno', 'diputaciones', 'alcaldias'].includes(segments[1])) {
       const tipoVisualizacion = segments[1]; // Obtiene el tipo de visualización actual
 
-      this.apiPrepService.obtenerResumenVotacion(tipoVisualizacion)
+      this.apiPrepService.obtenerResumenVotacion(tipoVisualizacion, filtroGeograficoDesdeUrl(currentUrl))
         .subscribe((res) => {
           const { resumen_votacion } = res;
 

@@ -8,7 +8,7 @@
                     <div class="col-8" [ngClass]="{'row-ganador': item.ganador}" *ngFor="let item of arrDemarcacionesObtenidas">
                         <div class="row">
                             <div class="col-8 dis-flex justify-s pl-0">
-                                <div class="color-partido mx-1" style="background: silver;"> &nbsp; </div>
+                                <div class="color-partido mx-1" [style.background]="colorPartido(item.siglas)"> &nbsp; </div>
                                 <!-- <p class="pre">
                                     {{ item.siglas }}
                                 </p> -->

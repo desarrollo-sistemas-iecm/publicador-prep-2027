@@ -72,9 +72,14 @@
                                             <div class="inter-partido dis-flex w100p">
                                                 <div class="dis-flex">
                                                     <div class="dis-flex padding-lateral">
-                                                        <strong class="dis-flex text-center">
-                                                            {{column.title}}
-                                                        </strong>
+                                                        <img *ngIf="esColumnaVotos(column.dataIndex); else tituloTexto" class="m-1"
+                                                            style="width: 2.25em; height: auto;" [alt]="column.title" [title]="column.title"
+                                                            src="./assets/img/unknow/{{ column.title | remplazaGuionesMediosABajos }}.png">
+                                                        <ng-template #tituloTexto>
+                                                            <strong class="dis-flex text-center">
+                                                                {{column.title}}
+                                                            </strong>
+                                                        </ng-template>
                                                     </div>
                                                 </div>
                                             </div>

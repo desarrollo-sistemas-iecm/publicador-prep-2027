@@ -8,6 +8,7 @@ import {
   mockCombosPrimero, mockCombosSegundo, mockCombosTercero,
   mockEstadistica, mockMapas, mockDistribucion, mockBusquedaSeccion, mockActasModalidad
 } from 'src/app/mocks/api-prep.mock';
+import { mockDistribucionVotos } from 'src/app/mocks/distribucion-votos.mock';
 
 /**
  * Sustituye las llamadas a ApiPrepService (environment.api_prep) por datos ficticios
@@ -53,6 +54,8 @@ export class MockApiInterceptor implements HttpInterceptor {
         return mockMapas(Number(body.type));
       case path === '/distribucion':
         return mockDistribucion(Number(body.seleccion), Number(body.seccion));
+      case path === '/distribucion-votos':
+        return mockDistribucionVotos();
       case path === '/actas/rp':
         return mockActasModalidad('S', Number(body.seleccion) || 5);
       case path === '/actas/extranjero':

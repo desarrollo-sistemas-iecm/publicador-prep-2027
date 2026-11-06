@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { rutaAlCambiarDistOAlcaldia } from 'src/app/services/navegacion-combos';
 import { BreadcrumbsConfig } from 'src/app/interfaces/breadcrumbs';
 import { ComboStateService } from 'src/app/services/combo-state.service';
 import { ApiPrepService } from '../../services/api-prep.service';
@@ -34,7 +35,8 @@ export class TestComponent implements OnInit {
   tipoEleccion: any;
 
   labelSubtituloSeccion: string = '';
-  
+  esVistaMapa: boolean = false;
+
   
   constructor(private router: Router, private route: ActivatedRoute, private comboStateService: ComboStateService, private apiPrepService: ApiPrepService,
     private spinnerService: SpinnerService,
@@ -60,7 +62,7 @@ export class TestComponent implements OnInit {
       const tipoVisualizacion = segments[1]; // Obtiene el tipo de visualización actual
 
       // Construye la nueva URL con el tipo de visualización y el valor seleccionado
-      const newUrl = `/${tipoVisualizacion}/votos-por-candidatura/${selectedValue}`;
+      const newUrl = rutaAlCambiarDistOAlcaldia(currentUrl, selectedValue);
 
       console.log(newUrl);
 
@@ -69,7 +71,7 @@ export class TestComponent implements OnInit {
 
       this.tipoEleccion = tipoVisualizacion;
 
-      this.configuracionBreadcrumbs.votos_por = 'votos-por-candidatura';
+      this.configuracionBreadcrumbs.votos_por = newUrl.split('/')[2];
 
       this.primerCombo = selectedValue; // Guarda el valor seleccionado del primer combo
     } else {
@@ -155,6 +157,12 @@ export class TestComponent implements OnInit {
 const tipoVisualizacion = segments[1]; // Obtiene el tipo de visualización actual
 
       this.tipoEleccion = tipoVisualizacion;
+      this.esVistaMapa = tipoVisualizacion !== 'jefatura-de-gobierno' && segments[2] === 'votos-por-candidatura';
+
+      if (segments[2] === 'votos-por-partido-politico-y-candidatura-independiente') {
+        this.labelSubtituloSeccion = 'Votos en Actas Contabilizadas';
+        return;
+      }
 
       switch (this.tipoEleccion) {
         case 'jefatura-de-gobierno':
