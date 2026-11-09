@@ -30,11 +30,16 @@ interface GeoJsonDemarcaciones {
   templateUrl: './mapa.component.html',
   styles: [
     `
+    .fila > div:nth-child(odd) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
     .row-ganador{
       border-top: 2px solid #C791A8;
       border-bottom: 2px solid #C791A8;
       border-left: 2px solid #C791A8;
-      border-right: 2px solid #C791A8
+      border-right: 2px solid #C791A8;
+      border-radius: .5rem;
     }
     `
   ]
