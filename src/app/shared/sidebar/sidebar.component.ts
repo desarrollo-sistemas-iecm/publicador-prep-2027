@@ -7,7 +7,7 @@ import { BreadcrumbsConfig } from 'src/app/interfaces/breadcrumbs';
 import { Location } from '@angular/common';
 import { SpinnerService } from 'src/app/services/spinner.service';
 
-interface OptSelect{
+interface OptSelect {
   value: number | string | null;
   label: string | number;
 }
@@ -19,8 +19,8 @@ interface OptSelect{
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  
-  
+
+
   public tipo_consulta: 'jefatura-de-gobierno' | 'diputaciones' | 'alcaldias' = 'jefatura-de-gobierno';
   public lbl_first_select: string = 'Distrito';
   public optSelect: OptSelect[] = [];
@@ -93,7 +93,7 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  cargaDistritos( type: 'jefatura-de-gobierno' | 'diputaciones' ): void {
+  cargaDistritos(type: 'jefatura-de-gobierno' | 'diputaciones'): void {
     this.lblBtnVotosPorDinamic = 'Votos por Candidatura';
     this.routeBtnVotosPorDinamic = 'votos-por-candidatura';
     this.lbl_first_select = 'Distrito';
@@ -128,7 +128,7 @@ export class SidebarComponent implements OnInit {
     this.breadcrumbsConfig.alcaldia = 0;
     this.breadcrumbsConfig.distrito = 0;
     // console.log('distOAlcaldia');
-    
+
     if (this.tipo_consulta === 'alcaldias') {
       this.breadcrumbsConfig.alcaldia = idDistrito;
     } else {
@@ -161,7 +161,7 @@ export class SidebarComponent implements OnInit {
 
   initializeCombo(): void {
     // console.log('initializeCombo');
-    
+
     let selectedValue = '';
     this.comboStateService.updateSelectedValue(selectedValue);
     const segments = this.router.url.split('/');
@@ -198,14 +198,14 @@ export class SidebarComponent implements OnInit {
       this.apiPrepService.obtenerPrimerCombo(this.tipo_consulta)
     ).subscribe((res: any) => {
       // console.log(res);
-      
-      this.optSelect = [{ label: 'Seleccione', value: null }];
+
+      this.optSelect = [{ label: 'Todos', value: null }];
       res.categories.forEach((element: any) => {
         this.optSelect.push({ label: element.name, value: element.id });
       });
 
       // console.log(this.optSelect);
-      if(this.firstSelected){
+      if (this.firstSelected) {
         const nombre_alcaldia = this.optSelect.find(el => el.value == this.firstSelected)?.label || '';
         this.breadcrumbsConfig.nombre_alcaldia = nombre_alcaldia;
         this.emitirConfiguracionBreadcrumbs.emit(this.breadcrumbsConfig);

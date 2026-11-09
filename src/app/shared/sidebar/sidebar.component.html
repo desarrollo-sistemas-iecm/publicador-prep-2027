@@ -1,6 +1,6 @@
 <div class="bgPrototipo">
   <div class="container-fluid barra-lateral txBlanco px14">
-    <ng-container *ngIf="mostrarBuscador; else noMostrarOpcionesMenu">      
+    <ng-container *ngIf="mostrarBuscador; else noMostrarOpcionesMenu">
       <div class="row pl-2">
         <div class="col-12">
           <div class="pt-2">
@@ -14,10 +14,9 @@
         </div>
       </div>
       <div class="row" *ngIf="!seccionSelected">
-      <!-- {{ tipo_consulta }} -->
+        <!-- {{ tipo_consulta }} -->
         <div class="col-12 col-xl-14 mb-1 px-1">
-          <a
-          [routerLink]="firstSelected ? ['/', tipo_consulta, routeBtnVotosPorDinamic, firstSelected] : ['/', tipo_consulta, routeBtnVotosPorDinamic]"
+          <a [routerLink]="firstSelected ? ['/', tipo_consulta, routeBtnVotosPorDinamic, firstSelected] : ['/', tipo_consulta, routeBtnVotosPorDinamic]"
             routerLinkActive="BTN-Eleccion-active"
             class="btn btn-block px14 px-1 py-3 border-tipo-eleccion BTN-Eleccion cursorPointer" type="button"
             (click)="breadcrumbsConfig.votos_por = routeBtnVotosPorDinamic; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);">
@@ -27,23 +26,21 @@
           </a>
         </div>
         <div class="col-12 col-xl-14 mb-1 px-1">
-          <a
-          [routerLink]="firstSelected ? ['/', tipo_consulta, 'votos-por-partido-politico-y-candidatura-independiente', firstSelected] : ['/', tipo_consulta, 'votos-por-partido-politico-y-candidatura-independiente']"
+          <a [routerLink]="firstSelected ? ['/', tipo_consulta, 'votos-por-partido-politico-y-candidatura-independiente', firstSelected] : ['/', tipo_consulta, 'votos-por-partido-politico-y-candidatura-independiente']"
             routerLinkActive="BTN-Eleccion-active"
-            class="btn btn-ajuste border-tipo-eleccion btn-block px14 px-1 cursorPointer BTN-Eleccion" type="button" (click)="breadcrumbsConfig.votos_por = 'votos-por-partido-politico-y-candidatura-independiente'; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);"
-            >
+            class="btn btn-ajuste border-tipo-eleccion btn-block px14 px-1 cursorPointer BTN-Eleccion" type="button"
+            (click)="breadcrumbsConfig.votos_por = 'votos-por-partido-politico-y-candidatura-independiente'; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);">
             <strong>
-  
+
               Votos por Partido Político y Candidatura sin Partido
             </strong>
           </a>
         </div>
         <div *ngIf="firstSelected" class="col-12 col-xl-14 mb-1 px-1">
-          <a
-          [routerLink]="['/', tipo_consulta, 'detalle-por-casilla', firstSelected]"
+          <a [routerLink]="['/', tipo_consulta, 'detalle-por-casilla', firstSelected]"
             routerLinkActive="BTN-Eleccion-active"
-            class="btn btn-ajuste border-tipo-eleccion btn-block px14 px-1 cursorPointer BTN-Eleccion" type="button" (click)="breadcrumbsConfig.votos_por = 'detalle-por-casilla'; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);"
-            >
+            class="btn btn-ajuste border-tipo-eleccion btn-block px14 px-1 cursorPointer BTN-Eleccion" type="button"
+            (click)="breadcrumbsConfig.votos_por = 'detalle-por-casilla'; emitirConfiguracionBreadcrumbs.emit(breadcrumbsConfig);">
             <strong>
               Detalle por Casilla
             </strong>
@@ -66,31 +63,34 @@
             <div class="col-4 col-xl-12 combo mb-2">
               <label for="arg1" class="form-label">{{lbl_first_select}}:</label>
               <div class="input-group df-sw">
-                  <select #arg1 id="arg1" class="form-control" aria-label="Default select example" aria-placeholder="Seleccione"
-                    (change)="cambiarDistOAlcaldia(arg1.value)" [(ngModel)]="firstSelected">
-                    <option *ngFor="let item of optSelect" [value]="item.value">{{ item.label }}</option>
-                  </select>
-                  <!-- Longitud de optSelect: {{ optSelect.length }} -->
-                  <!-- Valor seleccionado: {{ firstSelected }} -->
+                <select #arg1 id="arg1" class="form-control" aria-label="Default select example"
+                  aria-placeholder="Todos" (change)="cambiarDistOAlcaldia(arg1.value)" [(ngModel)]="firstSelected">
+                  <option *ngFor="let item of optSelect" [value]="item.value">{{ item.label }}</option>
+                </select>
+                <!-- Longitud de optSelect: {{ optSelect.length }} -->
+                <!-- Valor seleccionado: {{ firstSelected }} -->
               </div>
             </div>
             <div *ngIf="optSecciones.length > 1" class="col-4 col-xl-12 combo mb-2">
               <label for="seccion" class="form-label">Sección:</label>
               <div class="input-group df-sw">
-                <select #seccion id="seccion" class="form-select form-control" aria-label="Default select example" (change)="cambiarSeccion(seccion.value)" aria-placeholder="Seleccione" [(ngModel)]="seccionSelected">
+                <select #seccion id="seccion" class="form-select form-control" aria-label="Default select example"
+                  (change)="cambiarSeccion(seccion.value)" aria-placeholder="Todos" [(ngModel)]="seccionSelected">
                   <option *ngFor="let item of optSecciones" [value]="item.value">{{ item.label }}</option>
                 </select>
                 <!-- Longitud de optSecciones: {{ optSecciones.length }} -->
               </div>
-  
+
             </div>
-            <div *ngIf="optCasillas.length > 1" class="col-4 col-xl-12 combo mb-2"><label for="distrito" class="px14"> Casilla
+            <div *ngIf="optCasillas.length > 1" class="col-4 col-xl-12 combo mb-2"><label for="distrito" class="px14">
+                Casilla
               </label>
               <div class="input-group df-sw">
-                <select #casillas id="casillas" class="form-select form-control cursorPointer" (change)="cambiarCasilla(casillas.value)" [(ngModel)]="casillaSelected">
+                <select #casillas id="casillas" class="form-select form-control cursorPointer"
+                  (change)="cambiarCasilla(casillas.value)" [(ngModel)]="casillaSelected">
                   <!-- <option value="">- Seleccione -</option> -->
                   <option *ngFor="let item of optCasillas" [value]="item.value">{{ item.label }}</option>
-  
+
                 </select>
               </div>
             </div>
