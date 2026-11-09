@@ -10,9 +10,30 @@ import { CandidatoGrafica } from 'src/app/interfaces/grafica.interface';
   styles: [
     `
     .logo-partido {
-    width: 2.25em;
-    height: auto;
-}
+      width: 2.25em;
+      height: auto;
+    }
+
+    .tabla-votos > thead > tr > th {
+      background-color: #582d73;
+      color: #fff;
+      vertical-align: middle;
+    }
+
+    .tabla-votos > :not(caption) > tr > * {
+      border: 0;
+      padding: 1em;
+      white-space: nowrap;
+    }
+
+    .tabla-votos > tbody > tr:first-child > td {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .tabla-votos > tbody > tr:nth-child(even) > td {
+      background-color: #f2efef;
+    }
     `
   ]
 })
