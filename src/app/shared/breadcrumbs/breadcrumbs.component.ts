@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LabelTransformerViewFoService } from 'src/app/services/label-transformer-view-fo.service';
 import { NavigationService } from '../../services/navigation-breadcrumbs.service';
+import { descripcionCasilla } from 'src/app/services/etiqueta-casilla';
 
 @Component({
   standalone: false,
@@ -38,6 +39,10 @@ export class BreadcrumbsComponent {
     private navigationService: NavigationService
 
   ) { }
+
+  get casillaLegible(): string {
+    return descripcionCasilla(this.configuracionBreadcrumbs.casilla);
+  }
 
   back(n = 0){
     this.navigationService.goBack(n);
