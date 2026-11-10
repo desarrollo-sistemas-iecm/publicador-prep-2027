@@ -1,4 +1,10 @@
-import { etiquetaCasilla } from './etiqueta-casilla';
+import { descripcionCasilla, etiquetaCasilla } from './etiqueta-casilla';
+
+describe('descripcionCasilla', () => {
+  it('should describe the casilla type without the sección', () => {
+    expect([descripcionCasilla('B01'), descripcionCasilla('C03')]).toEqual(['Básica', 'Contigua 3']);
+  });
+});
 
 describe('etiquetaCasilla', () => {
   it('should omit the number when the casilla is básica', () => {

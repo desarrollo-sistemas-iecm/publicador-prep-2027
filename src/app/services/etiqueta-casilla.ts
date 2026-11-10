@@ -20,16 +20,21 @@ const descripcionSegmento = (segmento: string): string => {
 };
 
 /**
- * Nombre legible de una casilla a partir de su sección y su clave, como en
- * PREP Coahuila 2026: `3188 Básica`, `3188 Contigua 2`,
- * `242 Extraordinaria 1 Contigua 1`. Las claves que no siguen el patrón
- * conocido se muestran tal cual.
+ * Tipo legible de una casilla a partir de su clave: `Básica`, `Contigua 2`,
+ * `Extraordinaria 1 Contigua 1`. Las claves que no siguen el patrón conocido
+ * se muestran tal cual.
  */
-export const etiquetaCasilla = (seccion: number | string, tipoCasilla: string): string => {
+export const descripcionCasilla = (tipoCasilla: string): string => {
   const clave = tipoCasilla.replace(/\s+/g, '').toUpperCase();
-  const descripcion = /^([A-Z]\d+)+$/.test(clave)
+
+  return /^([A-Z]\d+)+$/.test(clave)
     ? (clave.match(/[A-Z]\d+/g) ?? []).map(descripcionSegmento).join(' ')
     : tipoCasilla;
-
-  return `${seccion} ${descripcion}`;
 };
+
+/**
+ * Nombre legible de una casilla con su sección, como en PREP Coahuila 2026:
+ * `3188 Básica`, `3188 Contigua 2`, `242 Extraordinaria 1 Contigua 1`.
+ */
+export const etiquetaCasilla = (seccion: number | string, tipoCasilla: string): string =>
+  `${seccion} ${descripcionCasilla(tipoCasilla)}`;
