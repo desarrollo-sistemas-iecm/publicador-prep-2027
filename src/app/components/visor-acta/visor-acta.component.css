@@ -3,6 +3,9 @@
   color: var(--prep-texto);
 }
 
+/* El visor se monta dentro de tarjetas con texto claro; el encabezado no debe heredarlo. */
+.modal-header,
+.modal-title,
 .modal-header .close {
   color: var(--prep-texto);
 }
