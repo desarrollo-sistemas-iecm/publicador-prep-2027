@@ -62,7 +62,7 @@ describe('PlantillaNivelComponent', () => {
     await crear('/diputaciones/votos-por-candidatura/18');
 
     expect(spinnerService.showLoaderUntilCompleted).toHaveBeenCalled();
-    expect(apiPrepService.obtenerAvanceEntidad).toHaveBeenCalled();
+    expect(apiPrepService.obtenerAvanceEntidad).toHaveBeenCalledWith('diputaciones');
   });
 
   it('should not wait for the entity progress when the view asks not to', async () => {

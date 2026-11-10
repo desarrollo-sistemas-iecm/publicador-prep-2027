@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { ApiPrepService } from './api-prep.service';
 import { DetalleCasillaResponse } from '../interfaces/detalle-casilla.interface';
+import { ResAvance } from '../interfaces/avance-entidad';
 import { environment } from 'src/environments/environment.development';
 
 describe('ApiPrepService', () => {
@@ -64,4 +65,34 @@ describe('ApiPrepService', () => {
       http.expectOne(urlDistribucion).flush(respuesta);
     });
   });
+
+  describe('obtenerAvanceEntidad', () => {
+    const urlAvance = `${environment.api_prep}/avance`;
+    const avance = { avance: {}, corte: {} } as ResAvance;
+
+    it('should send a single request when the progress cards and the spinner ask for the same election at once', () => {
+      const recibidas: ResAvance[] = [];
+
+      service.obtenerAvanceEntidad('diputaciones').subscribe((res) => recibidas.push(res));
+      service.obtenerAvanceEntidad('diputaciones').subscribe((res) => recibidas.push(res));
+      service.obtenerAvanceEntidad('diputaciones').subscribe((res) => recibidas.push(res));
+
+      const peticion = http.expectOne(urlAvance);
+      peticion.flush(avance);
+
+      expect(peticion.request.body).toEqual({ type: 2 });
+      expect(recibidas).toEqual([avance, avance, avance]);
+    });
+
+    it('should send separate requests when the elections are different', () => {
+      service.obtenerAvanceEntidad('diputaciones').subscribe();
+      service.obtenerAvanceEntidad('alcaldias').subscribe();
+
+      const peticiones = http.match(urlAvance);
+      peticiones.forEach((peticion) => peticion.flush(avance));
+
+      expect(peticiones.map(({ request }) => request.body)).toEqual([{ type: 2 }, { type: 4 }]);
+    });
+  });
 });
+

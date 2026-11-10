@@ -42,7 +42,8 @@ export class PlantillaNivelComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.esperarAvanceEntidad) {
-      this.spinnerService.showLoaderUntilCompleted(this.apiPrepService.obtenerAvanceEntidad()).subscribe();
+      const [, tipoEleccion] = this.router.url.split('/');
+      this.spinnerService.showLoaderUntilCompleted(this.apiPrepService.obtenerAvanceEntidad(tipoEleccion)).subscribe();
     }
   }
 

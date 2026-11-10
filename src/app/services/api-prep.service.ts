@@ -19,21 +19,31 @@ import { FiltroGeografico, SIN_FILTRO_GEOGRAFICO } from './filtro-geografico';
 })
 export class ApiPrepService {
 
-  private readonly detalleCasillaEnCurso = new Map<string, Observable<DetalleCasillaResponse>>();
+  private readonly peticionesEnCurso = new Map<string, Observable<unknown>>();
 
   constructor( private http: HttpClient ) { }
 
-  obtenerAvanceEntidad(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno'){
-    // TODO: 1 o 2 Cargan distitos y 3 carga alcaldías
+  // Varios componentes de una misma pantalla piden los mismos datos al cargar;
+  // comparten la petición en curso en lugar de repetirla.
+  private compartirPeticion<T>(endpoint: string, cuerpo: object): Observable<T> {
+    const clave = `${endpoint}:${JSON.stringify(cuerpo)}`;
+    const peticionEnCurso = this.peticionesEnCurso.get(clave) as Observable<T> | undefined;
+    if (peticionEnCurso) {
+      return peticionEnCurso;
+    }
+
+    const peticion = this.http.post<T>(`${environment.api_prep}/${endpoint}`, cuerpo).pipe(
+      finalize(() => this.peticionesEnCurso.delete(clave)),
+      share()
+    );
+    this.peticionesEnCurso.set(clave, peticion);
+    return peticion;
+  }
+
+  obtenerAvanceEntidad(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno'): Observable<ResAvance> {
     const type = typeQuery( tipo_consulta );
 
-    /* const api = environment.api_prep;
-    return this.http.get<ResponseSeccionPorDistrito>(`${api}/api_avance_entidad.php?type=${type}`); */
-
-    
-      const api = environment.api_prep;
-      return this.http.post<ResAvance>(`${api}/avance`, { type });
-    
+    return this.compartirPeticion<ResAvance>('avance', { type });
   }
   
   obtenerResumenVotacion(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno', filtro: FiltroGeografico = SIN_FILTRO_GEOGRAFICO){
@@ -141,21 +151,8 @@ export class ApiPrepService {
   obtenederDetalleVotosCasilla(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno', primerCombo: any, seccion: any, casilla: any): Observable<DetalleCasillaResponse> {
 
     const type = typeQuery( tipo_consulta );
-    const cuerpo = { type, seleccion: primerCombo, seccion };
-    const clave = JSON.stringify(cuerpo);
 
-    const peticionEnCurso = this.detalleCasillaEnCurso.get(clave);
-    if (peticionEnCurso) {
-      return peticionEnCurso;
-    }
-
-    const api = environment.api_prep;
-    const peticion = this.http.post<DetalleCasillaResponse>(`${api}/distribucion`, cuerpo).pipe(
-      finalize(() => this.detalleCasillaEnCurso.delete(clave)),
-      share()
-    );
-    this.detalleCasillaEnCurso.set(clave, peticion);
-    return peticion;
+    return this.compartirPeticion<DetalleCasillaResponse>('distribucion', { type, seleccion: primerCombo, seccion });
 
   }
   // this.http.get('url')
