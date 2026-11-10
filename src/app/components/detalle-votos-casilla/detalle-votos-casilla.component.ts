@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Column, Datum } from 'src/app/interfaces/detalle-casilla.interface';
 import { ICONO_DOCUMENTO, IconoOrigen, opcionOrigen } from 'src/app/services/origen-acta';
 import { actaVisible } from 'src/app/services/acta-visible';
+import { ESTADOS_ACTA, EstadoActa, estadoActa } from 'src/app/services/estado-acta';
 
 const TIPOS_CONSULTA = ['jefatura-de-gobierno', 'diputaciones', 'alcaldias'];
 
@@ -44,6 +45,7 @@ export class DetalleVotosCasillaComponent implements OnInit {
   public cargando = true;
   public tipoEleccion = '';
   public actaEnVisor: Datum | null = null;
+  public readonly estadosActa = ESTADOS_ACTA;
 
   constructor(private apiPrepService: ApiPrepService, private router: Router) { }
 
@@ -63,8 +65,8 @@ export class DetalleVotosCasillaComponent implements OnInit {
     this.cargarInfo();
   }
 
-  esContabilizada({ contabilizar }: Datum): boolean {
-    return contabilizar === 'T';
+  estado(fila: Datum): EstadoActa {
+    return estadoActa(fila);
   }
 
   votos(fila: Datum, { dataIndex }: Column): number | null {

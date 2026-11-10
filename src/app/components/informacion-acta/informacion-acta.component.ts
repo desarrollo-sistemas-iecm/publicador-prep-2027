@@ -4,6 +4,7 @@ import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { Column, Datum } from 'src/app/interfaces/detalle-casilla.interface';
 import { ICONO_DOCUMENTO, IconoOrigen, OpcionOrigen, opcionOrigen } from 'src/app/services/origen-acta';
 import { actaVisible } from 'src/app/services/acta-visible';
+import { EstadoActa, estadoActa } from 'src/app/services/estado-acta';
 
 @Component({
   standalone: false,
@@ -16,7 +17,7 @@ export class InformacionActaComponent implements OnInit {
   public acta: Datum | null = null;
   public columnas: Column[] = [];
   public tipoEleccion = '';
-  public contabilizada: boolean | null = null;
+  public estado: EstadoActa | null = null;
   public origen: OpcionOrigen | null = null;
   public visorAbierto = false;
 
@@ -38,7 +39,7 @@ export class InformacionActaComponent implements OnInit {
       .subscribe(({ itemRecords: { data, columns } }) => {
         this.acta = data.find(({ tipo_casilla }) => tipo_casilla === casilla) ?? null;
         this.columnas = columns;
-        this.contabilizada = this.acta ? this.acta.contabilizar === 'T' : null;
+        this.estado = this.acta ? estadoActa(this.acta) : null;
         this.origen = opcionOrigen(this.acta?.origen_acta);
       });
   }
