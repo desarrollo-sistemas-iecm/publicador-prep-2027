@@ -7,8 +7,8 @@ import { TestComponent } from './components/test/test.component';
 import { SharedModule } from './shared/shared.module';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { PaginaNoEncontradaComponent } from './pages/pagina-no-encontrada/pagina-no-encontrada.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MockApiInterceptor } from './interceptors/mock-api.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { MOCK_API_PROVIDERS } from './interceptors/mock-api.providers';
 import { RouteReuseStrategy } from '@angular/router';
 import { RecargaPorParametrosStrategy } from './services/recarga-por-parametros.strategy';
 import { GraficaComponent } from './components/grafica/grafica.component';
@@ -77,7 +77,7 @@ import { DirectivesModule } from './directives/directives.module';
     // ignorado; sin este provider explícito, Angular arranca con NoopNgZone (zoneless) y
     // las respuestas HTTP asíncronas nunca disparan detección de cambios automática.
     provideZoneChangeDetection(),
-    { provide: HTTP_INTERCEPTORS, useClass: MockApiInterceptor, multi: true },
+    ...MOCK_API_PROVIDERS,
     { provide: RouteReuseStrategy, useClass: RecargaPorParametrosStrategy }
   ],
   bootstrap: [AppComponent]
