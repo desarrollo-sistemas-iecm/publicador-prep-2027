@@ -80,11 +80,13 @@ URL on load.
 
 The five level screens (`TestComponent` for the entity, `PrimerNivelComponent` for a distrito/alcaldía,
 `VotacionPorCasillaComponent` for detalle por casilla, `SegundoNivelComponent` for a sección, `TercerNivelComponent`
-for a casilla) are thin wrappers over `<app-plantilla-nivel>` (`src/app/components/plantilla-nivel/`). The shell owns
+for a casilla) are thin wrappers over `<app-plantilla-nivel>` (`src/app/shared/plantilla-nivel/`, exported by `SharedModule`). The shell owns
 the header, sidebar, progress, buscador, the main card with breadcrumbs, the footer, the combo navigation and the page
 title; each screen projects only what differs: the card content (default slot, usually `<app-resultados-nivel>` with
 the Votos en Actas Contabilizadas block), `[despuesDeTarjeta]` and `<ng-container ngProjectAs="[secciones]">` for the
-sections below the card. Add new per-level content there instead of copying the layout.
+sections below the card. Add new per-level content there instead of copying the layout. `RepresentacionProporcionalComponent`
+and the voto en condiciones especiales `PlantillaComponent` use the same shell with `[mostrarAvance]`, `[mostrarCombos]`
+and their own `[breadcrumbs]` (which also set the page title).
 
 Views read distrito/sección/casilla from the URL once in `ngOnInit`, so `RecargaPorParametrosStrategy`
 (`RouteReuseStrategy` registered in `AppModule`) recreates a route's components whenever its params change instead of

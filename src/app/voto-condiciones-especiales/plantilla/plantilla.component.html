@@ -1,124 +1,26 @@
-<app-compartir></app-compartir>
-
-<!-- HEADER -->
-<app-encabezado></app-encabezado><!--Aqui este-->
-<app-avance-entidad-fijo></app-avance-entidad-fijo>
-<!-- HEADER -->
-
-<div class="cuerpo container-fluid">
-    <div class="row">
-        <div class="col-12 my-3 d-xl-none">
-            <app-avance-entidad-movil></app-avance-entidad-movil>
+<app-plantilla-nivel [esperarAvanceEntidad]="false" [mostrarCombos]="false" [breadcrumbs]="configuracionBreadcrumbs">
+    <div class="row py-4">
+        <div class="col-12">
+            <h4 class="subtitulo-seccion pleca-izquierda"><strong>Votos en Actas Contabilizadas</strong></h4>
         </div>
-        <div class="sidebar px-0 bgMorado col-md-12 col-xl-2">
-            <app-sidebar [mostrarBuscador]="false"></app-sidebar>
-        </div>
-        <div class="bgGrisTenue contenido-principal px-0 my-3 my-xl-0 col-md-12 col-xl-10">
-            <div class="container-fluid py-xl-3">
-                <div class="row">
-                    <div class="col-xl-8 d-none d-xl-block altoAvance">
-                        <app-avance-entidad></app-avance-entidad>
-                    </div>
-
-                    <!-- FORM TO SEARCH -->
-                    <div class="col-xl-4 d-none d-xl-block altoAvance pl-0">
-                        <app-buscador></app-buscador>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- Aqui comienza el contenido dinámico -->
-                        <div class="card p-3">
-                            <div class="row">
-                                <!-- {{ primerCombo }} -->
-                                <app-breadcrumbs
-                                    [configuracionBreadcrumbs]="configuracionBreadcrumbs"></app-breadcrumbs>
-
-                                <div class="col-2 d-none">
-                                    <p class="px12 text-left"><strong>Visualiza como:</strong></p>
-                                    <div class="visualizar dis-flex flex-col text-center">
-                                        <div class="selector dis-flex w-100 cursorPointer">
-                                            <div class="izq dis-flex flex-col w-50 p-2 activo">
-                                                <!-- <img src="assets/img/iconos-visualiza/Mapa-B.svg" class="img-visualiza img-fluid"> -->
-                                                <i class="fa fa-map img-visualiza img-fluid"></i>
-                                                Mapa
-                                            </div>
-                                            <div class="dis-flex der flex-col w-50 p-2" tabindex="0"
-                                                ng-reflect-router-link="../tarjetas">
-                                                <i class="fa fa-th-large img-visualiza img-fluid"></i>
-                                                Tarjetas
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row py-4">
-                                <div class="col-12">
-                                    <h4 class="subtitulo-seccion pleca-izquierda"><strong>Votos en Actas
-                                            Contabilizadas</strong></h4>
-                                </div>
-                            </div>
-                            <!-- Comienza la tabla que llena las alcaldías e incluye el mapa -->
-                            <div class="contenedor-mapa" id="vista-mapa" style="display: block;">
-                                <!-- <app-moving-cards></app-moving-cards> -->
-                                <router-outlet></router-outlet>
-                            </div>
-                            <!-- Termina la tabla que llena las alcaldías e incluye el mapa -->
-                            <div class="container-fluid complemento-vista-mapa" style="display: block;">
-                                <div class="row pb-4">
-                                    <div class="col-10">
-                                        <p class="font-medium px14">Por presentación, los decimales de los porcentajes
-                                            muestran sólo cuatro dígitos. No obstante, al considerar todos los
-                                            decimales, suman 100%. </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- vista cards -->
-
-                            <div class="container-fluid complemento-vista-cards" style="display: none;">
-                                <div class="row dis-flex">
-                                    <div class="col-md-12">
-                                        <div class="row dis-flex justify-s"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container-fluid py-1 complemento-vista-cards" style="display: none;">
-                                <div class="row">
-                                    <div class="col-md-12 dis-flex flex-col align-e">
-                                        <div class="dis-flex">
-                                            <i aria-hidden="true" class="fa fa-info-circle mr-2"></i>
-                                            <p class="texto"> Da clic en <strong>Seleccionar</strong> para visualizar el
-                                                detalle de la votación. Puedes seleccionar hasta tres opciones. </p>
-                                        </div>
-                                        <button data-toggle="modal" data-target="#modalComparativa" id="show_detail"
-                                            class="boton-detalle btn bgMorado txBlanco btn-sm texto ml-2 px-4 cursorPointer"
-                                            disabled=""> Ver detalle </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Button trigger modal -->
-                            <!-- vista cards -->
-
-                            <div class="container-fluid resumen-votacion">
-                                <app-resumen-votacion></app-resumen-votacion>
-                            </div>
-
-                            <div class="row" *ngIf="mostrarTablaActas && (actas$ | async) as estado">
-                                <app-tabla-actas [titulo]="tituloTablaActas" [estado]="estado"></app-tabla-actas>
-                            </div>
-                        </div>
-                        <!-- <app-modadlidad-votos></app-modadlidad-votos> -->
-                    </div>
-                </div>
+    </div>
+    <div class="contenedor-mapa" id="vista-mapa">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="container-fluid complemento-vista-mapa">
+        <div class="row pb-4">
+            <div class="col-10">
+                <p class="font-medium px14">Por presentación, los decimales de los porcentajes muestran sólo cuatro
+                    dígitos. No obstante, al considerar todos los decimales, suman 100%.</p>
             </div>
         </div>
     </div>
-    <!-- FOOTER -->
-    <app-footer-aviso-privacidad></app-footer-aviso-privacidad>
-    <!-- app-footer -->
 
-</div>
+    <div class="container-fluid resumen-votacion">
+        <app-resumen-votacion></app-resumen-votacion>
+    </div>
+
+    <div class="row" *ngIf="mostrarTablaActas && (actas$ | async) as estado">
+        <app-tabla-actas [titulo]="tituloTablaActas" [estado]="estado"></app-tabla-actas>
+    </div>
+</app-plantilla-nivel>

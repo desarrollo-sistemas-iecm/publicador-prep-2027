@@ -15,8 +15,7 @@ import { BreadcrumbsService } from 'src/app/services/breadcrumbs.service';
 @Component({
   standalone: false,
   selector: 'app-representacion-proporcional',
-  templateUrl: './representacion-proporcional.component.html',
-  styleUrls: ['./representacion-proporcional.component.css']
+  templateUrl: './representacion-proporcional.component.html'
 })
 export class RepresentacionProporcionalComponent implements OnInit {
 
