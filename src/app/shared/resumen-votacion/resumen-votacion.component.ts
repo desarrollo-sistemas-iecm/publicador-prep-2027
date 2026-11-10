@@ -16,6 +16,8 @@ function quitarSimboloPorcentaje(valor: string): string {
 export class ResumenVotacionComponent implements OnInit {
 
   public tipo_consulta: string = '';
+  // Con una sola acta (vista de casilla) los porcentajes no aplican, como en PREP Coahuila 2026.
+  public mostrarPorcentajes: boolean = true;
 
 
   public votos_acumulados: number = 0;
@@ -36,6 +38,7 @@ export class ResumenVotacionComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.mostrarPorcentajes = this.router.url.split('/')[2] !== 'casilla';
     this.cargarResumen();
   }
 

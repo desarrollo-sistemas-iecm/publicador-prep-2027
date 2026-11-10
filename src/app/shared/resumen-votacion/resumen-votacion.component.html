@@ -16,7 +16,7 @@
                     </div>
                     <div class="row dis-flex w-100 space-b">
                         <p class="col-12 cantidad"><strong> {{votos_acumulados | number}} </strong></p>
-                        <p class="col-12 porcentaje">{{porcentaje_votos_acumulados}}% </p>
+                        <p class="col-12 porcentaje" *ngIf="mostrarPorcentajes">{{porcentaje_votos_acumulados}}% </p>
                     </div>
                 </div>
                 <p class="separador"><strong>+</strong></p>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="row dis-flex w-100 space-b">
                         <p class="col-12 cantidad"><strong> {{votos_candidaturas_no_registradas | number}} </strong></p>
-                        <p class="col-12 porcentaje">{{porcentaje_votos_candidaturas_no_registradas}}% </p>
+                        <p class="col-12 porcentaje" *ngIf="mostrarPorcentajes">{{porcentaje_votos_candidaturas_no_registradas}}% </p>
                     </div>
                 </div>
                 <p class="separador"><strong>+</strong></p>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="row dis-flex w-100 space-b">
                         <p class="col-12 cantidad"><strong> {{votos_nulo | number}} </strong></p>
-                        <p class="col-12 porcentaje"> {{porcentaje_votos_nulo }}% </p>
+                        <p class="col-12 porcentaje" *ngIf="mostrarPorcentajes"> {{porcentaje_votos_nulo }}% </p>
                     </div>
                 </div>
                 <p class="d-none d-lg-block separador pr-3"><strong>=</strong></p>
@@ -48,7 +48,7 @@
                         <p class="total"><strong class="txRosaIne">{{total_votos | number}} </strong>
                         </p>
                     </div>
-                    <div class="dis-flex w-100 space-b justify-e">
+                    <div class="dis-flex w-100 space-b justify-e" *ngIf="mostrarPorcentajes">
                         <p><strong class="txRosaIne"> {{porcentaje_total_votos}}% </strong></p>
                         <!-- <p>
                             {{porcentaje_votos_acumulados}}
@@ -66,7 +66,7 @@
                             <p class="total"><strong> = <span
                                         class="txRosaIne">{{total_votos | number}}</span></strong></p>
                         </div>
-                        <div class="dis-flex w-100 justify-e">
+                        <div class="dis-flex w-100 justify-e" *ngIf="mostrarPorcentajes">
                             <p><strong><span class="txRosaIne">{{porcentaje_total_votos}}%</span></strong>
                             </p>
                         </div>

@@ -41,4 +41,17 @@ describe('ResumenVotacionComponent', () => {
 
     expect(totalMovil).toBe('= 1,257');
   });
+
+  it('should show the percentages when the view aggregates several actas', async () => {
+    await crear('/diputaciones/casillas/18/3188');
+
+    expect(fixture.nativeElement.textContent).toContain('75.49%');
+  });
+
+  it('should hide every percentage when the view is a single casilla', async () => {
+    await crear('/diputaciones/casilla/18/3188/C01');
+
+    expect(fixture.nativeElement.textContent).not.toContain('%');
+    expect(fixture.nativeElement.textContent).toContain('194');
+  });
 });
