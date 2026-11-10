@@ -1,0 +1,43 @@
+<div class="estadistica-casilla card mt-3 p-3 bg-circunscripcion mrgnt-0 crd-rspnsv">
+    <div class="container-fluid">
+        <div class="row pl-0">
+            <h4 class="text-left pleca-izquierda px26"><strong>{{ esCasilla ? 'Estadística de Casilla' : 'Estadística de Casillas' }}</strong></h4>
+        </div>
+        <div class="row py-3">
+            <a target="_blank" href="https://ayuda.ine.mx/2023/elecc-tamps/prep/participacion-ciudadana-prep.pdf"
+                class="subtitulo underline"><strong class="cursorPointer">
+                    <ng-container *ngIf="esCasilla; else tituloSeccion">Participación ciudadana con base en la Lista
+                        Nominal de la casilla con Acta PREP contabilizada</ng-container>
+                    <ng-template #tituloSeccion>Participación ciudadana con base en la Lista Nominal de las casillas
+                        con Actas PREP Contabilizadas</ng-template>
+                </strong></a>
+        </div>
+
+        <p *ngIf="!cargando && barras.length === 0" class="px14 text-center py-3">
+            No hay actas registradas para esta consulta.
+        </p>
+
+        <div class="barra-casilla" *ngFor="let barra of barras">
+            <div class="encabezado-barra">
+                <div>
+                    <p class="etiqueta">{{ barra.etiqueta }}</p>
+                    <p class="cifra">{{ barra.participacion }}%</p>
+                </div>
+                <div class="text-right">
+                    <p class="etiqueta">Total Lista Nominal</p>
+                    <p class="cifra">{{ barra.listaNominal | number }}</p>
+                </div>
+            </div>
+            <div class="barra-participacion" role="progressbar" [attr.aria-label]="'Participación ciudadana ' + barra.etiqueta"
+                aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="barra.ancho">
+                <div class="barra-participacion-relleno" [style.width.%]="barra.ancho"></div>
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <p class="px14 text-justify">El cálculo de Participación ciudadana puede rebasar el 100% si vota toda la
+                ciudadanía de la Lista Nominal de una casilla; así como las Representaciones de Partidos Políticos y
+                Candidaturas Independientes.</p>
+        </div>
+    </div>
+</div>

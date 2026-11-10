@@ -1,330 +1,77 @@
 <div>
     <div class="estadistica-casilla card mt-3 p-3 bg-circunscripcion mrgnt-0 crd-rspnsv">
-        <div class="container-fluid d-none d-lg-block d-xl-block">
+        <div class="container-fluid">
             <div class="row pl-0">
                 <h4 class="text-left pleca-izquierda px26"><strong>
                         Detalle de votos por Casilla </strong>
                 </h4>
             </div>
         </div>
-        <div class="row d-none d-lg-block d-xl-block">
-            <div class="acta-digitalizada container-fluid d-none d-lg-block d-xl-block">
-                <div class="row">
-                    <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col pl-0">
-                        <p class="font-medium text-left padding-b-15 padding-l-30"> Imagen
-                            procedente de: </p>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-2 dis-flex padding-r-0 padding-l-0">
-                                    <div hide-delay="50" tooltip="Acta PREP digitalizada por medio de escáner."
-                                        placement="top" max-width="500" class="grupo dis-flex"
-                                        ng-reflect-hide-delay="50"
-                                        ng-reflect-tooltip-value="Acta PREP digitalizada por med"
-                                        ng-reflect-placement="top" ng-reflect-max-width="500"><i
-                                            class="fa fa-file"></i><i aria-hidden="true" class="fa fa-print"></i>
-                                        <p> Escáner </p>
-                                    </div>
-                                </div>
-                                <div class="col-2 dis-flex padding-r-0 padding-l-0 border-rightB">
-                                    <div hide-delay="50"
-                                        tooltip="Acta PREP digitalizada por medio de dispositivo móvil." placement="top"
-                                        max-width="500" class="grupo dis-flex" ng-reflect-hide-delay="50"
-                                        ng-reflect-tooltip-value="Acta PREP digitalizada por med"
-                                        ng-reflect-placement="top" ng-reflect-max-width="500"><i
-                                            class="fa fa-file"></i><i class="fas fa-mobile-alt"></i>
-                                        <p> Móvil </p>
-                                    </div>
-                                </div>
-                                <div class="col-2 dis-flex border-rightB padding-r-0">
-                                    <div class="grupo gris dis-flex"><i class="fa fa-file"></i><i
-                                            class="fa fa-hourglass"></i>
-                                        <p> Acta en proceso </p>
-                                    </div>
-                                </div>
-                                <div class="col-2 dis-flex padding-r-0">
-                                    <div class="contabilizada dis-flex"><i class="fa fa-circle"></i>
-                                        <p><strong>Contabilizada</strong></p>
-                                    </div>
-                                </div>
-                                <div class="col-2 dis-flex padding-r-0">
-                                    <div class="no-contabilizada dis-flex"><i class="fa fa-circle"></i>
-                                        <p> No Contabilizadas </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="col-12 px-0 mt-4">
-                    <div>
-                        <div class="table-responsive tabla-seccion">
-                            <!-- <pre>
-                                {{ columns | json }}
-                            </pre>
-                            <pre>
-                                {{ rows | json }}
-                            </pre> -->
-
-                            <table class="table table-striped contenido table-bordered mrgn-l15">
-                                <thead class="titulos">
-                                    <tr>
-                                        <th *ngFor="let column of columns">
-                                            <div class="inter-partido dis-flex w100p">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex padding-lateral">
-                                                        <img *ngIf="esColumnaVotos(column.dataIndex); else tituloTexto" class="m-1"
-                                                            style="width: 2.25em; height: auto;" [alt]="column.title" [title]="column.title"
-                                                            src="./assets/img/unknow/{{ column.title | remplazaGuionesMediosABajos }}.png">
-                                                        <ng-template #tituloTexto>
-                                                            <strong class="dis-flex text-center">
-                                                                {{column.title}}
-                                                            </strong>
-                                                        </ng-template>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </th>
-
-
-
-                                        <!-- <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex padding-lateral">
-                                                        <strong class="dis-flex text-center">
-                                                            Acta digitalizada </strong>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </th> -->
-                                        <!--  <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="assets/icons/partidos/p1_36.png"></div>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PRI.png"></div>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PRD.png"></div>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PVEM.png"></div>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PT.png"></div>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/MORENA.png"></div>
-
-                                                </div>
-
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PAN.png"></div>
-                                                </div>
-                                                <div class="dis-flex">
-
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PRI.png"></div>
-
-                                                </div>
-                                                <div class="dis-flex">
-
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PRD.png"></div>
-
-                                                </div>
-
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PAN.png"></div>
-
-                                                </div>
-                                                <div class="dis-flex">
-
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PRI.png"></div>
-
-                                                </div>
-
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PAN.png"></div>
-
-                                                </div>
-                                                <div class="dis-flex">
-
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PRD.png"></div>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PRI.png"></div>
-                                                </div>
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PRD.png"></div>
-
-                                                </div>
-
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/PT.png"></div>
-
-                                                </div>
-                                                <div class="dis-flex">
-
-                                                    <div class="dis-flex"><img alt="" class="m-1"
-                                                            style="width: 2.25em; height: auto;"
-                                                            src="./assets/img/logos-partidos/MORENA.png"></div>
-
-                                                </div>
-
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex padding-lateral">
-                                                        <strong class="dis-flex text-center">
-                                                            Candidaturas no registradas </strong>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex padding-lateral">
-                                                        <strong class="dis-flex text-center">
-                                                            Votos nulos </strong>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex padding-lateral">
-                                                        <strong class="dis-flex text-center">
-                                                            Total </strong>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="inter-partido dis-flex">
-                                                <div class="dis-flex">
-                                                    <div class="dis-flex padding-lateral">
-                                                        <strong class="dis-flex text-center">
-                                                            Observaciones en Acta </strong>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </th> -->
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="filas text-center" *ngFor="let row of rows">
-                                        <td class="w100p text-left">
-                                            <!-- 749 Básica 1 -->
-                                            {{ row.tipo_casilla }}
-                                        </td>
-
-                                        <ng-container *ngFor="let column of columns">
-                                            <!-- Verificar si la propiedad actual debe mostrarse -->
-                                            <ng-container *ngIf="!arrNoShow.includes(column.dataIndex)">
-                                                <!-- Mostrar el valor de la propiedad si no está en arrNoShow -->
-                                                <!-- {{column.dataIndex}} -->
-                                                <td>
-                                                    {{ row[column.dataIndex] }}
-                                                </td>
-                                            </ng-container>
-                                        </ng-container>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+        <div class="container-fluid acta-digitalizada">
+            <div class="row py-2">
+                <app-leyenda-origen-acta></app-leyenda-origen-acta>
+            </div>
+            <div class="row px14 py-2">
+                <span class="mr-4" *ngFor="let estado of estadosActa"><i class="fa fa-circle" [ngClass]="estado.claseColor"
+                        aria-hidden="true"></i> {{ estado.etiqueta }}</span>
+            </div>
+        </div>
+        <div class="col-12 px-0 mt-3">
+            <p *ngIf="!cargando && filas.length === 0" class="px14 text-center py-3">
+                No hay actas registradas para esta consulta.
+            </p>
+            <div *ngIf="filas.length > 0" class="table-responsive tabla-seccion">
+                <table class="table contenido tabla-prep tabla-votos-casilla">
+                    <thead class="titulos">
+                        <tr class="text-center">
+                            <th><span class="sr-only">Estado del acta</span></th>
+                            <th><strong>Sección</strong></th>
+                            <th><strong>Casilla</strong></th>
+                            <th><strong>Acta digitalizada</strong></th>
+                            <th *ngFor="let columna of columnasVotos">
+                                <img class="m-1" style="width: 2.25em; height: auto;" [alt]="columna.title"
+                                    [title]="columna.title"
+                                    [appLogoCandidatura]="columna.title">
+                            </th>
+                            <th><strong>Candidaturas no registradas</strong></th>
+                            <th><strong>Votos nulos</strong></th>
+                            <th><strong>Total</strong></th>
+                            <th><strong>Observaciones en Acta</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let fila of filas">
+                            <td>
+                                <i class="fa fa-circle" aria-hidden="true" [ngClass]="estado(fila).claseColor"
+                                    [title]="estado(fila).etiqueta"></i>
+                            </td>
+                            <td>{{ fila.id_seccion }}</td>
+                            <td>{{ fila.tipo_casilla }}</td>
+                            <td>
+                                <button *ngIf="puedeVerActa(fila); else actaNoDisponible" type="button"
+                                    class="boton-acta" (click)="actaEnVisor = fila"
+                                    [attr.aria-label]="'Ver acta de la casilla ' + fila.id_seccion + ' ' + fila.tipo_casilla + (etiquetaOrigen(fila) ? ', ' + etiquetaOrigen(fila) : '')">
+                                    <app-iconos-origen-acta [iconos]="iconosActa(fila)"></app-iconos-origen-acta>
+                                    Acta
+                                </button>
+                                <ng-template #actaNoDisponible>
+                                    <span class="acta-no-disponible" [title]="etiquetaOrigen(fila) || 'Imagen no disponible'">
+                                        <app-iconos-origen-acta [iconos]="iconosActa(fila)"></app-iconos-origen-acta>
+                                    </span>
+                                </ng-template>
+                            </td>
+                            <td *ngFor="let columna of columnasVotos">{{ votos(fila, columna) | number }}</td>
+                            <td>{{ fila.votos_cand_no_reg | number }}</td>
+                            <td>{{ fila.votos_nulos | number }}</td>
+                            <td><strong>{{ fila.votacion_total | number }}</strong></td>
+                            <td class="text-left px12">{{ observaciones(fila) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
+<app-visor-acta *ngIf="actaEnVisor" [acta]="actaEnVisor" [columnas]="columnasVotos" [tipoEleccion]="tipoEleccion"
+    (cerrar)="actaEnVisor = null"></app-visor-acta>

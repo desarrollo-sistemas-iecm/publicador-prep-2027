@@ -1,0 +1,17 @@
+.boton-ver {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 28px;
+  border: none;
+  border-radius: 4px;
+  background: var(--prep-morado-claro);
+  color: #212529;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.boton-ver:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

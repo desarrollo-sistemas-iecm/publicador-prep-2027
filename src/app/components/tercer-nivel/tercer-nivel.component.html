@@ -51,21 +51,16 @@
                             <!-- Comienza la tabla que llena las alcaldías e incluye el mapa -->
                             <app-contenedor-resultados-dinamico></app-contenedor-resultados-dinamico>
                             <!-- Termina la tabla que llena las alcaldías e incluye el mapa -->
-                            <div class="container-fluid complemento-vista-mapa" style="display: block;">
-                                <div class="row pb-4">
-                                    <div class="col-10">
-                                        <p class="font-medium px14"> Por presentación, los decimales de los porcentajes
-                                            muestran sólo cuatro dígitos. No obstante, al considerar todos los
-                                            decimales, suman 100%. </p>
+
+                            <div class="container-fluid resumen-votacion pt-4">
+                                <div class="row">
+                                    <div class="col-12 col-xl-9">
+                                        <app-resumen-votacion></app-resumen-votacion>
+                                    </div>
+                                    <div class="col-12 col-xl-3 mt-3 mt-xl-0">
+                                        <app-observaciones-casilla></app-observaciones-casilla>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- vista cards -->
-                            <!-- Button trigger modal -->
-                            <!-- vista cards -->
-
-                            <div class="container-fluid resumen-votacion">
-                                <app-resumen-votacion></app-resumen-votacion>
                             </div>
                         </div>
                     </div>
@@ -75,11 +70,11 @@
 
             <div class="container-fluid estadisticaNacional py-3">
                 <!-- estadistica casilla -->
-                <app-estadistica-casilla></app-estadistica-casilla>
+                <app-estadistica-casillas></app-estadistica-casillas>
             </div>
 
             <div class="container-fluid" *ngIf="prep">
-                <app-observaciones-en-acta></app-observaciones-en-acta>
+                <app-observaciones-en-acta id="leyenda-observaciones-en-acta"></app-observaciones-en-acta>
             </div>
 
             <div class="container-fluid bgGris py-1 d-none">

@@ -117,3 +117,44 @@
   padding: 8px;
   cursor: pointer;
 }
+
+.tarjeta-partido {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 190px;
+  border: 2px solid var(--prep-borde);
+  border-top-width: 1px;
+  background: var(--prep-superficie);
+  color: var(--prep-texto);
+}
+
+.logos-partido {
+  height: 96px;
+  align-items: center;
+}
+
+.logos-partido img {
+  height: 36px;
+}
+
+.pie-tarjeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--prep-bg-secundario);
+  border-top: 1px solid var(--prep-borde);
+}
+
+.pie-tarjeta p {
+  margin: 0;
+}
+
+.pie-tarjeta .etiqueta {
+  font-size: 0.85rem;
+}
+
+.pie-tarjeta .valor {
+  font-weight: 700;
+}

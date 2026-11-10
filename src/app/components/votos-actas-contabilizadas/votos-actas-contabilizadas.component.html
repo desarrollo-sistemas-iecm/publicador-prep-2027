@@ -5,7 +5,7 @@
         hasta el momento.
     </p>
     <div class="table-responsive tabla-seccion">
-        <table class="table contenido tabla-votos">
+        <table class="table contenido tabla-prep tabla-votos">
             <thead class="titulos">
                 <tr>
                     <th></th>
@@ -13,7 +13,7 @@
                         <strong *ngIf="esTexto(candidatura.siglas); else logo">{{ candidatura.descripcion }}</strong>
                         <ng-template #logo>
                             <img class="logo-partido" [alt]="candidatura.descripcion" [title]="candidatura.descripcion"
-                                src="./assets/img/unknow/{{ candidatura.siglas | remplazaGuionesMediosABajos }}.png">
+                                [appLogoCandidatura]="candidatura.siglas">
                         </ng-template>
                     </th>
                 </tr>

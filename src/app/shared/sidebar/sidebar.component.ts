@@ -6,6 +6,7 @@ import { ComboStateService } from '../../services/combo-state.service';
 import { BreadcrumbsConfig } from 'src/app/interfaces/breadcrumbs';
 import { Location } from '@angular/common';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { descripcionCasilla } from 'src/app/services/etiqueta-casilla';
 
 interface OptSelect {
   value: number | string | null;
@@ -154,7 +155,7 @@ export class SidebarComponent implements OnInit {
     this.apiPrepService.obtenerCasillasPorSeccion(this.tipo_consulta, this.firstSelected, seccion)
       .subscribe((res: any) => {
         res.items.forEach((element: any) => {
-          this.optCasillas.push({ label: element.name, value: element.id });
+          this.optCasillas.push({ label: descripcionCasilla(element.name), value: element.id });
         });
       });
   }

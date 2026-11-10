@@ -21,13 +21,17 @@ import { TercerNivelComponent } from './components/tercer-nivel/tercer-nivel.com
 import { SegundoNivelComponent } from './components/segundo-nivel/segundo-nivel.component';
 import { DistribucionVotosComponent } from './components/distribucion-votos/distribucion-votos.component';
 import { PrimerNivelComponent } from './components/primer-nivel/primer-nivel.component';
-import { EstadisticaCasillaComponent } from './components/estadistica-casilla/estadistica-casilla.component';
 import { ListadoParticipacionCiudadanaLNComponent } from './components/listado-participacion-ciudadana-ln/listado-participacion-ciudadana-ln.component';
+import { EstadisticaCasillasComponent } from './components/estadistica-casillas/estadistica-casillas.component';
 import { VotacionPorCasillaComponent } from './components/votacion-por-casilla/votacion-por-casilla.component';
 import { RepresentacionProporcionalComponent } from './components/representacion-proporcional/representacion-proporcional.component';
 import { VotosActasContabilizadasComponent } from './components/votos-actas-contabilizadas/votos-actas-contabilizadas.component';
 import { InformacionActaComponent } from './components/informacion-acta/informacion-acta.component';
-import { PipesModule } from './pipes/pipes.module';
+import { ObservacionesCasillaComponent } from './components/observaciones-casilla/observaciones-casilla.component';
+import { IconosOrigenActaComponent } from './components/iconos-origen-acta/iconos-origen-acta.component';
+import { LeyendaOrigenActaComponent } from './components/leyenda-origen-acta/leyenda-origen-acta.component';
+import { VisorActaComponent } from './components/visor-acta/visor-acta.component';
+import { DirectivesModule } from './directives/directives.module';
 // import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
@@ -46,19 +50,23 @@ import { PipesModule } from './pipes/pipes.module';
     SegundoNivelComponent,
     DistribucionVotosComponent,
     PrimerNivelComponent,
-    EstadisticaCasillaComponent,
     ListadoParticipacionCiudadanaLNComponent,
+    EstadisticaCasillasComponent,
     VotacionPorCasillaComponent,
     RepresentacionProporcionalComponent,
     VotosActasContabilizadasComponent,
-    InformacionActaComponent
+    InformacionActaComponent,
+    ObservacionesCasillaComponent,
+    IconosOrigenActaComponent,
+    LeyendaOrigenActaComponent,
+    VisorActaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    PipesModule
+    DirectivesModule
     // HighchartsChartModule
   ],
   exports: [

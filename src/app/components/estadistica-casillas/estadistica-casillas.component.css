@@ -1,0 +1,35 @@
+.barra-casilla {
+  margin-bottom: 24px;
+}
+
+.encabezado-barra {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.encabezado-barra p {
+  margin: 0;
+}
+
+.etiqueta {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cifra {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.barra-participacion {
+  height: 40px;
+  border: 2px solid var(--prep-borde);
+  background: var(--prep-superficie);
+}
+
+.barra-participacion-relleno {
+  height: 100%;
+  background: var(--prep-morado-claro);
+}

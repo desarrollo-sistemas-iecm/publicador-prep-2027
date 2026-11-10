@@ -1,27 +1,25 @@
 <div class="container-fluid pb-3">
     <h4 class="subtitulo-seccion pleca-izquierda">
         <strong>Información del Acta</strong>
-        <ng-container *ngIf="contabilizada !== null">
-            - <span [ngClass]="contabilizada ? 'text-success' : 'text-danger'">{{ contabilizada ? 'Contabilizada' : 'No Contabilizada' }}</span>
+        <ng-container *ngIf="estado">
+            - <span [ngClass]="estado.claseColor">{{ estado.etiqueta }}</span>
         </ng-container>
     </h4>
-    <div class="row align-items-center">
+    <div class="row align-items-end">
         <div class="col-12 col-md-3 mb-2">
             <p class="px14 mb-1"><strong>Acta digitalizada</strong></p>
-            <button type="button" class="BTN-Eleccion px-4 py-2 px14" [disabled]="!tieneImagen"
-                title="La consulta de la imagen del acta aún no está disponible">
-                <i class="fa fa-file-o" aria-hidden="true"></i> Ver
+            <button type="button" class="boton-ver" [disabled]="!puedeVerActa" (click)="visorAbierto = true"
+                [title]="puedeVerActa ? '' : 'La imagen del acta aún no está disponible'"
+                [attr.aria-label]="'Ver acta digitalizada' + (origen ? ', ' + origen.etiqueta : '')">
+                <app-iconos-origen-acta [iconos]="iconosVer"></app-iconos-origen-acta>
+                Ver
             </button>
         </div>
         <div class="col-12 col-md-9 mb-2">
-            <p class="px14 mb-1"><strong>Imagen procedente de:</strong></p>
-            <span *ngFor="let opcion of opcionesOrigen" class="px14 mr-3"
-                [ngClass]="opcion.clave === origen ? 'origen-activo' : 'origen'">
-                <i class="fa {{ opcion.icono }}" aria-hidden="true"></i> {{ opcion.etiqueta }}
-            </span>
-        </div>
-        <div class="col-12" *ngIf="observaciones">
-            <p class="px14"><strong>Observaciones en Acta:</strong> {{ observaciones }}</p>
+            <app-leyenda-origen-acta></app-leyenda-origen-acta>
         </div>
     </div>
 </div>
+
+<app-visor-acta *ngIf="visorAbierto && acta" [acta]="acta" [columnas]="columnas" [tipoEleccion]="tipoEleccion"
+    (cerrar)="visorAbierto = false"></app-visor-acta>

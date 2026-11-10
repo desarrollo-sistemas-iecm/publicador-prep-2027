@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, finalize, share } from 'rxjs';
 import { ResponseSeccionPorDistrito } from '../interfaces/interfaces.interface';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -18,6 +18,8 @@ import { FiltroGeografico, SIN_FILTRO_GEOGRAFICO } from './filtro-geografico';
   providedIn: 'root'
 })
 export class ApiPrepService {
+
+  private readonly detalleCasillaEnCurso = new Map<string, Observable<DetalleCasillaResponse>>();
 
   constructor( private http: HttpClient ) { }
 
@@ -130,14 +132,30 @@ export class ApiPrepService {
 
   }
 
-  obtenederDetalleVotosCasilla(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno', primerCombo: any, seccion: any, casilla: any){
+  /**
+   * Detalle de votos y participación por casilla. Varias vistas de la misma
+   * pantalla (detalle, participación ciudadana, información del acta) piden
+   * lo mismo al iniciar: comparten la petición mientras está en curso y, al
+   * terminar, se descarta para que la siguiente consulta traiga el corte vigente.
+   */
+  obtenederDetalleVotosCasilla(tipo_consulta: string | 'jefatura-de-gobierno'|'diputaciones'| 'alcaldias' = 'jefatura-de-gobierno', primerCombo: any, seccion: any, casilla: any): Observable<DetalleCasillaResponse> {
 
     const type = typeQuery( tipo_consulta );
-   
+    const cuerpo = { type, seleccion: primerCombo, seccion };
+    const clave = JSON.stringify(cuerpo);
+
+    const peticionEnCurso = this.detalleCasillaEnCurso.get(clave);
+    if (peticionEnCurso) {
+      return peticionEnCurso;
+    }
+
     const api = environment.api_prep;
-    return this.http.post<DetalleCasillaResponse>(`${api}/distribucion`, {type, seleccion: primerCombo, seccion});
-    // Whithout codeigniter
-    // return this.http.get<ResponseSeccionPorDistrito>(`${api}/api_items.php?type=${type}&seleccion=${primerCombo}&seccion=${seccion}`);
+    const peticion = this.http.post<DetalleCasillaResponse>(`${api}/distribucion`, cuerpo).pipe(
+      finalize(() => this.detalleCasillaEnCurso.delete(clave)),
+      share()
+    );
+    this.detalleCasillaEnCurso.set(clave, peticion);
+    return peticion;
 
   }
   // this.http.get('url')

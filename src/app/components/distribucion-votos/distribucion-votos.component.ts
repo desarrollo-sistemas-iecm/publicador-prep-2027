@@ -37,8 +37,5 @@ export class DistribucionVotosComponent implements OnInit {
       });
   }
 
-  logo(siglas: string): string {
-    return `./assets/img/unknow/${siglas.replaceAll('-', '_')}.png`;
-  }
 
 }

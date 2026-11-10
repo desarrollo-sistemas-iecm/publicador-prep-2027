@@ -79,8 +79,7 @@
                                         src="assets/img/unknow/avatar-persona.png"></div>
                                 <div *ngIf="esDistribucion">
                                     <img class="img-partido img-sttngs"
-                                        src="./assets/img/unknow/{{item.siglas | remplazaGuionesMediosABajos}}.png"
-                                        (error)="usarLogoCandidaturaSinPartido($event)">
+                                        [appLogoCandidatura]="item.siglas">
                                 </div>
                             </ng-container>
                             <div>
@@ -98,7 +97,7 @@
                             <div *ngIf="!esDistribucion && vt.siglas != 'no_registrados' && vt.siglas != 'votos_nulos'">
                                 <!-- {{vt.siglas}} -->
                                 <img class="img-partido img-sttngs"
-                                    src="./assets/img/unknow/{{vt.siglas | remplazaGuionesMediosABajos}}.png">
+                                    [appLogoCandidatura]="vt.siglas">
                             </div>
                             <div>
                                 <span class="14px font-bold">

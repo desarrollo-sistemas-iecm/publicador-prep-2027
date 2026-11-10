@@ -34,7 +34,7 @@
                                         <div class="col-12" *ngFor="let aporte of candidatura.aportes">
                                             <div class="container sttngs-imgvts">
                                                 <div class="row">
-                                                    <div class="col-6"><img class="logo-aporte" [src]="logo(aporte.siglas)" [alt]="aporte.siglas"></div>
+                                                    <div class="col-6"><img class="logo-aporte" [appLogoCandidatura]="aporte.siglas" [alt]="aporte.siglas"></div>
                                                     <div class="col-1 text-right p-0"><i class="fa fa-plus-circle"></i></div>
                                                     <div class="col-5 text-right">{{ aporte.votos | number }}</div>
                                                 </div>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-5 col-lg-7 borde-derecha text-right padding-t-15">
                             <span *ngFor="let aporte of candidatura.aportes; let ultimo = last">
-                                <img class="logo-aporte" [src]="logo(aporte.siglas)" [alt]="aporte.siglas">
+                                <img class="logo-aporte" [appLogoCandidatura]="aporte.siglas" [alt]="aporte.siglas">
                                 <strong> &nbsp;{{ aporte.votos | number }} </strong>
                                 <i *ngIf="!ultimo" class="fa fa-plus mx-2"></i>
                             </span>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="row datos" *ngFor="let partido of partidos">
                     <div class="col-3 borde-derecha py-3 text-center">
-                        <img class="imagen-candidato" [src]="logo(partido.siglas)" [alt]="partido.siglas">
+                        <img class="imagen-candidato" [appLogoCandidatura]="partido.siglas" [alt]="partido.siglas">
                     </div>
                     <div class="col-3 borde-derecha text-center padding-t-15">
                         <strong>{{ partido.individual | number }}</strong> <i class="fa fa-plus mx-2"></i>
@@ -100,7 +100,7 @@
                     <div class="col-4 borde-derecha text-center padding-t-15">
                         <strong *ngIf="!partido.coalicion.length">Sin Coalición</strong>
                         <p *ngFor="let aporte of partido.coalicion" class="mb-1">
-                            <img class="logo-aporte" [src]="logo(aporte.siglas)" [alt]="aporte.siglas">
+                            <img class="logo-aporte" [appLogoCandidatura]="aporte.siglas" [alt]="aporte.siglas">
                             &nbsp;{{ aporte.votos | number }}
                         </p>
                     </div>

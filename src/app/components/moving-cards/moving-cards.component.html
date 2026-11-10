@@ -3,28 +3,49 @@
         <i aria-hidden="true" class="fa fa-chevron-left"></i>
     </button>
     <div class="carrusel" #carrusel>
-        <div class="columna-fija">
-            <div class="cabecera-tarjeta" [class.con-candidatura]="mostrarCandidatura">
-                <p class="titulo-votos">Votos</p>
-            </div>
-            <p class="fila fila-total">Total</p>
-            <p class="fila fila-porcentaje">Porcentaje</p>
-        </div>
-        <div class="tarjeta" *ngFor="let item of cards" [class.ganador]="item.ganador">
-            <div class="cabecera-tarjeta" [class.con-candidatura]="mostrarCandidatura">
-                <ng-container *ngIf="mostrarCandidatura">
-                    <img class="foto" src="assets/img/unknow/avatar-persona.png" alt="">
-                    <p class="nombre">{{ item.descripcion }}</p>
-                </ng-container>
-                <div class="logos">
+        <ng-container *ngIf="tarjetaPorPartido; else tarjetasConColumna">
+            <div class="tarjeta-partido" *ngFor="let item of cards">
+                <div class="logos logos-partido">
                     <img *ngFor="let partido of partidos(item.siglas)"
-                        src="./assets/img/unknow/{{ partido | remplazaGuionesMediosABajos }}.png"
+                        [appLogoCandidatura]="partido"
                         [alt]="partido" [title]="partido">
                 </div>
+                <div class="pie-tarjeta">
+                    <div>
+                        <p class="etiqueta">Votos</p>
+                        <p class="valor">{{ item.total_votos | number }}</p>
+                    </div>
+                    <div class="text-right" *ngIf="mostrarPorcentaje">
+                        <p class="etiqueta">Porcentaje</p>
+                        <p class="valor">{{ item.porcentaje | number: '1.4-4' }}%</p>
+                    </div>
+                </div>
             </div>
-            <p class="fila fila-total">{{ item.total_votos | number }}</p>
-            <p class="fila fila-porcentaje">{{ item.porcentaje | number: '1.4-4' }}%</p>
-        </div>
+        </ng-container>
+        <ng-template #tarjetasConColumna>
+            <div class="columna-fija">
+                <div class="cabecera-tarjeta" [class.con-candidatura]="mostrarCandidatura">
+                    <p class="titulo-votos">Votos</p>
+                </div>
+                <p class="fila fila-total">Total</p>
+                <p class="fila fila-porcentaje">Porcentaje</p>
+            </div>
+            <div class="tarjeta" *ngFor="let item of cards" [class.ganador]="item.ganador">
+                <div class="cabecera-tarjeta" [class.con-candidatura]="mostrarCandidatura">
+                    <ng-container *ngIf="mostrarCandidatura">
+                        <img class="foto" src="assets/img/unknow/avatar-persona.png" alt="">
+                        <p class="nombre">{{ item.descripcion }}</p>
+                    </ng-container>
+                    <div class="logos">
+                        <img *ngFor="let partido of partidos(item.siglas)"
+                            [appLogoCandidatura]="partido"
+                            [alt]="partido" [title]="partido">
+                    </div>
+                </div>
+                <p class="fila fila-total">{{ item.total_votos | number }}</p>
+                <p class="fila fila-porcentaje">{{ item.porcentaje | number: '1.4-4' }}%</p>
+            </div>
+        </ng-template>
     </div>
     <button type="button" class="boton-desplazar" (click)="desplazar(1)" aria-label="Ver tarjetas siguientes">
         <i aria-hidden="true" class="fa fa-chevron-right"></i>

@@ -117,8 +117,9 @@ Observable/Subject-based store.
   they aren't exported from a shared module.
 - `src/app/pages/` (`PagesModule`) is the `informacion-prep` section (e.g. `base-datos`, `preguntas-frecuentes`),
   gated by `EsSicodidGuard`.
-- `src/app/pipes/` (`PipesModule`) currently provides `remplaza-guiones-medios-abajos` (dash/underscore text
-  normalization), used in result labels.
+- `src/app/directives/` (`DirectivesModule`, imported by `AppModule`) provides `img[appLogoCandidatura]`: it sets
+  the candidatura logo from its siglas (`PAN-PRI-PRD` → `assets/img/unknow/PAN_PRI_PRD.png`) and falls back to the
+  candidatura sin partido logo (`CI.png`) when the image does not exist. Use it for every party/coalition logo.
 
 ### Guards/interceptors
 

@@ -1,0 +1,78 @@
+<div class="modal d-block" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="titulo-visor-acta"
+    (click)="alHacerClicEnFondo($event)">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titulo-visor-acta">
+                    {{ esUrna ? 'Representación del Acta de Urna Electrónica' : 'Visor de Imagen de Actas' }}
+                </h5>
+                <button #botonCerrar type="button" class="close" aria-label="Cerrar" (click)="cerrar.emit()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <ng-container *ngIf="esUrna; else imagenActa">
+                    <p class="px14">Representación del Acta de Resultados de la Casilla Electoral Local de la Elección
+                        para {{ eleccion }}</p>
+
+                    <div class="datos-urna">
+                        <div>
+                            <p class="subtitulo-urna">Datos de la Casilla</p>
+                            <dl class="datos-casilla">
+                                <dt>Entidad</dt><dd>Ciudad de México</dd>
+                                <dt>Distrito Electoral</dt><dd>{{ acta.id_distrito }}</dd>
+                                <dt>Sección</dt><dd>{{ acta.id_seccion }}</dd>
+                                <dt>Casilla</dt><dd>{{ casilla }}</dd>
+                                <dt>Personas que votaron</dt><dd>{{ personasVotaron ?? 'S/D' }}</dd>
+                                <dt>Fecha y hora de impresión</dt>
+                                <dd>{{ fechaImpresion ? (fechaImpresion | date: 'dd/MM/yyyy HH:mm:ss' : '-0600') + ' (UTC-6)' : 'S/D' }}</dd>
+                                <dt>Versión del software</dt><dd>{{ acta.ue_version_software || 'S/D' }}</dd>
+                                <dt>Urnas electrónicas</dt><dd>{{ acta.ue_identificacion || 'S/D' }}</dd>
+                            </dl>
+                        </div>
+                        <img *ngIf="qr" class="qr-urna" [src]="qr" alt="Código QR del acta de urna electrónica">
+                    </div>
+
+                    <ul class="list-group votos-urna">
+                        <li class="list-group-item" *ngFor="let voto of votos">
+                            <span class="logos-urna">
+                                <img *ngFor="let partido of voto.partidos"
+                                    [appLogoCandidatura]="partido"
+                                    [alt]="partido" [title]="partido">
+                            </span>
+                            <span>{{ valorOSinDato(voto.votos) }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span>Candidaturas no registradas</span><span>{{ valorOSinDato(acta.votos_cand_no_reg) }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span>Votos nulos</span><span>{{ valorOSinDato(acta.votos_nulos) }}</span>
+                        </li>
+                        <li class="list-group-item font-weight-bold">
+                            <span>Total</span><span>{{ valorOSinDato(acta.votacion_total) }}</span>
+                        </li>
+                    </ul>
+
+                    <p class="subtitulo-urna">Mensaje Original</p>
+                    <p class="texto-tecnico">{{ acta.ue_qr }}</p>
+                    <p class="subtitulo-urna">Código de Integridad</p>
+                    <p class="texto-tecnico">{{ acta.ue_codigo_integridad || 'S/D' }}</p>
+                </ng-container>
+
+                <ng-template #imagenActa>
+                    <img *ngIf="acta.url_acta && !errorImagen" class="img-fluid imagen-acta" [src]="acta.url_acta"
+                        [alt]="'Acta digitalizada de la casilla ' + acta.id_seccion + ' ' + casilla"
+                        (error)="errorImagen = true">
+                    <p *ngIf="!acta.url_acta || errorImagen" class="px14 text-center py-4">
+                        La imagen del acta no está disponible.
+                    </p>
+                    <p *ngIf="acta.url_acta" class="px14 text-right mb-0">
+                        <a [href]="acta.url_acta" target="_blank" rel="noopener noreferrer">Abrir en una pestaña nueva</a>
+                    </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop show"></div>

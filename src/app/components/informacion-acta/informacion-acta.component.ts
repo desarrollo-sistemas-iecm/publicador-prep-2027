@@ -1,58 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
-
-type OrigenImagen = 'proceso' | 'escaner' | 'movil' | 'urna' | 'movil-catd';
-
-interface OpcionOrigen {
-  clave: OrigenImagen;
-  etiqueta: string;
-  icono: string;
-}
+import { Column, Datum } from 'src/app/interfaces/detalle-casilla.interface';
+import { ICONO_DOCUMENTO, IconoOrigen, OpcionOrigen, opcionOrigen } from 'src/app/services/origen-acta';
+import { actaVisible } from 'src/app/services/acta-visible';
+import { EstadoActa, estadoActa } from 'src/app/services/estado-acta';
 
 @Component({
   standalone: false,
   selector: 'app-informacion-acta',
   templateUrl: './informacion-acta.component.html',
-  styles: [
-    `
-    .origen {
-    opacity: .45;
-}
-    .origen-activo {
-    opacity: 1;
-    font-weight: bold;
-}
-    `
-  ]
+  styleUrls: ['./informacion-acta.component.css']
 })
 export class InformacionActaComponent implements OnInit {
 
-  public contabilizada: boolean | null = null;
-  public tieneImagen: boolean = false;
-  public observaciones: string = '';
-  // TODO: el backend aún no expone el origen de la imagen del acta; valor de muestra.
-  public origen: OrigenImagen = 'escaner';
-
-  public readonly opcionesOrigen: OpcionOrigen[] = [
-    { clave: 'proceso', etiqueta: 'Acta en proceso', icono: 'fa-hourglass-half' },
-    { clave: 'escaner', etiqueta: 'Escáner', icono: 'fa-print' },
-    { clave: 'movil', etiqueta: 'Móvil', icono: 'fa-mobile' },
-    { clave: 'urna', etiqueta: 'Urna Electrónica', icono: 'fa-qrcode' },
-    { clave: 'movil-catd', etiqueta: 'Móvil CATD', icono: 'fa-building' },
-  ];
+  public acta: Datum | null = null;
+  public columnas: Column[] = [];
+  public tipoEleccion = '';
+  public estado: EstadoActa | null = null;
+  public origen: OpcionOrigen | null = null;
+  public visorAbierto = false;
 
   constructor(private apiPrepService: ApiPrepService, private router: Router) { }
 
+  get iconosVer(): IconoOrigen[] {
+    return this.origen?.iconos ?? [ICONO_DOCUMENTO];
+  }
+
+  get puedeVerActa(): boolean {
+    return actaVisible(this.acta);
+  }
+
   ngOnInit(): void {
     const [, tipoConsulta, , distOAlcaldia, seccion, casilla] = this.router.url.split('/');
+    this.tipoEleccion = tipoConsulta;
 
     this.apiPrepService.obtenederDetalleVotosCasilla(tipoConsulta, distOAlcaldia, seccion, casilla)
-      .subscribe(({ itemRecords }) => {
-        const acta = itemRecords.data.find(({ tipo_casilla }) => tipo_casilla === casilla);
-        this.contabilizada = acta ? acta.contabilizar === 'T' : null;
-        this.tieneImagen = Boolean(acta?.nombre_img);
-        this.observaciones = acta?.observaciones && acta.observaciones !== '--' ? acta.observaciones : '';
+      .subscribe(({ itemRecords: { data, columns } }) => {
+        this.acta = data.find(({ tipo_casilla }) => tipo_casilla === casilla) ?? null;
+        this.columnas = columns;
+        this.estado = this.acta ? estadoActa(this.acta) : null;
+        this.origen = opcionOrigen(this.acta?.origen_acta);
       });
   }
 

@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+.tabla-prep > thead > tr > th {
+  background-color: var(--prep-morado);
+  color: #fff;
+  vertical-align: middle;
+}
+
+.tabla-prep > :not(caption) > tr > * {
+  border: 0;
+  padding: 1em;
+}
+
+.tabla-prep > tbody > tr:nth-child(even) > td {
+  background-color: #f2efef;
+}
