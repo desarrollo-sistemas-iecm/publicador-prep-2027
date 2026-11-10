@@ -3,27 +3,33 @@
 </div> -->
 <div class="col-10">
     <h3 class="titulo-seccion">
-        {{ (configuracionBreadcrumbs.tipo_eleccion === 'alcaldias' ? 'Alcaldías' : configuracionBreadcrumbs.tipo_eleccion | titlecase) || '' }}
+        {{ (configuracionBreadcrumbs.tipo_eleccion === 'alcaldias' ? 'Alcaldías' :
+        configuracionBreadcrumbs.tipo_eleccion | titlecase) || '' }}
         - <span class="txRosaIne">
             <!-- 
                     El label no deberá de aparecer si alguna condición se cumple es decir, por ejemplo: Si mostramos el label de la sección no deberá de aparecer el label del distrito
             -->
-            <strong> 
-                    {{ configuracionBreadcrumbs.casilla ? 'Sección' : (configuracionBreadcrumbs.seccion ? 'Detalle de la sección' : (configuracionBreadcrumbs.alcaldia && !configuracionBreadcrumbs.distrito ? 'Detalle de la alcaldía' : (configuracionBreadcrumbs.distrito ? 'Detalle del distrito' : 'Entidad'))) }} 
-                    -
+            <strong>
+                {{ configuracionBreadcrumbs.casilla ? 'Sección' : (configuracionBreadcrumbs.seccion ? 'Detalle de la
+                sección' : (configuracionBreadcrumbs.alcaldia && !configuracionBreadcrumbs.distrito ? 'Detalle de la
+                alcaldía' : (configuracionBreadcrumbs.distrito ? 'Detalle del distrito' : 'Entidad'))) }}
+                -
             </strong>
             {{ labelTransformerService.transformaLabelVistaPor(configuracionBreadcrumbs.votos_por) || '' }}
         </span>
     </h3>
     <h4 *ngIf="configuracionBreadcrumbs.alcaldia !== 0 || configuracionBreadcrumbs.distrito !== 0">
-        <a class="linkAzul" id="pagina_principal" routerLink="/jefatura-de-gobierno" *ngIf="configuracionBreadcrumbs.alcaldia !== 0 || configuracionBreadcrumbs.distrito !== 0">
+        <a class="linkAzul" id="pagina_principal" routerLink="/jefatura-de-gobierno"
+            *ngIf="configuracionBreadcrumbs.alcaldia !== 0 || configuracionBreadcrumbs.distrito !== 0">
             Ciudad de México
         </a>
 
         <ng-container *ngIf="configuracionBreadcrumbs.tipo_eleccion === 'alcaldias'; else porDistrito">
             /
-            <ng-container *ngIf="configuracionBreadcrumbs.alcaldia !== 0 && configuracionBreadcrumbs.seccion; else alcaldiaSinEnlace">
-                <a routerLink="/{{configuracionBreadcrumbs.tipo_eleccion}}/{{configuracionBreadcrumbs.votos_por}}/{{configuracionBreadcrumbs.alcaldia}}" class="linkAzul">Alcaldía {{ configuracionBreadcrumbs.nombre_alcaldia | titlecase }}</a>
+            <ng-container
+                *ngIf="configuracionBreadcrumbs.alcaldia !== 0 && configuracionBreadcrumbs.seccion; else alcaldiaSinEnlace">
+                <a routerLink="/{{configuracionBreadcrumbs.tipo_eleccion}}/{{configuracionBreadcrumbs.votos_por}}/{{configuracionBreadcrumbs.alcaldia}}"
+                    class="linkAzul">Alcaldía {{ configuracionBreadcrumbs.nombre_alcaldia | titlecase }}</a>
             </ng-container>
             <ng-template #alcaldiaSinEnlace>
                 Alcaldía {{ configuracionBreadcrumbs.nombre_alcaldia | titlecase }}
@@ -32,8 +38,10 @@
 
         <ng-template #porDistrito>
             /
-            <ng-container *ngIf="configuracionBreadcrumbs.distrito !== 0 && configuracionBreadcrumbs.seccion; else distritoSinEnlace">
-                <a routerLink="/{{configuracionBreadcrumbs.tipo_eleccion}}/{{configuracionBreadcrumbs.votosPorNivel1 || configuracionBreadcrumbs.votos_por}}/{{configuracionBreadcrumbs.distrito}}" class="linkAzul">Distrito {{ configuracionBreadcrumbs.distrito }}</a>
+            <ng-container
+                *ngIf="configuracionBreadcrumbs.distrito !== 0 && configuracionBreadcrumbs.seccion; else distritoSinEnlace">
+                <a routerLink="/{{configuracionBreadcrumbs.tipo_eleccion}}/{{configuracionBreadcrumbs.votosPorNivel1 || configuracionBreadcrumbs.votos_por}}/{{configuracionBreadcrumbs.distrito}}"
+                    class="linkAzul">Distrito {{ configuracionBreadcrumbs.distrito }}</a>
             </ng-container>
             <ng-template #distritoSinEnlace>
                 Distrito {{ configuracionBreadcrumbs.distrito }}
@@ -42,7 +50,8 @@
 
         <ng-container *ngIf="configuracionBreadcrumbs.seccion">
             /
-            <ng-container *ngIf="(configuracionBreadcrumbs.distrito !== 0 || configuracionBreadcrumbs.alcaldia !== 0) && configuracionBreadcrumbs.seccion !== 0 && configuracionBreadcrumbs.casilla; else seccionSinEnlace">
+            <ng-container
+                *ngIf="(configuracionBreadcrumbs.distrito !== 0 || configuracionBreadcrumbs.alcaldia !== 0) && configuracionBreadcrumbs.seccion !== 0 && configuracionBreadcrumbs.casilla; else seccionSinEnlace">
                 <a (click)="back(1);" class=" linkAzul">Sección {{ configuracionBreadcrumbs.seccion }}</a>
                 <!-- <a routerLink="/{{configuracionBreadcrumbs.tipo_eleccion}}/{{configuracionBreadcrumbs.votos_por}}/{{configuracionBreadcrumbs.alcaldia ? configuracionBreadcrumbs.alcaldia : configuracionBreadcrumbs.distrito}}/{{configuracionBreadcrumbs.seccion}}" class="linkAzul">
                     / Sección {{ configuracionBreadcrumbs.seccion }}
@@ -59,11 +68,15 @@
     </h4>
     <div class="texto font-medium">
         <p *ngIf="configuracionBreadcrumbs.casilla; else textoAgregado">
-            El total de votos calculado que se muestra, se refiere a los votos asentados en el Acta PREP hasta el momento.
+            El total de votos calculado que se muestra, se refiere a los votos asentados en el Acta PREP hasta el
+            momento.
         </p>
         <ng-template #textoAgregado>
             <p>
-                El total de votos calculado y porcentaje que se muestran, se refieren a los votos asentados en las Actas hasta el momento. Por presentación, los decimales de los porcentajes muestran sólo cuatro dígitos. No obstante, al considerar todos los decimales, suman 100%. En la gráfica se muestra el número de votos que cada Partido Político o Candidatura sin partido ha obtenido hasta el momento.
+                El total de votos calculado y porcentaje que se muestran, se refieren a los votos asentados en las Actas
+                hasta el momento. Por presentación, los decimales de los porcentajes muestran sólo cuatro dígitos. No
+                obstante, al considerar todos los decimales, suman 100%. En la gráfica se muestra el número de votos que
+                cada Partido Político o Candidatura sin partido ha obtenido hasta el momento.
             </p>
         </ng-template>
     </div>
