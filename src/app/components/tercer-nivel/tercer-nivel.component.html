@@ -1,90 +1,27 @@
-<app-spinner></app-spinner>
+<app-plantilla-nivel>
+    <div class="row pt-4">
+        <app-informacion-acta class="w-100"></app-informacion-acta>
+    </div>
+    <app-contenedor-resultados-dinamico></app-contenedor-resultados-dinamico>
 
-<app-compartir></app-compartir>
-
-<!-- HEADER -->
-<app-encabezado></app-encabezado><!--Aqui este-->
-<app-avance-entidad-fijo></app-avance-entidad-fijo>
-<!-- HEADER -->
-
-<div class="cuerpo container-fluid">
-    <div class="row">
-        <div class="col-12 my-3 d-xl-none">
-            <app-avance-entidad-movil></app-avance-entidad-movil>
-        </div>
-        <div class="sidebar px-0 bgMorado col-md-12 col-xl-2">
-            <app-sidebar (primerCombo)="onSelectionChangePrimerCombo($event)"
-                (seccionCombo)="onSelectionChangeSegundoCombo($event)"
-                (emitirConfiguracionBreadcrumbs)="onConfiguracionBreadcrumbs($event)"
-                (casillaCombo)="onSelectionChangeTercerCombo($event)">
-            </app-sidebar>
-
-        </div>
-        <div class="bgGrisTenue contenido-principal px-0 my-3 my-xl-0 col-md-12 col-xl-10">
-            <div class="container-fluid py-xl-3">
-                <div class="row">
-                    <!-- AVANCE (estadistica01) -->
-                    <div class="col-xl-8 d-none d-xl-block altoAvance">
-                        <app-avance-entidad></app-avance-entidad>
-                    </div>
-
-                    <!-- FORM TO SEARCH -->
-                    <div class="col-xl-4 d-none d-xl-block altoAvance pl-0">
-                        <app-buscador></app-buscador>
-                    </div>
-                </div>
+    <div class="container-fluid resumen-votacion pt-4">
+        <div class="row">
+            <div class="col-12 col-xl-9">
+                <app-resumen-votacion></app-resumen-votacion>
             </div>
-
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- Aqui comienza el contenido dinámico -->
-                        <div class="card p-3">
-                            <div class="row">
-                                <app-breadcrumbs
-                                    [configuracionBreadcrumbs]="configuracionBreadcrumbs"></app-breadcrumbs>
-                            </div>
-                            <div class="row pt-4">
-                                <app-informacion-acta class="w-100"></app-informacion-acta>
-                            </div>
-                            <!-- Comienza la tabla que llena las alcaldías e incluye el mapa -->
-                            <app-contenedor-resultados-dinamico></app-contenedor-resultados-dinamico>
-                            <!-- Termina la tabla que llena las alcaldías e incluye el mapa -->
-
-                            <div class="container-fluid resumen-votacion pt-4">
-                                <div class="row">
-                                    <div class="col-12 col-xl-9">
-                                        <app-resumen-votacion></app-resumen-votacion>
-                                    </div>
-                                    <div class="col-12 col-xl-3 mt-3 mt-xl-0">
-                                        <app-observaciones-casilla></app-observaciones-casilla>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-12 col-xl-3 mt-3 mt-xl-0">
+                <app-observaciones-casilla></app-observaciones-casilla>
             </div>
-            <!-- <router-outlet></router-outlet> -->
-
-            <div class="container-fluid estadisticaNacional py-3">
-                <!-- estadistica casilla -->
-                <app-estadistica-casillas></app-estadistica-casillas>
-            </div>
-
-            <div class="container-fluid" *ngIf="prep">
-                <app-observaciones-en-acta id="leyenda-observaciones-en-acta"></app-observaciones-en-acta>
-            </div>
-
-            <div class="container-fluid bgGris py-1 d-none">
-                <app-leyenda-resultados-informativos></app-leyenda-resultados-informativos>
-            </div>
-
         </div>
     </div>
-    <!-- FOOTER -->
-    <app-footer-aviso-privacidad></app-footer-aviso-privacidad>
-    <!-- app-footer -->
 
-</div>
+    <ng-container ngProjectAs="[secciones]">
+        <div class="container-fluid estadisticaNacional py-3">
+            <app-estadistica-casillas></app-estadistica-casillas>
+        </div>
+
+        <div class="container-fluid" *ngIf="prep">
+            <app-observaciones-en-acta id="leyenda-observaciones-en-acta"></app-observaciones-en-acta>
+        </div>
+    </ng-container>
+</app-plantilla-nivel>

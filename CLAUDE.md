@@ -74,10 +74,17 @@ the sidebar's first button is "Votos por Candidatura" for every election type.
 Changing the first combo (distrito/alcaldía) in the sidebar keeps the current view (`votos-por-candidatura`,
 `votos-por-partido-politico-y-candidatura-independiente` or `detalle-por-casilla`) for the new id; from a sección or
 casilla it goes back to `/<tipo>/votos-por-candidatura/<id>` (same as PREP Coahuila 2026). The rule lives in
-`rutaAlCambiarDistOAlcaldia()` (`src/app/services/navegacion-combos.ts`), called from the `onSelectionChangePrimerCombo`
-of every level component that hosts `<app-sidebar>` (`TestComponent`, `PrimerNivelComponent`, `SegundoNivelComponent`,
-`TercerNivelComponent`, `VotacionPorCasillaComponent`). The sidebar only emits combo changes made by the user, not the
-selection restored from the URL on load.
+`rutaAlCambiarDistOAlcaldia()` (`src/app/services/navegacion-combos.ts`, next to `rutaAlCambiarSeccion()` and
+`rutaAlCambiarCasilla()`). The sidebar only emits combo changes made by the user, not the selection restored from the
+URL on load.
+
+The five level screens (`TestComponent` for the entity, `PrimerNivelComponent` for a distrito/alcaldía,
+`VotacionPorCasillaComponent` for detalle por casilla, `SegundoNivelComponent` for a sección, `TercerNivelComponent`
+for a casilla) are thin wrappers over `<app-plantilla-nivel>` (`src/app/components/plantilla-nivel/`). The shell owns
+the header, sidebar, progress, buscador, the main card with breadcrumbs, the footer, the combo navigation and the page
+title; each screen projects only what differs: the card content (default slot, usually `<app-resultados-nivel>` with
+the Votos en Actas Contabilizadas block), `[despuesDeTarjeta]` and `<ng-container ngProjectAs="[secciones]">` for the
+sections below the card. Add new per-level content there instead of copying the layout.
 
 Views read distrito/sección/casilla from the URL once in `ngOnInit`, so `RecargaPorParametrosStrategy`
 (`RouteReuseStrategy` registered in `AppModule`) recreates a route's components whenever its params change instead of
