@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { SidebarComponent } from './sidebar.component';
 
@@ -50,5 +50,19 @@ describe('SidebarComponent', () => {
     component.cambiarCasilla('B01');
 
     expect(emitidos).toEqual([['distrito', '18'], ['seccion', '3188'], ['casilla', 'B01']]);
+  });
+
+  it('should label each casilla option with its readable type while keeping the clave as value', () => {
+    const http = TestBed.inject(HttpTestingController);
+    component.optCasillas = [];
+
+    component.cargarCasillasXSeccion('3188');
+    http.expectOne((peticion) => peticion.url.endsWith('/combos/tercero'))
+      .flush({ items: [{ id: 'B01', name: 'B01' }, { id: 'C01', name: 'C01' }] });
+
+    expect(component.optCasillas).toEqual([
+      { label: 'Básica', value: 'B01' },
+      { label: 'Contigua 1', value: 'C01' }
+    ]);
   });
 });
