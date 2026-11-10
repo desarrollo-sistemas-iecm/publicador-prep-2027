@@ -152,9 +152,15 @@ html[data-tema='oscuro'] .bg-ncbzd {
   color: var(--prep-texto) !important;
 }
 
-/* Tablas armadas con <div class="filas">: moleculas.css pinta #f2efef en las filas
-   impares, lo que en oscuro deja el texto claro sobre fondo claro. */
-html[data-tema='oscuro'] .tabla-seccion .contenido .filas:nth-child(odd) > * {
+/* Tablas armadas con <div>: moleculas.css pinta #f2efef / #f1f1f1 en las filas impares
+   (participación ciudadana, distribución de votos), lo que en oscuro deja el texto claro
+   sobre fondo claro. */
+html[data-tema='oscuro'] .distribucion-votos .tabla .titulos {
+  color: var(--prep-texto) !important;
+}
+
+html[data-tema='oscuro'] .tabla-seccion .contenido .filas:nth-child(odd) > *,
+html[data-tema='oscuro'] .distribucion-votos .tabla .datos:nth-child(odd) {
   background-color: var(--prep-bg-secundario) !important;
 }
 
