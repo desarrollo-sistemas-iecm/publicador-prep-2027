@@ -129,6 +129,12 @@ html[data-tema='oscuro'] .table {
   border-color: var(--prep-borde) !important;
 }
 
+/* Tablas armadas con <div class="filas">: moleculas.css pinta #f2efef en las filas
+   impares, lo que en oscuro deja el texto claro sobre fondo claro. */
+html[data-tema='oscuro'] .tabla-seccion .contenido .filas:nth-child(odd) > * {
+  background-color: var(--prep-bg-secundario) !important;
+}
+
 html[data-tema='oscuro'] .borde-barra,
 html[data-tema='oscuro'] .borde-izq-solido,
 html[data-tema='oscuro'] hr,
