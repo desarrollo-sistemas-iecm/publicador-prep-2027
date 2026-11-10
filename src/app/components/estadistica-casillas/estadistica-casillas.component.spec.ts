@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { EstadisticaCasillasComponent } from './estadistica-casillas.component';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { DetalleCasillaResponse } from 'src/app/interfaces/detalle-casilla.interface';
+import { TituloSeccionComponent } from 'src/app/shared/titulo-seccion/titulo-seccion.component';
 
 const respuesta = {
   success: true,
@@ -30,7 +31,7 @@ describe('EstadisticaCasillasComponent', () => {
     apiPrepService.obtenederDetalleVotosCasilla.and.returnValue(of(respuesta));
 
     await TestBed.configureTestingModule({
-      declarations: [EstadisticaCasillasComponent],
+      declarations: [EstadisticaCasillasComponent, TituloSeccionComponent],
       providers: [
         { provide: ApiPrepService, useValue: apiPrepService },
         { provide: Router, useValue: { url } }

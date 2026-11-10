@@ -20,6 +20,7 @@ import { LeyendaResultadosInformativosComponent } from './leyenda-resultados-inf
 import { TablaActasComponent } from './tabla-actas/tabla-actas.component';
 import { PlantillaNivelComponent } from './plantilla-nivel/plantilla-nivel.component';
 import { SpinnerComponent } from '../components/spinner/spinner.component';
+import { TituloSeccionComponent } from './titulo-seccion/titulo-seccion.component';
 
 
 
@@ -42,7 +43,8 @@ import { SpinnerComponent } from '../components/spinner/spinner.component';
     LeyendaResultadosInformativosComponent,
     TablaActasComponent,
     PlantillaNivelComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TituloSeccionComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +70,8 @@ import { SpinnerComponent } from '../components/spinner/spinner.component';
     LeyendaResultadosInformativosComponent,
     TablaActasComponent,
     PlantillaNivelComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TituloSeccionComponent
   ]
 })
 export class SharedModule { }

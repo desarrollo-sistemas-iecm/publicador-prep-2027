@@ -1,10 +1,8 @@
 <div class="container-fluid pb-3">
-    <h4 class="subtitulo-seccion pleca-izquierda">
-        <strong>Información del Acta</strong>
-        <ng-container *ngIf="estado">
-            - <span [ngClass]="estado.claseColor">{{ estado.etiqueta }}</span>
-        </ng-container>
-    </h4>
+    <app-titulo-seccion>
+        Información del Acta
+        <span complemento *ngIf="estado">- <span [ngClass]="estado.claseColor">{{ estado.etiqueta }}</span></span>
+    </app-titulo-seccion>
     <div class="row align-items-end">
         <div class="col-12 col-md-3 mb-2">
             <p class="px14 mb-1"><strong>Acta digitalizada</strong></p>

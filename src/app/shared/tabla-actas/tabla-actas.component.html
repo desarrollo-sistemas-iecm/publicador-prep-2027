@@ -1,5 +1,5 @@
 <div class="col-12 px-0 mt-4">
-    <h4 class="subtitulo-seccion pleca-izquierda px-3"><strong>{{ titulo }}</strong></h4>
+    <app-titulo-seccion class="px-3">{{ titulo }}</app-titulo-seccion>
 
     <p class="px16" *ngIf="estado.status === 'loading'">Cargando actas...</p>
     <p class="px16" *ngIf="estado.status === 'empty'">No hay actas disponibles.</p>

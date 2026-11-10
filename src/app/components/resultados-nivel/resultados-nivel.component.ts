@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <div class="row py-4">
         <div class="col-12">
-            <h4 class="subtitulo-seccion pleca-izquierda"><strong>{{ titulo }}</strong></h4>
+            <app-titulo-seccion>{{ titulo }}</app-titulo-seccion>
         </div>
     </div>
     <app-contenedor-resultados-dinamico></app-contenedor-resultados-dinamico>
