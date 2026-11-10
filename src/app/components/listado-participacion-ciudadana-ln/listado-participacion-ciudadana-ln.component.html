@@ -6,7 +6,10 @@
                     class="titulo text-left"><strong class="underline cursorPointer fnt-rsltdsll">
                         Participación ciudadana con base en la Lista Nominal de las casillas con Actas PREP
                         Contabilizadas </strong></a></div>
-            <div class="contenido max-500">
+            <p *ngIf="!cargando && filas.length === 0" class="px14 text-center py-3">
+                No hay actas registradas para esta consulta.
+            </p>
+            <div *ngIf="filas.length > 0" class="contenido max-500">
                 <div class="container-fluid">
                     <div class="row text-center bg-ncbzd">
                         <div class="col-3 dis-flex py-2">
@@ -14,92 +17,28 @@
                         </div>
                         <div class="col-3 dis-flex py-2">
                             <p><strong> Total de Votos </strong></p><span
-                                tooltip="Se refiere a la suma total de votos que realiza el sistema informático con base en los datos que muestran en cada Acta; podrás consultar la cifra del total de votos mostrado en cada Acta en la base de datos del PREP (numeral 26, fr. XIV del Anexo 13 del Reglamento de Elecciones)."
-                                placement="top" show-delay="200"
-                                ng-reflect-tooltip-value="Se refiere a la suma total de " ng-reflect-placement="top"
-                                ng-reflect-show-delay="200"><i aria-hidden="true"
-                                    class="fa fa-info-circle pstn-bslt"></i></span>
+                                title="Se refiere a la suma total de votos que realiza el sistema informático con base en los datos que muestran en cada Acta; podrás consultar la cifra del total de votos mostrado en cada Acta en la base de datos del PREP (numeral 26, fr. XIV del Anexo 13 del Reglamento de Elecciones)."><i
+                                    aria-hidden="true" class="fa fa-info-circle pstn-bslt"></i></span>
                         </div>
                         <div class="col-3 dis-flex">
                             <p><strong> Lista Nominal </strong></p>
                         </div>
                         <div class="col-3 dis-flex">
-                            <p><strong> Participación ciudadana </strong>
-                            </p>
+                            <p><strong> Participación ciudadana </strong></p>
                         </div>
                     </div>
-                    <div class="row filas text-center">
+                    <div class="row filas text-center" *ngFor="let fila of filas">
                         <div class="col-3 dis-flex">
-                            <p> 749 Básica 1 </p>
-                        </div>
-                        <div class="col-3 dis-flex">
-                            <p> 93 </p>
-                        </div>
-                        <div class="col-3 dis-flex" ng-reflect-ng-class="[object Object]">
-                            <p> 531 </p>
-                        </div>
-                        <div class="col-3 dis-flex" ng-reflect-ng-class="[object Object]">
-                            <div>
-                                <p> 17.5141<span>%</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row filas text-center">
-                        <div class="col-3 dis-flex">
-                            <p> 749 Contigua 1 </p>
+                            <p> {{ etiqueta(fila) }} </p>
                         </div>
                         <div class="col-3 dis-flex">
-                            <p> 70 </p>
-                        </div>
-                        <div class="col-3 dis-flex" ng-reflect-ng-class="[object Object]">
-                            <p> 531 </p>
-                        </div>
-                        <div class="col-3 dis-flex" ng-reflect-ng-class="[object Object]">
-                            <div>
-                                <p> 13.1826<span>%</span>
-                                </p>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row filas text-center">
-                        <div class="col-3 dis-flex">
-                            <p> 749 Contigua 2 </p>
+                            <p> {{ fila.votacion_total | number }} </p>
                         </div>
                         <div class="col-3 dis-flex">
-                            <p> 82 </p>
-                        </div>
-                        <div class="col-3 dis-flex" ng-reflect-ng-class="[object Object]">
-                            <p> 530 </p>
-
-                        </div>
-                        <div class="col-3 dis-flex" ng-reflect-ng-class="[object Object]">
-                            <div>
-                                <p> 15.4716<span>%</span>
-                                </p>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row filas text-center">
-                        <div class="col-3 dis-flex">
-                            <p> 749 Extraordinaria 1 </p>
+                            <p> {{ fila.lista_nominal | number }} </p>
                         </div>
                         <div class="col-3 dis-flex">
-                            <p> 116 </p>
-                        </div>
-                        <div class="col-3 dis-flex" ng-reflect-ng-class="[object Object]">
-                            <p> 693 </p>
-
-                        </div>
-                        <div class="col-3 dis-flex" ng-reflect-ng-class="[object Object]">
-                            <div>
-                                <p> 16.7388<span>%</span>
-                                </p>
-
-                            </div>
+                            <p> {{ fila.participacion }}<span>%</span></p>
                         </div>
                     </div>
                 </div>
