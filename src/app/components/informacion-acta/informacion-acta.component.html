@@ -8,20 +8,18 @@
     <div class="row align-items-end">
         <div class="col-12 col-md-3 mb-2">
             <p class="px14 mb-1"><strong>Acta digitalizada</strong></p>
-            <a *ngIf="urlActa; else sinImagen" class="boton-ver" [href]="urlActa" target="_blank"
-                rel="noopener noreferrer" [attr.aria-label]="'Ver acta digitalizada' + (origen ? ', ' + origen.etiqueta : '')">
+            <button type="button" class="boton-ver" [disabled]="!puedeVerActa" (click)="visorAbierto = true"
+                [title]="puedeVerActa ? '' : 'La imagen del acta aún no está disponible'"
+                [attr.aria-label]="'Ver acta digitalizada' + (origen ? ', ' + origen.etiqueta : '')">
                 <app-iconos-origen-acta [iconos]="iconosVer"></app-iconos-origen-acta>
                 Ver
-            </a>
-            <ng-template #sinImagen>
-                <button type="button" class="boton-ver" disabled title="La imagen del acta aún no está disponible">
-                    <app-iconos-origen-acta [iconos]="iconosVer"></app-iconos-origen-acta>
-                    Ver
-                </button>
-            </ng-template>
+            </button>
         </div>
         <div class="col-12 col-md-9 mb-2">
             <app-leyenda-origen-acta></app-leyenda-origen-acta>
         </div>
     </div>
 </div>
+
+<app-visor-acta *ngIf="visorAbierto && acta" [acta]="acta" [columnas]="columnas" [tipoEleccion]="tipoEleccion"
+    (cerrar)="visorAbierto = false"></app-visor-acta>

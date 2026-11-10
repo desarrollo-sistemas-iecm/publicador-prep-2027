@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 
@@ -15,7 +16,8 @@ const respuesta = {
     value_fields: [], columns: [], participacion: [], resumen: {},
     data: [
       { tipo_casilla: 'B01', contabilizar: 'T', url_acta: 'https://actas.test/18/18-3188-B01dmr.jpg', origen_acta: 'movil' },
-      { tipo_casilla: 'C01', contabilizar: 'F', url_acta: null, origen_acta: 'proceso' }
+      { tipo_casilla: 'C01', contabilizar: 'F', url_acta: null, origen_acta: 'proceso' },
+      { tipo_casilla: 'S01', contabilizar: 'T', url_acta: null, ue_qr: 'R|09|18', origen_acta: 'urna' }
     ]
   }
 } as unknown as DetalleCasillaResponse;
@@ -32,24 +34,28 @@ describe('InformacionActaComponent', () => {
       providers: [
         { provide: ApiPrepService, useValue: apiPrepService },
         { provide: Router, useValue: { url: `/diputaciones/casilla/18/3188/${casilla}` } }
-      ]
+      ],
+      // El visor tiene su propio spec; aquí solo importa que se monte.
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     fixture = TestBed.createComponent(InformacionActaComponent);
     fixture.detectChanges();
   };
 
+  const botonVer = (): HTMLButtonElement => fixture.nativeElement.querySelector('.boton-ver');
+
   const iconosVer = (): string[] =>
     Array.from(fixture.nativeElement.querySelectorAll('.boton-ver .fa') as NodeListOf<HTMLElement>)
       .map((icono) => Array.from(icono.classList).find((clase) => clase !== 'fa')!);
 
-  it('should link Ver to the acta image when the backend sends its url', async () => {
+  it('should open the acta viewer when Ver is clicked and the acta has an image', async () => {
     await crear('B01');
 
-    const enlace: HTMLAnchorElement = fixture.nativeElement.querySelector('a.boton-ver');
+    botonVer().click();
+    fixture.detectChanges();
 
-    expect(enlace.href).toBe('https://actas.test/18/18-3188-B01dmr.jpg');
-    expect(enlace.target).toBe('_blank');
+    expect(fixture.nativeElement.querySelector('app-visor-acta')).not.toBeNull();
   });
 
   it('should show the origin icons of the acta inside Ver', async () => {
@@ -58,11 +64,16 @@ describe('InformacionActaComponent', () => {
     expect(iconosVer()).toEqual(['fa-file-o', 'fa-mobile']);
   });
 
-  it('should disable Ver when the acta has no image url', async () => {
+  it('should disable Ver when the acta has no image nor electronic ballot box data', async () => {
     await crear('C01');
 
-    expect(fixture.nativeElement.querySelector('a.boton-ver')).toBeNull();
-    expect(fixture.nativeElement.querySelector('button.boton-ver').disabled).toBeTrue();
+    expect(botonVer().disabled).toBeTrue();
+  });
+
+  it('should enable Ver for an electronic ballot box acta even without image', async () => {
+    await crear('S01');
+
+    expect(botonVer().disabled).toBeFalse();
   });
 
   it('should list every image origin in the legend', async () => {
