@@ -31,6 +31,8 @@ import { ObservacionesCasillaComponent } from './components/observaciones-casill
 import { IconosOrigenActaComponent } from './components/iconos-origen-acta/iconos-origen-acta.component';
 import { LeyendaOrigenActaComponent } from './components/leyenda-origen-acta/leyenda-origen-acta.component';
 import { VisorActaComponent } from './components/visor-acta/visor-acta.component';
+import { PlantillaNivelComponent } from './components/plantilla-nivel/plantilla-nivel.component';
+import { ResultadosNivelComponent } from './components/resultados-nivel/resultados-nivel.component';
 import { DirectivesModule } from './directives/directives.module';
 // import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -59,7 +61,9 @@ import { DirectivesModule } from './directives/directives.module';
     ObservacionesCasillaComponent,
     IconosOrigenActaComponent,
     LeyendaOrigenActaComponent,
-    VisorActaComponent
+    VisorActaComponent,
+    PlantillaNivelComponent,
+    ResultadosNivelComponent
   ],
   imports: [
     BrowserModule,
