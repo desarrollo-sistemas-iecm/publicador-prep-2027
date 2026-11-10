@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
@@ -9,6 +9,22 @@ import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { BreadcrumbsService } from 'src/app/services/breadcrumbs.service';
 import { BreadcrumbsConfig } from 'src/app/interfaces/breadcrumbs';
 import { SpinnerService } from 'src/app/services/spinner.service';
+
+@Component({
+  standalone: false,
+  template: `
+    <app-plantilla-nivel [esperarAvanceEntidad]="false">
+      <p class="contenido-tarjeta">Tarjeta</p>
+      <p class="despues-tarjeta" despuesDeTarjeta>Después</p>
+      <ng-container ngProjectAs="[secciones]">
+        <section class="seccion" *ngIf="mostrarSeccion">Sección</section>
+      </ng-container>
+    </app-plantilla-nivel>
+  `
+})
+class PantallaComponent {
+  mostrarSeccion = true;
+}
 
 describe('PlantillaNivelComponent', () => {
   let fixture: ComponentFixture<PlantillaNivelComponent>;
@@ -82,5 +98,51 @@ describe('PlantillaNivelComponent', () => {
 
     expect(fixture.debugElement.query(By.css('app-breadcrumbs')).properties['configuracionBreadcrumbs']).toBe(configuracion);
     expect(TestBed.inject(Title).getTitle()).toBe('PREP - Diputaciones - Distrito 18');
+  });
+
+  describe('content projection', () => {
+    let pantalla: ComponentFixture<PantallaComponent>;
+
+    beforeEach(async () => {
+      apiPrepService = jasmine.createSpyObj<ApiPrepService>('ApiPrepService', ['obtenerAvanceEntidad']);
+      await TestBed.configureTestingModule({
+        declarations: [PlantillaNivelComponent, PantallaComponent],
+        providers: [
+          { provide: Router, useValue: { url: '/diputaciones/votos-por-candidatura/18', navigateByUrl: jasmine.createSpy() } },
+          { provide: ApiPrepService, useValue: apiPrepService },
+          { provide: BreadcrumbsService, useValue: { construirTitulo: () => '' } }
+        ],
+        schemas: [NO_ERRORS_SCHEMA]
+      }).compileComponents();
+
+      pantalla = TestBed.createComponent(PantallaComponent);
+      pantalla.detectChanges();
+    });
+
+    const elemento = (selector: string): HTMLElement => pantalla.nativeElement.querySelector(selector);
+
+    it('should place the card content inside the card, after the breadcrumbs', () => {
+      expect(elemento('.card > .contenido-tarjeta')).toBeTruthy();
+      expect(elemento('.card > .row:first-child app-breadcrumbs')).toBeTruthy();
+    });
+
+    it('should place despuesDeTarjeta right after the card, outside it', () => {
+      const despues = elemento('.despues-tarjeta');
+
+      expect(despues.closest('.card')).toBeNull();
+      expect(despues.previousElementSibling?.classList).toContain('card');
+    });
+
+    it('should place the sections in the main column, outside the card', () => {
+      expect(elemento('.contenido-principal > .seccion')).toBeTruthy();
+      expect(elemento('.seccion').closest('.card')).toBeNull();
+    });
+
+    it('should keep the conditions of the projected sections', () => {
+      pantalla.componentInstance.mostrarSeccion = false;
+      pantalla.detectChanges();
+
+      expect(elemento('.seccion')).toBeNull();
+    });
   });
 });
