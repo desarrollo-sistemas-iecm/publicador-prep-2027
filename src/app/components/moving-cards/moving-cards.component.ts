@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { CandidatoGrafica } from 'src/app/interfaces/grafica.interface';
 
 const ANCHO_DESPLAZAMIENTO = 404;
+// Vistas que, como PREP Coahuila 2026, usan tarjetas por partido: logo y pie con votos y porcentaje.
+const VISTAS_TARJETA_PARTIDO = ['detalle-por-casilla', 'casillas', 'casilla'];
 
 @Component({
   standalone: false,
@@ -18,11 +20,17 @@ export class MovingCardsComponent implements OnInit {
   public cards: CandidatoGrafica[] = [];
   // En "Votos por Candidatura" la tarjeta muestra foto y nombre de la candidatura; en las demás vistas solo los logos.
   public mostrarCandidatura: boolean = false;
+  public tarjetaPorPartido: boolean = false;
+  // En una sola casilla el porcentaje no aplica: la tarjeta solo muestra votos.
+  public mostrarPorcentaje: boolean = true;
 
   constructor( private apiPrepService: ApiPrepService, private router: Router ) { }
 
   ngOnInit(): void {
-    this.mostrarCandidatura = this.router.url.split('/')[2] === 'votos-por-candidatura';
+    const vista = this.router.url.split('/')[2];
+    this.mostrarCandidatura = vista === 'votos-por-candidatura';
+    this.tarjetaPorPartido = VISTAS_TARJETA_PARTIDO.includes(vista);
+    this.mostrarPorcentaje = vista !== 'casilla';
     this.cargarInfoCards();
   }
 
@@ -41,9 +49,6 @@ export class MovingCardsComponent implements OnInit {
 
     const currentUrl = this.router.url; // Obtiene la URL actual
     const segments = currentUrl.split('/'); // Divide la URL en segmentos
-
-    console.log(segments);
-    
 
     // Verifica si la URL tiene al menos dos segmentos y el segundo es un tipo de visualización válido
     if (segments.length >= 2 && ['jefatura-de-gobierno', 'diputaciones', 'alcaldias'].includes(segments[1])) {
