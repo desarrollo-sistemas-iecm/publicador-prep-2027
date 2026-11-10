@@ -1,3 +1,10 @@
+<ng-template #iconos let-lista>
+    <ng-container *ngFor="let icono of lista">
+        <i *ngIf="icono.glifo" class="fa {{ icono.glifo }}" aria-hidden="true"></i>
+        <img *ngIf="icono.imagen" class="icono-imagen" [src]="icono.imagen" alt="">
+    </ng-container>
+</ng-template>
+
 <div class="container-fluid pb-3">
     <h4 class="subtitulo-seccion pleca-izquierda">
         <strong>Información del Acta</strong>
@@ -5,20 +12,34 @@
             - <span [ngClass]="contabilizada ? 'text-success' : 'text-danger'">{{ contabilizada ? 'Contabilizada' : 'No Contabilizada' }}</span>
         </ng-container>
     </h4>
-    <div class="row align-items-center">
+    <div class="row align-items-end">
         <div class="col-12 col-md-3 mb-2">
             <p class="px14 mb-1"><strong>Acta digitalizada</strong></p>
-            <button type="button" class="BTN-Eleccion px-4 py-2 px14" [disabled]="!tieneImagen"
-                title="La consulta de la imagen del acta aún no está disponible">
-                <i class="fa fa-file-o" aria-hidden="true"></i> Ver
-            </button>
+            <a *ngIf="urlActa; else sinImagen" class="boton-ver" [href]="urlActa" target="_blank"
+                rel="noopener noreferrer" [attr.aria-label]="'Ver acta digitalizada' + (origen ? ', ' + origen.etiqueta : '')">
+                <span class="iconos-ver"><ng-container *ngTemplateOutlet="iconos; context: { $implicit: iconosVer }"></ng-container></span>
+                Ver
+            </a>
+            <ng-template #sinImagen>
+                <button type="button" class="boton-ver" disabled title="La imagen del acta aún no está disponible">
+                    <span class="iconos-ver"><ng-container *ngTemplateOutlet="iconos; context: { $implicit: iconosVer }"></ng-container></span>
+                    Ver
+                </button>
+            </ng-template>
         </div>
         <div class="col-12 col-md-9 mb-2">
-            <p class="px14 mb-1"><strong>Imagen procedente de:</strong></p>
-            <span *ngFor="let opcion of opcionesOrigen" class="px14 mr-3"
-                [ngClass]="opcion.clave === origen ? 'origen-activo' : 'origen'">
-                <i class="fa {{ opcion.icono }}" aria-hidden="true"></i> {{ opcion.etiqueta }}
-            </span>
+            <p class="px14 mb-1">Imagen procedente de:</p>
+            <div class="leyenda-origen">
+                <span class="opcion-origen en-proceso">
+                    <span class="iconos-origen"><ng-container *ngTemplateOutlet="iconos; context: { $implicit: enProceso.iconos }"></ng-container></span>
+                    {{ enProceso.etiqueta }}
+                </span>
+                <span class="separador-origen" aria-hidden="true"></span>
+                <span class="opcion-origen" *ngFor="let opcion of procedencias">
+                    <span class="iconos-origen"><ng-container *ngTemplateOutlet="iconos; context: { $implicit: opcion.iconos }"></ng-container></span>
+                    {{ opcion.etiqueta }}
+                </span>
+            </div>
         </div>
     </div>
 </div>

@@ -46,7 +46,11 @@ export interface Datum {
     contabilizar?:          string;
     nombre_img?:            string | null;
     observaciones?:         string | null;
+    url_acta?:              string | null;
+    origen_acta?:           OrigenActa | null;
 }
+
+export type OrigenActa = 'proceso' | 'escaner' | 'movil' | 'urna' | 'movil-catd';
 
 export enum TipoCasilla {
     A1 = "A1",
