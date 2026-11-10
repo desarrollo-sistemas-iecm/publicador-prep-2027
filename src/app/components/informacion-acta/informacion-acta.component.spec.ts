@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 
 import { InformacionActaComponent } from './informacion-acta.component';
+import { IconosOrigenActaComponent } from '../iconos-origen-acta/iconos-origen-acta.component';
+import { LeyendaOrigenActaComponent } from '../leyenda-origen-acta/leyenda-origen-acta.component';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
 import { DetalleCasillaResponse } from 'src/app/interfaces/detalle-casilla.interface';
 
@@ -26,7 +28,7 @@ describe('InformacionActaComponent', () => {
     apiPrepService.obtenederDetalleVotosCasilla.and.returnValue(of(respuesta));
 
     await TestBed.configureTestingModule({
-      declarations: [InformacionActaComponent],
+      declarations: [InformacionActaComponent, IconosOrigenActaComponent, LeyendaOrigenActaComponent],
       providers: [
         { provide: ApiPrepService, useValue: apiPrepService },
         { provide: Router, useValue: { url: `/diputaciones/casilla/18/3188/${casilla}` } }

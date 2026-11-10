@@ -28,6 +28,8 @@ import { RepresentacionProporcionalComponent } from './components/representacion
 import { VotosActasContabilizadasComponent } from './components/votos-actas-contabilizadas/votos-actas-contabilizadas.component';
 import { InformacionActaComponent } from './components/informacion-acta/informacion-acta.component';
 import { ObservacionesCasillaComponent } from './components/observaciones-casilla/observaciones-casilla.component';
+import { IconosOrigenActaComponent } from './components/iconos-origen-acta/iconos-origen-acta.component';
+import { LeyendaOrigenActaComponent } from './components/leyenda-origen-acta/leyenda-origen-acta.component';
 import { PipesModule } from './pipes/pipes.module';
 // import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -53,7 +55,9 @@ import { PipesModule } from './pipes/pipes.module';
     RepresentacionProporcionalComponent,
     VotosActasContabilizadasComponent,
     InformacionActaComponent,
-    ObservacionesCasillaComponent
+    ObservacionesCasillaComponent,
+    IconosOrigenActaComponent,
+    LeyendaOrigenActaComponent
   ],
   imports: [
     BrowserModule,
