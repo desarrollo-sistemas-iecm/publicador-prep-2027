@@ -64,6 +64,11 @@ export class VisorActaComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.acta.ue_fecha_impresion && Number.isFinite(milisegundos) ? new Date(milisegundos) : null;
   }
 
+  // Las actas con campos ilegibles o sin dato llegan con votos nulos desde la base.
+  valorOSinDato(valor: number | null | undefined): number | string {
+    return valor ?? 'S/D';
+  }
+
   async ngOnInit(): Promise<void> {
     this.documento.body.classList.add('modal-open');
     this.votos = this.columnas

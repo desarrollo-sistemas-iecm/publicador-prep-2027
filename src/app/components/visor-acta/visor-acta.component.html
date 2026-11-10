@@ -41,16 +41,16 @@
                                     src="./assets/img/unknow/{{ partido | remplazaGuionesMediosABajos }}.png"
                                     [alt]="partido" [title]="partido">
                             </span>
-                            <span>{{ voto.votos ?? 'S/D' }}</span>
+                            <span>{{ valorOSinDato(voto.votos) }}</span>
                         </li>
                         <li class="list-group-item">
-                            <span>Candidaturas no registradas</span><span>{{ acta.votos_cand_no_reg ?? 'S/D' }}</span>
+                            <span>Candidaturas no registradas</span><span>{{ valorOSinDato(acta.votos_cand_no_reg) }}</span>
                         </li>
                         <li class="list-group-item">
-                            <span>Votos nulos</span><span>{{ acta.votos_nulos ?? 'S/D' }}</span>
+                            <span>Votos nulos</span><span>{{ valorOSinDato(acta.votos_nulos) }}</span>
                         </li>
                         <li class="list-group-item font-weight-bold">
-                            <span>Total</span><span>{{ acta.votacion_total ?? 'S/D' }}</span>
+                            <span>Total</span><span>{{ valorOSinDato(acta.votacion_total) }}</span>
                         </li>
                     </ul>
 
