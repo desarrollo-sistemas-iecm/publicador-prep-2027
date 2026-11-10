@@ -11,7 +11,8 @@ import { SpinnerService } from 'src/app/services/spinner.service';
  * Estructura común de las pantallas de resultados (entidad, distrito/alcaldía, sección y casilla):
  * encabezado, sidebar con sus combos, avance, buscador, tarjeta con breadcrumbs y pie.
  * Cada pantalla proyecta el contenido de la tarjeta, lo que va justo debajo (`despuesDeTarjeta`)
- * y sus secciones (`secciones`).
+ * y sus secciones (`secciones`). Las pantallas sin avance o sin combos (representación proporcional,
+ * voto en condiciones especiales) los ocultan y pasan sus propios `breadcrumbs`.
  */
 @Component({
   standalone: false,
@@ -21,6 +22,9 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 export class PlantillaNivelComponent implements OnInit {
 
   @Input() esperarAvanceEntidad = true;
+  @Input() mostrarAvance = true;
+  @Input() mostrarCombos = true;
+  @Input() breadcrumbs: BreadcrumbsConfig | null = null;
 
   public configuracionBreadcrumbs: BreadcrumbsConfig = {
     tipo_eleccion: '',
@@ -41,7 +45,11 @@ export class PlantillaNivelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.esperarAvanceEntidad) {
+    if (this.breadcrumbs) {
+      this.titleService.setTitle(this.breadcrumbsService.construirTitulo(this.breadcrumbs));
+    }
+
+    if (this.mostrarAvance && this.esperarAvanceEntidad) {
       const [, tipoEleccion] = this.router.url.split('/');
       this.spinnerService.showLoaderUntilCompleted(this.apiPrepService.obtenerAvanceEntidad(tipoEleccion)).subscribe();
     }
@@ -60,6 +68,9 @@ export class PlantillaNivelComponent implements OnInit {
   }
 
   alConfigurarBreadcrumbs(configuracion: BreadcrumbsConfig): void {
+    if (this.breadcrumbs) {
+      return;
+    }
     this.configuracionBreadcrumbs = configuracion;
     this.titleService.setTitle(this.breadcrumbsService.construirTitulo(configuracion));
   }

@@ -18,6 +18,8 @@ import { ResumenVotacionComponent } from './resumen-votacion/resumen-votacion.co
 import { ContenedorResultadosDinamicoComponent } from './contenedor-resultados-dinamico/contenedor-resultados-dinamico.component';
 import { LeyendaResultadosInformativosComponent } from './leyenda-resultados-informativos/leyenda-resultados-informativos.component';
 import { TablaActasComponent } from './tabla-actas/tabla-actas.component';
+import { PlantillaNivelComponent } from './plantilla-nivel/plantilla-nivel.component';
+import { SpinnerComponent } from '../components/spinner/spinner.component';
 
 
 
@@ -38,7 +40,9 @@ import { TablaActasComponent } from './tabla-actas/tabla-actas.component';
     ResumenVotacionComponent,
     ContenedorResultadosDinamicoComponent,
     LeyendaResultadosInformativosComponent,
-    TablaActasComponent
+    TablaActasComponent,
+    PlantillaNivelComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +66,9 @@ import { TablaActasComponent } from './tabla-actas/tabla-actas.component';
     ResumenVotacionComponent,
     ContenedorResultadosDinamicoComponent,
     LeyendaResultadosInformativosComponent,
-    TablaActasComponent
+    TablaActasComponent,
+    PlantillaNivelComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }

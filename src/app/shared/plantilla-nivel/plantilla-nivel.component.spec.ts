@@ -34,7 +34,7 @@ describe('PlantillaNivelComponent', () => {
 
   const sidebar = () => fixture.debugElement.query(By.css('app-sidebar'));
 
-  const crear = async (url: string, esperarAvanceEntidad = true) => {
+  const crear = async (url: string, esperarAvanceEntidad = true, configurar?: (pantalla: PlantillaNivelComponent) => void) => {
     router = { url, navigateByUrl: jasmine.createSpy('navigateByUrl') };
     apiPrepService = jasmine.createSpyObj<ApiPrepService>('ApiPrepService', ['obtenerAvanceEntidad']);
     apiPrepService.obtenerAvanceEntidad.and.returnValue(of({}) as ReturnType<ApiPrepService['obtenerAvanceEntidad']>);
@@ -55,6 +55,7 @@ describe('PlantillaNivelComponent', () => {
 
     fixture = TestBed.createComponent(PlantillaNivelComponent);
     fixture.componentInstance.esperarAvanceEntidad = esperarAvanceEntidad;
+    configurar?.(fixture.componentInstance);
     fixture.detectChanges();
   };
 
@@ -87,6 +88,36 @@ describe('PlantillaNivelComponent', () => {
 
     expect(router.navigateByUrl).toHaveBeenCalledWith('/alcaldias/casillas/10/4513');
     expect(router.navigateByUrl).toHaveBeenCalledWith('/alcaldias/casilla/10/4512/C01');
+  });
+
+  it('should hide the progress and not wait for it when the screen has no progress', async () => {
+    await crear('/diputaciones/votos-por-representacion-proporcional/18', true, (pantalla) => {
+      pantalla.mostrarAvance = false;
+    });
+
+    expect(fixture.nativeElement.querySelector('app-avance-entidad, app-avance-entidad-fijo, app-buscador')).toBeNull();
+    expect(apiPrepService.obtenerAvanceEntidad).not.toHaveBeenCalled();
+  });
+
+  it('should hide the sidebar combos when the screen has none', async () => {
+    await crear('/diputaciones/voto-en-condiciones-excepcionales/voto-anticipado', false, (pantalla) => {
+      pantalla.mostrarCombos = false;
+    });
+
+    expect(sidebar().properties['mostrarBuscador']).toBeFalse();
+  });
+
+  it('should keep the breadcrumbs and title of the screen when it provides them', async () => {
+    const propios = { tipo_eleccion: 'diputaciones', votos_por: 'voto-anticipado' } as BreadcrumbsConfig;
+    await crear('/diputaciones/voto-en-condiciones-excepcionales/voto-anticipado', false, (pantalla) => {
+      pantalla.breadcrumbs = propios;
+    });
+
+    sidebar().triggerEventHandler('emitirConfiguracionBreadcrumbs', { tipo_eleccion: 'diputaciones' } as BreadcrumbsConfig);
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('app-breadcrumbs')).properties['configuracionBreadcrumbs']).toBe(propios);
+    expect(TestBed.inject(Title).getTitle()).toBe('PREP - Diputaciones - Distrito 18');
   });
 
   it('should pass the sidebar breadcrumbs to the breadcrumbs and the page title', async () => {
