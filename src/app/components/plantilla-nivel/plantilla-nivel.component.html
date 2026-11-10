@@ -1,0 +1,55 @@
+<app-spinner></app-spinner>
+
+<app-compartir></app-compartir>
+
+<app-encabezado></app-encabezado>
+<app-avance-entidad-fijo></app-avance-entidad-fijo>
+
+<div class="cuerpo container-fluid">
+    <div class="row">
+        <div class="col-12 my-3 d-xl-none">
+            <app-avance-entidad-movil></app-avance-entidad-movil>
+        </div>
+        <div class="sidebar px-0 bgMorado col-md-12 col-xl-2">
+            <app-sidebar (primerCombo)="alCambiarDistOAlcaldia($event)"
+                (seccionCombo)="alCambiarSeccion($event)"
+                (casillaCombo)="alCambiarCasilla($event)"
+                (emitirConfiguracionBreadcrumbs)="alConfigurarBreadcrumbs($event)">
+            </app-sidebar>
+        </div>
+        <div class="bgGrisTenue contenido-principal px-0 my-3 my-xl-0 col-md-12 col-xl-10">
+            <div class="container-fluid py-xl-3">
+                <div class="row">
+                    <div class="col-xl-8 d-none d-xl-block altoAvance">
+                        <app-avance-entidad></app-avance-entidad>
+                    </div>
+                    <div class="col-xl-4 d-none d-xl-block altoAvance pl-0">
+                        <app-buscador></app-buscador>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card p-3">
+                            <div class="row">
+                                <app-breadcrumbs
+                                    [configuracionBreadcrumbs]="configuracionBreadcrumbs"></app-breadcrumbs>
+                            </div>
+                            <ng-content></ng-content>
+                        </div>
+                        <ng-content select="[despuesDeTarjeta]"></ng-content>
+                    </div>
+                </div>
+            </div>
+
+            <ng-content select="[secciones]"></ng-content>
+
+            <div class="container-fluid bgGris py-1 d-none">
+                <app-leyenda-resultados-informativos></app-leyenda-resultados-informativos>
+            </div>
+        </div>
+    </div>
+    <app-footer-aviso-privacidad></app-footer-aviso-privacidad>
+</div>
