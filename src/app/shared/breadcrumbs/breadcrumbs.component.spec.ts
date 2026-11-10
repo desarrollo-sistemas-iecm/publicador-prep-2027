@@ -32,6 +32,14 @@ describe('BreadcrumbsComponent', () => {
     expect(ruta()).toBe('Ciudad de México / Distrito 18 / Sección 3188 / Contigua 1');
   });
 
+  it('should title the casilla view as Sección - Casilla like PREP Coahuila 2026', async () => {
+    await crear({ casilla: 'C01' });
+
+    const titulo = fixture.nativeElement.querySelector('h3').textContent.replace(/\s+/g, ' ').trim();
+
+    expect(titulo).toBe('Diputaciones - Sección - Casilla');
+  });
+
   it('should keep the separators outside the links so each level is a separate link', async () => {
     await crear({ casilla: 'C01' });
 

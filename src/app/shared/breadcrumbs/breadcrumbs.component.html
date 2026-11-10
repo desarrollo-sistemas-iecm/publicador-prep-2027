@@ -9,7 +9,7 @@
                     El label no deberá de aparecer si alguna condición se cumple es decir, por ejemplo: Si mostramos el label de la sección no deberá de aparecer el label del distrito
             -->
             <strong> 
-                    {{ configuracionBreadcrumbs.casilla ? 'Detalle de la casilla' : (configuracionBreadcrumbs.seccion ? 'Detalle de la sección' : (configuracionBreadcrumbs.alcaldia && !configuracionBreadcrumbs.distrito ? 'Detalle de la alcaldía' : (configuracionBreadcrumbs.distrito ? 'Detalle del distrito' : 'Entidad'))) }} 
+                    {{ configuracionBreadcrumbs.casilla ? 'Sección' : (configuracionBreadcrumbs.seccion ? 'Detalle de la sección' : (configuracionBreadcrumbs.alcaldia && !configuracionBreadcrumbs.distrito ? 'Detalle de la alcaldía' : (configuracionBreadcrumbs.distrito ? 'Detalle del distrito' : 'Entidad'))) }} 
                     -
             </strong>
             {{ labelTransformerService.transformaLabelVistaPor(configuracionBreadcrumbs.votos_por) || '' }}
