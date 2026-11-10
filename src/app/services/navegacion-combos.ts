@@ -15,3 +15,15 @@ export const rutaAlCambiarDistOAlcaldia = (url: string, distOAlcaldia: string | 
 
   return `/${tipoEleccion}/${vistaDestino}/${distOAlcaldia}`;
 };
+
+export const rutaAlCambiarSeccion = (url: string, seccion: string | number): string => {
+  const [, tipoEleccion, , distOAlcaldia] = url.split('/');
+
+  return `/${tipoEleccion}/casillas/${distOAlcaldia}/${seccion}`;
+};
+
+export const rutaAlCambiarCasilla = (url: string, casilla: string): string => {
+  const [, tipoEleccion, , distOAlcaldia, seccion] = url.split('/');
+
+  return `/${tipoEleccion}/casilla/${distOAlcaldia}/${seccion}/${casilla}`;
+};
