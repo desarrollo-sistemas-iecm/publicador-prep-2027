@@ -31,6 +31,19 @@ const TIPOS_CONSULTA = ['jefatura-de-gobierno', 'diputaciones', 'alcaldias'];
     color: var(--prep-texto-secundario);
     opacity: .7;
 }
+    .tabla-votos-casilla > thead > tr > th {
+    background-color: #582d73;
+    color: #fff;
+    vertical-align: middle;
+}
+    .tabla-votos-casilla > :not(caption) > tr > * {
+    border: 0;
+    padding: 1em;
+    vertical-align: middle;
+}
+    .tabla-votos-casilla > tbody > tr:nth-child(even) > td {
+    background-color: #f2efef;
+}
     `
   ]
 })

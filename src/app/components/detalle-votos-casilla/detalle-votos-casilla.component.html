@@ -21,7 +21,7 @@
                 No hay actas registradas para esta consulta.
             </p>
             <div *ngIf="filas.length > 0" class="table-responsive tabla-seccion">
-                <table class="table table-striped contenido table-bordered">
+                <table class="table contenido tabla-votos-casilla">
                     <thead class="titulos">
                         <tr class="text-center">
                             <th><span class="sr-only">Estado del acta</span></th>
@@ -40,7 +40,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="filas text-center" *ngFor="let fila of filas">
+                        <tr class="text-center" *ngFor="let fila of filas">
                             <td>
                                 <i class="fa fa-circle" aria-hidden="true"
                                     [ngClass]="esContabilizada(fila) ? 'text-success' : 'text-danger'"
