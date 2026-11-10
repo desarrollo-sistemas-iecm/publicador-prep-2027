@@ -38,7 +38,7 @@
                         <li class="list-group-item" *ngFor="let voto of votos">
                             <span class="logos-urna">
                                 <img *ngFor="let partido of voto.partidos"
-                                    src="./assets/img/unknow/{{ partido | remplazaGuionesMediosABajos }}.png"
+                                    [appLogoCandidatura]="partido"
                                     [alt]="partido" [title]="partido">
                             </span>
                             <span>{{ valorOSinDato(voto.votos) }}</span>

@@ -14,8 +14,7 @@
                                 <!-- <p class="pre">
                                     {{ item.siglas }}
                                 </p> -->
-                                <p class="pe"
-                                    style="background-image: url('./assets/img/unknow/{{item.siglas | remplazaGuionesMediosABajos}}.png'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
+                                <p class="pe"><img class="w-100 h-100" style="object-fit: contain;" [appLogoCandidatura]="item.siglas" [alt]="item.siglas" [title]="item.siglas">
                                 </p>
                             </div>
                             <div class="col-4 distrito-numero dis-flex justify-e">

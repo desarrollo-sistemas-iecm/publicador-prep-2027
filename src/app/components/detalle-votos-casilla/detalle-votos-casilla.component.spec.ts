@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 
 import { DetalleVotosCasillaComponent } from './detalle-votos-casilla.component';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
-import { PipesModule } from 'src/app/pipes/pipes.module';
+import { DirectivesModule } from 'src/app/directives/directives.module';
 import { IconosOrigenActaComponent } from '../iconos-origen-acta/iconos-origen-acta.component';
 import { DetalleCasillaResponse } from 'src/app/interfaces/detalle-casilla.interface';
 
@@ -37,7 +37,7 @@ describe('DetalleVotosCasillaComponent', () => {
     apiPrepService.obtenederDetalleVotosCasilla.and.returnValue(of(respuesta));
 
     await TestBed.configureTestingModule({
-      imports: [PipesModule],
+      imports: [DirectivesModule],
       declarations: [DetalleVotosCasillaComponent, IconosOrigenActaComponent],
       providers: [
         { provide: ApiPrepService, useValue: apiPrepService },

@@ -7,7 +7,7 @@
             <div class="tarjeta-partido" *ngFor="let item of cards">
                 <div class="logos logos-partido">
                     <img *ngFor="let partido of partidos(item.siglas)"
-                        src="./assets/img/unknow/{{ partido | remplazaGuionesMediosABajos }}.png"
+                        [appLogoCandidatura]="partido"
                         [alt]="partido" [title]="partido">
                 </div>
                 <div class="pie-tarjeta">
@@ -38,7 +38,7 @@
                     </ng-container>
                     <div class="logos">
                         <img *ngFor="let partido of partidos(item.siglas)"
-                            src="./assets/img/unknow/{{ partido | remplazaGuionesMediosABajos }}.png"
+                            [appLogoCandidatura]="partido"
                             [alt]="partido" [title]="partido">
                     </div>
                 </div>

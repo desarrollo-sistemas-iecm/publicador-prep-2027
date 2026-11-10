@@ -6,7 +6,6 @@ import { CandidatoGrafica } from 'src/app/interfaces/grafica.interface';
 import { colorPartido } from 'src/app/services/colores-partidos';
 
 const MARCAS_EJE_PORCENTAJE = [100, 80, 60, 40, 20, 0];
-const LOGO_CANDIDATURA_SIN_PARTIDO = 'CI.png';
 
 @Component({
   standalone: false,
@@ -113,13 +112,6 @@ export class GraficaComponent implements OnInit {
 
   alturaBarra(totalVotos: number): number {
     return this.escalaMaxima ? (totalVotos * 100) / this.escalaMaxima : 0;
-  }
-
-  usarLogoCandidaturaSinPartido({ target }: Event): void {
-    const imagen = target as HTMLImageElement;
-    if (!imagen.src.endsWith(LOGO_CANDIDATURA_SIN_PARTIDO)) {
-      imagen.src = `./assets/img/unknow/${LOGO_CANDIDATURA_SIN_PARTIDO}`;
-    }
   }
 
   colorBarra(siglas: string): string {

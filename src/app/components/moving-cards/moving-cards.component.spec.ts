@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 
 import { MovingCardsComponent } from './moving-cards.component';
 import { ApiPrepService } from 'src/app/services/api-prep.service';
-import { PipesModule } from 'src/app/pipes/pipes.module';
+import { DirectivesModule } from 'src/app/directives/directives.module';
 import { ResGrafica } from 'src/app/interfaces/grafica.interface';
 
 const respuesta = {
@@ -25,7 +25,7 @@ describe('MovingCardsComponent', () => {
     apiPrepService.obtenerGraficaJG.and.returnValue(of(respuesta));
 
     await TestBed.configureTestingModule({
-      imports: [PipesModule],
+      imports: [DirectivesModule],
       declarations: [MovingCardsComponent],
       providers: [
         { provide: ApiPrepService, useValue: apiPrepService },

@@ -31,7 +31,7 @@
                             <th *ngFor="let columna of columnasVotos">
                                 <img class="m-1" style="width: 2.25em; height: auto;" [alt]="columna.title"
                                     [title]="columna.title"
-                                    src="./assets/img/unknow/{{ columna.title | remplazaGuionesMediosABajos }}.png">
+                                    [appLogoCandidatura]="columna.title">
                             </th>
                             <th><strong>Candidaturas no registradas</strong></th>
                             <th><strong>Votos nulos</strong></th>

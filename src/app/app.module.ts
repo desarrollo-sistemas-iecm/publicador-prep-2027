@@ -31,7 +31,7 @@ import { ObservacionesCasillaComponent } from './components/observaciones-casill
 import { IconosOrigenActaComponent } from './components/iconos-origen-acta/iconos-origen-acta.component';
 import { LeyendaOrigenActaComponent } from './components/leyenda-origen-acta/leyenda-origen-acta.component';
 import { VisorActaComponent } from './components/visor-acta/visor-acta.component';
-import { PipesModule } from './pipes/pipes.module';
+import { DirectivesModule } from './directives/directives.module';
 // import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
@@ -66,7 +66,7 @@ import { PipesModule } from './pipes/pipes.module';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    PipesModule
+    DirectivesModule
     // HighchartsChartModule
   ],
   exports: [

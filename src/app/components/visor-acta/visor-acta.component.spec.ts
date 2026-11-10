@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VisorActaComponent } from './visor-acta.component';
-import { PipesModule } from 'src/app/pipes/pipes.module';
+import { DirectivesModule } from 'src/app/directives/directives.module';
 import { Column, Datum } from 'src/app/interfaces/detalle-casilla.interface';
 
 const columna = (dataIndex: string, title: string) => ({ dataIndex, title } as Column);
@@ -24,7 +24,7 @@ describe('VisorActaComponent', () => {
 
   const crear = async (acta: Datum) => {
     await TestBed.configureTestingModule({
-      imports: [PipesModule],
+      imports: [DirectivesModule],
       declarations: [VisorActaComponent]
     }).compileComponents();
 
