@@ -84,6 +84,17 @@ describe('ApiPrepService', () => {
       expect(recibidas).toEqual([avance, avance, avance]);
     });
 
+    it('should give the response to a consumer that subscribes while another one receives it', () => {
+      const recibidas: ResAvance[] = [];
+
+      service.obtenerAvanceEntidad('diputaciones').subscribe(() => {
+        service.obtenerAvanceEntidad('diputaciones').subscribe((res) => recibidas.push(res));
+      });
+      http.expectOne(urlAvance).flush(avance);
+
+      expect(recibidas).toEqual([avance]);
+    });
+
     it('should send separate requests when the elections are different', () => {
       service.obtenerAvanceEntidad('diputaciones').subscribe();
       service.obtenerAvanceEntidad('alcaldias').subscribe();

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, finalize, share } from 'rxjs';
+import { Observable, finalize, shareReplay, tap } from 'rxjs';
 import { ResponseSeccionPorDistrito } from '../interfaces/interfaces.interface';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -24,7 +24,8 @@ export class ApiPrepService {
   constructor( private http: HttpClient ) { }
 
   // Varios componentes de una misma pantalla piden los mismos datos al cargar;
-  // comparten la petición en curso en lugar de repetirla.
+  // comparten la petición en curso en lugar de repetirla. `shareReplay` entrega la
+  // respuesta también a quien se suscribe mientras otro la está recibiendo.
   private compartirPeticion<T>(endpoint: string, cuerpo: object): Observable<T> {
     const clave = `${endpoint}:${JSON.stringify(cuerpo)}`;
     const peticionEnCurso = this.peticionesEnCurso.get(clave) as Observable<T> | undefined;
@@ -32,9 +33,11 @@ export class ApiPrepService {
       return peticionEnCurso;
     }
 
+    const liberar = () => this.peticionesEnCurso.delete(clave);
     const peticion = this.http.post<T>(`${environment.api_prep}/${endpoint}`, cuerpo).pipe(
-      finalize(() => this.peticionesEnCurso.delete(clave)),
-      share()
+      tap({ complete: liberar, error: liberar }),
+      finalize(liberar),
+      shareReplay({ bufferSize: 1, refCount: true })
     );
     this.peticionesEnCurso.set(clave, peticion);
     return peticion;
