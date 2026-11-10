@@ -25,18 +25,20 @@
 }
 
 /*
-  Paleta oscura calcada del PREP del INE (verificada en vivo, prep2024.ine.mx, con el
-  selector "Oscuro" activo): en su modo oscuro NO se usa el morado de marca como relleno
-  de superficies -- el morado queda reservado para modo claro. Todo el "chrome" (barra
-  superior, panel lateral, tarjetas) pasa a una escala de grises neutros con 3 niveles
-  de profundidad (bg < bg-secundario < superficie), y el único acento de color es el rosa
-  ya existente en la paleta (colores.css: --morado-claro / .bgGrafica1 = #C791A8), usado
-  solo en bordes, texto de énfasis y estados activos -- nunca como relleno grande.
+  Paleta oscura calcada del PREP Coahuila 2026 (verificada en vivo, prepcoahuila2026.mx,
+  con el selector "Oscuro" activo): el morado de marca no se usa como relleno. La página
+  y el área de contenido son negras (bg), las tarjetas, el encabezado y el panel lateral
+  gris oscuro (superficie) y los recuadros internos y la barra de menú un gris más claro
+  (bg-secundario); los campos de formulario son casi negros con borde claro. Los bordes
+  del panel lateral y de "Mi Sección" llevan el lila de Coahuila (acento-borde); el rosa
+  se conserva para textos de énfasis y enlaces.
 */
 html[data-tema='oscuro'] {
-  --prep-bg: #141416;
-  --prep-bg-secundario: #1c1c1f;
-  --prep-superficie: #242428;
+  --prep-bg: #000000;
+  --prep-bg-secundario: #2c2c2c;
+  --prep-superficie: #1d1d1d;
+  --prep-campo: #121212;
+  --prep-borde-campo: #dee2e6;
   --prep-texto: #f5f5f5;
   --prep-texto-secundario: #c7c7cc;
   --prep-borde: #3a3a3f;
@@ -44,7 +46,7 @@ html[data-tema='oscuro'] {
   --prep-morado-claro: #e7c6d8;
   --prep-enlace: #d9a8c7;
   --prep-foco: #ffd400;
-  --prep-acento-borde: #6e4a5c;
+  --prep-acento-borde: #b283b9;
 }
 
 /* Tamaño de letra: escala proporcional de toda la interfaz (equivalente a un zoom
@@ -88,21 +90,35 @@ html[data-tema='oscuro'] .total-encabezado {
 }
 
 /* .bgMorado es la clase morada de marca (barra superior, columna de "Consulta de
-   votación", tarjeta "Mi Sección", pie de página) -- en oscuro se neutraliza a gris,
-   igual que en el PREP del INE; el texto ya es blanco vía .txBlanco en el propio markup. */
+   votación", tarjeta "Mi Sección", pie de página) -- en oscuro pasa al gris de las
+   tarjetas, como en el PREP Coahuila; el texto ya es blanco vía .txBlanco en el markup. */
 html[data-tema='oscuro'] .bgMorado {
+  background-color: var(--prep-superficie) !important;
+}
+
+/* El área de contenido (.bgGrisTenue arriba) queda negra para que las tarjetas se
+   distingan de ella, como en el PREP Coahuila. */
+html[data-tema='oscuro'] .contenido-principal {
+  background-color: var(--prep-bg) !important;
+}
+
+/* Barra de menú (Inicio y tipos de elección) y recuadros de "Avance Entidad". */
+html[data-tema='oscuro'] .menu.bgPrototipo,
+html[data-tema='oscuro'] .cards-avance {
   background-color: var(--prep-bg-secundario) !important;
 }
 
-html[data-tema='oscuro'] .buscador.card {
-  border-color: var(--prep-acento-borde) !important;
+html[data-tema='oscuro'] .cards-avance {
+  border-color: var(--prep-borde-campo) !important;
 }
 
-/* Columna "Consulta de votación": en el PREP del INE, en oscuro, se distingue del fondo
-   de la página con el mismo acento rosa usado en .buscador.card ("Mi Sección"), ya que
-   .bgMorado (arriba) la neutraliza a un gris casi indistinguible del fondo del body. */
+/* "Mi Sección" y la columna "Consulta de votación" llevan el borde lila del PREP Coahuila. */
+html[data-tema='oscuro'] .buscador.card {
+  border: 2px solid var(--prep-acento-borde) !important;
+}
+
 html[data-tema='oscuro'] .sidebar.bgMorado {
-  border: 1px solid var(--prep-acento-borde);
+  border: 2px solid var(--prep-acento-borde);
 }
 
 html[data-tema='oscuro'] table,
@@ -112,6 +128,12 @@ html[data-tema='oscuro'] .table {
   background-color: var(--prep-bg-secundario) !important;
   color: var(--prep-texto) !important;
   border-color: var(--prep-borde) !important;
+}
+
+/* Tablas armadas con <div class="filas">: moleculas.css pinta #f2efef en las filas
+   impares, lo que en oscuro deja el texto claro sobre fondo claro. */
+html[data-tema='oscuro'] .tabla-seccion .contenido .filas:nth-child(odd) > * {
+  background-color: var(--prep-bg-secundario) !important;
 }
 
 html[data-tema='oscuro'] .borde-barra,
@@ -198,16 +220,18 @@ html[data-tema='oscuro'] .preguntas-frecuentes .bgWhite .pregunta h3 {
   color: var(--prep-morado) !important;
 }
 
-/* Campos de formulario (inputs, selects, combos): oscuros igual que en el PREP del INE
-   (verificado en vivo, prep2024.ine.mx); se excluyen los <button class="form-control
-   ..."> (ej. el botón rosa "Consulta" del buscador) para no taparles su propio color. */
-html[data-tema='oscuro'] input:not(.btn),
+/* Campos de formulario (inputs, selects, combos): casi negros con borde claro, como en
+   el PREP Coahuila; se excluyen los <button class="form-control ..."> (ej. el botón rosa
+   "Consulta" del buscador) para no taparles su propio color, y los checkbox, radio y
+   range (la pista blanca del tamaño de letra y el interruptor de tema tienen su propio
+   estilo en encabezado.css). */
+html[data-tema='oscuro'] input:not(.btn):not([type='checkbox']):not([type='radio']):not([type='range']),
 html[data-tema='oscuro'] select,
 html[data-tema='oscuro'] textarea,
 html[data-tema='oscuro'] .form-control:not(.btn) {
-  background-color: var(--prep-bg-secundario) !important;
+  background-color: var(--prep-campo) !important;
   color: var(--prep-texto) !important;
-  border-color: var(--prep-borde) !important;
+  border: 1px solid var(--prep-borde-campo) !important;
 }
 
 /* El botón "Consulta"/"Consultar" del buscador por sección (.btn-rosa-buscador) queda
