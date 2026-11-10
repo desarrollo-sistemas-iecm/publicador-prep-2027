@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Inject, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { toDataURL } from 'qrcode';
 import { Column, Datum } from 'src/app/interfaces/detalle-casilla.interface';
 import { descripcionCasilla } from 'src/app/services/etiqueta-casilla';
 
@@ -81,6 +80,8 @@ export class VisorActaComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.acta.ue_qr) {
       try {
+        // Solo las actas de urna electrónica necesitan el QR: la librería se descarga bajo demanda.
+        const { toDataURL } = await import('qrcode');
         this.qr = await toDataURL(this.acta.ue_qr, { margin: 1, width: 150 });
       } catch {
         this.qr = null;
