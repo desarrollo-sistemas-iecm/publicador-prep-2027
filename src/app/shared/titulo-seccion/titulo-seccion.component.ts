@@ -14,7 +14,8 @@ const CLASES_COLOR = {
 
 /**
  * Título de sección con la pleca lateral. El texto proyectado va en negritas; lo marcado con
- * `complemento` (p. ej. el estado del acta) va después, sin negritas.
+ * `complemento` (p. ej. el estado del acta) va después, sin negritas. `clasesTitulo` se aplica
+ * al propio `h4` (p. ej. un padding que debe quedar entre la pleca y el texto).
  */
 @Component({
   standalone: false,
@@ -34,9 +35,10 @@ export class TituloSeccionComponent {
 
   @Input() tamano: keyof typeof CLASES_TAMANO = 'seccion';
   @Input() color: keyof typeof CLASES_COLOR = 'principal';
+  @Input() clasesTitulo = '';
 
   get clases(): string[] {
-    return [...CLASES_TAMANO[this.tamano], ...CLASES_COLOR[this.color]];
+    return [...CLASES_TAMANO[this.tamano], ...CLASES_COLOR[this.color], ...this.clasesTitulo.split(' ').filter(Boolean)];
   }
 
 }

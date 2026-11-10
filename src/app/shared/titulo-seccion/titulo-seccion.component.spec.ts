@@ -6,15 +6,17 @@ import { TituloSeccionComponent } from './titulo-seccion.component';
 @Component({
   standalone: false,
   template: `
-    <app-titulo-seccion [tamano]="tamano" [color]="color">
+    <app-titulo-seccion [tamano]="tamano" [color]="color" [clasesTitulo]="clasesTitulo">
       Información del Acta
-      <span complemento class="estado">- Contabilizada</span>
+      <span complemento class="estado" *ngIf="mostrarEstado">- Contabilizada</span>
     </app-titulo-seccion>
   `
 })
 class AnfitrionComponent {
   tamano: TituloSeccionComponent['tamano'] = 'seccion';
   color: TituloSeccionComponent['color'] = 'principal';
+  clasesTitulo = '';
+  mostrarEstado = true;
 }
 
 describe('TituloSeccionComponent', () => {
@@ -39,6 +41,20 @@ describe('TituloSeccionComponent', () => {
   it('should place the complement after the bold text', () => {
     expect(titulo().querySelector('strong .estado')).toBeNull();
     expect(titulo().lastElementChild!.classList).toContain('estado');
+  });
+
+  it('should hide the complement when its condition is false', () => {
+    fixture.componentInstance.mostrarEstado = false;
+    fixture.detectChanges();
+
+    expect(titulo().querySelector('.estado')).toBeNull();
+  });
+
+  it('should add the extra classes to the title itself', () => {
+    fixture.componentInstance.clasesTitulo = 'px-3';
+    fixture.detectChanges();
+
+    expect(titulo().classList).toContain('px-3');
   });
 
   it('should apply the size and pleca color variants', () => {
