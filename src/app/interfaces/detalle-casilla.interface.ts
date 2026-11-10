@@ -48,6 +48,13 @@ export interface Datum {
     observaciones?:         string | null;
     url_acta?:              string | null;
     origen_acta?:           OrigenActa | null;
+    validado?:              string | null;
+    ue_personas_votaron?:   string | null;
+    ue_identificacion?:     string | null;
+    ue_version_software?:   string | null;
+    ue_fecha_impresion?:    string | null;
+    ue_codigo_integridad?:  string | null;
+    ue_qr?:                 string | null;
 }
 
 export type OrigenActa = 'proceso' | 'escaner' | 'movil' | 'urna' | 'movil-catd';

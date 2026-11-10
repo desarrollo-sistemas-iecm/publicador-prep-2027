@@ -1,0 +1,70 @@
+.modal-content {
+  background: var(--prep-superficie);
+  color: var(--prep-texto);
+}
+
+.modal-header .close {
+  color: var(--prep-texto);
+}
+
+.datos-urna {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.subtitulo-urna {
+  font-weight: 700;
+  margin: 12px 0 4px;
+}
+
+.datos-casilla {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 2px 12px;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.datos-casilla dt {
+  font-weight: 600;
+}
+
+.datos-casilla dd {
+  margin: 0;
+}
+
+.qr-urna {
+  width: 150px;
+  height: 150px;
+}
+
+.votos-urna {
+  margin-top: 16px;
+}
+
+.votos-urna .list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--prep-superficie);
+  color: var(--prep-texto);
+  border-color: var(--prep-borde);
+}
+
+.logos-urna img {
+  height: 26px;
+  margin-right: 2px;
+}
+
+.texto-tecnico {
+  font-family: monospace;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+.imagen-acta {
+  display: block;
+  margin: 0 auto;
+}
