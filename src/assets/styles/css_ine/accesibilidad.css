@@ -38,6 +38,7 @@ html[data-tema='oscuro'] {
   --prep-bg-secundario: #2c2c2c;
   --prep-superficie: #1d1d1d;
   --prep-campo: #121212;
+  --prep-encabezado-tabla: #373737;
   --prep-borde-campo: #dee2e6;
   --prep-texto: #f5f5f5;
   --prep-texto-secundario: #c7c7cc;
@@ -130,9 +131,36 @@ html[data-tema='oscuro'] .table {
   border-color: var(--prep-borde) !important;
 }
 
-/* Tablas armadas con <div class="filas">: moleculas.css pinta #f2efef en las filas
-   impares, lo que en oscuro deja el texto claro sobre fondo claro. */
-html[data-tema='oscuro'] .tabla-seccion .contenido .filas:nth-child(odd) > * {
+/* Tabla de resultados (.tabla-prep, styles.css): como el PREP Coahuila en oscuro, encabezado
+   gris y filas alternadas negro / gris, sin el morado de modo claro. */
+html[data-tema='oscuro'] .tabla-prep > thead > tr > th {
+  background-color: var(--prep-bg-secundario) !important;
+}
+
+html[data-tema='oscuro'] .tabla-prep > tbody > tr:nth-child(odd) > td {
+  background-color: var(--prep-bg) !important;
+}
+
+html[data-tema='oscuro'] .tabla-prep > tbody > tr:nth-child(even) > td {
+  background-color: var(--prep-bg-secundario) !important;
+}
+
+/* Encabezado claro de la tabla de participación ciudadana (.bg-ncbzd): gris oscuro como en
+   el PREP Coahuila. */
+html[data-tema='oscuro'] .bg-ncbzd {
+  background-color: var(--prep-encabezado-tabla) !important;
+  color: var(--prep-texto) !important;
+}
+
+/* Tablas armadas con <div>: moleculas.css pinta #f2efef / #f1f1f1 en las filas impares
+   (participación ciudadana, distribución de votos), lo que en oscuro deja el texto claro
+   sobre fondo claro. */
+html[data-tema='oscuro'] .distribucion-votos .tabla .titulos {
+  color: var(--prep-texto) !important;
+}
+
+html[data-tema='oscuro'] .tabla-seccion .contenido .filas:nth-child(odd) > *,
+html[data-tema='oscuro'] .distribucion-votos .tabla .datos:nth-child(odd) {
   background-color: var(--prep-bg-secundario) !important;
 }
 

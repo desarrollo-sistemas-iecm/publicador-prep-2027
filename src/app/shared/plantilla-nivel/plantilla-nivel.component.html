@@ -3,22 +3,22 @@
 <app-compartir></app-compartir>
 
 <app-encabezado></app-encabezado>
-<app-avance-entidad-fijo></app-avance-entidad-fijo>
+<app-avance-entidad-fijo *ngIf="mostrarAvance"></app-avance-entidad-fijo>
 
 <div class="cuerpo container-fluid">
     <div class="row">
-        <div class="col-12 my-3 d-xl-none">
+        <div class="col-12 my-3 d-xl-none" *ngIf="mostrarAvance">
             <app-avance-entidad-movil></app-avance-entidad-movil>
         </div>
         <div class="sidebar px-0 bgMorado col-md-12 col-xl-2">
-            <app-sidebar (primerCombo)="alCambiarDistOAlcaldia($event)"
+            <app-sidebar [mostrarBuscador]="mostrarCombos" (primerCombo)="alCambiarDistOAlcaldia($event)"
                 (seccionCombo)="alCambiarSeccion($event)"
                 (casillaCombo)="alCambiarCasilla($event)"
                 (emitirConfiguracionBreadcrumbs)="alConfigurarBreadcrumbs($event)">
             </app-sidebar>
         </div>
         <div class="bgGrisTenue contenido-principal px-0 my-3 my-xl-0 col-md-12 col-xl-10">
-            <div class="container-fluid py-xl-3">
+            <div class="container-fluid py-xl-3" *ngIf="mostrarAvance">
                 <div class="row">
                     <div class="col-xl-8 d-none d-xl-block altoAvance">
                         <app-avance-entidad></app-avance-entidad>
@@ -35,7 +35,7 @@
                         <div class="card p-3">
                             <div class="row">
                                 <app-breadcrumbs
-                                    [configuracionBreadcrumbs]="configuracionBreadcrumbs"></app-breadcrumbs>
+                                    [configuracionBreadcrumbs]="breadcrumbs ?? configuracionBreadcrumbs"></app-breadcrumbs>
                             </div>
                             <ng-content></ng-content>
                         </div>

@@ -16,7 +16,7 @@ import { ResourceState } from 'src/app/interfaces/resource-state.interface';
 })
 export class PlantillaComponent implements OnInit {
 
-  tipoEleccion: any;
+  tipoEleccion = '';
 
   public configuracionBreadcrumbs: BreadcrumbsConfig = this.breadcrumbsService.configuracionVacia();
 
@@ -37,16 +37,11 @@ export class PlantillaComponent implements OnInit {
 
     const segments = this.router.url.split('/');
 
-    // Verifica si la URL tiene al menos dos segmentos y el segundo es un tipo de visualización válido
-    if (segments.length >= 2 && ['jefatura-de-gobierno', 'diputaciones', 'alcaldias'].includes(segments[1])) {
-      const tipoVisualizacion = segments[1]; // Obtiene el tipo de visualización actual
-
-      this.tipoEleccion = tipoVisualizacion;
+    if (['jefatura-de-gobierno', 'diputaciones', 'alcaldias'].includes(segments[1])) {
+      this.tipoEleccion = segments[1];
       this.configuracionBreadcrumbs.votos_por = segments[3];
       this.configuracionBreadcrumbs.votosPorNivel1 = segments[3];
-      this.configuracionBreadcrumbs.tipo_eleccion = tipoVisualizacion;
-    } else {
-      console.error('Tipo de visualización no válido o URL incorrecta');
+      this.configuracionBreadcrumbs.tipo_eleccion = segments[1];
     }
 
     if (this.mostrarTablaActas && this.tipoEleccion) {

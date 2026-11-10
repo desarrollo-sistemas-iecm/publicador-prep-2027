@@ -19,6 +19,9 @@ export interface VotoRepresentacion {
  * Visor del acta de una casilla. Si el acta viene de urna electrónica (`ue_qr`)
  * muestra la representación del acta con su QR, como `IconImageView` de
  * PREP2024; en otro caso, la imagen digitalizada (`url_acta`).
+ *
+ * TODO: validar la representación de urna electrónica con actas reales de 2027;
+ * solo está probada con un acta de PREP2024 porque la base local no trae `ue_qr`.
  */
 @Component({
   standalone: false,
