@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiPrepService } from '../../services/api-prep.service';
 import { Router } from '@angular/router';
 import { Column, Datum } from 'src/app/interfaces/detalle-casilla.interface';
+import { ICONO_DOCUMENTO, IconoOrigen, opcionOrigen } from 'src/app/services/origen-acta';
+import { actaVisible } from 'src/app/services/acta-visible';
 
 const TIPOS_CONSULTA = ['jefatura-de-gobierno', 'diputaciones', 'alcaldias'];
 
@@ -14,6 +16,21 @@ const TIPOS_CONSULTA = ['jefatura-de-gobierno', 'diputaciones', 'alcaldias'];
      .acta-digitalizada .grupo, .tabla-seccion .acta-digitalizada .grupo {
     color: #6f65a3;
 }
+    .boton-acta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 4px;
+    background: var(--prep-morado-claro);
+    color: #212529;
+    white-space: nowrap;
+}
+    .acta-no-disponible {
+    color: var(--prep-texto-secundario);
+    opacity: .7;
+}
     `
   ]
 })
@@ -22,8 +39,22 @@ export class DetalleVotosCasillaComponent implements OnInit {
   public columnasVotos: Column[] = [];
   public filas: Datum[] = [];
   public cargando = true;
+  public tipoEleccion = '';
+  public actaEnVisor: Datum | null = null;
 
   constructor(private apiPrepService: ApiPrepService, private router: Router) { }
+
+  puedeVerActa(fila: Datum): boolean {
+    return actaVisible(fila);
+  }
+
+  iconosActa({ origen_acta }: Datum): IconoOrigen[] {
+    return opcionOrigen(origen_acta)?.iconos ?? [ICONO_DOCUMENTO];
+  }
+
+  etiquetaOrigen({ origen_acta }: Datum): string {
+    return opcionOrigen(origen_acta)?.etiqueta ?? '';
+  }
 
   ngOnInit(): void {
     this.cargarInfo();
@@ -49,6 +80,7 @@ export class DetalleVotosCasillaComponent implements OnInit {
       this.cargando = false;
       return;
     }
+    this.tipoEleccion = tipoConsulta;
 
     this.apiPrepService.obtenederDetalleVotosCasilla(tipoConsulta, distOAlcaldia, seccion, null)
       .subscribe({

@@ -8,6 +8,9 @@
             </div>
         </div>
         <div class="container-fluid acta-digitalizada">
+            <div class="row py-2">
+                <app-leyenda-origen-acta></app-leyenda-origen-acta>
+            </div>
             <div class="row px14 py-2">
                 <span class="mr-4"><i class="fa fa-circle text-success" aria-hidden="true"></i> Contabilizada</span>
                 <span><i class="fa fa-circle text-danger" aria-hidden="true"></i> No Contabilizada</span>
@@ -24,6 +27,7 @@
                             <th><span class="sr-only">Estado del acta</span></th>
                             <th><strong>Sección</strong></th>
                             <th><strong>Casilla</strong></th>
+                            <th><strong>Acta digitalizada</strong></th>
                             <th *ngFor="let columna of columnasVotos">
                                 <img class="m-1" style="width: 2.25em; height: auto;" [alt]="columna.title"
                                     [title]="columna.title"
@@ -44,6 +48,19 @@
                             </td>
                             <td>{{ fila.id_seccion }}</td>
                             <td>{{ fila.tipo_casilla }}</td>
+                            <td>
+                                <button *ngIf="puedeVerActa(fila); else actaNoDisponible" type="button"
+                                    class="boton-acta" (click)="actaEnVisor = fila"
+                                    [attr.aria-label]="'Ver acta de la casilla ' + fila.id_seccion + ' ' + fila.tipo_casilla + (etiquetaOrigen(fila) ? ', ' + etiquetaOrigen(fila) : '')">
+                                    <app-iconos-origen-acta [iconos]="iconosActa(fila)"></app-iconos-origen-acta>
+                                    Acta
+                                </button>
+                                <ng-template #actaNoDisponible>
+                                    <span class="acta-no-disponible" [title]="etiquetaOrigen(fila) || 'Imagen no disponible'">
+                                        <app-iconos-origen-acta [iconos]="iconosActa(fila)"></app-iconos-origen-acta>
+                                    </span>
+                                </ng-template>
+                            </td>
                             <td *ngFor="let columna of columnasVotos">{{ votos(fila, columna) | number }}</td>
                             <td>{{ fila.votos_cand_no_reg | number }}</td>
                             <td>{{ fila.votos_nulos | number }}</td>
@@ -56,3 +73,6 @@
         </div>
     </div>
 </div>
+
+<app-visor-acta *ngIf="actaEnVisor" [acta]="actaEnVisor" [columnas]="columnasVotos" [tipoEleccion]="tipoEleccion"
+    (cerrar)="actaEnVisor = null"></app-visor-acta>
