@@ -22,6 +22,7 @@ import { SegundoNivelComponent } from './components/segundo-nivel/segundo-nivel.
 import { DistribucionVotosComponent } from './components/distribucion-votos/distribucion-votos.component';
 import { PrimerNivelComponent } from './components/primer-nivel/primer-nivel.component';
 import { ListadoParticipacionCiudadanaLNComponent } from './components/listado-participacion-ciudadana-ln/listado-participacion-ciudadana-ln.component';
+import { EstadisticaCasillasComponent } from './components/estadistica-casillas/estadistica-casillas.component';
 import { VotacionPorCasillaComponent } from './components/votacion-por-casilla/votacion-por-casilla.component';
 import { RepresentacionProporcionalComponent } from './components/representacion-proporcional/representacion-proporcional.component';
 import { VotosActasContabilizadasComponent } from './components/votos-actas-contabilizadas/votos-actas-contabilizadas.component';
@@ -46,6 +47,7 @@ import { PipesModule } from './pipes/pipes.module';
     DistribucionVotosComponent,
     PrimerNivelComponent,
     ListadoParticipacionCiudadanaLNComponent,
+    EstadisticaCasillasComponent,
     VotacionPorCasillaComponent,
     RepresentacionProporcionalComponent,
     VotosActasContabilizadasComponent,
