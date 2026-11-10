@@ -29,8 +29,9 @@
   con el selector "Oscuro" activo): el morado de marca no se usa como relleno. La página
   y el área de contenido son negras (bg), las tarjetas, el encabezado y el panel lateral
   gris oscuro (superficie) y los recuadros internos y la barra de menú un gris más claro
-  (bg-secundario); los campos de formulario son casi negros con borde claro. El único
-  acento de color es el lila del borde del panel lateral y de "Mi Sección".
+  (bg-secundario); los campos de formulario son casi negros con borde claro. Los bordes
+  del panel lateral y de "Mi Sección" llevan el lila de Coahuila (acento-borde); el rosa
+  se conserva para textos de énfasis y enlaces.
 */
 html[data-tema='oscuro'] {
   --prep-bg: #000000;
@@ -221,20 +222,15 @@ html[data-tema='oscuro'] .preguntas-frecuentes .bgWhite .pregunta h3 {
 
 /* Campos de formulario (inputs, selects, combos): casi negros con borde claro, como en
    el PREP Coahuila; se excluyen los <button class="form-control ..."> (ej. el botón rosa
-   "Consulta" del buscador) para no taparles su propio color. */
-html[data-tema='oscuro'] input:not(.btn),
+   "Consulta" del buscador) para no taparles su propio color, y los checkbox, radio y
+   range (la pista blanca del tamaño de letra y el interruptor de tema tienen su propio
+   estilo en encabezado.css). */
+html[data-tema='oscuro'] input:not(.btn):not([type='checkbox']):not([type='radio']):not([type='range']),
 html[data-tema='oscuro'] select,
 html[data-tema='oscuro'] textarea,
 html[data-tema='oscuro'] .form-control:not(.btn) {
   background-color: var(--prep-campo) !important;
   color: var(--prep-texto) !important;
-  border-color: var(--prep-borde) !important;
-}
-
-html[data-tema='oscuro'] input:not(.btn):not([type='checkbox']):not([type='radio']):not([type='range']),
-html[data-tema='oscuro'] select,
-html[data-tema='oscuro'] textarea,
-html[data-tema='oscuro'] .form-control:not(.btn) {
   border: 1px solid var(--prep-borde-campo) !important;
 }
 
