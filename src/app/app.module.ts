@@ -27,6 +27,7 @@ import { VotacionPorCasillaComponent } from './components/votacion-por-casilla/v
 import { RepresentacionProporcionalComponent } from './components/representacion-proporcional/representacion-proporcional.component';
 import { VotosActasContabilizadasComponent } from './components/votos-actas-contabilizadas/votos-actas-contabilizadas.component';
 import { InformacionActaComponent } from './components/informacion-acta/informacion-acta.component';
+import { ObservacionesCasillaComponent } from './components/observaciones-casilla/observaciones-casilla.component';
 import { PipesModule } from './pipes/pipes.module';
 // import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -51,7 +52,8 @@ import { PipesModule } from './pipes/pipes.module';
     VotacionPorCasillaComponent,
     RepresentacionProporcionalComponent,
     VotosActasContabilizadasComponent,
-    InformacionActaComponent
+    InformacionActaComponent,
+    ObservacionesCasillaComponent
   ],
   imports: [
     BrowserModule,

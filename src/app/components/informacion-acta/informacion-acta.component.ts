@@ -30,7 +30,6 @@ export class InformacionActaComponent implements OnInit {
 
   public contabilizada: boolean | null = null;
   public tieneImagen: boolean = false;
-  public observaciones: string = '';
   // TODO: el backend aún no expone el origen de la imagen del acta; valor de muestra.
   public origen: OrigenImagen = 'escaner';
 
@@ -52,7 +51,6 @@ export class InformacionActaComponent implements OnInit {
         const acta = itemRecords.data.find(({ tipo_casilla }) => tipo_casilla === casilla);
         this.contabilizada = acta ? acta.contabilizar === 'T' : null;
         this.tieneImagen = Boolean(acta?.nombre_img);
-        this.observaciones = acta?.observaciones && acta.observaciones !== '--' ? acta.observaciones : '';
       });
   }
 
